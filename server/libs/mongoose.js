@@ -1,5 +1,10 @@
 var mongoose = require('mongoose');
-var config = require('../config/config');
-mongoose.connect(config.mongoose.uri, config.mongoose.options);
+var database = require('../config/database');
 
-module.exports = mongoose;
+mongoose.connect(database.url, database.options);
+var db = mongoose.connection;
+
+db.on('error', function(){ console.log('connection error'); }); //TODO log error
+db.once('open', function(){
+    //execute scripts before open
+});
