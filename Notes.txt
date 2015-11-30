@@ -3,5 +3,6 @@
 3. Create 'debug' and 'build' modes
 4. Read about bb-validation
 
+///test ololo
 
 9. ListenTo vs On
