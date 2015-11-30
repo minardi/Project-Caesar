@@ -22,16 +22,21 @@ app.engine('html', ejs.renderFile);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join('../client', 'img', 'favicon.ico')));
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static('../client'));
 
+app.use('/build', express.static(path.join(__dirname, 'public')));
+app.use('/build', favicon(path.join('../client', 'img', 'favicon.ico')));
+
+app.use(express.static('../client'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
+//app.use('/users', users);
 app.use('/group', groups);
 
 // catch 404 and forward to error handler
