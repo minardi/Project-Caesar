@@ -1,6 +1,8 @@
 'use strict';
 var App = {
-	    Groups: {}
+	    Groups: {},
+        Cookies: {},
+        Login: {}
     },
     collections = {},
 	cs = {},
@@ -9,13 +11,16 @@ var App = {
 $(function () {
 	collections.groups = new App.Groups.GroupCollection();
     
-   _.each(collections, function (collection) {
+    _.each(collections, function (collection) {
         collection.fetch();
 	});
 	
 	cs.mediator = new Mediator();
     cs.subRouters = {};
     cs.router = new App.Router();
-	
-	Backbone.history.start({pushState: true});
+    cs.currentUser = new App.User({});
+    
+    Backbone.history.start({pushState: true});
+    
+    cs.cookiesController = new App.Cookies.Controller();
 });

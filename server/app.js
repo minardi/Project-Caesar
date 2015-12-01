@@ -8,9 +8,7 @@ var http = require('http');
 var ejs = require('ejs');
 var config = require('./config');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var groups = require('./routes/groups');
+var router = require('./router');
 
 var app = express();
 require('./db');
@@ -35,9 +33,7 @@ app.use('/build', express.static(path.join(__dirname, 'public')));
 app.use(express.static('../client'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-//app.use('/users', users);
-app.use('/group', groups);
+app.use(router);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
