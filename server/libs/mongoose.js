@@ -1,5 +1,13 @@
 var mongoose = require('mongoose');
-var config = require('../config/config');
-mongoose.connect(config.mongoose.uri, config.mongoose.options);
+var database = require('../config/database');
 
-module.exports = mongoose;
+mongoose.connect(database.url, database.options);
+var db = mongoose.connection;
+console.log('data load')
+db.on('error', function(){
+    console.log('connection error');
+});
+db.once('open', function(){
+    console.log('data load')
+    //execute scripts before open
+});
