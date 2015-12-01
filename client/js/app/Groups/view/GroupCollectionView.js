@@ -5,6 +5,10 @@
         className: 'groups',
         tpl: templates.groupCollectionTpl,
 
+        events: {
+            'click [name="btnLocations"]': 'routeToLocations'
+        },
+
         initialize: function () {
             this.collection = collections.groups;
             this.listenTo(this.collection, 'add', this.renderOne);
@@ -24,6 +28,10 @@
         renderOne: function (model) {
             var groupView = new This.GroupView({model: model});
             this.$('.group-list').append(groupView.render().el);
+        },
+
+        routeToLocations: function () {
+            cs.mediator.publish('RouteToLocations');
         }
     });
 })(App.Groups);
