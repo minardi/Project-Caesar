@@ -6,8 +6,13 @@
         defaults: function () {
             return {
                 name: '',
+                direction: '',
                 locationCity: '',
+                startDate: '',
+                finishDate: '',
                 status: '',
+                teacher: [],
+                experts: [],
                 students: []
             };
         },
@@ -25,6 +30,12 @@
                 {
                     minLength: 9,
                     msg: 'Min length is 2 symbols'
+                }
+            ],
+            startDate: [
+                {
+                    startDate: true,
+                    msg: 'Select data'
                 }
             ],
             locationCity: [
