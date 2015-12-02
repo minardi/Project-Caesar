@@ -60,6 +60,7 @@ html, body {
 .notifications {
   border: 2px solid #6c7a89;
   border-radius: 5px;
+  background: #6c7a89;
   padding: 5px;
   height: 100%;
 }
@@ -67,6 +68,7 @@ html, body {
 .content {
   height: calc(100% - 200px);
   overflow: hidden;
+  background: #ececec;
 }
 
 .content-row {
