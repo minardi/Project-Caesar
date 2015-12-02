@@ -1,10 +1,15 @@
 'use strict';
 (function (This)  {
     This.Router = Backbone.Router.extend({
-        routes: {},
+        routes: {
+            '/login': 'showLoginPage'
+        },
 
         initialize: function () {
-            (new This.Controller());
+            var controller = new This.Controller();
+        },
+
+        showLoginPage: function () {
         }
     });
 })(App.Login);

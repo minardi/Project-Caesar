@@ -2,17 +2,23 @@
 (function (This) {
     This.Controller = (function () {
         function Constructor () {
-            var loggedIn = Cookies.get('loggedIn');
-
-            if (loggedIn) {
-                // todo
-            } else {
-                
-            }
+            cs.mediator.subscribe('loginSuccess', function () {
+                This.Processor.set('loggedIn', 'true');
+            });
+            
             return this;
         }
         
-        function clear () {
+        Constructor.prototype.checkLogged = function () {
+            var loggedIn = This.Processor.get('loggedIn');
+            
+            if (!loggedIn) {
+                //cs.router.navigate('/login', {trigger: true});
+                cs.mediator.publish('loginRequired');
+            }
+        }
+        
+        Constructor.prototype.clearAll = function () {
             var visibleCookies = Cookies.get(),
                 cookieName;
                 

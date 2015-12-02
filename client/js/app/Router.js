@@ -4,17 +4,18 @@
         routes: {
             '': 'groups',
             'Groups*path': 'groups',
-            'login': 'logins'
+            '/login': 'login'
         },
 
         initialize: function () {
+            cs.mediator.subscribe('loginRequired', this.login);
         },
 		
         groups: function () {
             cs.subRouters['Groups'] || (cs.subRouters['Groups'] = new App.Groups.Router());
         },
         
-        logins: function () {
+        login: function () {
             cs.subRouters['Login'] || (cs.subRouters['Login'] = new App.Login.Router());
         }
     });
