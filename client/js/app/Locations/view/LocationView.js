@@ -2,7 +2,7 @@
 (function (This) {
     This.LocationView = Backbone.View.extend({
         tagName: 'div',
-		className: '',
+		className: 'col-md-4',
         tpl: templates.locationTpl,
 		
 		events: {},

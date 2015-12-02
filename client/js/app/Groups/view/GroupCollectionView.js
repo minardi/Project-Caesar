@@ -2,7 +2,7 @@
 (function (This) {
     This.GroupCollectionView = Backbone.View.extend({
         tagName: 'div',
-        className: 'groups',
+        className: 'row content-row',
         tpl: templates.groupCollectionTpl,
 
         events: {
@@ -27,11 +27,7 @@
 
         renderOne: function (model) {
             var groupView = new This.GroupView({model: model});
-            this.$('.group-list').append(groupView.render().el);
-        },
-
-        routeToLocations: function () {
-            cs.mediator.publish('RouteToLocations');
+            this.$el.append(groupView.render().el);
         }
     });
 })(App.Groups);

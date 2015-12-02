@@ -1,5 +1,3 @@
 templates.locationCollectionTpl = _.template([
-	'<div class="location-list">',
-		'Locations:',
-	'</div>',
-].join(''));
+	'<h1>Locations</h1>'
+ ].join(''));

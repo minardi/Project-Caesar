@@ -1,10 +1,13 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-Group1 = mongoose.model('Group1', new Schema({
-    name: { type: String, required: true },
-    locationCity: { type: String, required: true },
-    status: { type: String, required: true }
+Group = mongoose.model('Group', new Schema({
+	title: String,
+	startDate: String,
+	finishDate: String,
+	location: String,
+	direction: String,
+	status: String
 }));
 
 function save(data, callback, error){

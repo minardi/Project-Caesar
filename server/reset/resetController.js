@@ -11,7 +11,7 @@ function ResetController (req, res) {
 	    	values: require('./defaults/locations.json')
 	    },
 	    {
-	    	modelName: Group1,
+	    	modelName: Group,
 	    	values: require('./defaults/groups.json')
 	    }	    
 	]
@@ -24,13 +24,11 @@ function ResetController (req, res) {
 			collection['modelName'].remove({}, function () {
 				collection['values'].forEach(function (value) {
 					var model = new collection['modelName'](value);
-    				model.save(function(err, result){
-        				callback(err, result);
-    				});
-				})
-			})
-		})
-	}
+    				model.save();});
+                callback();   
+            })
+        });
+    }    
 
 	function responde (err, result) {
 		res.end("DBs successfully reseted!")

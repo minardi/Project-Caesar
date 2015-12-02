@@ -5,15 +5,17 @@
 		
         defaults: function () {
             return {
-                name: '',
-                locationCity: '',
-                status: '',
-                students: []
+                title: '',
+                startDate: '',
+                finishDate: '',
+                location: '',
+                direction: '',
+                status: ''
             };
         },
 
         validation: {
-            name: [
+            title: [
                 {
                     required: true,
                     msg: 'Field cannot be empty'
@@ -27,18 +29,36 @@
                     msg: 'Min length is 2 symbols'
                 }
             ],
-            locationCity: [
+            startDate: [
                 {
-                    locationCity: true,
-                    msg: 'Select location'
+                    required: true,
+                    msg: 'Field cannot be empty'
                 }
             ],
+            finishDate: [
+                {
+                    required: true,
+                    msg: 'Field cannot be empty'
+                }                
+            ],
+            location: [
+                {
+                    required: true,
+                    msg: 'Field cannot be empty'
+                }                
+            ],    
+            direction: [
+                {
+                    required: true,
+                    msg: 'Field cannot be empty'
+                }                
+            ],    
             status: [
                 {
-                    status: true,
-                    msg: 'Select status'
+                    required: true,
+                    msg: 'Field cannot be empty'
                 }                
-            ]    
+            ]                
         }
     });
 })(App.Groups);

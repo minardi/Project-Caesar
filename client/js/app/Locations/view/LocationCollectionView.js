@@ -2,7 +2,7 @@
 (function (This) {
     This.LocationCollectionView = Backbone.View.extend({
         tagName: 'div',
-        className: 'locations',
+        className: 'row content-row',
         tpl: templates.locationCollectionTpl,
 
         initialize: function () {
@@ -19,7 +19,7 @@
 		
         renderOne: function (model) {
             var locationView = new This.LocationView({model: model});
-            this.$('.location-list').append(locationView.render().el);
+            this.$el.append(locationView.render().el);
         }
     });
 })(App.Locations);

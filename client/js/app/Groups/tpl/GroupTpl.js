@@ -1,5 +1,7 @@
 templates.groupTpl = _.template([
-    '<td class="fullInfo"><%= name %></td>',
-	'<td><%= locationCity %></td> ',
-	'<td><%= status %></td> '
+    '<div class="content-item">',
+        '<h4><%= title %></h4>',
+        '<p><%= startDate%> - <%= finishDate%></p>',
+        '<p><span>Status:</span><%= status %></p>',
+    '</div>'
 ].join(''));

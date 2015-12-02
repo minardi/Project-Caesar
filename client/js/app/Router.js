@@ -4,7 +4,7 @@
         routes: {
             '': 'groups',
             'Groups*path': 'groups',
-            'Locations*path': 'locations',
+            'Locations*path': 'locations'
         },
 
         initialize: function () {
@@ -21,8 +21,6 @@
 
         navigateLocations: function () {
             this.navigate('Locations', {trigger: true});
-        },
-
-
+        }
     });
 })(App);
