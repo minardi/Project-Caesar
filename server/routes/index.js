@@ -1,7 +1,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var router = express.Router();
-var Group = require('../models/Group');
+//var Group = require('../models/Group');
 var GroupMg;
 
 router.get('/', function (req, res) {
@@ -12,9 +12,9 @@ router.get('/', function (req, res) {
 
 router.get('/group', function(req, res) {
     console.log('group');
-    var GroupModel = mongoose.model('Group');
+    var Groups = mongoose.model('Group');
     
-    GroupModel.find({}, function(err, data) {
+    Groups.find({}, function(err, data) {
         if (err) {
             throw err;
         }    
