@@ -10,8 +10,6 @@
             this.controller = new App.Locations.Controller();
             this.controller.start();
 
-            cs.mediator.subscribe('RouteToLocations', this.navigateLocations, null, this);
-
             Backbone.history.loadUrl(Backbone.history.fragment);
         },
 

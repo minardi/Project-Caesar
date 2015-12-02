@@ -3,7 +3,7 @@
     This.Controller = function() {
         this.collection = collections.locationsCollection;
         this.collectionView = new This.LocationCollectionView();
-        this.el = $('#main');
+        this.el = $('.col-md-8');
 		
 		this.start = function () {
 		    this.el.append((this.collectionView.render().el));
