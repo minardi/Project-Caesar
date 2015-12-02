@@ -1,7 +1,7 @@
-var mongoose = require('../libs/mongoose'),
+var mongoose = require('../libs/mongoose-init'),
     Schema = mongoose.Schema;
 
-User = mongoose.model('User', new Schema({
+var User = mongoose.model('User', new Schema({
     username: { type: String, unique: true, required: true },
     password: { type: String, required: true },
     created_at: { type: Date, default: Date.now}
