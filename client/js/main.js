@@ -1,21 +1,24 @@
 'use strict';
 var App = {
-	    Groups: {}
+        Groups: {},
+        Notifications: {}
     },
     collections = {},
-	cs = {},
+    cs = {},
     templates = {};
 
 $(function () {
-	collections.groups = new App.Groups.GroupCollection();
+    collections.groups = new App.Groups.GroupCollection();
     
-   _.each(collections, function (collection) {
+    _.each(collections, function (collection) {
         collection.fetch();
-	});
-	
-	cs.mediator = new Mediator();
+    });
+    
+    cs.mediator = new Mediator();
+    cs.messanger = new App.Notifications.Controller();
+
     cs.subRouters = {};
     cs.router = new App.Router();
-	
-	Backbone.history.start({pushState: true});
+    
+    Backbone.history.start({pushState: true});
 });

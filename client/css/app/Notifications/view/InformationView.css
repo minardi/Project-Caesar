@@ -1,0 +1,19 @@
+.hide-message {
+    display: none;
+}
+
+.close {
+    outline: none;
+}
+
+.message-wrap {
+    position: absolute;
+    width: 450px;
+    bottom: 0px;
+    right: 2px;
+}
+
+.tooltip-wrapper {
+    position: absolute;
+    width: 200px;
+}
