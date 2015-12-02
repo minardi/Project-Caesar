@@ -7,7 +7,7 @@ User = mongoose.model('User', new Schema({
     created_at: { type: Date, default: Date.now}
 }));
 
-/*function save(data, callback, error){
+function save(data, callback, error){
     var user = new User(data);
     user.save(function(err){
         callback(err, user);
@@ -37,6 +37,4 @@ module.exports = {
     save: save,
     find: find,
     remove: remove
-};*/
-
-exports.User = User;
+};

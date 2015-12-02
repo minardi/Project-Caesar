@@ -6,20 +6,19 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var http = require('http');
 var ejs = require('ejs');
-var config = require('./config');
+var config = require('./config/server');
 
 var router = require('./router');
 
 var app = express();
-require('./db');
+require('./libs/mongoose');
 // view engine setup
-app.set('port', config.get('port'));
+app.set('port', config.port);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.engine('html', ejs.renderFile);
 
 // uncomment after placing your favicon in /public
-
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(favicon(path.join('../client', 'img', 'favicon.ico')));
 app.use(logger('dev'));
@@ -66,7 +65,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
-http.createServer(app).listen(config.get('port'), function (){
- console.log('Express server listening on port ' + config.get('port'));
- });
+http.createServer(app).listen(app.get('port'), function (){
+    console.log('Express server listening on port ' + app.get('port'));
+});
 module.exports = app;

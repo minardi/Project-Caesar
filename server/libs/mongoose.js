@@ -1,5 +1,18 @@
 var mongoose = require('mongoose');
-var config = require('../config/config');
-mongoose.connect(config.mongoose.uri, config.mongoose.options);
+var database = require('../config/database');
 
-module.exports = mongoose;
+
+mongoose.connect(database.url);
+
+var Schema = mongoose.Schema;
+
+var groupSchema = new Schema({
+	title: String,
+	startDate: String,
+	finishDate: String,
+	location: String,
+	direction: String,
+	status: String
+});
+
+var GroupMg =  mongoose.model('Group', groupSchema);

@@ -2,7 +2,7 @@
 	position: absolute;
 	margin: 0 90px;
 	padding: 5px 5px 5px 5px;
-	color: #777777;
+	color: #777;
 	right: 0;
 }
 
@@ -21,7 +21,7 @@
 #auth span {
 	padding: 2px 1px 1px 1px;
 	color: white;
-	background-color: #777777;
+	background-color: #777;
 }
 
 #logo {
@@ -30,8 +30,7 @@
 	height: 59px;
 	background-image: url("/img/caesar.png");	
 	background-size: 100% 100%;
-	border-right: 1px solid #aaaaaa;
-	margin-left: 14px;
+	border-right: 1px solid #aaa;
 }
 
 #navbar {
@@ -60,7 +59,7 @@
 	float: left;
 	cursor: pointer;
 	font-weight: 600;
-	color: #777777;
+	color: #777;
 	border-top: 6px solid transparent;
 	border-bottom: 4px solid transparent;
 	text-align: center;
@@ -74,7 +73,7 @@
 }
 
 .menu-item:hover {
-	background-color: #dddddd;
+	background-color: #ddd;
 	color: #515151;
 }
 
@@ -92,7 +91,7 @@
     float: left;
     cursor: not-allowed;
     font-weight: 600;
-    color: #777777;
+    color: #777;
     border-top: 6px solid transparent;
     border-bottom: 4px solid transparent;
     text-align: center;

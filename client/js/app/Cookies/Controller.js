@@ -7,7 +7,7 @@
             if (loggedIn) {
                 // todo
             } else {
-                cs.router.navigate('/login', {trigger: true});                
+                
             }
             return this;
         }
