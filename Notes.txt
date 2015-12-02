@@ -1,9 +1,0 @@
-1. Create \reset route for DB
-2. Read about bower
-3. Create 'debug' and 'build' modes
-4. Read about bb-validation
-5. Kill extra-bootstrap
-6. Create main.css
-7. Add 'database' to git-ignore
-8. Move favicon.ico
-9. ListenTo vs On
