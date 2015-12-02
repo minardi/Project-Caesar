@@ -7,11 +7,13 @@ mongoose.connect(database.url);
 var Schema = mongoose.Schema;
 
 var groupSchema = new Schema({
-	title: String,
-	startDate: String,
-	finishDate: String,
-	location: String,
+	name: String,
 	direction: String,
+	location: String,
+	startDate: Date,
+	finishDate: Date,
+	teachers: [String],
+	experts: [String],
 	status: String
 });
 
