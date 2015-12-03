@@ -10,6 +10,8 @@ var App = {
 	cs = {},
     templates = {};
 
+Backbone.Model.prototype.idAttribute = "_id";
+
 $(function () {
 	collections.groups = new App.Groups.GroupCollection();
 	collections.locations = new App.Locations.LocationCollection();

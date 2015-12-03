@@ -2,6 +2,6 @@
 (function (This) {
     This.GroupCollection = Backbone.Collection.extend({
         model: This.Group,
-        url: '/group'
+        url: '/groups'
     });
 })(App.Groups);

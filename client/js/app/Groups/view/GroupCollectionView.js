@@ -8,18 +8,20 @@
         initialize: function () {
             this.collection = collections.groups;
             this.listenTo(this.collection, 'add', this.renderOne);
+            
+            $('body').append(templates.groupModalDeleteTpl);
         },
 
         render: function (collection) {
-			collection = collection || this.collection;
-			this.$el.html(this.tpl());
-			this.renderAll(collection);
+            collection = collection || this.collection;
+            this.$el.html(this.tpl());
+            this.renderAll(collection);
             return this;
         },
-		
-		renderAll: function (collection) {
-			collection.forEach(this.renderOne, this);
-		},
+        
+        renderAll: function (collection) {
+            collection.forEach(this.renderOne, this);
+        },
 
         renderOne: function (model) {
             var groupView = new This.GroupView({model: model});
