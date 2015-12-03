@@ -14,15 +14,15 @@
             this.listenTo(this.collection, 'add', this.renderOne);
         },
 
-        render: function () {
-            this.$el.html(this.tpl());
-            this.renderAll();
-			
+        render: function (collection) {
+			collection = collection || this.collection;
+			this.$el.html(this.tpl());
+			this.renderAll(collection);
             return this;
         },
 		
-		renderAll: function () {
-			this.collection.forEach(this.renderOne, this);
+		renderAll: function (collection) {
+			collection.forEach(this.renderOne, this);
 		},
 
         renderOne: function (model) {
