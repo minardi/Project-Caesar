@@ -6,12 +6,16 @@
         tpl: templates.groupTpl,
 		
 		events: {
-			'click': 'showStudents'
+			'dblclick': 'showStudents',
+            'click .content-item .close': 'deleteGroup'
 		},
 		
         initialize: function () {
             this.model.on('change', function () {
                 this.render();
+            }, this);
+            this.model.on('destroy', function () {
+                this.remove();
             }, this);
         },
 
@@ -23,6 +27,15 @@
 		
 		showStudents: function () {
 			alert(this.model.get('students').join());
-		}
+		},
+
+        deleteGroup: function () {
+            var thisGroup = this.model;
+            $('#groupDelete').modal('show');
+            $('#groupDelete .delete').on('click', function () {
+               thisGroup.destroy();
+               $('#groupDelete').modal('hide');
+            });
+        }
     });
 })(App.Groups);

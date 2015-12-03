@@ -8,6 +8,8 @@
         initialize: function () {
             this.collection = collections.groups;
             this.listenTo(this.collection, 'add', this.renderOne);
+            
+            $('body').append(templates.groupModalDeleteTpl);
         },
 
         render: function (collection) {
