@@ -16,13 +16,12 @@
                 students: []
             };
         },
-		
-		initialize: function(data) {
-			var startDate = new Date(data.startDate),
-				finishDate = new Date(data.finishDate);
-			this.set({'startDate': startDate.toISOString().slice(0, 10),
-					 'finishDate': finishDate.toISOString().slice(0, 10)});
-		},
+        
+        parse: function(data) {
+            data.startDate = new Date(data.startDate).toISOString().slice(0, 10);
+            data.finishDate = new Date(data.finishDate).toISOString().slice(0, 10);
+            return data;
+        },
 
         validation: {
             name: [

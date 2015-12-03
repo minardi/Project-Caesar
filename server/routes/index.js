@@ -12,10 +12,14 @@ router.get('/', function (req, res) {
 });
 
 
-router.get('/group', function(req, res) {
-    var Groups = mongoose.model('Group');
+router.get('/groups', function(req, res) {
+    var Groups = mongoose.model('Group'), 
+		options = {};
+	if (req.query['location']) {
+		options['location'] = req.query['location'];
+	}
     
-    Groups.find({}, function(err, data) {
+    Groups.find(options, function(err, data) {
         if (err) {
             throw err;
         }    

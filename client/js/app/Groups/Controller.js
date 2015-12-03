@@ -4,25 +4,25 @@
         this.collection = collections.groups;
         this.collectionView = new This.GroupCollectionView();
         this.el = $('.content');
-		
-		this.start = function () {
-		    this.el.append((this.collectionView.render().el));
-		};
-		
-		this.showGroupsInLocation = function (location) {
-			var el = this.el;
-			$.ajax({
-			  url: '/groups/' + location,
-			}).done((function(data) {
-				var groupsInLocation = new App.Groups.GroupCollection(data);
-				this.el.children().first().replaceWith((this.collectionView.render(groupsInLocation).el));	
-			}).bind(this));
-		};
-		
-		return this;
-		
-		function appendGroupElement(data) {
-		}
-
-	};
+        
+        function renderView() {
+            this.el.children().first().replaceWith(this.collectionView.render().el);
+        }
+        
+        this.start = function () {
+            renderView.call(this);
+        };
+        
+        this.showAll = function () {
+            this.collection.fetch()
+                .done(renderView.bind(this));
+        };
+        
+        this.showInLocation = function (location) {
+            this.collection.fetch({data: {location: location}})
+                .done(renderView.bind(this));
+        };
+        
+        return this;
+    };
 })(App.Groups);
