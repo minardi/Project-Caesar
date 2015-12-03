@@ -1,18 +1,17 @@
 function ResetController (req, res) {
 	var mongoose = require('mongoose'),
-	    defaultValues = [];
+	    defaultValues = [],
+        GroupModel = mongoose.model('Group'),
+        LocationModel = mongoose.model('LocationModel');
 
-	require('../models/Group');
-	require('../models/Location');
-	
 	defaultValues = [
 	    {
 	    	modelName: LocationModel,
-	    	values: require('./defaults/locations.json')
+	    	values: require('../reset_data/location-list.js')
 	    },
 	    {
-	    	modelName: Group,
-	    	values: require('./defaults/groups.json')
+	    	modelName: GroupModel,
+	    	values: require('../reset_data/group-list.js')
 	    }	    
 	]
 
