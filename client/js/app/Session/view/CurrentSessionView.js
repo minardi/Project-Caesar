@@ -1,9 +1,9 @@
 'use strict';
 (function (This) {
-    This.LoginSuccessView = Backbone.View.extend({
+    This.CurrentSessionView = Backbone.View.extend({
         tagName: 'div',
 		//className: '',
-        tpl: templates.loginSuccessTpl,
+        tpl: templates.currentSessionTpl,
 		
 		events: {
             'click #logoutButton': 'logout'
@@ -13,10 +13,7 @@
             this.model = params.model;
         },
 
-        render: function (params) {
-            if (params.model) {
-                this.model = params.model;
-            }
+        render: function () {
             this.$el.html(this.tpl(this.model));
 
             return this;
@@ -26,4 +23,4 @@
             cs.mediator.publish('logoutRequired');
         }
     });
-})(App.Login);
+})(App.Session);

@@ -1,4 +1,4 @@
-var express = require('express');
+var express = require('express'),
     routes = require('./routes/index'),
     groups = require('./routes/groups'),
     login = require('./routes/login'),

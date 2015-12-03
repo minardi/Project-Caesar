@@ -3,7 +3,7 @@ var App = {
 	    Groups: {},
         Cookies: {},
         Users: {},
-        Login: {},
+        Session: {},
 	    Locations: {}        
     },
     collections = {},
@@ -22,8 +22,9 @@ $(function () {
     cs.subRouters = {};
     cs.router = new App.Router();
     cs.cookiesController = new App.Cookies.Controller();
+    cs.sessionController = new App.Session.Controller();
     
     Backbone.history.start({pushState: true});
     
-    cs.cookiesController.checkLogged();
+    cs.mediator.publish('continueSessionRequired');
 });
