@@ -1,16 +1,20 @@
 'use strict';
 var App = {
-        Groups: {},
-        Messanger: {}
+	    Groups: {},
+	    Locations: {}      
+	    Messanger: {}  
     },
     collections = {},
     cs = {},
     templates = {};
 
+Backbone.Model.prototype.idAttribute = "_id";
+
 $(function () {
-    collections.groups = new App.Groups.GroupCollection();
-    
-    _.each(collections, function (collection) {
+	collections.groups = new App.Groups.GroupCollection();
+	collections.locations = new App.Locations.LocationCollection();
+
+   _.each(collections, function (collection) {
         collection.fetch();
     });
     

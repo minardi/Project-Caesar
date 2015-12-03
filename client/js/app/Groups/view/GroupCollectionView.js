@@ -2,28 +2,30 @@
 (function (This) {
     This.GroupCollectionView = Backbone.View.extend({
         tagName: 'div',
-        className: 'groups',
+        className: 'row content-row',
         tpl: templates.groupCollectionTpl,
 
         initialize: function () {
             this.collection = collections.groups;
             this.listenTo(this.collection, 'add', this.renderOne);
+            
+            $('body').append(templates.groupModalDeleteTpl);
         },
 
-        render: function () {
-            this.$el.html(this.tpl());
-            this.renderAll();
-			
+        render: function (collection) {
+			collection = collection || this.collection;
+			this.$el.html(this.tpl());
+			this.renderAll(collection);
             return this;
         },
 		
-		renderAll: function () {
-			this.collection.forEach(this.renderOne, this);
+		renderAll: function (collection) {
+			collection.forEach(this.renderOne, this);
 		},
 
         renderOne: function (model) {
             var groupView = new This.GroupView({model: model});
-            this.$('.group-list').append(groupView.render().el);
+            this.$el.append(groupView.render().el);
         }
     });
 })(App.Groups);

@@ -10,6 +10,7 @@ var config = require('./config/server');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var groups = require('./routes/groups');
 
 var app = express();
 require('./libs/mongoose-init');
@@ -21,7 +22,7 @@ app.engine('html', ejs.renderFile);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(favicon(path.join('../client', 'img', 'favicon.ico')));
+//app.use(favicon(path.join('../client', 'img', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

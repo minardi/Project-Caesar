@@ -2,20 +2,27 @@
 (function (This) {
     This.Group = Backbone.Model.extend({
         urlRoot: '/group',
-		
+        
         defaults: function () {
             return {
                 name: '',
                 direction: '',
-                locationCity: '',
+                location: '',
                 startDate: '',
                 finishDate: '',
                 status: '',
-                teacher: [],
+                teachers: [],
                 experts: [],
                 students: []
             };
         },
+		
+		initialize: function(data) {
+			var startDate = new Date(data.startDate),
+				finishDate = new Date(data.finishDate);
+			this.set({'startDate': startDate.toISOString().slice(0, 10),
+					 'finishDate': finishDate.toISOString().slice(0, 10)});
+		},
 
         validation: {
             name: [
@@ -38,9 +45,9 @@
                     msg: 'Select data'
                 }
             ],
-            locationCity: [
+            location: [
                 {
-                    locationCity: true,
+                    location: true,
                     msg: 'Select location'
                 }
             ],

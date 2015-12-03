@@ -3,7 +3,8 @@
     This.Router = Backbone.Router.extend({
         routes: {
             '': 'getGroups',
-            'Groups': 'getGroups'
+            'groups': 'getGroups',
+			'groups/:location': 'showGroupsInLocation',
         },
 
         initialize: function () {
@@ -12,7 +13,12 @@
         },
 
         getGroups: function () {
-        }
+			console.log('Get groups');
+        },
+		
+		showGroupsInLocation: function(location) {
+			console.log('show groups in ' + location + '!');
+		}
     });
 })(App.Groups);
 

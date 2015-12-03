@@ -17,7 +17,7 @@
             this.$el.html(this.tpl({message: this.message}));
             this.$el.fadeIn();
 
-            //this.timeout = setTimeout(this.close.bind(this), 3000);
+            this.timeout = setTimeout(this.close.bind(this), 3000);
 
             return this;
         },

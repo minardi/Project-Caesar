@@ -4,7 +4,7 @@
         <title>Caesar DP-086-JS</title>
         <meta charset="utf-8">
         <!-- styles.css -->
-        <link rel="stylesheet" type="text/css" href="css/lib/bootstrap.css">    
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
 
         <link rel="stylesheet" type="text/css" href="css/app/main.css">
         <link rel="stylesheet" type="text/css" href="css/app/Menu/menu.css">
@@ -13,13 +13,13 @@
         <!-- styles.css-end -->
         
         <!-- scripts.js -->
-        <script src="js/lib/jquery.js"></script>
-        <script src="js/lib/underscore.js"></script>
-        <script src="js/lib/backbone.js"></script>
-        <script src="js/lib/backbone-validation.js"></script>
-        <script src="js/lib/mediator.js"></script>
-        <script src="js/lib/bootstrap.js"></script>
-		
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/underscore/underscore.js"></script>
+        <script src="bower_components/backbone/backbone.js"></script>
+        <script src="bower_components/backbone.validation/dist/backbone-validation.js"></script>
+        <script src="bower_components/mediator-js/mediator.min.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
         <script src="js/main.js"></script>
         <script src="js/app/Router.js"></script>
 
@@ -29,6 +29,7 @@
 
         <script src="js/app/Groups/tpl/GroupTpl.js"></script>
         <script src="js/app/Groups/tpl/GroupCollectionTpl.js"></script>
+        <script src="js/app/Groups/tpl/GroupModalsTpl.js"></script>
 
         <script src="js/app/Groups/view/GroupView.js"></script>
         <script src="js/app/Groups/view/GroupCollectionView.js"></script>
@@ -36,8 +37,20 @@
         <script src="js/app/Groups/GroupRouter.js"></script>
         <script src="js/app/Groups/Controller.js"></script>
 
-        <!-- messanger -->
+        <!-- locations -->
+        <script src="js/app/Locations/model/Location.js"></script>
+        <script src="js/app/Locations/model/LocationCollection.js"></script>
 
+        <script src="js/app/Locations/tpl/LocationTpl.js"></script>
+        <script src="js/app/Locations/tpl/LocationCollectionTpl.js"></script>
+
+        <script src="js/app/Locations/view/LocationView.js"></script>
+        <script src="js/app/Locations/view/LocationCollectionView.js"></script>
+
+        <script src="js/app/Locations/LocationRouter.js"></script>
+        <script src="js/app/Locations/Controller.js"></script>
+
+        <!-- messanger -->
         <script src="js/app/Messanger/tpl/informationTpl.js"></script>
         <script src="js/app/Messanger/tpl/warningTpl.js"></script>
         <script src="js/app/Messanger/tpl/errorTpl.js"></script>
@@ -89,98 +102,8 @@
                     </div>
                     <div class="content">
                         <div class="row content-row">
-                            <h1>Dnipro Groups</h1>
-                            <div class="col-md-4">
-                                <div class="content-item">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4>DP-086-JS</h4>
-                                    <p>10 Jul 2015 - 10 Oct 2016</p>
-                                    <p><span>Teacher:</span></p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="content-item">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4>DP-086-JS</h4>
-                                    <p>10 Jul 2015 - 10 Oct 2016</p>
-                                    <p><span>Teacher: </span>Dmytro Petin</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="content-item">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4>DP-086-JS</h4>
-                                    <p>10 Jul 2015 - 10 Oct 2016</p>
-                                    <p><span>Teacher: </span>Dmytro Petin</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="content-item">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4>DP-086-JS</h4>
-                                    <p>10 Jul 2015 - 10 Oct 2016</p>
-                                    <p><span>Teacher: </span>Dmytro Petin</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="content-item">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4>DP-086-JS</h4>
-                                    <p>10 Jul 2015 - 10 Oct 2016</p>
-                                    <p><span>Teacher: </span>Dmytro Petin</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="content-item">
-                                    <h4>DP-086-JS</h4>
-                                    <p>10 Jul 2015 - 10 Oct 2016</p>
-                                    <p><span>Teacher: </span>Dmytro Petin</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="content-item">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4>DP-086-JS</h4>
-                                    <p>10 Jul 2015 - 10 Oct 2016</p>
-                                    <p><span>Teacher: </span>Dmytro Petin</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="content-item">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4>DP-086-JS</h4>
-                                    <p>10 Jul 2015 - 10 Oct 2016</p>
-                                    <p><span>Teacher: </span>Dmytro Petin</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="content-item">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4>DP-086-JS</h4>
-                                    <p>10 Jul 2015 - 10 Oct 2016</p>
-                                    <p><span>Teacher: </span>Dmytro Petin</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <nav class="content-pagination">
-                              <ul class="pagination">
-                                <li>
-                                  <a href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                  </a>
-                                </li>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li>
-                                  <a href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                  </a>
-                                </li>
-                              </ul>
-                            </nav>
-                        </div>
+
+                        </div>    
                     </div>
                     <div class="top-nav">
                         <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
