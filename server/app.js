@@ -12,7 +12,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
-require('./libs/mongoose');
+require('./libs/mongoose-init');
 // view engine setup
 app.set('port', config.port);
 app.set('views', path.join(__dirname, 'views'));

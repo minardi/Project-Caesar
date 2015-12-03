@@ -2,20 +2,23 @@
 (function (This) {
     This.Group = Backbone.Model.extend({
         urlRoot: '/group',
-		
+        
         defaults: function () {
             return {
-                title: '',
+                name: '',
+                direction: '',
+                locationCity: '',
                 startDate: '',
                 finishDate: '',
-                location: '',
-                direction: '',
-                status: ''
+                status: '',
+                teacher: [],
+                experts: [],
+                students: []
             };
         },
 
         validation: {
-            title: [
+            name: [
                 {
                     required: true,
                     msg: 'Field cannot be empty'
@@ -31,34 +34,22 @@
             ],
             startDate: [
                 {
-                    required: true,
-                    msg: 'Field cannot be empty'
+                    startDate: true,
+                    msg: 'Select data'
                 }
             ],
-            finishDate: [
+            locationCity: [
                 {
-                    required: true,
-                    msg: 'Field cannot be empty'
-                }                
+                    locationCity: true,
+                    msg: 'Select location'
+                }
             ],
-            location: [
-                {
-                    required: true,
-                    msg: 'Field cannot be empty'
-                }                
-            ],    
-            direction: [
-                {
-                    required: true,
-                    msg: 'Field cannot be empty'
-                }                
-            ],    
             status: [
                 {
-                    required: true,
-                    msg: 'Field cannot be empty'
+                    status: true,
+                    msg: 'Select status'
                 }                
-            ]                
+            ]    
         }
     });
 })(App.Groups);
