@@ -19,7 +19,7 @@
         },
         
         tryLogin: function () {
-            cs.mediator.publish('tryLogin', {
+            cs.mediator.publish('tryLoginOccured', {
                 login: $('#login').val(),
                 password: md5($('#password').val())
             });

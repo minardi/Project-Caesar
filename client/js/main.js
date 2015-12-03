@@ -19,13 +19,6 @@ $(function () {
 	cs.mediator = new Mediator();
     cs.subRouters = {};
     cs.router = new App.Router();
-    cs.currentUser = new App.Users.User({
-        name: 'Quirinus',
-        lastName: 'Quirrell',
-        role: App.Users.Roles.TEACHER,
-        city: 'London',
-        country: 'United Kingdom'
-    });
     cs.cookiesController = new App.Cookies.Controller();
     
     Backbone.history.start({pushState: true});
