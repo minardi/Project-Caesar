@@ -16,12 +16,18 @@ router.get('/group', function(req, res) {
     var Groups = mongoose.model('Group');
     
     Groups.find({}, function(err, data) {
-        if (err) {
-            throw err;
-        }    
+        if (err) {throw err};   
         res.send(data);
     });
     
+});
+
+router.delete('/group/:id', function (req, res, next) {
+    var Group = mongoose.model('Group');
+    Group.remove({_id: req.params.id}, function(err) {
+      if (err) {throw err};
+    });
+    res.end('Completed');
 });
 
 router.get('/dbLocations', function(req, res) {

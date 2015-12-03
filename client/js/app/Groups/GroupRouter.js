@@ -4,7 +4,7 @@
         routes: {
             '': 'getGroups',
             'groups': 'getGroups',
-			'groups/:location': 'showGroupsInLocation',
+			'groups/:location': 'showGroupsInLocation'
         },
 
         initialize: function () {
