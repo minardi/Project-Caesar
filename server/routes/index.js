@@ -13,14 +13,12 @@ router.get('/', function (req, res) {
 
 
 router.get('/group', function(req, res) {
-    console.log('group');
     var Groups = mongoose.model('Group');
     
     Groups.find({}, function(err, data) {
         if (err) {
             throw err;
         }    
-        console.log(data);
         res.send(data);
     });
     
@@ -31,7 +29,6 @@ router.get('/dbLocations', function(req, res) {
     console.log('Try to find locations..');
     locations.find({}, function (err, data) {
         if(err) throw err;
-        console.log(data)
         res.send(data);
     });
 });
@@ -42,7 +39,6 @@ router.get('/resetdb', function(req, res, next) {
 
 router.get('/reset', function(req, res) {
     mongoose.connection.db.dropDatabase(function(err, result) {
-        console.log('reset');
         var GroupModel = mongoose.model('Group'),
             LocationModel = mongoose.model('LocationModel');;
             
@@ -76,7 +72,6 @@ router.get('/groups/:location', function (req, res, next) {
 	console.log('server location: ', req.params.location);
     
     groups.find({location: req.params.location}, function(err, data) {
-       console.log(data);
        res.send(data); 
     });
     console.log('Data send');
