@@ -3,7 +3,8 @@ var App = {
 	    Groups: {},
         Cookies: {},
         Users: {},
-        Login: {}
+        Login: {},
+	    Locations: {}        
     },
     collections = {},
 	cs = {},
@@ -11,8 +12,9 @@ var App = {
 
 $(function () {
 	collections.groups = new App.Groups.GroupCollection();
-    
-    _.each(collections, function (collection) {
+	collections.locations = new App.Locations.LocationCollection();
+
+   _.each(collections, function (collection) {
         collection.fetch();
 	});
 	

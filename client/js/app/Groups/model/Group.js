@@ -2,7 +2,7 @@
 (function (This) {
     This.Group = Backbone.Model.extend({
         urlRoot: '/group',
-		
+        
         defaults: function () {
             return {
                 name: '',

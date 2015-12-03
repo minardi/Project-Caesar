@@ -1,7 +1,7 @@
 'use strict';
 (function (This) {
     This.Controller = function() {
-        this.collection = collections.groupsCollection;
+        this.collection = collections.groups;
         this.collectionView = new This.GroupCollectionView();
         this.el = $('.content');
 		
