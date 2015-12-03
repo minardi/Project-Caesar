@@ -1,6 +1,6 @@
 server/node_modules/
 server/data/
 .idea/
-
+client/bower_components
 npm-debug.log
 Notes.txt

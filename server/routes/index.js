@@ -7,7 +7,7 @@ var locationList = require('../reset_data/location-list.js');
 require('../models/Location');
 
 router.get('/', function (req, res) {
-    var staticRoute ='../client';
+    var staticRoute = '../client';
     res.sendFile('index.html', {root: staticRoute});
 });
 
