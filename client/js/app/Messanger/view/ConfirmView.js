@@ -1,23 +1,25 @@
 'use strict';
 (function (This) {
-    This.WarningView = Backbone.View.extend({
+    This.ConfirmView = Backbone.View.extend({
         tagName: 'div',
         className: 'message-wrap hide-message',
-        tpl: templates.warningTpl,
+        tpl: templates.confirmTpl,
         
         events: {
-            'click .close': 'close'
+            'click .close': 'close',
+            'click .close-btn': 'close',
+            'click .confirm': 'confirm'
         },
 
-        set: function (message) {
+        set: function (message, callback) {
             this.message = message;
+            this.callback = callback;
         },
 
         render: function () {
             this.$el.html(this.tpl({message: this.message}));
             this.$el.fadeIn();
 
-            this.timeout = setTimeout(this.close.bind(this), 3000);
 
             return this;
         },
@@ -25,8 +27,12 @@
         close: function () {
             this.$el.fadeOut();
 
-            clearTimeout(this.timeout);
+        },
+
+        confirm: function () {
+            this.callback();
+            this.close();
         }
 
     });
-})(App.Notifications);
+})(App.Messanger);

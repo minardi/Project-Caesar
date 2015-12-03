@@ -1,7 +1,7 @@
 'use strict';
 var App = {
         Groups: {},
-        Notifications: {}
+        Messanger: {}
     },
     collections = {},
     cs = {},
@@ -15,7 +15,7 @@ $(function () {
     });
     
     cs.mediator = new Mediator();
-    cs.messanger = new App.Notifications.Controller();
+    cs.messanger = new App.Messanger.Controller();
 
     cs.subRouters = {};
     cs.router = new App.Router();

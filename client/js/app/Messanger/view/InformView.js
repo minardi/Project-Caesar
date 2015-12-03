@@ -1,23 +1,23 @@
 'use strict';
 (function (This) {
-    This.ErrorView = Backbone.View.extend({
+    This.InformView = Backbone.View.extend({
         tagName: 'div',
-        className: 'message-wrap hide-message',
-        tpl: templates.errorTpl,
         
         events: {
             'click .close': 'close'
         },
 
-        set: function (message) {
+        set: function (message, tpl, type) {
             this.message = message;
+            this.tpl = tpl;
+            this.className = 'message-wrap hide-message ' + type + '-message';
         },
 
         render: function () {
             this.$el.html(this.tpl({message: this.message}));
             this.$el.fadeIn();
 
-            this.timeout = setTimeout(this.close.bind(this), 3000);
+            //this.timeout = setTimeout(this.close.bind(this), 3000);
 
             return this;
         },
@@ -29,4 +29,4 @@
         }
 
     });
-})(App.Notifications);
+})(App.Messanger);

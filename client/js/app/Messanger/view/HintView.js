@@ -1,6 +1,6 @@
 'use strict';
 (function (This) {
-    This.HintNotification = Backbone.View.extend({
+    This.HintView = Backbone.View.extend({
         tagName: 'div',
         className: 'tooltip-wrapper hide-message',
         tpl: templates.hintTpl,
@@ -24,4 +24,4 @@
             return this;
         }
     });
-})(App.Notifications);
+})(App.Messanger);

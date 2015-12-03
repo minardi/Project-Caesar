@@ -2,6 +2,12 @@
     display: none;
 }
 
+.messanger-wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
 .close {
     outline: none;
 }
@@ -9,8 +15,8 @@
 .message-wrap {
     position: absolute;
     width: 450px;
-    bottom: 0px;
-    right: 2px;
+    top: 10px;
+    left: 5px;
 }
 
 .tooltip-wrapper {
