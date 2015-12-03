@@ -8,7 +8,7 @@
 
         initialize: function () {
             this.controller = new App.Locations.Controller();
-            this.controller.start();
+            this.controller.showAll();
 
             Backbone.history.loadUrl(Backbone.history.fragment);
         },

@@ -4,7 +4,7 @@
         routes: {
             '': 'groups',
             'Groups*path': 'groups',
-            'Locations*path': 'locations'
+            'Locations*path': 'locations',
 			'groups/:location': 'showGroupsInLocation',
         },
 
@@ -21,7 +21,8 @@
 
         navigateLocations: function () {
             this.navigate('Locations', {trigger: true});
-        }
+        },
+        
 		showGroupsInLocation: function(location) {
 			cs.subRouters['Groups'] || (cs.subRouters['Groups'] = new App.Groups.Router());
 			var groupRouter = cs.subRouters['Groups'];

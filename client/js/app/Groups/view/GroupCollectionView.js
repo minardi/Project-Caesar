@@ -5,10 +5,6 @@
         className: 'row content-row',
         tpl: templates.groupCollectionTpl,
 
-        events: {
-            'click [name="btnLocations"]': 'routeToLocations'
-        },
-
         initialize: function () {
             this.collection = collections.groups;
             this.listenTo(this.collection, 'add', this.renderOne);
