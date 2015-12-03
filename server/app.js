@@ -11,7 +11,7 @@ var config = require('./config/server');
 var router = require('./router');
 
 var app = express();
-require('./libs/mongoose');
+require('./libs/mongoose-init');
 // view engine setup
 app.set('port', config.port);
 app.set('views', path.join(__dirname, 'views'));
@@ -20,7 +20,7 @@ app.engine('html', ejs.renderFile);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(favicon(path.join('../client', 'img', 'favicon.ico')));
+//app.use(favicon(path.join('../client', 'img', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

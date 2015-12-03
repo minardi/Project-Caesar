@@ -2,7 +2,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var router = express.Router();
 //var Group = require('../models/Group');
-var GroupMg;
+var groupList = require('../reset_data/group-list.js');
 
 router.get('/', function (req, res) {
     var staticRoute = '../client';
@@ -28,37 +28,41 @@ router.get('/reset', function(req, res) {
     mongoose.connection.db.dropDatabase(function(err, result) {
         console.log('reset');
         var GroupModel = mongoose.model('Group');
-        
-        var GroupList = [
-            {
-                title: 'Ssdjfk',
-                startDate: '01.01.2015',
-                finishDate: '03.04.2016',
-                location: 'Dp',
-                direction: 'UI',
-                status: 'In Progress'
-            },
-            {
-                title: 'Tsdfjk',
-                startDate: '02.08.2015',
-                finishDate: '06.09.2016',
-                location: 'Lv',
-                direction: 'DevOps',
-                status: 'Finished'
-            }];
             
-            GroupList.forEach(function (groupJSON) {
-                var groupInDb = GroupModel(groupJSON);
-                groupInDb.save(function (err) {
-                    if (err) {
-                        console.log(err);
-                    }
-                    
-                });
+        groupList.forEach(function (groupJSON) {
+            var groupInDb = GroupModel(groupJSON);
+            groupInDb.save(function (err) {
+                if (err) {
+                    console.log(err);
+                }
+                
             });
+        });
 
         res.render('index', { title: 'Express' });
     });
 });
+
+router.get('/groups/:location', function (req, res, next) {
+    var groups = mongoose.model('Group');
+    
+	console.log('server location: ', req.params.location);
+    
+    groups.find({location: req.params.location}, function(err, data) {
+       console.log(data);
+       res.send(data); 
+    });
+    console.log('Data send');
+	//next();
+});
+
+/* GET home page. */
+// router.get('/', function(req, res, next) {
+//     res.render('index', { title: 'Express' });
+// });
+
+// router.get('/helloworld', function(req, res) {
+//     res.render('helloworld', { title: 'Hello, World!' });
+// });
 
 module.exports = router;

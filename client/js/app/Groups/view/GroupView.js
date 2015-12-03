@@ -1,8 +1,8 @@
 'use strict';
 (function (This) {
     This.GroupView = Backbone.View.extend({
-        tagName: 'tr',
-		className: 'shortInfo',
+        tagName: 'div',
+		className: 'col-md-4',
         tpl: templates.groupTpl,
 		
 		events: {
