@@ -5,24 +5,24 @@
         this.collectionView = new This.GroupCollectionView();
         this.el = $('.content');
 		
+		function renderView() {
+			this.el.children().first().replaceWith(this.collectionView.render().el);
+		}
+		
 		this.start = function () {
-		    this.el.append((this.collectionView.render().el));
+		    renderView.call(this);
 		};
 		
-		this.showGroupsInLocation = function (location) {
-			var el = this.el;
-			$.ajax({
-			  url: '/groups/' + location,
-			}).done((function(data) {
-				var groupsInLocation = new App.Groups.GroupCollection(data);
-				this.el.children().first().replaceWith((this.collectionView.render(groupsInLocation).el));	
-			}).bind(this));
+		this.showAll = function () {
+			this.collection.fetch()
+				.done(renderView.bind(this));
+		};
+		
+		this.showInLocation = function (location) {
+			this.collection.fetch({data: {location: location}})
+				.done(renderView.bind(this));
 		};
 		
 		return this;
-		
-		function appendGroupElement(data) {
-		}
-
 	};
 })(App.Groups);

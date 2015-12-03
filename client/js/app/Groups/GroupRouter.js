@@ -2,22 +2,24 @@
 (function (This)  {
     This.Router = Backbone.Router.extend({
         routes: {
-            '': 'getGroups',
-            'groups': 'getGroups',
-			'groups/:location': 'showGroupsInLocation',
+            '': 'showAll',
+            'Groups': 'showAll',
+			'Groups/:location': 'showInLocation',
         },
 
         initialize: function () {
             this.controller = new App.Groups.Controller();
             this.controller.start();
+			
+            Backbone.history.loadUrl('#' + Backbone.history.fragment);
         },
 
-        getGroups: function () {
-			console.log('Get groups');
+        showAll: function () {
+			this.controller.showAll();
         },
 		
-		showGroupsInLocation: function(location) {
-			console.log('show groups in ' + location + '!');
+		showInLocation: function(location) {
+			this.controller.showInLocation(location);
 		}
     });
 })(App.Groups);
