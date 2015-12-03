@@ -10,7 +10,7 @@
         initialize: function () {
             cs.mediator.subscribe('RouteToLocations', this.navigateLocations, null, this);
         },
-		
+        
         groups: function () {
             cs.subRouters['Groups'] || (cs.subRouters['Groups'] = new App.Groups.Router());
         },
