@@ -16,7 +16,7 @@
                 students: []
             };
         },
-        
+
         parse: function(data) {
             data.startDate = new Date(data.startDate).toISOString().slice(0, 10);
             data.finishDate = new Date(data.finishDate).toISOString().slice(0, 10);
@@ -34,7 +34,7 @@
                     msg: 'Max length is 15 symbols'
                 },
                 {
-                    minLength: 9,
+                    minLength: 2,
                     msg: 'Min length is 2 symbols'
                 }
             ],

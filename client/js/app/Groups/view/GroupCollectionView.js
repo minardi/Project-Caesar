@@ -5,6 +5,10 @@
         className: 'row content-row',
         tpl: templates.groupCollectionTpl,
 
+        events: {
+            'click .add-new-group': 'addGroup'
+        },
+
         initialize: function () {
             this.collection = collections.groups;
             this.listenTo(this.collection, 'add', this.renderOne);
@@ -56,6 +60,23 @@
         renderOne: function (model) {
             var groupView = new This.GroupView({model: model});
             this.$el.append(groupView.render().el);
+        },
+
+        addGroup: function () {
+            $('body').append(templates.groupModalAddTpl);
+            $('#groupAdd').modal('show');
+            $('.add-new-group').on('click', submitNewGroup);
+
+            function submitNewGroup () {
+                var group = new App.Groups.Group();
+                
+
+                var groupName = $('#groupAdd input[name="GroupName"]').val();
+
+                group.set({name: groupName});
+
+                console.log(group.isValid(name));
+            }
         },
 
         getCurrentDate: function () {

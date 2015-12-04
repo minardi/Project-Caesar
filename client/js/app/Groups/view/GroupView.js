@@ -32,10 +32,13 @@
         deleteGroup: function () {
             var thisGroup = this.model;
             $('#groupDelete').modal('show');
-            $('#groupDelete .delete').on('click', function () {
-               thisGroup.destroy();
-               $('#groupDelete').modal('hide');
-            });
+            $('#groupDelete .delete').on('click', destroyGroup);
+            
+            function destroyGroup () {
+                thisGroup.destroy({wait: true});
+                $('#groupDelete').modal('hide');
+                $('#groupDelete .delete').off('click', destroyGroup);
+            };
         }
     });
 })(App.Groups);

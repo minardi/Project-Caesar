@@ -24,13 +24,20 @@ router.get('/groups', function(req, res) {
 		options['location'] = req.query['location'];
 	}
     
-    Groups.find(options, function(err, data) {
-        if (err) {
-            throw err;
-        }    
+    Groups.find({}, function(err, data) {
+        if (err) {throw err};   
+
         res.send(data);
     });
     
+});
+
+router.delete('/group/:id', function (req, res, next) {
+    var Group = mongoose.model('Group');
+    Group.remove({_id: req.params.id}, function(err) {
+      if (err) {throw err};
+    });
+    res.json({ status: 'success' });
 });
 
 router.get('/dbLocations', function(req, res) {

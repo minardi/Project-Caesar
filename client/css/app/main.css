@@ -107,6 +107,7 @@ html, body {
 
 .content h1 {
   text-align: center;
+  padding-right: 25px;
 }
 
 .user-account {
