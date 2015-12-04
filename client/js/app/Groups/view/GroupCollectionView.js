@@ -18,14 +18,49 @@
             this.renderAll(collection);
             return this;
         },
-        
-        renderAll: function (collection) {
-            collection.forEach(this.renderOne, this);
+
+        renderCurrentGroups: function () {
+            this.$el.html(this.tpl());
+            var filtered = this.collection.filter(function(model) {
+                return (model.get('startDate') < this.getCurrentDate() &&
+                model.get('finishDate') > this.getCurrentDate());
+            }, this);
+            this.renderAll(filtered);
+            return this;
+        },
+
+        renderFinishedGroups: function () {
+            this.$el.html(this.tpl());
+            var filtered = this.collection.filter(function(model) {
+                var date = new Date();
+                return model.get('finishDate') < this.getCurrentDate();
+            }, this);
+            this.renderAll(filtered);
+            return this;
+        },
+
+        renderFutureGroups: function () {
+            this.$el.html(this.tpl());
+            console.log(this.collection);
+            var filtered = this.collection.filter(function(model) {
+                return model.get('startDate') > this.getCurrentDate();
+            }, this);
+            this.renderAll(filtered);
+            return this;
+        },
+
+        renderAll: function (filtered) {
+            filtered.forEach(this.renderOne, this);
         },
 
         renderOne: function (model) {
             var groupView = new This.GroupView({model: model});
             this.$el.append(groupView.render().el);
+        },
+
+        getCurrentDate: function () {
+            var currentDate = new Date();
+            return currentDate.toISOString();
         }
     });
 })(App.Groups);
