@@ -2,11 +2,11 @@
 (function (This) {
     This.LocationView = Backbone.View.extend({
         tagName: 'div',
-		className: 'col-md-4',
+		className: 'location-item col-md-4',
         tpl: templates.locationTpl,
 		
 		events: {
-			'click .content-item': 'routeToLocationGroups'
+			'dblclick': 'routeToLocationGroups'
 		},
 		
         render: function () {
@@ -15,9 +15,10 @@
             return this;
         },
 
-        routeToLocationGroups: function () {
-            cs.mediator.publish('RouteToLocationGroups', this.model.city);
+        routeToLocationGroups: function (e) {
             console.log(this.model.get('city'));
+            cs.mediator.publish('RouteToLocationGroups', this.model.get('city'));
+            e.preventDefault();
         }		
     });
 })(App.Locations);
