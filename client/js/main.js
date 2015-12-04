@@ -1,6 +1,9 @@
 'use strict';
 var App = {
 	    Groups: {},
+        Cookies: {},
+        Users: {},
+        Session: {},
 	    Locations: {}        
     },
     collections = {},
@@ -20,6 +23,10 @@ $(function () {
 	cs.mediator = new Mediator();
     cs.subRouters = {};
     cs.router = new App.Router();
-	
-	Backbone.history.start({pushState: true});
+    cs.cookiesController = new App.Cookies.Controller();
+    cs.sessionController = new App.Session.Controller();
+    
+    Backbone.history.start({pushState: true});
+    
+    cs.mediator.publish('continueSessionRequired');
 });

@@ -16,7 +16,7 @@
                 students: []
             };
         },
-		
+
         parse: function(data) {
             data.startDate = new Date(data.startDate).toISOString().slice(0, 10);
             data.finishDate = new Date(data.finishDate).toISOString().slice(0, 10);
