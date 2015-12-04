@@ -16,7 +16,6 @@ router.get('/', function (req, res) {
     
 });
 
-
 router.get('/groups', function(req, res) {
     var Groups = mongoose.model('Group'), 
 		options = {};
@@ -32,9 +31,25 @@ router.get('/groups', function(req, res) {
     
 });
 
+router.post('/group', function(req, res) {
+    console.log('add group');
+});
+
+router.post('/dbLocations', function(req, res) {
+    console.log('add location');
+});
+
 router.delete('/group/:id', function (req, res, next) {
     var Group = mongoose.model('Group');
     Group.remove({_id: req.params.id}, function(err) {
+      if (err) {throw err};
+    });
+    res.json({ status: 'success' });
+});
+
+router.delete('/dbLocations/:id', function (req, res, next) {
+    var Location = mongoose.model('LocationModel');
+    Location.remove({_id: req.params.id}, function(err) {
       if (err) {throw err};
     });
     res.json({ status: 'success' });

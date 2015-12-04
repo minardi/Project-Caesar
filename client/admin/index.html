@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Caesar Admin Panel</title>
+
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css">
+    
+    <script src="js/templates.js"></script>
+
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/underscore/underscore.js"></script>
+    <script src="../bower_components/backbone/backbone.js"></script>
+    <script src="../bower_components/backbone.validation/dist/backbone-validation.js"></script>
+    <script src="../bower_components/mediator-js/mediator.min.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <div class="container">
+        <button class="btn btn-warning home">Back to home</button>
+        <h2>Caesar Admin Panel</h2>
+        <ul class="nav nav-pills">
+            <li class="active"><a data-toggle="pill" href="#groups">Groups</a> </li>
+            <li><a data-toggle="pill" href="#locations">Locations</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="groups" class="tab-pane fade in active"></div>
+            <div id="locations" class="tab-pane fade"></div>
+        </div>
+    </div>
+</body>
+</html>
