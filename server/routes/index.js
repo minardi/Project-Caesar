@@ -7,15 +7,24 @@ var locationList = require('../reset_data/location-list.js');
 require('../models/Location');
 
 router.get('/', function (req, res) {
-    var staticRoute ='../client';
-    res.sendFile('index.html', {root: staticRoute});
+    var staticRoute = '../client';
+    if (req.cookies.loggedIn) {
+        res.sendFile('home.html', {root: staticRoute});
+    } else {
+        res.sendFile('login.html', {root: staticRoute});
+    }
+    
 });
 
 
-router.get('/group', function(req, res) {
-    var Groups = mongoose.model('Group');
+router.get('/groups', function(req, res) {
+    var Groups = mongoose.model('Group'), 
+		options = {};
+	if (req.query['location']) {
+		options['location'] = req.query['location'];
+	}
     
-    Groups.find({}, function(err, data) {
+    Groups.find(options, function(err, data) {
         if (err) {
             throw err;
         }    
@@ -26,7 +35,7 @@ router.get('/group', function(req, res) {
 
 router.get('/dbLocations', function(req, res) {
     var locations = mongoose.model('LocationModel');
-    console.log('Try to find locations..');
+    console.log('Try to find locations...');
     locations.find({}, function (err, data) {
         if(err) throw err;
         res.send(data);

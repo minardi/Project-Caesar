@@ -2,23 +2,57 @@
 (function (This)  {
     This.Router = Backbone.Router.extend({
         routes: {
-            '': 'getGroups',
-            'groups': 'getGroups',
-			'groups/:location': 'showGroupsInLocation',
+            '': 'showAll',
+            'Groups': 'showAll',
+            'Groups/:location': 'showInLocation',
+            'Groups/current': 'showCurrentGroups',
+            'Groups/future': 'showFutureGroups',
+            'Groups/finished': 'showFinishedGroups'
         },
 
         initialize: function () {
             this.controller = new App.Groups.Controller();
             this.controller.start();
+
+            /*URL navigation*/
+            cs.mediator.subscribe('currentGroups', this.navigateCurrentGroups, {}, this);
+            cs.mediator.subscribe('futureGroups', this.navigateFutureGroups, {}, this);
+            cs.mediator.subscribe('finishedGroups', this.navigateFinishedGroups, {}, this);
+            
+            Backbone.history.loadUrl('#' + Backbone.history.fragment);
         },
 
-        getGroups: function () {
-			console.log('Get groups');
+        navigateCurrentGroups: function () {
+            this.navigate('Groups/current');
         },
-		
-		showGroupsInLocation: function(location) {
-			console.log('show groups in ' + location + '!');
-		}
+
+        navigateFutureGroups: function () {
+            this.navigate('Groups/future');
+        },
+
+        navigateFinishedGroups: function () {
+            this.navigate('Groups/finished');
+        },
+
+        showCurrentGroups: function () {
+            cs.mediator.publish('currentGroupsView');
+        },
+
+        showFutureGroups: function () {
+            cs.mediator.publish('futureGroupsView');
+        },
+
+        showFinishedGroups: function () {
+            cs.mediator.publish('finishedGroupsView');
+        },
+
+        showAll: function () {
+            this.controller.showAll();
+        },
+        
+        showInLocation: function(location) {
+            this.controller.showInLocation(location);
+        }
     });
 })(App.Groups);
 
