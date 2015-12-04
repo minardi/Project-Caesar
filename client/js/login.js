@@ -10,9 +10,15 @@ $(function () {
                     Cookies.set('sessionID', JSON.parse(response).sessionID);
                     window.location.reload();
                 } else {
-                    alert('WRONG');
+                    $('#loginFailed').show();
                 }
+                //$('#login').val('');
+                //$('#password').val('');
             }
         });
     }); 
+    
+    $(".close").click(function(){
+        $("#loginFailed").alert("close");
+    });
 });

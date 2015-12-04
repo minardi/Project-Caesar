@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
     };
     if ((req.query.user=='me') && (req.query.password=='bcedc450f8481e89b1445069acdc3dd9')) {
         response.result = true;
-        response.sessionId = generateSessionID();
+        response.sessionID = generateSessionID();
     }
     res.send(JSON.stringify(response));
 });

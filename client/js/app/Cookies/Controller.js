@@ -4,7 +4,6 @@
         function Constructor () {
             cs.mediator.subscribe('logoutRequired', (function () {
                 this.clearAll();
-                //alert('Logged out');
                 window.location.href = '/';
             }).bind(this));
             
@@ -12,13 +11,18 @@
         }
         
         Constructor.prototype.clearAll = function () {
-            var visibleCookies = Cookies.get(),
+            var visibleCookies = This.Processor.get(),
                 cookieName;
                 
             for (cookieName in visibleCookies) {
-                Cookies.remove(cookieName);
+                This.Processor.remove(cookieName);
             }
-        }
+        };
+        
+        Constructor.get = function (cookie) {
+            console.log(This.Processor.get(cookie));
+            return This.Processor.get(cookie);
+        };
         
         return Constructor;
     })();

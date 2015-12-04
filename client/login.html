@@ -5,7 +5,10 @@
             Caesar Log In
         </title>
         <meta charset="utf-8">
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="css/login.css"> 
         <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
         <script src="bower_components/underscore/underscore.js"></script>
         <script src="bower_components/backbone/backbone.js"></script>
         <script src="bower_components/mediator-js/mediator.min.js"></script>
@@ -14,15 +17,28 @@
         <script src="js/login.js"></script>
     </head>
     <body>
-        <div>Log in pls...</div>
-        <div>
-            <input type='text' id='login' placeholder='Login'>
-        </div>
-        <div>
-            <input type='password' id='password' placeholder='Password'>
-        </div>
-        <div>
-            <input type='button' id='loginButton' value='Okay'>
+        <div class='container'>
+            <div class='form-signin'>
+                <h2 class='form-signin-heading'>CAESAR LOG IN</h2>
+                <div>
+                    <input type='text' id='login' placeholder='Login' class='form-control' autofocus>
+                    <input type='password' id='password' placeholder='Password' class='form-control'>
+                    <input type='button' id='loginButton' value='Log In' class='btn btn-lg btn-primary btn-block'><br>
+                </div>
+                <div class='alert alert-danger collapse' id='loginFailed'>   
+                    <a href='#' class='close'>&times;</a>
+                    <strong>Logging in failed</strong><br> 
+                    Perhaps, you've made a mistake typing your login / password
+                </div>
+            </div>
+            <div class="navbar-fixed-bottom row-fluid">
+                <div class="navbar-inner">
+                    <p class='lead'>
+                        It seems like you are not logged in.<br>
+                        You should log in or use public links in order to get access to our contents.
+                    </p>
+                </div>
+            </div>
         </div>
     </body>
 </html>

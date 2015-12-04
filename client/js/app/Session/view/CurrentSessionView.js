@@ -2,7 +2,7 @@
 (function (This) {
     This.CurrentSessionView = Backbone.View.extend({
         tagName: 'div',
-		//className: '',
+		className: 'user-info',
         tpl: templates.currentSessionTpl,
 		
 		events: {
