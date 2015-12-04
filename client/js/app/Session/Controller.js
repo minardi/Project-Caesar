@@ -5,8 +5,6 @@
             var currentSessionView;
             
             cs.mediator.subscribe('continueSessionRequired', function () {
-                console.log(App.Cookies.Controller.get('loggedIn'));
-                console.log(App.Cookies.Controller.get('sessionID'));
                 Backbone.ajax({
                     url: 'continueSession',
                     data: 'id=' + App.Cookies.Controller.get('sessionID'),

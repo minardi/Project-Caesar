@@ -45,7 +45,7 @@
 
         renderFutureGroups: function () {
             this.$el.html(this.tpl());
-            console.log(this.collection);
+
             var filtered = this.collection.filter(function(model) {
                 return model.get('startDate') > this.getCurrentDate();
             }, this);
@@ -70,12 +70,9 @@
             function submitNewGroup () {
                 var group = new App.Groups.Group();
                 
-
                 var groupName = $('#groupAdd input[name="GroupName"]').val();
 
                 group.set({name: groupName});
-
-                console.log(group.isValid(name));
             }
         },
 

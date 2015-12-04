@@ -16,7 +16,6 @@
         },
 
         routeToLocationGroups: function (e) {
-            console.log(this.model.get('city'));
             cs.mediator.publish('RouteToLocationGroups', this.model.get('city'));
             e.preventDefault();
         }		
