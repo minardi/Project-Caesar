@@ -27,7 +27,7 @@ router.delete('/group/:id', function (req, res, next) {
     Group.remove({_id: req.params.id}, function(err) {
       if (err) {throw err};
     });
-    res.end('Completed');
+    res.json({ status: 'success' });
 });
 
 router.get('/dbLocations', function(req, res) {
