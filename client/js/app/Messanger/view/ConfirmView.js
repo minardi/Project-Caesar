@@ -4,35 +4,39 @@
         tagName: 'div',
         className: 'message-wrap hide-message',
         tpl: templates.confirmTpl,
-        
-        events: {
-            'click .close': 'close',
-            'click .close-btn': 'close',
-            'click .confirm': 'confirm'
-        },
 
-        set: function (message, callback) {
+        set: function (message, callback1, callback2) {
             this.message = message;
-            this.callback = callback;
+            this.callback1 = callback1;
+            this.callback2 = callback2;
         },
 
         render: function () {
-            this.$el.html(this.tpl({message: this.message}));
-            this.$el.fadeIn();
+    		var message = this.message,
+    			callback1 = this.callback1,
+    			callback2 = this.callback2;
 
-
+	        BootstrapDialog.show({
+	            title: 'Confirm',
+	            message: message,
+	            closable: false,
+	            buttons: [{
+		                id: 'btn-1',
+		                label: 'Ok',
+		                action: callback1
+	            	}, {
+	            		id: 'btn-2',
+	            		label: 'Close',
+	            		action: function (dialogItself) {
+	            			if (callback2 !== undefined ) callback2();
+	            			
+	            			dialogItself.close();
+	            		}
+	            	}
+	            ]
+	        });
+        
             return this;
-        },
-
-        close: function () {
-            this.$el.fadeOut();
-
-        },
-
-        confirm: function () {
-            this.callback();
-            this.close();
         }
-
     });
 })(App.Messanger);
