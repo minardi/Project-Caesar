@@ -6,6 +6,7 @@
         tpl: templates.locationTpl,
 		
 		events: {
+            'click': 'selectItem',
 			'dblclick': 'routeToLocationGroups'
 		},
 		
@@ -15,10 +16,16 @@
             return this;
         },
 
-        routeToLocationGroups: function (e) {
+        routeToLocationGroups: function () {
             cs.mediator.publish('RouteToLocationGroups', 'Groups/' + this.model.get('city'));
             cs.mediator.publish('RemoveLocationsView');
-            e.preventDefault();
+        },
+
+        selectItem: function () {
+            $('.content-selected-item').removeClass('content-selected-item')
+                                       .addClass('content-item');
+            this.$('div').removeClass('content-item')
+                         .addClass('content-selected-item');            
         }		
     });
 })(App.Locations);
