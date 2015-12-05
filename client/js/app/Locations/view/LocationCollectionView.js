@@ -24,13 +24,6 @@
 
         removeView: function () {
             this.remove();
-        },
-
-        selectItem: function (e) {
-            $('.content-selected-item', this.$el).removeClass('content-selected-item')
-                                                 .addClass('content-item');
-            e.currentTarget.firstElementChild.classList.remove('content-item');
-            e.currentTarget.firstElementChild.classList.add('content-selected-item');
         }
     });
 })(App.Locations);
