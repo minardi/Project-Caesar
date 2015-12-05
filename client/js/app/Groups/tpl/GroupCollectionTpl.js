@@ -11,7 +11,7 @@ templates.groupCollectionTpl = _.template([
     '<div class="content">',
         '<div class="row content-row" id="main">',
             '<h1>Groups ',
-                '<button type="button" class="btn btn-primary add-new-group">Add New</button>',
+                 '<button type="button" class="btn btn-primary add-new-group">Add New</button>',
             '</h1>',
         '</div>',
     '</div>',

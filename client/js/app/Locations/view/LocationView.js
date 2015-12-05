@@ -7,7 +7,7 @@
 		
 		events: {
             'click': 'selectItem',
-			'dblclick': 'routeToLocationGroups'
+            'dblclick': 'routeToLocationGroups'
 		},
 		
         render: function () {
@@ -17,7 +17,7 @@
         },
 
         routeToLocationGroups: function () {
-            cs.mediator.publish('RouteToLocationGroups', 'Groups/' + this.model.get('city'));
+            cs.mediator.publish('ChangedMenu', 'Groups/' + this.model.get('city'));
             cs.mediator.publish('RemoveLocationsView');
         },
 

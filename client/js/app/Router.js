@@ -10,7 +10,6 @@
         initialize: function () {
             cs.mediator.subscribe('ChangedMenu', this.navigation, {}, this);
             cs.mediator.subscribe('RouteToLocations', this.navigateLocations, null, this);
-            cs.mediator.subscribe('RouteToLocationGroups', this.navigateGroups, null, this);
         },
         
         groups: function () {
@@ -19,10 +18,6 @@
 		
         locations: function () {
             cs.subRouters['Locations'] || (cs.subRouters['Locations'] = new App.Locations.Router());
-        },
-
-        navigateGroups: function (path) {
-            this.navigate(path, {trigger: true});
         },
 
         navigateLocations: function () {
