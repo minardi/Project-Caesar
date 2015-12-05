@@ -40,6 +40,41 @@ router.delete('/group/:id', function (req, res, next) {
     res.json({ status: 'success' });
 });
 
+router.post('/group', function (req, res, next) {
+    var Group = mongoose.model('Group');
+    Group({
+        _id: req.body.id,
+        name: req.body.name,
+        location: req.body.location,
+        startDate: req.body.startDate,
+        finishDate: req.body.finishDate,
+        status: req.body.status,
+        teachers: req.body.teachers,
+        experts: req.body.experts
+    });
+    console.log(model);
+    Group.save(function(err, model) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.json(parseOne(model));
+        }
+    });
+
+    function parseOne (model) {
+        return response = {
+            id: model.id,
+            name: model.name,
+            location: model.location,
+            startDate: model.startDate,
+            finishDate: model.finishDate,
+            status: model.finishDate,
+            teachers: model.finishDate,
+            experts: model.finishDate 
+        };
+    };
+});
+
 router.get('/dbLocations', function(req, res) {
     var locations = mongoose.model('LocationModel');
     console.log('Try to find locations...');
