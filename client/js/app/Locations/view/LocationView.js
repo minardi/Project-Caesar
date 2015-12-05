@@ -2,14 +2,14 @@
 (function (This) {
     This.LocationView = Backbone.View.extend({
         tagName: 'div',
-		className: 'location-item col-md-4',
+        className: 'location-item col-md-4',
         tpl: templates.locationTpl,
-		
-		events: {
+
+        events: {
             'click': 'selectItem',
             'dblclick': 'routeToLocationGroups'
-		},
-		
+        },
+
         render: function () {
             this.$el.html(this.tpl(this.model.toJSON()));
 
@@ -26,6 +26,6 @@
                                        .addClass('content-item');
             this.$('div').removeClass('content-item')
                          .addClass('content-selected-item');            
-        }		
+        }
     });
 })(App.Locations);
