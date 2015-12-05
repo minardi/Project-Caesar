@@ -2,7 +2,6 @@
 (function (This)  {
     This.Router = Backbone.Router.extend({
         routes: {
-//            '': 'showLocations',
             'Locations': 'showLocations'
         },
 

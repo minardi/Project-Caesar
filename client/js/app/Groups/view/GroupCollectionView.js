@@ -8,7 +8,8 @@
         events: {
             'click .add-new-group': 'addGroup',
             'click #up-navig': 'renderUp',
-            'click #down-navig': 'renderDown'
+            'click #down-navig': 'renderDown',
+            'click .route-locations': 'routeToLocations'
         },
 
         initialize: function () {
@@ -111,6 +112,10 @@
         getCurrentDate: function () {
             var currentDate = new Date();
             return currentDate.toISOString();
+        },
+
+        routeToLocations: function () {
+            cs.mediator.publish('RouteToLocations');
         }
     });
 })(App.Groups);
