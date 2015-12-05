@@ -2,7 +2,7 @@
 (function (This) {
     This.GroupCollectionView = Backbone.View.extend({
         tagName: 'div',
-        className: 'row content-row',
+        className: 'cener-content',
         tpl: templates.groupCollectionTpl,
 
         events: {
