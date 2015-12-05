@@ -96,13 +96,15 @@
 
         addGroup: function () {
             $('body').append(templates.groupModalAddTpl);
-            var $groupAddModal = $('#groupAdd');
 
+            var $groupAddModal = $('#groupAdd'),
+                $groupAddBtn = $('.add-new-group');
+            $groupAddModal.modal('show');
             $groupAddModal.on('hidden.bs.modal', function () {
                 $groupAddModal.remove();
+                $groupAddBtn.off('click', submitNewGroup);
             });
-            $groupAddModal.modal('show');
-            $('.add-new-group').on('click', submitNewGroup);
+            $groupAddBtn.on('click', submitNewGroup);
 
             startDataPickers();
             addAdditionalTeacher();
@@ -110,10 +112,12 @@
 
             function startDataPickers () {
                 $('#startDate').datetimepicker({
-                    format: 'L'
+                    format: 'YYYY-MM-DD',
+                    defaultDate: '2015-10-25T01:32:21.196Z'
                 });
                 $('#finishDate').datetimepicker({
-                    format: 'L'
+                    format: 'YYYY-MM-DD',
+                    defaultDate: '2016-01-25T01:32:21.196Z'
                 });
             };
             function addAdditionalTeacher () {
@@ -129,11 +133,10 @@
                 });
             };
             function submitNewGroup () {
-                var group = new App.Groups.Group();
-
-                group.set({
+                var group = new App.Groups.Group({
                     id: _.uniqueId('newGroup_'),
                     name: $('#groupAdd input[name="GroupName"]').val(),
+                    direction: $('#groupAdd select[name="Direction"] option:selected').val(),
                     location: $('#groupAdd select[name="LocationName"] option:selected').val(),
                     startDate: $('#groupAdd #startDate').val(),
                     finishDate: $('#groupAdd #finishDate').val(),
@@ -141,16 +144,14 @@
                     teachers: collectTeachers(),
                     experts: collectExperts(),
                 });
-                console.log(group.get('id'));
 
                 group.save({
-                    wait:true,
-                    success:function(model, response) {
-                        console.log('Successfully saved!');
-                    },
-                    error: function(model, error) {
-                        console.log(model.toJSON());
-                        console.log('error.responseText');
+                    wait: true,
+                    success: function () {
+                        console.log('success');
+                    }, 
+                    error: function () {
+                        console.log('error');
                     }
                 });
 

@@ -13,16 +13,15 @@ router.get('/', function (req, res) {
     } else {
         res.sendFile('login.html', {root: staticRoute});
     }
-    
 });
-
 
 router.get('/groups', function(req, res) {
     var Groups = mongoose.model('Group'), 
 		options = {};
+
 	if (req.query['location']) {
 		options['location'] = req.query['location'];
-	}
+	};
     
     Groups.find({}, function(err, data) {
         if (err) {throw err};   
@@ -37,42 +36,30 @@ router.delete('/group/:id', function (req, res, next) {
     Group.remove({_id: req.params.id}, function(err) {
       if (err) {throw err};
     });
-    res.json({ status: 'success' });
+    res.json({status: 'success'});
 });
 
 router.post('/group', function (req, res, next) {
-    var Group = mongoose.model('Group');
-    Group({
-        _id: req.body.id,
-        name: req.body.name,
-        location: req.body.location,
-        startDate: req.body.startDate,
-        finishDate: req.body.finishDate,
-        status: req.body.status,
-        teachers: req.body.teachers,
-        experts: req.body.experts
-    });
-    console.log(model);
-    Group.save(function(err, model) {
+    var Group = mongoose.model('Group'),
+        newGroup = new Group({     
+            name: req.body.name,
+            direction: req.body.direction,
+            location: req.body.location,
+            startDate: req.body.startDate,
+            finishDate: req.body.finishDate,
+            status: req.body.status,
+            teachers: req.body.teachers,
+            experts: req.body.experts
+        });
+
+    newGroup.save(function(err, data) {
         if (err) {
+            console.log(err);
             res.send(err);
         } else {
-            res.json(parseOne(model));
+            res.send(data);
         }
     });
-
-    function parseOne (model) {
-        return response = {
-            id: model.id,
-            name: model.name,
-            location: model.location,
-            startDate: model.startDate,
-            finishDate: model.finishDate,
-            status: model.finishDate,
-            teachers: model.finishDate,
-            experts: model.finishDate 
-        };
-    };
 });
 
 router.get('/dbLocations', function(req, res) {
