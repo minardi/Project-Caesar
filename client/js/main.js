@@ -1,5 +1,6 @@
 'use strict';
 var App = {
+        Menu: {},
 	    Groups: {},
         Cookies: {},
         Users: {},
@@ -25,6 +26,7 @@ $(function () {
     cs.router = new App.Router();
     cs.cookiesController = new App.Cookies.Controller();
     cs.sessionController = new App.Session.Controller();
+    cs.menu = new App.Menu.Controller();
     
     Backbone.history.start({pushState: true});
     

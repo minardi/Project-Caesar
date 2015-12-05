@@ -4,10 +4,10 @@
         routes: {
             '': 'showAll',
             'Groups': 'showAll',
-            'Groups/:location': 'showInLocation',
             'Groups/current': 'showCurrentGroups',
             'Groups/future': 'showFutureGroups',
-            'Groups/finished': 'showFinishedGroups'
+            'Groups/finished': 'showFinishedGroups',
+            'Groups/:location': 'showInLocation'
         },
 
         initialize: function () {

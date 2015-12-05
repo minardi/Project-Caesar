@@ -1,7 +1,6 @@
 'use strict';
 (function (This) {
     This.Controller = function() {
-        this.collectionView = new This.GroupCollectionView();
         this.collection = collections.groups;
         this.$el = $('.col-md-8');
 
@@ -27,15 +26,16 @@
         };
 
         function renderCurrentView () {
-            this.$el.append(this.collectionView.renderCurrentGroups().el)
+            this.collectionView = new This.GroupCollectionView();
+            this.$el.empty().append(this.collectionView.renderCurrentGroups().el)
         };
 
         function renderFutureGroups () {
-            this.$el.append(this.collectionView.renderFutureGroups().el)
+            this.$el.empty().append(this.collectionView.renderFutureGroups().el)
         };
 
         function renderFinishedGroups () {
-            this.$el.append(this.collectionView.renderFinishedGroups().el)
+            this.$el.empty().append(this.collectionView.renderFinishedGroups().el)
         };
 
         function renderView () {
