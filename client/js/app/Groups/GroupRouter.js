@@ -53,11 +53,11 @@
         },
 
         showAll: function () {
-            this.controller.showAll();
+            cs.mediator.publish('showAll');
         },
-        
+
         showInLocation: function(location) {
-            this.controller.showInLocation(location);
+            cs.mediator.publish('showInLocation', location);
         }
     });
 })(App.Groups);

@@ -22,28 +22,20 @@
         renderUp: function () {
             if (this.currentView === 'renderCurrent') {
                 cs.mediator.publish('futureGroups');
-
                 this.renderFutureGroups();
-                this.currentView = 'renderFuture';
             } else if (this.currentView === 'renderFinished') {
                 cs.mediator.publish('currentGroups');
-
                 this.renderCurrentGroups();
-                this.currentView = 'renderCurrent';
             }
         },
 
         renderDown: function () {
             if (this.currentView === 'renderCurrent') {
                 cs.mediator.publish('finishedGroups');
-
                 this.renderFinishedGroups();
-                this.currentView = 'renderFinished';
             } else if (this.currentView === 'renderFuture') {
                 cs.mediator.publish('currentGroups');
-
                 this.renderCurrentGroups();
-                this.currentView = 'renderCurrent';
             }
         },
 
@@ -59,6 +51,8 @@
                 model.get('finishDate') > this.getCurrentDate());
             }, this);
 
+            this.currentView = 'renderCurrent';
+
             this.$el.html(this.tpl());
             this.renderAll(filtered);
             return this;
@@ -70,6 +64,8 @@
                 return model.get('finishDate') < this.getCurrentDate();
             }, this);
 
+            this.currentView = 'renderFinished';
+
             this.$el.html(this.tpl());
             this.renderAll(filtered);
             return this;
@@ -79,6 +75,8 @@
             var filtered = this.collection.filter(function(model) {
                 return model.get('startDate') > this.getCurrentDate();
             }, this);
+
+            this.currentView = 'renderFuture';
 
             this.$el.html(this.tpl());
             this.renderAll(filtered);
