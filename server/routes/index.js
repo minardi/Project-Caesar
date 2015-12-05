@@ -17,19 +17,18 @@ router.get('/', function (req, res) {
 });
 
 
-router.get('/groups', function(req, res) {
+router.get('/groups', function(req, res, next) {
     var Groups = mongoose.model('Group'), 
 		options = {};
 	if (req.query['location']) {
 		options['location'] = req.query['location'];
 	}
     
-    Groups.find({}, function(err, data) {
+    Groups.find(options, function(err, data) {
         if (err) {throw err};   
 
         res.send(data);
     });
-    
 });
 
 router.delete('/group/:id', function (req, res, next) {

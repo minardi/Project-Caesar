@@ -18,8 +18,10 @@
             cs.mediator.subscribe('currentGroups', this.navigateCurrentGroups, {}, this);
             cs.mediator.subscribe('futureGroups', this.navigateFutureGroups, {}, this);
             cs.mediator.subscribe('finishedGroups', this.navigateFinishedGroups, {}, this);
+
+            cs.mediator.subscribe('RouteToLocationGroups', this.navigateToLocationGroups, {}, this);
             
-            Backbone.history.loadUrl('#' + Backbone.history.fragment);
+            Backbone.history.loadUrl(Backbone.history.fragment);
         },
 
         navigateCurrentGroups: function () {
@@ -32,6 +34,10 @@
 
         navigateFinishedGroups: function () {
             this.navigate('Groups/finished');
+        },
+
+        navigateToLocationGroups: function(url) {
+            this.navigate(url, {trigger: true});
         },
 
         showCurrentGroups: function () {
