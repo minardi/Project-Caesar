@@ -2,7 +2,7 @@
 (function (This) {
     This.GroupCollectionView = Backbone.View.extend({
         tagName: 'div',
-        className: 'cener-content',
+        className: 'center-content',
         tpl: templates.groupCollectionTpl,
 
         events: {
@@ -94,16 +94,83 @@
 
         addGroup: function () {
             $('body').append(templates.groupModalAddTpl);
-            $('#groupAdd').modal('show');
+            var $groupAddModal = $('#groupAdd');
+
+            $groupAddModal.on('hidden.bs.modal', function () {
+                $groupAddModal.remove();
+            });
+            $groupAddModal.modal('show');
             $('.add-new-group').on('click', submitNewGroup);
 
+            startDataPickers();
+            addAdditionalTeacher();
+            addAdditionalExpert();
+
+            function startDataPickers () {
+                $('#startDate').datetimepicker({
+                    format: 'L'
+                });
+                $('#finishDate').datetimepicker({
+                    format: 'L'
+                });
+            };
+            function addAdditionalTeacher () {
+                var teacherSelect = $('#groupAdd .teachers-block input');
+                $('.add-teacher').on('click', function () {
+                    teacherSelect.clone().appendTo('.teachers-block .input-group');
+                });
+            };
+            function addAdditionalExpert () {
+                var expertSelect = $('#groupAdd .experts-block input');
+                $('.add-expert').on('click', function () {
+                    expertSelect.clone().appendTo('.experts-block .input-group');
+                });
+            };
             function submitNewGroup () {
                 var group = new App.Groups.Group();
 
-                var groupName = $('#groupAdd input[name="GroupName"]').val();
+                group.set({
+                    id: _.uniqueId('newGroup_'),
+                    name: $('#groupAdd input[name="GroupName"]').val(),
+                    location: $('#groupAdd select[name="LocationName"] option:selected').val(),
+                    startDate: $('#groupAdd #startDate').val(),
+                    finishDate: $('#groupAdd #finishDate').val(),
+                    status: $('#groupAdd select[name="StatusName"] option:selected').val(),
+                    teachers: collectTeachers(),
+                    experts: collectExperts(),
+                });
+                console.log(group.get('id'));
 
-                group.set({name: groupName});
-            }
+                group.save({
+                    wait:true,
+                    success:function(model, response) {
+                        console.log('Successfully saved!');
+                    },
+                    error: function(model, error) {
+                        console.log(model.toJSON());
+                        console.log('error.responseText');
+                    }
+                });
+
+                $groupAddModal.modal('hide');
+
+                function collectTeachers () {
+                    var teachers = $('#groupAdd input[name="teacher"]');
+                    var teachersValue = [];
+                    teachers.each(function () {
+                        teachersValue.push($(this).val());
+                    });
+                    return teachersValue;
+                };
+                function collectExperts () {
+                    var experts = $('#groupAdd input[name="experts"]');
+                    var expertsValue = [];
+                    experts.each(function () {
+                        expertsValue.push($(this).val());
+                    });
+                    return expertsValue;
+                };
+            };
         },
 
         getCurrentDate: function () {
