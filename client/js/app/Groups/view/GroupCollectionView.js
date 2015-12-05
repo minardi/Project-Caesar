@@ -2,14 +2,13 @@
 (function (This) {
     This.GroupCollectionView = Backbone.View.extend({
         tagName: 'div',
-        className: 'row content-row',
+        className: 'cener-content',
         tpl: templates.groupCollectionTpl,
 
         events: {
             'click .add-new-group': 'addGroup',
             'click #up-navig': 'renderUp',
-            'click #down-navig': 'renderDown',
-            'click .route-locations': 'routeToLocations'
+            'click #down-navig': 'renderDown'
         },
 
         initialize: function () {
@@ -112,10 +111,6 @@
         getCurrentDate: function () {
             var currentDate = new Date();
             return currentDate.toISOString();
-        },
-
-        routeToLocations: function () {
-            cs.mediator.publish('RouteToLocations');
         }
     });
 })(App.Groups);

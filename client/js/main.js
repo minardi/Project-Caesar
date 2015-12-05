@@ -1,13 +1,14 @@
 'use strict';
 var App = {
-	    Groups: {},
+        Menu: {},
+        Groups: {},
         Cookies: {},
         Users: {},
         Session: {},
-	    Locations: {}        
+        Locations: {}        
     },
     collections = {},
-	cs = {},
+    cs = {},
     templates = {};
 
 Backbone.Model.prototype.idAttribute = "_id";
@@ -26,6 +27,7 @@ $(function () {
         cs.router = new App.Router();
         cs.cookiesController = new App.Cookies.Controller();
         cs.sessionController = new App.Session.Controller();
+        cs.menu = new App.Menu.Controller();
         
         Backbone.history.start({pushState: true});
         

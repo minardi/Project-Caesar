@@ -65,6 +65,10 @@ html, body {
   height: 100%;
 }
 
+.cener-content {
+  height: 100%;
+}
+
 .content {
   height: calc(100% - 200px);
   overflow: hidden;
