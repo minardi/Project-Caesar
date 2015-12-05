@@ -77,7 +77,7 @@ router.get('/reset', function(req, res) {
             });
         });
 
-        res.render('index', { title: 'Express' });
+        res.render('reset', { title: 'Reset' });
     });
 });
 
