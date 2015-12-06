@@ -16,47 +16,39 @@
                 students: []
             };
         },
-		
-		initialize: function(data) {
-			var startDate = new Date(data.startDate),
-				finishDate = new Date(data.finishDate);
-			this.set({'startDate': startDate.toISOString().slice(0, 10),
-					 'finishDate': finishDate.toISOString().slice(0, 10)});
-		},
 
-        validation: {
-            name: [
-                {
-                    required: true,
-                    msg: 'Field cannot be empty'
-                },
-                {
-                    maxLength: 15,
-                    msg: 'Max length is 15 symbols'
-                },
-                {
-                    minLength: 9,
-                    msg: 'Min length is 2 symbols'
-                }
-            ],
-            startDate: [
-                {
-                    startDate: true,
-                    msg: 'Select data'
-                }
-            ],
-            location: [
-                {
-                    location: true,
-                    msg: 'Select location'
-                }
-            ],
-            status: [
-                {
-                    status: true,
-                    msg: 'Select status'
-                }                
-            ]    
+        parse: function(data) {
+            data.startDate = new Date(data.startDate).toISOString().slice(0, 10);
+            data.finishDate = new Date(data.finishDate).toISOString().slice(0, 10);
+            return data;
+        },
+
+        /*validation: {
+            name: {
+                required: true,
+                msg: 'Field cannot be empty'
+            },
+            startDate: {
+                startDate: true,
+                msg: 'Select data'
+            },
+            location: {
+                location: true,
+                msg: 'Select location'
+            },
+            status: {
+                status: true,
+                msg: 'Select status'
+            }                   
+        }*/
+
+        validate: function(attributes) {
+            if ( !attributes.name ) {
+                console.log('Every group must have a name.');
+            };
+            if ( !attributes.startDate ) {
+                console.log('Every group must have a Start Date.');
+            };
         }
     });
 })(App.Groups);

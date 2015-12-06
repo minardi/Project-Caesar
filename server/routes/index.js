@@ -7,30 +7,117 @@ var locationList = require('../reset_data/location-list.js');
 require('../models/Location');
 
 router.get('/', function (req, res) {
-    var staticRoute ='../client';
-    res.sendFile('index.html', {root: staticRoute});
+    var staticRoute = '../client';
+    if (req.cookies.loggedIn) {
+        res.sendFile('home.html', {root: staticRoute});
+    } else {
+        res.sendFile('login.html', {root: staticRoute});
+    }
 });
 
+router.get('/groups', function(req, res, next) {
+    var Groups = mongoose.model('Group'), 
+		options = {};
 
-router.get('/group', function(req, res) {
-    var Groups = mongoose.model('Group');
+	if (req.query['location']) {
+		options['location'] = req.query['location'];
+	};
     
-    Groups.find({}, function(err, data) {
-        if (err) {
-            throw err;
-        }    
+    Groups.find(options, function(err, data) {
+        if (err) {throw err};   
+
         res.send(data);
     });
-    
+});
+
+router.delete('/group/:id', function (req, res, next) {
+    var Group = mongoose.model('Group');
+    Group.remove({_id: req.params.id}, function(err) {
+      if (err) {throw err};
+    });
+    res.json({status: 'success'});
+});
+
+router.post('/group', function (req, res, next) {
+    var Group = mongoose.model('Group'),
+        newGroup = new Group({     
+            name: req.body.name,
+            direction: req.body.direction,
+            location: req.body.location,
+            startDate: req.body.startDate,
+            finishDate: req.body.finishDate,
+            status: req.body.status,
+            teachers: req.body.teachers,
+            experts: req.body.experts
+        });
+
+    newGroup.save(function(err, data) {
+        if (err) {
+            console.log(err);
+            res.send(err);
+        } else {
+            res.send(data);
+        }
+    });
+});
+
+router.put('/group/:id', function (req, res, next) {
+    var Group = mongoose.model('Group');
+    console.log(req.body);
+    Group.findOneAndUpdate({_id:req.params.id}, req.body, function (err) {
+        if (err) {
+            console.log(err);
+            res.send(err);
+        } else {
+            res.json(req.body);
+        }
+    });
 });
 
 router.get('/dbLocations', function(req, res) {
     var locations = mongoose.model('LocationModel');
-    console.log('Try to find locations..');
+    console.log('Try to find locations...');
     locations.find({}, function (err, data) {
         if(err) throw err;
         res.send(data);
     });
+});
+
+router.post('/dbLocations', function (req, res, next) {
+    var Location = mongoose.model('LocationModel'),
+        newLocation = new Location({     
+            city: req.body.city,
+            country: req.body.country
+        });
+
+    newLocation.save(function(err, data) {
+        if (err) {
+            console.log(err);
+            res.send(err);
+        } else {
+            res.send(data);
+        }
+    });
+});
+
+router.put('/dbLocations/:id', function (req, res, next) {
+    var Location = mongoose.model('LocationModel');
+    Location.findOneAndUpdate({_id:req.params.id}, req.body, function (err) {
+        if (err) {
+            console.log(err);
+            res.send(err);
+        } else {
+            res.json(req.body);
+        }
+    });
+});
+
+router.delete('/dbLocations/:id', function (req, res, next) {
+    var Location = mongoose.model('LocationModel');
+    Location.remove({_id: req.params.id}, function(err) {
+      if (err) {throw err};
+    });
+    res.json({ status: 'success' });
 });
 
 router.get('/resetdb', function(req, res, next) {     
@@ -62,7 +149,7 @@ router.get('/reset', function(req, res) {
             });
         });
 
-        res.render('index', { title: 'Express' });
+        res.render('reset', { title: 'Reset' });
     });
 });
 

@@ -65,6 +65,10 @@ html, body {
   height: 100%;
 }
 
+.center-content {
+  height: 100%;
+}
+
 .content {
   height: calc(100% - 200px);
   overflow: hidden;
@@ -107,6 +111,7 @@ html, body {
 
 .content h1 {
   text-align: center;
+  padding-right: 25px;
 }
 
 .user-account {

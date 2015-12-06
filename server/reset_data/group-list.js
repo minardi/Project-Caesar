@@ -29,8 +29,8 @@ var groupList = [
 		name: 'Lv-082 NET',
 		direction: '.NET',
 		location: 'Lviv',
-		startDate: new Date(2016, 8, 1),
-		finishDate: new Date(2014, 8, 3),
+		startDate: new Date(2014, 8, 1),
+		finishDate: new Date(2016, 8, 3),
 		status: 'Planned'
 	},
 	{
