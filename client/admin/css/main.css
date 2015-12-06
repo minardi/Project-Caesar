@@ -1,0 +1,19 @@
+.container {
+    padding: 25px;
+}
+
+table > button {
+    margin-top: 15px;
+}
+
+td button:first-child {
+    margin-right: 5px;
+}
+
+th.actions {
+    width: 140px;
+}
+
+.tab-content {
+    margin-top: 15px;
+}

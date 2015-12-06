@@ -1,78 +1,47 @@
 'use strict';
 (function (This) {
     This.Controller = function() {
-        this.collection = collections.groups;
-        this.collectionView = new This.GroupCollectionView();
-        this.el = $('.content');
-        
-        function renderView () {
-            this.el.children().first().replaceWith(this.collectionView.renderGroups().el);
-        }
-
-        function renderCurrentView () {
-            this.el.append(this.collectionView.renderCurrentGroups().el)
-        }
+        var collection = collections.groups;
+        var collectionView;
+        var $el = $('.col-md-8');
 
         this.start = function () {
-            renderCurrentView.call(this);
-
-            var that = this;
-            var currentView = 'renderCurrent';
-
-            $('#up-navig').on('click', function () {
-                if (currentView === 'renderCurrent') {
-                    cs.mediator.publish('futureGroups');
-                    that.collectionView.renderFutureGroups();
-                    currentView = 'renderFuture';
-                } else if (currentView === 'renderFinished') {
-                    cs.mediator.publish('currentGroups');
-                    that.collectionView.renderCurrentGroups();
-                    currentView = 'renderCurrent';
-                }
-            });
-            $('#down-navig').on('click', function () {
-                if (currentView === 'renderCurrent') {
-                    cs.mediator.publish('finishedGroups');
-                    that.collectionView.renderFinishedGroups();
-                    currentView = 'renderFinished';
-                } else if (currentView === 'renderFuture') {
-                    cs.mediator.publish('currentGroups');
-                    that.collectionView.renderCurrentGroups();
-                    currentView = 'renderCurrent';
-                }
-            });
-
             setupMediator();
         };
 
-        this.showAll = function () {
-            this.collection.fetch()
-                .done(renderCurrentView.bind(this));
-        };
-        
-        this.showInLocation = function (location) {
-            this.collection.fetch({data: {location: location}})
-                .done(renderCurrentView.bind(this));
+        function setupMediator () {
+            cs.mediator.subscribe('currentGroupsView', renderCurrentView, {}, this);
+            cs.mediator.subscribe('futureGroupsView', renderFutureGroups, {}, this);
+            cs.mediator.subscribe('finishedGroupsView', renderFinishedGroups, {}, this);
+            cs.mediator.subscribe('showAll', showAll, {}, this);
+            cs.mediator.subscribe('showInLocation', showInLocation, {}, this);
         };
 
-            function setupMediator () {
-                cs.mediator.subscribe('currentGroupsView', showCurrentGroups);
-                cs.mediator.subscribe('futureGroupsView', showFutureGroups);
-                cs.mediator.subscribe('finishedGroupsView', showFinishedGroups);
-            }
+        function showAll () {
+            collection.fetch()
+                .done(renderCurrentView.bind(this));
+        };
 
-            function showCurrentGroups () {
-                this.collectionView.renderCurrentGroups();
-            }
+        function showInLocation (location) {
+            collection.fetch({data: {location: location}})
+                .done(renderCurrentView.bind(this));
+        };
 
-            function showFutureGroups () {
-                this.collectionView.renderFutureGroups();
-            }
+        function renderCurrentView () {
+            collectionView = new This.GroupCollectionView();
+            $el.empty().append(collectionView.renderCurrentGroups().el);
+        };
 
-            function showFinishedGroups () {
-                this.collectionView.renderFinishedGroups();
-            }
-        
+        function renderFutureGroups () {
+            collectionView = new This.GroupCollectionView();
+            $el.empty().append(collectionView.renderFutureGroups().el);
+        };
+
+        function renderFinishedGroups () {
+            collectionView = new This.GroupCollectionView();
+            $el.empty().append(collectionView.renderFinishedGroups().el);
+        };
+
         return this;
     };
 })(App.Groups);

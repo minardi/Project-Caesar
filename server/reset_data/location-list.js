@@ -1,6 +1,6 @@
 var locationList = [
 	{
-		city: 'Dnipropetrovsk',
+		city: 'Dnipro',
 		country: 'Ukraine'
 	},
 	{

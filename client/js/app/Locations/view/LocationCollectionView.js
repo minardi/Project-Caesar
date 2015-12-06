@@ -2,12 +2,12 @@
 (function (This) {
     This.LocationCollectionView = Backbone.View.extend({
         tagName: 'div',
-        className: 'row content-row',
+        className: 'locations row content-row',
         tpl: templates.locationCollectionTpl,
 
         initialize: function () {
             this.collection = collections.locations;
-            this.listenTo(this.collection, 'add', this.renderOne);
+            cs.mediator.subscribe('RemoveLocationsView', this.removeView, {}, this);
         },
 
         render: function () {
@@ -17,9 +17,13 @@
             return this;
         },
 		
-        renderOne: function (model) {
-            var locationView = new This.LocationView({model: model});
+        renderOne: function (location) {
+            var locationView = new This.LocationView({model: location});
             this.$el.append(locationView.render().el);
+        },
+
+        removeView: function () {
+            this.remove();
         }
     });
 })(App.Locations);

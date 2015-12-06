@@ -4,10 +4,10 @@
         routes: {
             '': 'showAll',
             'Groups': 'showAll',
-            'Groups/:location': 'showInLocation',
             'Groups/current': 'showCurrentGroups',
             'Groups/future': 'showFutureGroups',
-            'Groups/finished': 'showFinishedGroups'
+            'Groups/finished': 'showFinishedGroups',
+            'Groups/:location': 'showInLocation'
         },
 
         initialize: function () {
@@ -18,8 +18,10 @@
             cs.mediator.subscribe('currentGroups', this.navigateCurrentGroups, {}, this);
             cs.mediator.subscribe('futureGroups', this.navigateFutureGroups, {}, this);
             cs.mediator.subscribe('finishedGroups', this.navigateFinishedGroups, {}, this);
+
+            cs.mediator.subscribe('RouteToLocationGroups', this.navigateToLocationGroups, {}, this);
             
-            Backbone.history.loadUrl('#' + Backbone.history.fragment);
+            Backbone.history.loadUrl(Backbone.history.fragment);
         },
 
         navigateCurrentGroups: function () {
@@ -32,6 +34,10 @@
 
         navigateFinishedGroups: function () {
             this.navigate('Groups/finished');
+        },
+
+        navigateToLocationGroups: function(url) {
+            this.navigate(url, {trigger: true});
         },
 
         showCurrentGroups: function () {
@@ -47,11 +53,11 @@
         },
 
         showAll: function () {
-            this.controller.showAll();
+            cs.mediator.publish('showAll');
         },
-        
+
         showInLocation: function(location) {
-            this.controller.showInLocation(location);
+            cs.mediator.publish('showInLocation', location);
         }
     });
 })(App.Groups);

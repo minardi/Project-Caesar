@@ -20,7 +20,6 @@
         };
         
         Constructor.get = function (cookie) {
-            console.log(This.Processor.get(cookie));
             return This.Processor.get(cookie);
         };
         
