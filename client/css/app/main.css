@@ -27,27 +27,29 @@ html, body {
 }
 
 .top-nav, .main-nav {
-  background: #6c7a89;
-  opacity: 0.4;
-  cursor: pointer;
-  font-size: 30px;
-  text-align: center;
-  border-radius: 5px;
+    opacity: 0.4;
+    cursor: pointer;
+    font-size: 30px;
+    text-align: center;
+    border: 1px solid #CCCCCC;
+    transition: .3s;
 }
 
 .top-nav:hover, .main-nav:hover {
-  opacity: 0.8;
+  background-color: #EFEFEF;
 }
 
 .main-nav {
   position: relative;
-  height: calc(100% - 100px);
+  height: calc(100% - 106px);
+  margin: 6px 0px;
+
 }
 
 .main-nav span {
   position: absolute;
   top: 50%;
-  left: 30px;
+  left: 40px;
   z-index: 100;
   margin-top: -15px;
 }
@@ -58,9 +60,8 @@ html, body {
 }
 
 .notifications {
-  border: 2px solid #6c7a89;
-  border-radius: 5px;
-  background: #6c7a89;
+  border: 1px solid #EBEBEB;
+  background: #FFFFFF;
   padding: 5px;
   height: 100%;
 }
@@ -70,9 +71,11 @@ html, body {
 }
 
 .content {
-  height: calc(100% - 200px);
+  height: calc(100% - 212px);
   overflow: hidden;
-  background: #ececec;
+  background: white;
+  border: 1px solid #EBEBEB;;
+  margin: 6px 0px;
 }
 
 .content-row {
@@ -80,15 +83,18 @@ html, body {
 }
 
 .content-item {
-  border: 4px solid #6c7a89;
-  border-radius: 10px;
+  border: 1px solid #EBEBEB;
   margin: 5px;
   padding: 5px;
   cursor: pointer;
+  -webkit-box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.1);
+  box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.1);
+  transition: .3s;
 }
 
 .content-item:hover {
-  box-shadow: 0 0 30px #6c7a89;
+  background: rgba(235, 235, 235, 0.4);
 }
 
 .content-item h4 {
@@ -116,4 +122,8 @@ html, body {
 
 .user-account {
   font-size: 16px;
+}
+
+.close {
+  outline: none;
 }
