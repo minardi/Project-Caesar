@@ -1,6 +1,7 @@
 .user-info {
-    border-radius: 5px;
     padding: 5px;
     font-size: 11pt;
-    background: #ececec;
+    background: #FFFFFF;
+    border: 1px solid #EBEBEB;
+    height: 100px;
 }
