@@ -6,8 +6,12 @@ table > button {
     margin-top: 15px;
 }
 
+td button:first-child {
+    margin-right: 5px;
+}
+
 th.actions {
-    width: 85px;
+    width: 140px;
 }
 
 .tab-content {

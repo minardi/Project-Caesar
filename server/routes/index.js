@@ -61,6 +61,19 @@ router.post('/group', function (req, res, next) {
     });
 });
 
+router.put('/group/:id', function (req, res, next) {
+    var Group = mongoose.model('Group');
+    console.log(req.body);
+    Group.findOneAndUpdate({_id:req.params.id}, req.body, function (err) {
+        if (err) {
+            console.log(err);
+            res.send(err);
+        } else {
+            res.json(req.body);
+        }
+    });
+});
+
 router.get('/dbLocations', function(req, res) {
     var locations = mongoose.model('LocationModel');
     console.log('Try to find locations...');
@@ -83,6 +96,18 @@ router.post('/dbLocations', function (req, res, next) {
             res.send(err);
         } else {
             res.send(data);
+        }
+    });
+});
+
+router.put('/dbLocations/:id', function (req, res, next) {
+    var Location = mongoose.model('LocationModel');
+    Location.findOneAndUpdate({_id:req.params.id}, req.body, function (err) {
+        if (err) {
+            console.log(err);
+            res.send(err);
+        } else {
+            res.json(req.body);
         }
     });
 });

@@ -6,7 +6,8 @@
             this.listenTo(this.model,'destroy', this.remove);
         },
         events: {
-            'click .delete': 'deleteLocation'
+            'click .delete': 'deleteLocation',
+            'click .edit': 'editLocation'
         },
         tagName: 'tr',
         template: _.template(templates.locationTpl),
@@ -17,6 +18,31 @@
         },
         deleteLocation: function () {
             this.model.destroy({wait: true});
+        },
+        editLocation: function () {
+            var tpl = _.template(templates.locationModalEditTpl);
+            $('body').append(tpl(this.model.toJSON()));
+
+            var $locationEditModal = $('#locationEdit'),
+                $locationEditBtn = $('.edit-location'),
+                thisModel = this.model;
+
+            $locationEditModal.modal('show');
+            $locationEditModal.on('hidden.bs.modal', function () {
+                $locationEditModal.remove();
+                $locationEditBtn.off('click', editLocation);
+            });
+            $locationEditBtn.on('click', editLocation);
+
+            function editLocation () {
+                var newData = {
+                    city: $('#locationEdit input[name="City"]').val(),
+                    country: $('#locationEdit input[name="Country"]').val()
+                }
+
+                thisModel.save(newData, {wait: true});
+                $locationEditModal.modal('hide');
+            };
         }
     });
 
@@ -79,19 +105,16 @@
     });
 
     This.Group = Backbone.View.extend({
-        events: {
-            'click .delete': 'deleteGroup'
-        },
         initialize: function () {
-            this.model.on('change', function () {
-                this.render();
-            }, this);
-            this.model.on('destroy', function () {
-                this.remove();
-            }, this);
+            this.listenTo(this.model, 'sync', this.render);
+            this.listenTo(this.model, 'destroy', this.remove);
         },
         tagName: 'tr',
         template: _.template(templates.groupTpl),
+        events: {
+            'click .delete': 'deleteGroup',
+             'click .edit': 'editGroup'
+        },
         render: function () {
             this.$el.html(this.template(this.model.toJSON()));
 
@@ -99,6 +122,81 @@
         },
         deleteGroup: function () {
             this.model.destroy({wait: true});
+        },
+        editGroup: function () {
+            var tpl = _.template(templates.groupModalEditTpl);
+            $('body').append(tpl(this.model.toJSON()));
+
+            var $groupEditModal = $('#groupEdit'),
+                $groupEditBtn = $('.edit-group'),
+                thisModel = this.model;
+
+            $groupEditModal.modal('show');
+            $groupEditModal.on('hidden.bs.modal', function () {
+                $groupEditModal.remove();
+                $groupEditBtn.off('click', editGroup);
+            });
+            $groupEditBtn.on('click', editGroup);
+
+            startDataPickers();
+            addAdditionalTeacher();
+            addAdditionalExpert();
+
+            function startDataPickers () {
+                $('#startDate').datetimepicker({
+                    format: 'YYYY-MM-DD',
+                    defaultDate: '2015-10-25T01:32:21.196Z'
+                });
+                $('#finishDate').datetimepicker({
+                    format: 'YYYY-MM-DD',
+                    defaultDate: '2016-01-25T01:32:21.196Z'
+                });
+            };
+            function addAdditionalTeacher () {
+                var teacherSelect = $('#groupAdd .teachers-block input');
+                $('.add-teacher').on('click', function () {
+                    teacherSelect.clone().appendTo('.teachers-block .input-group');
+                });
+            };
+            function addAdditionalExpert () {
+                var expertSelect = $('#groupAdd .experts-block input');
+                $('.add-expert').on('click', function () {
+                    expertSelect.clone().appendTo('.experts-block .input-group');
+                });
+            };
+            function editGroup () {
+                var newData = {
+                    name: $('#groupEdit input[name="GroupName"]').val(),
+                    direction: $('#groupEdit select[name="Direction"] option:selected').val(),
+                    location: $('#groupEdit select[name="LocationName"] option:selected').val(),
+                    startDate: $('#groupEdit #startDate').val(),
+                    finishDate: $('#groupEdit #finishDate').val(),
+                    status: $('#groupEdit select[name="StatusName"] option:selected').val(),
+                    teachers: collectTeachers(),
+                    experts: collectExperts()
+                };
+
+                thisModel.save(newData, {wait: true});
+
+                $groupEditModal.modal('hide');
+
+                function collectTeachers () {
+                    var teachers = $('#groupEdit input[name="teacher"]');
+                    var teachersValue = [];
+                    teachers.each(function () {
+                        teachersValue.push($(this).val());
+                    });
+                    return teachersValue;
+                };
+                function collectExperts () {
+                    var experts = $('#groupEdit input[name="experts"]');
+                    var expertsValue = [];
+                    experts.each(function () {
+                        expertsValue.push($(this).val());
+                    });
+                    return expertsValue;
+                };
+            };
         }
     });
 
