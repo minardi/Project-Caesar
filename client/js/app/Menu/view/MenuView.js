@@ -1,7 +1,7 @@
 'use strict';
 (function (This) {
     This.MenuView = Backbone.View.extend({
-        tagName: 'li',
+        tagName: 'div',
         className: '',
         tpl: templates.menuTpl,
 
