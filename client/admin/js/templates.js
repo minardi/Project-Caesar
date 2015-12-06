@@ -164,7 +164,7 @@ templates.groupModalEditTpl = [
                         '<label>Status</label>',
                         '<select class="form-control" name="StatusName">',
                             '<option <% if (status ==="Planned") { %> selected <% } %> >Planned</option>',
-                            '<option <% if (status ==="In progress") { %> selected <% } %> >In Progress</option>',
+                            '<option <% if (status ==="In Progress") { %> selected <% } %> >In Progress</option>',
                             '<option <% if (status ==="Finished") { %> selected <% } %> >Finished</option>',
                         '</select>',
                     '</div>',
