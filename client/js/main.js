@@ -5,7 +5,8 @@ var App = {
         Cookies: {},
         Users: {},
         Session: {},
-        Locations: {}        
+        Locations: {},
+        Paginator: {}
     },
     collections = {},
     cs = {},
