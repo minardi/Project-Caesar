@@ -211,7 +211,6 @@
 
         initialize: function () {
             this.listenTo(this.collection, 'add', this.renderOne);
-            $('body').append(templates.groupModalDeleteTpl);
         },
 
         render: function () {

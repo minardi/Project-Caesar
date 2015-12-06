@@ -96,7 +96,9 @@
             $('body').append(templates.groupModalAddTpl);
 
             var $groupAddModal = $('#groupAdd'),
-                $groupAddBtn = $('.add-new-group');
+                $groupAddBtn = $('.add-new-group'),
+                thisCollection = this.collection;
+
             $groupAddModal.modal('show');
             $groupAddModal.on('hidden.bs.modal', function () {
                 $groupAddModal.remove();
@@ -143,15 +145,7 @@
                     experts: collectExperts(),
                 });
 
-                group.save({
-                    wait: true,
-                    success: function () {
-                        console.log('success');
-                    }, 
-                    error: function () {
-                        console.log('error');
-                    }
-                });
+                thisCollection.create(group.toJSON(), {wait: true});
 
                 $groupAddModal.modal('hide');
 
