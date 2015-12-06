@@ -8,6 +8,7 @@
         },
 
         initialize: function () {
+            cs.mediator.subscribe('ChangedMenu', this.navigation, {}, this);
             cs.mediator.subscribe('RouteToLocations', this.navigateLocations, null, this);
         },
         
@@ -21,6 +22,10 @@
 
         navigateLocations: function () {
             this.navigate('Locations', {trigger: true});
+        },
+
+        navigation: function (pathname) {
+            this.navigate(pathname, {trigger: true});
         }
     });
 })(App);

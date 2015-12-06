@@ -13,22 +13,21 @@ router.get('/', function (req, res) {
     } else {
         res.sendFile('login.html', {root: staticRoute});
     }
-    
 });
 
-router.get('/groups', function(req, res) {
+router.get('/groups', function(req, res, next) {
     var Groups = mongoose.model('Group'), 
 		options = {};
+
 	if (req.query['location']) {
 		options['location'] = req.query['location'];
-	}
+	};
     
-    Groups.find({}, function(err, data) {
+    Groups.find(options, function(err, data) {
         if (err) {throw err};   
 
         res.send(data);
     });
-    
 });
 
 router.post('/group', function(req, res) {
@@ -44,7 +43,30 @@ router.delete('/group/:id', function (req, res, next) {
     Group.remove({_id: req.params.id}, function(err) {
       if (err) {throw err};
     });
-    res.json({ status: 'success' });
+    res.json({status: 'success'});
+});
+
+router.post('/group', function (req, res, next) {
+    var Group = mongoose.model('Group'),
+        newGroup = new Group({     
+            name: req.body.name,
+            direction: req.body.direction,
+            location: req.body.location,
+            startDate: req.body.startDate,
+            finishDate: req.body.finishDate,
+            status: req.body.status,
+            teachers: req.body.teachers,
+            experts: req.body.experts
+        });
+
+    newGroup.save(function(err, data) {
+        if (err) {
+            console.log(err);
+            res.send(err);
+        } else {
+            res.send(data);
+        }
+    });
 });
 
 router.delete('/dbLocations/:id', function (req, res, next) {
@@ -93,7 +115,7 @@ router.get('/reset', function(req, res) {
             });
         });
 
-        res.render('index', { title: 'Express' });
+        res.render('reset', { title: 'Reset' });
     });
 });
 

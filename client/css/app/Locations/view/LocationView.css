@@ -1,3 +1,39 @@
 .locations h1 {
   text-align: center;
 }
+
+.location-item * {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;    
+}
+
+.content-selected-item {
+  border: 4px solid #3d763c;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 5px;
+  cursor: pointer;
+  background-color: #d8f0df; 
+}
+
+.content-selected-item:hover {
+  box-shadow: 0 0 30px #3d763c;
+}
+
+.content-selected-item h4 {
+  font-weight: bold;
+  margin: 0;
+}
+
+.content-selected-item p {
+  margin: 0;
+  font-size: 12px;
+}selected-
+
+.content-selected-item p span {
+  font-weight: bold;
+}

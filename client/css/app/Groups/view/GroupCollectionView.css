@@ -1,0 +1,23 @@
+.add-new-group {
+    float: right;   
+}
+
+#groupAdd input, #groupAdd select {
+    margin-bottom: 10px;
+}
+
+#startDate, #finishDate {
+    width: 100px;
+    display: block;
+    float: none;
+}
+
+.add-teacher, .add-expert {
+    display: block;
+    cursor: pointer;
+}
+
+.modal-footer {
+    clear: both;
+    border-top: none;
+}

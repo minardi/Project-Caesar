@@ -7,6 +7,7 @@
 
         initialize: function () {
             this.collection = collections.locations;
+            cs.mediator.subscribe('RemoveLocationsView', this.removeView, {}, this);
         },
 
         render: function () {
@@ -19,6 +20,10 @@
         renderOne: function (location) {
             var locationView = new This.LocationView({model: location});
             this.$el.append(locationView.render().el);
+        },
+
+        removeView: function () {
+            this.remove();
         }
     });
 })(App.Locations);
