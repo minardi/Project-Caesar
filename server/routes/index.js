@@ -70,6 +70,31 @@ router.get('/dbLocations', function(req, res) {
     });
 });
 
+router.post('/dbLocations', function (req, res, next) {
+    var Location = mongoose.model('LocationModel'),
+        newLocation = new Location({     
+            city: req.body.city,
+            country: req.body.country
+        });
+
+    newLocation.save(function(err, data) {
+        if (err) {
+            console.log(err);
+            res.send(err);
+        } else {
+            res.send(data);
+        }
+    });
+});
+
+router.delete('/dbLocations/:id', function (req, res, next) {
+    var Location = mongoose.model('LocationModel');
+    Location.remove({_id: req.params.id}, function(err) {
+      if (err) {throw err};
+    });
+    res.json({ status: 'success' });
+});
+
 router.get('/resetdb', function(req, res, next) {     
     var resetController = new require('../reset/resetController')(req, res);
 });

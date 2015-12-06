@@ -1,0 +1,15 @@
+.container {
+    padding: 25px;
+}
+
+table > button {
+    margin-top: 15px;
+}
+
+th.actions {
+    width: 85px;
+}
+
+.tab-content {
+    margin-top: 15px;
+}

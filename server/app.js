@@ -30,6 +30,7 @@ app.use('/build', express.static(path.join(__dirname, 'public')));
 //app.use('/build', favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 app.use(express.static('../client'));
+// app.use(express.static('../client/admin'));
 app.use(express.static(path.join(__dirname, 'public')));
  
 app.use(router);
