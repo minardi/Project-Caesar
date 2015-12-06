@@ -30,14 +30,6 @@ router.get('/groups', function(req, res, next) {
     });
 });
 
-router.post('/group', function(req, res) {
-    console.log('add group');
-});
-
-router.post('/dbLocations', function(req, res) {
-    console.log('add location');
-});
-
 router.delete('/group/:id', function (req, res, next) {
     var Group = mongoose.model('Group');
     Group.remove({_id: req.params.id}, function(err) {
@@ -69,14 +61,6 @@ router.post('/group', function (req, res, next) {
     });
 });
 
-router.delete('/dbLocations/:id', function (req, res, next) {
-    var Location = mongoose.model('LocationModel');
-    Location.remove({_id: req.params.id}, function(err) {
-      if (err) {throw err};
-    });
-    res.json({ status: 'success' });
-});
-
 router.get('/dbLocations', function(req, res) {
     var locations = mongoose.model('LocationModel');
     console.log('Try to find locations...');
@@ -84,6 +68,31 @@ router.get('/dbLocations', function(req, res) {
         if(err) throw err;
         res.send(data);
     });
+});
+
+router.post('/dbLocations', function (req, res, next) {
+    var Location = mongoose.model('LocationModel'),
+        newLocation = new Location({     
+            city: req.body.city,
+            country: req.body.country
+        });
+
+    newLocation.save(function(err, data) {
+        if (err) {
+            console.log(err);
+            res.send(err);
+        } else {
+            res.send(data);
+        }
+    });
+});
+
+router.delete('/dbLocations/:id', function (req, res, next) {
+    var Location = mongoose.model('LocationModel');
+    Location.remove({_id: req.params.id}, function(err) {
+      if (err) {throw err};
+    });
+    res.json({ status: 'success' });
 });
 
 router.get('/resetdb', function(req, res, next) {     
