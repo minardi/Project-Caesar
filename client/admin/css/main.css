@@ -2,14 +2,14 @@
     padding: 25px;
 }
 
-th.actions {
-    width: 195px;
-}
-
-.tab-content {
+table > button {
     margin-top: 15px;
 }
 
-#add-new {
+th.actions {
+    width: 85px;
+}
+
+.tab-content {
     margin-top: 15px;
 }
