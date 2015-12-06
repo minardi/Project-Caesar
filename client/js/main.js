@@ -5,7 +5,8 @@ var App = {
         Cookies: {},
         Users: {},
         Session: {},
-        Locations: {}        
+        Locations: {},
+        Messanger: {}       
     },
     collections = {},
     cs = {},
@@ -23,6 +24,7 @@ $(function () {
 
 	function main () {
         cs.mediator = new Mediator();
+        cs.messanger = new App.Messanger.Controller();
         cs.subRouters = {};
         cs.router = new App.Router();
         cs.cookiesController = new App.Cookies.Controller();
