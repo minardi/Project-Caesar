@@ -49,7 +49,7 @@ router.get('/resetdb', function(req, res, next) {
 router.get('/reset', function(req, res) {
     mongoose.connection.db.dropDatabase(function(err, result) {
         var GroupModel = mongoose.model('Group'),
-            LocationModel = mongoose.model('LocationModel');;
+            LocationModel = mongoose.model('LocationModel');
             
         groupList.forEach(function (groupJSON) {
             var groupInDb = GroupModel(groupJSON);
