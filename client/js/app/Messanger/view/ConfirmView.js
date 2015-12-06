@@ -23,7 +23,11 @@
                 buttons: [{
                         id: 'btn-1',
                         label: 'Ok',
-                        action: callback1
+                        action: function (dialogItself) {
+                            callback1();
+
+                            dialogItself.close();
+                        }
                     }, {
                         id: 'btn-2',
                         label: 'Close',

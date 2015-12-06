@@ -22,7 +22,7 @@ $(function () {
         collections.locations.fetch({success: main})
     }});
 
-	function main () {
+    function main () {
         cs.mediator = new Mediator();
         cs.messanger = new App.Messanger.Controller();
         cs.subRouters = {};
