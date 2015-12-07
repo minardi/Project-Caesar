@@ -12,8 +12,16 @@
                 });
             });
             
+            cs.mediator.subscribe('logoutRequired', function () {
+                Backbone.ajax({
+                    url: 'logout',
+                    data: 'sessionID=' + cs.currentUser.getSessionID(),
+                    success: logoutSuccess
+                });
+            });
+            
             function loginSuccess (response) {
-                if (JSON.parse(response).result === true) {   
+                if (JSON.parse(response).success) {   
                     cs.currentUser = new App.Users.User(JSON.parse(response).recognizedUser);
                     currentSessionView = new This.CurrentSessionView({
                         model: cs.currentUser.toJSON()
@@ -25,8 +33,11 @@
                 }
             }
             
-            // todo: subscribe mediator for logoutRequired
-            // to send ajax on server and remove session id from db
+            function logoutSuccess (response) {
+                if (JSON.parse(response).success) { 
+                    cs.currentUser = undefined;
+                }
+            }
             
             return this;
         }
