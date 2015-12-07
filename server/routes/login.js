@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
         UserModel = mongoose.model('User'),
         SessionModel = mongoose.model('Session'),
         response = {
-            result: false,
+            success: false,
             recognizedUser: {}
         };
     
@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
             console.log(err);
         }
         if (user) {
-            response.result = true;
+            response.success = true;
             response.sessionID = generateSessionID();
             
             newSession = new SessionModel({
@@ -35,18 +35,11 @@ router.get('/', function(req, res, next) {
                 if (err) {
                     console.log(err);
                 }
-                console.log(newSession);
-                SessionModel.find(function (s) {
-                    console.log(s);
-                });
             });
-            
-            
             console.log('User \'' + req.query.user + '\' (' + user.name + ' ' + user.lastName + ') connected');
         } else {
             console.log('Unregistered user \'' + req.query.user + '\' tried to connect');
         }
-        
         res.send(JSON.stringify(response));
     }); 
 });

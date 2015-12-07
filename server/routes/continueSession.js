@@ -7,30 +7,33 @@ router.get('/', function(req, res, next) {
         UserModel = mongoose.model('User'),
         SessionModel = mongoose.model('Session'),
         response = {
-            result: false,
+            success: false,
             recognizedUser: {}
         };
     
-    SessionModel.find({}, function (s) {
-        console.log(s);
-    });
-    
-    SessionModel.findOne({
+    SessionModel.findOne ({
         sessionID: req.query.id
-    }, function (session) {
+    }, function (err, session) {
         if (session) {
-            UserModel.findOne({
+            UserModel.findOne ({
                 _id: session.userID
-            }, function (user) {
-                response.result = true;
-                response.recognizedUser = user;
+            }, function (err, user) {
+                response.success = true;
+                response.recognizedUser = {
+                    name: user.name,
+                    lastName: user.lastName,
+                    role: user.role,
+                    city: user.locationCity,
+                    country: user.locationCountry,
+                    sessionID: session.sessionID
+                };
                 console.log('Resuming session ' + session.sessionID);
+                res.send(JSON.stringify(response));
             });
         } else {
             console.log('Attempt to resume closed session (' + req.query.id + ')');
-        }
-        
-        res.send(JSON.stringify(response));
+            res.send(JSON.stringify(response));
+        } 
     });  
 });
 
