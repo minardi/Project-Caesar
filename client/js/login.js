@@ -1,4 +1,12 @@
 'use strict';
+
+// --------------------------------------------------------
+// test accounts:
+// minnie : maw         - coordinator       
+// quirk : quick        - teacher           
+// alba : dumby         - administrator     
+// --------------------------------------------------------
+
 $(function () {
     $('#loginButton').on('click', function () {
         Backbone.ajax({
@@ -12,8 +20,6 @@ $(function () {
                 } else {
                     $('#loginFailed').show();
                 }
-                //$('#login').val('');
-                //$('#password').val('');
             }
         });
     }); 

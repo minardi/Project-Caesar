@@ -1,10 +1,13 @@
-var express = require('express');
-var mongoose = require('mongoose');
-var router = express.Router();
-var groupList = require('../reset_data/group-list.js');
-var locationList = require('../reset_data/location-list.js');
+var express = require('express'),
+    mongoose = require('mongoose'),
+    router = express.Router(),
+    groupList = require('../reset_data/group-list.js'),
+    locationList = require('../reset_data/location-list.js'),
+    userList = require('../reset_data/user-list.js');
 
 require('../models/Location');
+require('../models/User');
+require('../models/Session');
 
 router.get('/', function (req, res) {
     var staticRoute = '../client';
@@ -127,25 +130,34 @@ router.get('/resetdb', function(req, res, next) {
 router.get('/reset', function(req, res) {
     mongoose.connection.db.dropDatabase(function(err, result) {
         var GroupModel = mongoose.model('Group'),
-            LocationModel = mongoose.model('LocationModel');
+            LocationModel = mongoose.model('LocationModel'),
+            UserModel = mongoose.model('User'),
+            groupInDb, locationInDb, userInDb;
             
         groupList.forEach(function (groupJSON) {
-            var groupInDb = GroupModel(groupJSON);
+            groupInDb = GroupModel(groupJSON);
             groupInDb.save(function (err) {
                 if (err) {
                     console.log(err);
-                }
-                
+                }  
             });
         });
 
         locationList.forEach(function (locationJSON) {
-            var locationInDb = LocationModel(locationJSON);
+            locationInDb = LocationModel(locationJSON);
             locationInDb.save(function (err) {
                 if (err) {
                     console.log(err);
                 }
-                
+            });
+        });
+        
+        userList.forEach(function (userJSON) {
+            var userInDb = UserModel(userJSON);
+            userInDb.save(function (err) {
+                if (err) {
+                    console.log(err);
+                }
             });
         });
 

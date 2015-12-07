@@ -1,40 +1,13 @@
-var mongoose = require('../libs/mongoose-init'),
-    Schema = mongoose.Schema;
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema,
+    User = mongoose.model('User', new Schema({
+        name: { type: String, required: true },
+        lastName: { type: String, required: true },
+        role: { type: String, required: true },
+        locationCity: { type: String, required: true },
+        locationCountry: { type: String, required: true },
+        login: { type: String, required: true, unique: true },
+        password: { type: String, required: true }
+    }));
 
-var User = mongoose.model('User', new Schema({
-    username: { type: String, unique: true, required: true },
-    password: { type: String, required: true },
-    created_at: { type: Date, default: Date.now}
-}));
-
-function save(data, callback, error){
-    var user = new User(data);
-    user.save(function(err){
-        callback(err, user);
-    });
-}
-
-function find(conditions, callback){
-    return User.find(conditions, function(err, docs){
-        callback(err, docs);
-    });
-}
-
-function update(conditions, updateObj, callback){
-    User.update(conditions, updateObj, function(err, docs){
-        callback(err, docs);
-    });
-}
-
-function remove(conditions, callback){
-    User.remove(conditions,function(err){
-        callback(err);
-    });
-}
-
-module.exports = {
-    update: update,
-    save: save,
-    find: find,
-    remove: remove
-};
+module.exports = User;
