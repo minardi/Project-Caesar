@@ -6,7 +6,8 @@ var App = {
         Users: {},
         Session: {},
         Locations: {},
-        Filter: {}
+        Filter: {},
+        Messanger: {}       
     },
     collections = {},
     cs = {},
@@ -22,8 +23,9 @@ $(function () {
         collections.locations.fetch({success: main})
     }});
 
-	function main () {
+    function main () {
         cs.mediator = new Mediator();
+        cs.messanger = new App.Messanger.Controller();
         cs.subRouters = {};
         cs.router = new App.Router();
         cs.cookiesController = new App.Cookies.Controller();

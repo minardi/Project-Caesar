@@ -2,7 +2,7 @@
 (function (This) {
     This.LocationCollectionView = Backbone.View.extend({
         tagName: 'div',
-        className: 'locations row content-row',
+        className: 'center-content',
         tpl: templates.locationCollectionTpl,
 
 

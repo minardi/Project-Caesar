@@ -17,7 +17,7 @@
         },
 
         routeToLocationGroups: function () {
-            cs.mediator.publish('ChangedMenu', 'Groups/' + this.model.get('city'));
+            cs.mediator.publish('SelectedMenu', 'Groups/' + this.model.get('city'));
             cs.mediator.publish('RemoveLocationsView');
         },
 

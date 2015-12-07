@@ -2,7 +2,7 @@
 (function (This) {
     This.GroupCollectionView = Backbone.View.extend({
         tagName: 'div',
-        className: 'cener-content',
+        className: 'center-content',
         tpl: templates.groupCollectionTpl,
 
         events: {
@@ -45,42 +45,33 @@
             return this;
         },
 
-        renderCurrentGroups: function () {
-            var filtered = this.collection.filter(function(model) {
-                return (model.get('startDate') < this.getCurrentDate() &&
-                model.get('finishDate') > this.getCurrentDate());
-            }, this);
+        renderFilterGroups: function (mode, filter) {
+            var filtered = this.collection.filter(filter, this);
 
-            this.currentView = 'renderCurrent';
+            this.currentView = mode;
 
             this.$el.html(this.tpl());
             this.renderAll(filtered);
             return this;
+        },
+
+        renderCurrentGroups: function () {
+            return this.renderFilterGroups('renderCurrent', function(model) {
+                return (model.get('startDate') < this.getCurrentDate() &&
+                model.get('finishDate') > this.getCurrentDate());
+            });
         },
 
         renderFinishedGroups: function () {
-            var filtered = this.collection.filter(function(model) {
-                var date = new Date();
+            return this.renderFilterGroups('renderFinished', function(model) {
                 return model.get('finishDate') < this.getCurrentDate();
-            }, this);
-
-            this.currentView = 'renderFinished';
-
-            this.$el.html(this.tpl());
-            this.renderAll(filtered);
-            return this;
+            });
         },
 
         renderFutureGroups: function () {
-            var filtered = this.collection.filter(function(model) {
+            return this.renderFilterGroups('renderFuture', function(model) {
                 return model.get('startDate') > this.getCurrentDate();
-            }, this);
-
-            this.currentView = 'renderFuture';
-
-            this.$el.html(this.tpl());
-            this.renderAll(filtered);
-            return this;
+            });
         },
 
         renderAll: function (filtered) {
@@ -94,16 +85,78 @@
 
         addGroup: function () {
             $('body').append(templates.groupModalAddTpl);
-            $('#groupAdd').modal('show');
-            $('.add-new-group').on('click', submitNewGroup);
 
+            var $groupAddModal = $('#groupAdd'),
+                $groupAddBtn = $('.add-new-group'),
+                thisCollection = this.collection;
+
+            $groupAddModal.modal('show');
+            $groupAddModal.on('hidden.bs.modal', function () {
+                $groupAddModal.remove();
+                $groupAddBtn.off('click', submitNewGroup);
+            });
+            $groupAddBtn.on('click', submitNewGroup);
+
+            startDataPickers();
+            addAdditionalTeacher();
+            addAdditionalExpert();
+
+            function startDataPickers () {
+                $('#startDate').datetimepicker({
+                    format: 'YYYY-MM-DD',
+                    defaultDate: '2015-10-25T01:32:21.196Z'
+                });
+                $('#finishDate').datetimepicker({
+                    format: 'YYYY-MM-DD',
+                    defaultDate: '2016-01-25T01:32:21.196Z'
+                });
+            };
+            function addAdditionalTeacher () {
+                var teacherSelect = $('#groupAdd .teachers-block input');
+                $('.add-teacher').on('click', function () {
+                    teacherSelect.clone().appendTo('.teachers-block .input-group');
+                });
+            };
+            function addAdditionalExpert () {
+                var expertSelect = $('#groupAdd .experts-block input');
+                $('.add-expert').on('click', function () {
+                    expertSelect.clone().appendTo('.experts-block .input-group');
+                });
+            };
             function submitNewGroup () {
-                var group = new App.Groups.Group();
+                var group = new App.Groups.Group({
+                    id: _.uniqueId('newGroup_'),
+                    name: $('#groupAdd input[name="GroupName"]').val(),
+                    direction: $('#groupAdd select[name="Direction"] option:selected').val(),
+                    location: $('#groupAdd select[name="LocationName"] option:selected').val(),
+                    startDate: $('#groupAdd #startDate').val(),
+                    finishDate: $('#groupAdd #finishDate').val(),
+                    status: $('#groupAdd select[name="StatusName"] option:selected').val(),
+                    teachers: collectTeachers(),
+                    experts: collectExperts(),
+                });
 
-                var groupName = $('#groupAdd input[name="GroupName"]').val();
+                thisCollection.create(group.toJSON(), {wait: true});
 
-                group.set({name: groupName});
-            }
+                $groupAddModal.modal('hide');
+
+                function collectTeachers () {
+                    var teachers = $('#groupAdd input[name="teacher"]');
+                    var teachersValue = [];
+                    teachers.each(function () {
+                        teachersValue.push($(this).val());
+                    });
+                    return teachersValue;
+                };
+                function collectExperts () {
+                    var experts = $('#groupAdd input[name="experts"]');
+                    var expertsValue = [];
+                    experts.each(function () {
+                        expertsValue.push($(this).val());
+                    });
+                    return expertsValue;
+                };
+            };
         },
 
         getCurrentDate: function () {

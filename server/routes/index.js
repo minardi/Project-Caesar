@@ -1,10 +1,13 @@
-var express = require('express');
-var mongoose = require('mongoose');
-var router = express.Router();
-var groupList = require('../reset_data/group-list.js');
-var locationList = require('../reset_data/location-list.js');
+var express = require('express'),
+    mongoose = require('mongoose'),
+    router = express.Router(),
+    groupList = require('../reset_data/group-list.js'),
+    locationList = require('../reset_data/location-list.js'),
+    userList = require('../reset_data/user-list.js');
 
 require('../models/Location');
+require('../models/User');
+require('../models/Session');
 
 router.get('/', function (req, res) {
     var staticRoute = '../client';
@@ -13,16 +16,15 @@ router.get('/', function (req, res) {
     } else {
         res.sendFile('login.html', {root: staticRoute});
     }
-    
 });
-
 
 router.get('/groups', function(req, res, next) {
     var Groups = mongoose.model('Group'), 
 		options = {};
+
 	if (req.query['location']) {
 		options['location'] = req.query['location'];
-	}
+	};
     
     Groups.find(options, function(err, data) {
         if (err) {throw err};   
@@ -36,7 +38,43 @@ router.delete('/group/:id', function (req, res, next) {
     Group.remove({_id: req.params.id}, function(err) {
       if (err) {throw err};
     });
-    res.json({ status: 'success' });
+    res.json({status: 'success'});
+});
+
+router.post('/group', function (req, res, next) {
+    var Group = mongoose.model('Group'),
+        newGroup = new Group({     
+            name: req.body.name,
+            direction: req.body.direction,
+            location: req.body.location,
+            startDate: req.body.startDate,
+            finishDate: req.body.finishDate,
+            status: req.body.status,
+            teachers: req.body.teachers,
+            experts: req.body.experts
+        });
+
+    newGroup.save(function(err, data) {
+        if (err) {
+            console.log(err);
+            res.send(err);
+        } else {
+            res.send(data);
+        }
+    });
+});
+
+router.put('/group/:id', function (req, res, next) {
+    var Group = mongoose.model('Group');
+    console.log(req.body);
+    Group.findOneAndUpdate({_id:req.params.id}, req.body, function (err) {
+        if (err) {
+            console.log(err);
+            res.send(err);
+        } else {
+            res.json(req.body);
+        }
+    });
 });
 
 router.get('/dbLocations', function(req, res) {
@@ -48,6 +86,43 @@ router.get('/dbLocations', function(req, res) {
     });
 });
 
+router.post('/dbLocations', function (req, res, next) {
+    var Location = mongoose.model('LocationModel'),
+        newLocation = new Location({     
+            city: req.body.city,
+            country: req.body.country
+        });
+
+    newLocation.save(function(err, data) {
+        if (err) {
+            console.log(err);
+            res.send(err);
+        } else {
+            res.send(data);
+        }
+    });
+});
+
+router.put('/dbLocations/:id', function (req, res, next) {
+    var Location = mongoose.model('LocationModel');
+    Location.findOneAndUpdate({_id:req.params.id}, req.body, function (err) {
+        if (err) {
+            console.log(err);
+            res.send(err);
+        } else {
+            res.json(req.body);
+        }
+    });
+});
+
+router.delete('/dbLocations/:id', function (req, res, next) {
+    var Location = mongoose.model('LocationModel');
+    Location.remove({_id: req.params.id}, function(err) {
+      if (err) {throw err};
+    });
+    res.json({ status: 'success' });
+});
+
 router.get('/resetdb', function(req, res, next) {     
     var resetController = new require('../reset/resetController')(req, res);
 });
@@ -55,25 +130,34 @@ router.get('/resetdb', function(req, res, next) {
 router.get('/reset', function(req, res) {
     mongoose.connection.db.dropDatabase(function(err, result) {
         var GroupModel = mongoose.model('Group'),
-            LocationModel = mongoose.model('LocationModel');;
+            LocationModel = mongoose.model('LocationModel'),
+            UserModel = mongoose.model('User'),
+            groupInDb, locationInDb, userInDb;
             
         groupList.forEach(function (groupJSON) {
-            var groupInDb = GroupModel(groupJSON);
+            groupInDb = GroupModel(groupJSON);
             groupInDb.save(function (err) {
                 if (err) {
                     console.log(err);
-                }
-                
+                }  
             });
         });
 
         locationList.forEach(function (locationJSON) {
-            var locationInDb = LocationModel(locationJSON);
+            locationInDb = LocationModel(locationJSON);
             locationInDb.save(function (err) {
                 if (err) {
                     console.log(err);
                 }
-                
+            });
+        });
+        
+        userList.forEach(function (userJSON) {
+            var userInDb = UserModel(userJSON);
+            userInDb.save(function (err) {
+                if (err) {
+                    console.log(err);
+                }
             });
         });
 

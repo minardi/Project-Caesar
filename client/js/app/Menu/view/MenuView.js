@@ -1,7 +1,7 @@
 'use strict';
 (function (This) {
     This.MenuView = Backbone.View.extend({
-        tagName: 'li',
+        tagName: 'div',
         className: '',
         tpl: templates.menuTpl,
 
@@ -19,11 +19,11 @@
         },
 
         showLocations: function () {
-            cs.mediator.publish('ChangedMenu', '/Locations');
+            cs.mediator.publish('SelectedMenu', '/Locations');
         },
 
         showGroups: function () {
-            cs.mediator.publish('ChangedMenu', '/Groups');
+            cs.mediator.publish('SelectedMenu', '/Groups');
         }
     });
 })(App.Menu);

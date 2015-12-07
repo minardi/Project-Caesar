@@ -5,13 +5,20 @@
         <meta charset="utf-8">
         <!-- styles.css -->
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
 
         <link rel="stylesheet" type="text/css" href="css/app/main.css">
         <link rel="stylesheet" type="text/css" href="css/app/Menu/menu.css">
         <link rel="stylesheet" type="text/css" href="css/app/Groups/view/GroupView.css">
+
+        <link rel="stylesheet" type="text/css" href="css/app/Messanger/view/InformationView.css">
+        <link rel="stylesheet" type="text/css" href="css/app/Groups/view/GroupCollectionView.css">
         <link rel="stylesheet" type="text/css" href="css/app/Locations/view/LocationView.css">
         <link rel="stylesheet" type="text/css" href="css/app/Session/view/CurrentSession.css">
-        <!-- styles.css-end -->
+        <link rel="stylesheet" type="text/css" href="css/libs/bootstrap-dialog.min.css">
+        <!-- styles.css-end -->            
+
+        <!-- scripts.js -->
         
         <!-- libs -->
         <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -19,9 +26,13 @@
         <script src="bower_components/backbone/backbone.js"></script>
         <script src="bower_components/backbone.validation/dist/backbone-validation.js"></script>
         <script src="bower_components/mediator-js/mediator.min.js"></script>
+        <script type="text/javascript" src="/bower_components/moment/min/moment.min.js"></script>
         <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="js/lib/js.cookie.js"></script>
-		
+
+        <script src="js/lib/bootstrap-dialog.min.js"></script>
+        <script src="bower_components/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js"></script>
+        <script src="bower_components/js-cookie/src/js.cookie.js"></script>
+        
         <!-- scripts.js -->
         <script src="js/main.js"></script>
         <script src="js/app/Router.js"></script>
@@ -58,7 +69,7 @@
         <script src="js/app/Session/view/CurrentSessionView.js"></script>
         <script src='js/app/Session/Controller.js'></script>
 
-        <!-- paginator -->
+        <!-- filter -->
         <script src="js/app/Filter/model/Filter.js"></script>
         <script src="js/app/Filter/tpl/PaginatorTpl.js"></script>
         <script src="js/app/Filter/tpl/SearcherTpl.js"></script>
@@ -78,6 +89,19 @@
 
         <script src="js/app/Locations/LocationRouter.js"></script>
         <script src="js/app/Locations/Controller.js"></script>
+
+        <!-- messanger -->
+        <script src="js/app/Messanger/tpl/informationTpl.js"></script>
+        <script src="js/app/Messanger/tpl/warningTpl.js"></script>
+        <script src="js/app/Messanger/tpl/errorTpl.js"></script>
+        <script src="js/app/Messanger/tpl/confirmTpl.js"></script>
+        <script src="js/app/Messanger/tpl/hintTpl.js"></script>
+ 
+        <script src="js/app/Messanger/view/InformView.js"></script>
+        <script src="js/app/Messanger/view/ConfirmView.js"></script>
+        <script src="js/app/Messanger/view/HintView.js"></script>
+
+        <script src="js/app/Messanger/Controller.js"></script>
 
         <!-- scripts.js-end -->
     </head>
@@ -134,6 +158,8 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="messanger-wrap container">
         </div>
     </body>
 </html>

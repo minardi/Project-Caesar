@@ -2,8 +2,8 @@
 (function (This)  {
     This.Router = Backbone.Router.extend({
         routes: {
-            '': 'showAll',
-            'Groups': 'showAll',
+            '': 'showCurrentGroups',
+            'Groups': 'showAllCurrentGroups',
             'Groups/current': 'showCurrentGroups',
             'Groups/future': 'showFutureGroups',
             'Groups/finished': 'showFinishedGroups',
@@ -52,7 +52,7 @@
             cs.mediator.publish('finishedGroupsView');
         },
 
-        showAll: function () {
+        showAllCurrentGroups: function () {
             cs.mediator.publish('showAll');
         },
 

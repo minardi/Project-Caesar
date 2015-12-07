@@ -8,7 +8,7 @@
         },
 
         initialize: function () {
-            cs.mediator.subscribe('ChangedMenu', this.navigation, {}, this);
+            cs.mediator.subscribe('SelectedMenu', this.navigation, {}, this);
             cs.mediator.subscribe('RouteToLocations', this.navigateLocations, null, this);
         },
         
