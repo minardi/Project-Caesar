@@ -45,42 +45,33 @@
             return this;
         },
 
-        renderCurrentGroups: function () {
-            var filtered = this.collection.filter(function(model) {
-                return (model.get('startDate') < this.getCurrentDate() &&
-                model.get('finishDate') > this.getCurrentDate());
-            }, this);
+        renderFilterGroups: function (mode, filter) {
+            var filtered = this.collection.filter(filter, this);
 
-            this.currentView = 'renderCurrent';
+            this.currentView = mode;
 
             this.$el.html(this.tpl());
             this.renderAll(filtered);
             return this;
+        },
+
+        renderCurrentGroups: function () {
+            return this.renderFilterGroups('renderCurrent', function(model) {
+                return (model.get('startDate') < this.getCurrentDate() &&
+                model.get('finishDate') > this.getCurrentDate());
+            });
         },
 
         renderFinishedGroups: function () {
-            var filtered = this.collection.filter(function(model) {
-                var date = new Date();
+            return this.renderFilterGroups('renderFinished', function(model) {
                 return model.get('finishDate') < this.getCurrentDate();
-            }, this);
-
-            this.currentView = 'renderFinished';
-
-            this.$el.html(this.tpl());
-            this.renderAll(filtered);
-            return this;
+            });
         },
 
         renderFutureGroups: function () {
-            var filtered = this.collection.filter(function(model) {
+            return this.renderFilterGroups('renderFuture', function(model) {
                 return model.get('startDate') > this.getCurrentDate();
-            }, this);
-
-            this.currentView = 'renderFuture';
-
-            this.$el.html(this.tpl());
-            this.renderAll(filtered);
-            return this;
+            });
         },
 
         renderAll: function (filtered) {

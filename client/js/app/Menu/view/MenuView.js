@@ -19,11 +19,11 @@
         },
 
         showLocations: function () {
-            cs.mediator.publish('ChangedMenu', '/Locations');
+            cs.mediator.publish('SelectedMenu', '/Locations');
         },
 
         showGroups: function () {
-            cs.mediator.publish('ChangedMenu', '/Groups');
+            cs.mediator.publish('SelectedMenu', '/Groups');
         }
     });
 })(App.Menu);
