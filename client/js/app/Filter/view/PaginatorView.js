@@ -12,10 +12,10 @@
         initialize: function () {
         },
 
-        render: function (maxPage, currentPage) {
+        render: function (filter) {
             this.$el.html(this.tpl({
-                'maxPage': maxPage,
-                'currentPage': currentPage
+                'maxPage': filter.get('maxPage'),
+                'currentPage': filter.get('currentPage')
             }));
 
             return this;
@@ -25,4 +25,4 @@
             cs.mediator.publish('ChangePaginatorPage', e.currentTarget.value-1);
         }		
     });
-})(App.Paginator);
+})(App.Filter);

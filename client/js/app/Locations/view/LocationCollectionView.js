@@ -8,7 +8,7 @@
 
         initialize: function () {
             this.collection = collections.locations;
-            this.paginator = new App.Paginator.Controller({
+            this.filter = new App.Filter.Controller({
                 'collection': this.collection,
                 'pageSize': 6,
                 'searchField': 'city'
@@ -20,31 +20,33 @@
         },
 
         render: function () {
-            var filteredCollection = this.paginator.filterCollection();
-
             this.$el.html(this.tpl());
-
-            this.$el.append(this.paginator.renderSearcher());
-            filteredCollection.forEach(this.renderOne, this);
-			this.$el.append(this.paginator.renderPaginator());
+            this.$('.searcher').append(this.filter.renderSearcher());
+            this.renderAll(this.filter.getCollection());
 
             return this;
         },
 		
+        renderAll: function (collection) {
+            this.$('.locations-list').empty();
+            collection.forEach(this.renderOne, this);
+            this.$('nav').html(this.filter.renderPaginator());
+        },
+
         renderOne: function (location) {
             var locationView = new This.LocationView({model: location});
-            this.$el.append(locationView.render().el);
+            this.$('.locations-list').append(locationView.render().el);
         },
 
         changePage: function (currentPage) {
-            this.paginator.set({'currentPage': currentPage});
-            this.render();            
+            this.filter.set({'currentPage': currentPage});
+            this.renderAll(this.filter.getCollection());            
         },
 
         startSearch: function (searchString) {
-            this.paginator.set({'searchString': searchString});
-            this.paginator.set({'currentPage': 0});
-            this.render();            
+            this.filter.set({'searchString': searchString});
+            this.filter.set({'currentPage': 0});
+            this.renderAll(this.filter.getCollection());            
         },
 
         removeView: function () {
