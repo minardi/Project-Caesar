@@ -10,24 +10,39 @@
         };
 
         function setupMediator () {
-            cs.mediator.subscribe('currentGroupsView', renderCurrentView, {}, this);
+            var key,
+                subscribers;
+
+            subscribers = {
+                'currentGroupsView': renderCurrentGroups,
+                'futureGroupsView': renderFutureGroups,
+                'finishedGroupsView': renderFinishedGroups,
+                'showAll': showAllCurrentGroups,
+                'showInLocation': showInLocation
+            };
+
+            for (key in subscribers) {
+                cs.mediator.subscribe(key, subscribers[key], {}, this);
+            }
+
+            /*cs.mediator.subscribe('currentGroupsView', renderCurrentGroups, {}, this);
             cs.mediator.subscribe('futureGroupsView', renderFutureGroups, {}, this);
             cs.mediator.subscribe('finishedGroupsView', renderFinishedGroups, {}, this);
-            cs.mediator.subscribe('showAll', showAll, {}, this);
-            cs.mediator.subscribe('showInLocation', showInLocation, {}, this);
+            cs.mediator.subscribe('showAll', showAllCurrentGroups, {}, this);
+            cs.mediator.subscribe('showInLocation', showInLocation, {}, this);*/
         };
 
-        function showAll () {
+        function showAllCurrentGroups () {
             collection.fetch()
-                .done(renderCurrentView.bind(this));
+                .done(renderCurrentGroups.bind(this));
         };
 
         function showInLocation (location) {
             collection.fetch({data: {location: location}})
-                .done(renderCurrentView.bind(this));
+                .done(renderCurrentGroups.bind(this));
         };
 
-        function renderCurrentView () {
+        function renderCurrentGroups () {
             collectionView = new This.GroupCollectionView();
             $el.empty().append(collectionView.renderCurrentGroups().el);
         };
