@@ -1,7 +1,7 @@
 'use strict';
 (function (This) {
     This.Controller = function() {
-        this.collection = collections.locationsCollection;
+        this.collection = collections.locations;
         this.collectionView = new This.LocationCollectionView();
         this.$el = $('.col-md-8');
 

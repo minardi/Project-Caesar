@@ -6,6 +6,7 @@ var App = {
         Users: {},
         Session: {},
         Locations: {},
+        Filter: {},
         Messanger: {}       
     },
     collections = {},
