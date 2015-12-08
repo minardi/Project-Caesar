@@ -168,22 +168,29 @@ router.get('/reset', function(req, res) {
 router.get('/groups/:location', function (req, res, next) {
     var groups = mongoose.model('Group');
     
-	console.log('server location: ', req.params.location);
+    console.log('server location: ', req.params.location);
     
     groups.find({location: req.params.location}, function(err, data) {
        res.send(data); 
     });
     console.log('Data send');
-	//next();
+    //next();
 });
 
-/* GET home page. */
-// router.get('/', function(req, res, next) {
-//     res.render('index', { title: 'Express' });
-// });
+router.get('/users', function (req, res, next) {
+    var users = mongoose.model('User');
+        
+    users.find({}, function(err, data) {
+       res.send(data); 
+    });
+});
 
-// router.get('/helloworld', function(req, res) {
-//     res.render('helloworld', { title: 'Hello, World!' });
-// });
+router.delete('/user/:id', function (req, res, next) {
+    var User = mongoose.model('User');
+    User.remove({_id: req.params.id}, function(err) {
+      if (err) {throw err};
+    });
+    res.json({ status: 'success' });
+});
 
 module.exports = router;

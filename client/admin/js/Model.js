@@ -9,7 +9,7 @@
         }
     });
 
-    This.Group= Backbone.Model.extend({
+    This.Group = Backbone.Model.extend({
         urlRoot: '/group',
         defaults: function () {
             return {
@@ -29,6 +29,20 @@
             data.startDate = new Date(data.startDate).toISOString().slice(0, 10);
             data.finishDate = new Date(data.finishDate).toISOString().slice(0, 10);
             return data;
+        }
+    });
+
+    This.User = Backbone.Model.extend({
+        urlRoot: '/user',
+        defaults: function () {
+            return {
+                name: '',
+                lastName: '',
+                role: '',
+                locationCity: '',
+                locationCountry: '',
+                login: ''
+            };
         }
     });
 })(App.Admin.Models);
