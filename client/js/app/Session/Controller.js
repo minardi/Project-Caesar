@@ -27,9 +27,10 @@
                         model: cs.currentUser.toJSON()
                     });
                     $('.user-account').html(currentSessionView.render().$el);
-                    // cs.mediator.publish('sessionContinued');
+                    cs.mediator.publish('sessionContinued');
                 } else {
-                    // some notification??
+                    cs.cookiesController.clearAll();
+                    window.location.href = '/';
                 }
             }
             
