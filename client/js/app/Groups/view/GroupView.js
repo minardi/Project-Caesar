@@ -6,7 +6,7 @@
         tpl: templates.groupTpl,
 
         events: {
-            'click .edit-group': 'editGroup',
+            'click .edit-group-ico': 'editGroup',
             'click .content-item .close': 'deleteGroup'
         },
         
