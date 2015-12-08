@@ -9,9 +9,6 @@
             'keyup .searchField': 'startSearch'
          },
 
-        initialize: function () {
-        },
-
         render: function (filter) {
             this.$el.html(this.tpl({'searchValue': filter.get('searchString')}));
 

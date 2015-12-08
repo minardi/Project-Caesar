@@ -3,11 +3,15 @@
 }
 
 .locations-list {
-  min-height: 250px;
+  min-height: 225px;
 }
 
 .location-nav {
-  visibility: hidden;
+  cursor: default;
+}
+
+.location-nav:hover {
+  background-color: #FFFFFF;
 }
 
 .location-item * {

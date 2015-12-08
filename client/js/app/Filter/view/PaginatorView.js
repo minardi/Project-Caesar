@@ -9,9 +9,6 @@
             'click .pageEl': 'changePage'
         },
 
-        initialize: function () {            
-        },
-
         render: function (filter) {
             this.$el.html(this.tpl({
                 'maxPage': filter.get('maxPage'),

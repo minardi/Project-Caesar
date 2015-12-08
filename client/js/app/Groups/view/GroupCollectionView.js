@@ -14,7 +14,8 @@
         initialize: function () {
             this.currentView = 'renderCurrent';
             this.collection = collections.groups;
-            this.listenTo(this.collection, 'add', this.renderOne);
+            this.listenTo(this.collection, 'add', this.renderCurrentGroups);
+            this.listenTo(this.collection, 'destroy', this.renderAfterDestroy);
             this.filter = new Filter.Controller({
                 'collection': this.collection,
                 'pageSize': 6,
@@ -192,5 +193,9 @@
             this.renderAll(this.filter.getCollection());            
         },
         
+        renderAfterDestroy: function () {
+            this.filter.set({'currentPage':0});
+            this.renderCurrentGroups();            
+        }
     });
 })(App.Groups, App.Filter);
