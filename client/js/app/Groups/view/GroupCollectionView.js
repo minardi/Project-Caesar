@@ -21,20 +21,20 @@
 
         renderUp: function () {
             if (this.currentView === 'renderCurrent') {
-                cs.mediator.publish('futureGroups');
+                cs.mediator.publish('futureGroups', 'Groups/future');
                 this.renderFutureGroups();
             } else if (this.currentView === 'renderFinished') {
-                cs.mediator.publish('currentGroups');
+                cs.mediator.publish('currentGroups', 'Groups/current');
                 this.renderCurrentGroups();
             }
         },
 
         renderDown: function () {
             if (this.currentView === 'renderCurrent') {
-                cs.mediator.publish('finishedGroups');
+                cs.mediator.publish('finishedGroups', 'Groups/finished');
                 this.renderFinishedGroups();
             } else if (this.currentView === 'renderFuture') {
-                cs.mediator.publish('currentGroups');
+                cs.mediator.publish('currentGroups', 'Groups/current');
                 this.renderCurrentGroups();
             }
         },
