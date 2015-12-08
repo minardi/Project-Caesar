@@ -25,31 +25,10 @@
 
         validation: {
             name: {
-              required: true,
-              range: [2, 10],
-              msg: 'Please enter a valid email'
-            },
-            startDate: {
-                startDate: true,
-                msg: 'Select data'
-            },
-            location: {
-                location: true,
-                msg: 'Select location'
-            },
-            status: {
-                status: true,
-                msg: 'Select status'
-            }                   
+                required: true,
+                minLength: 2,
+                msg: 'Please enter a Group Name'
+            }                 
         }
-
-        // validate: function(attributes) {
-        //     if ( !attributes.name ) {
-        //         console.log('Every group must have a name.');
-        //     };
-        //     if ( !attributes.startDate ) {
-        //         console.log('Every group must have a Start Date.');
-        //     };
-        // }
     });
 })(App.Groups);
