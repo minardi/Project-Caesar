@@ -104,6 +104,51 @@
         }
     });
 
+    This.User = Backbone.View.extend({
+        initialize: function () {
+            this.listenTo(this.model,'sync', this.render);
+            this.listenTo(this.model,'destroy', this.remove);
+        },
+        events: {
+            'click .delete': 'deleteUser'
+        },
+        tagName: 'tr',
+        template: _.template(templates.userTpl),
+        render: function () {
+            this.$el.html(this.template(this.model.toJSON()));
+
+            return this;
+        },
+        deleteUser: function () {
+            this.model.destroy({wait: true});
+        }
+    });
+
+    This.Users = Backbone.View.extend({
+        tagName: 'table',
+        className: 'table table-striped',
+        template: _.template(templates.usersCollectionTpl),
+
+        initialize: function () {
+            this.listenTo(this.collection, 'add', this.renderOne);
+        },
+
+        render: function () {
+            this.$el.html(this.template());
+            this.renderAll(this.collection);
+            return this;
+        },
+
+        renderAll: function (collection) {
+            collection.forEach(this.renderOne, this);
+        },
+
+        renderOne: function (model) {
+            var userView = new App.Admin.Views.User({model: model});
+            this.$('tbody').append(userView.render().el);
+        }
+    });
+
     This.Group = Backbone.View.extend({
         initialize: function () {
             this.listenTo(this.model, 'sync', this.render);

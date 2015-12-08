@@ -245,3 +245,27 @@ templates.locationModalEditTpl = [
         '</div>',
     '</div>'
 ].join('');
+templates.userTpl = [
+    '<td><%= name %></td>',
+    '<td><%= lastName %></td>',
+    '<td><%= role %></td>',
+    '<td><%= locationCity %></td>',
+    '<td><%= locationCountry %></td>',
+    '<td><%= login %></td>',
+    '<td>',
+        '<button class="btn btn-danger delete">Delete</button>',
+    '</td>'
+].join('');
+templates.usersCollectionTpl = [
+    '<thead>',
+        '<th>Name</th>',
+        '<th>Last Name</th>',
+        '<th>Role</th>',
+        '<th>Locaiton City</th>',
+        '<th>Location Country</th>',
+        '<th>Login</th>',
+        '<th class="actions">Action</th>',
+    '</thead>',
+    '<tbody>',
+    '</tbody>'
+].join('');
