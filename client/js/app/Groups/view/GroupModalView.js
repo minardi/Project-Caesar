@@ -26,7 +26,7 @@
         },
 
         addGroup: function () {
-            var newGroup = {
+            var newGroup = new App.Groups.Group({
                     name: $('#groupAdd input[name="GroupName"]').val(),
                     direction: $('#groupAdd select[name="Direction"] option:selected').val(),
                     location: $('#groupAdd select[name="LocationName"] option:selected').val(),
@@ -35,7 +35,7 @@
                     status: $('#groupAdd select[name="StatusName"] option:selected').val(),
                     teachers: collectTeachers(),
                     experts: collectExperts()
-                };
+                });
 
             function collectTeachers () {
                 var teachers = $('#groupAdd input[name="teacher"]');
