@@ -32,7 +32,9 @@ $(function () {
         cs.sessionController = new App.Session.Controller();
         cs.menu = new App.Menu.Controller();
         
-        Backbone.history.start({pushState: true});
+        cs.mediator.subscribe('sessionContinued', function () {
+            Backbone.history.start({pushState: true});
+        });
         
         cs.mediator.publish('continueSessionRequired');        
     }

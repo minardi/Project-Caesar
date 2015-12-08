@@ -23,10 +23,11 @@
             return data;
         },
 
-        /*validation: {
+        validation: {
             name: {
-                required: true,
-                msg: 'Field cannot be empty'
+              required: true,
+              range: [2, 10],
+              msg: 'Please enter a valid email'
             },
             startDate: {
                 startDate: true,
@@ -40,15 +41,15 @@
                 status: true,
                 msg: 'Select status'
             }                   
-        }*/
-
-        validate: function(attributes) {
-            if ( !attributes.name ) {
-                console.log('Every group must have a name.');
-            };
-            if ( !attributes.startDate ) {
-                console.log('Every group must have a Start Date.');
-            };
         }
+
+        // validate: function(attributes) {
+        //     if ( !attributes.name ) {
+        //         console.log('Every group must have a name.');
+        //     };
+        //     if ( !attributes.startDate ) {
+        //         console.log('Every group must have a Start Date.');
+        //     };
+        // }
     });
 })(App.Groups);
