@@ -2,6 +2,14 @@
   text-align: center;
 }
 
+.locations-list {
+  min-height: 250px;
+}
+
+.location-nav {
+  visibility: hidden;
+}
+
 .location-item * {
   -webkit-touch-callout: none;
   -webkit-user-select: none;

@@ -1,5 +1,5 @@
 templates.locationCollectionTpl = _.template([
-    '<div class="top-nav" id="up-navig">',
+    '<div class="top-nav location-nav" id="up-navig">',
         '<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>',
     '</div>',
     '<div class="content">',
@@ -13,7 +13,7 @@ templates.locationCollectionTpl = _.template([
         '<nav class="content-pagination">',
         '</nav>',
     '</div>',
-    '<div class="top-nav" id="down-navig">',
+    '<div class="top-nav location-nav" id="down-navig">',
         '<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>',
     '</div>'
 ].join(''));
