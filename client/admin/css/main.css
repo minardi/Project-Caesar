@@ -17,3 +17,7 @@ th.actions {
 .tab-content {
     margin-top: 15px;
 }
+
+.teachers-block .input-group input, .experts-block .input-group input{
+    margin-bottom: 5px;
+}
