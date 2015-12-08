@@ -16,13 +16,18 @@
         },
 
         render: function () {
-            this.$el.html(this.tpl(this.model.toJSON()));
+            var userRole = cs.currentUser.getRole();
+
+            this.$el.html(this.tpl($.extend(
+                this.model.toJSON(),
+                {userRole: userRole}
+            )));
 
             return this;
         },
         
         showStudents: function () {
-            alert(this.model.get('students').join());
+            
         },
 
         editGroup: function () {
