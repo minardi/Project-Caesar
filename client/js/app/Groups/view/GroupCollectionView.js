@@ -49,19 +49,22 @@
         },
 
         render: function () {
-            this.$el.html(this.tpl());
+            var userRole = cs.currentUser.getRole();
+
+            this.$el.html(this.tpl({userRole: userRole}));
             this.$('.searcher').append(this.filter.renderSearcher());
             this.renderAll(this.filter.getCollection());
             return this;
         },
 
         renderFilterGroups: function (mode, filter) {
-            var filtered = this.collection.filter(filter, this);
+            var filtered = this.collection.filter(filter, this),
+                userRole = cs.currentUser.getRole();
             
             this.filter.set({'collection': filtered});
             this.currentView = mode;
 
-            this.$el.html(this.tpl());
+            this.$el.html(this.tpl({userRole: userRole}));
             this.$('.searcher').append(this.filter.renderSearcher());
             this.renderAll(this.filter.getCollection());
             return this;
@@ -149,7 +152,7 @@
                     teachers: collectTeachers(),
                     experts: collectExperts(),
                 });
-
+                
                 thisCollection.create(group.toJSON(), {wait: true});
 
                 $groupAddModal.modal('hide');
