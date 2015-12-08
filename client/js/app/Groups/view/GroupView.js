@@ -6,7 +6,7 @@
         tpl: templates.groupTpl,
 
         events: {
-            'dblclick': 'editGroup',
+            'click .edit-group-ico': 'editGroup',
             'click .content-item .close': 'deleteGroup'
         },
         
@@ -55,13 +55,13 @@
                 });
             };
             function addAdditionalTeacher () {
-                var teacherSelect = $('#groupAdd .teachers-block input');
+                var teacherSelect = $('#groupEdit .teachers-block input');
                 $('.add-teacher').on('click', function () {
                     teacherSelect.clone().appendTo('.teachers-block .input-group');
                 });
             };
             function addAdditionalExpert () {
-                var expertSelect = $('#groupAdd .experts-block input');
+                var expertSelect = $('#groupEdit .experts-block input');
                 $('.add-expert').on('click', function () {
                     expertSelect.clone().appendTo('.experts-block .input-group');
                 });
