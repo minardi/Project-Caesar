@@ -3,5 +3,6 @@ templates.menuTpl = _.template([
     '<ul class="dropdown-menu">',
         '<li class="locations menu-item">Locations</li>',
         '<li class="groups menu-item">Groups</li>',
+        '<li class="admin menu-item">Admin</li>',
     '</ul>'
 ].join(''));

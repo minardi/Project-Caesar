@@ -1,9 +1,9 @@
 'use strict';
 (function (This) {
     This.Controller = function() {
-        var collection = collections.groups;
-        var collectionView;
-        var $el = $('.col-md-8');
+        var collection = collections.groups,
+            collectionView,
+            $el = $('.col-md-8');
 
         this.start = function () {
             setupMediator();

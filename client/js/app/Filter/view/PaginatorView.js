@@ -9,9 +9,6 @@
             'click .pageEl': 'changePage'
         },
 
-        initialize: function () {
-        },
-
         render: function (filter) {
             this.$el.html(this.tpl({
                 'maxPage': filter.get('maxPage'),
@@ -22,7 +19,7 @@
         },
 
         changePage: function (e) {
-            cs.mediator.publish('ChangePaginatorPage', e.currentTarget.value-1);
+            cs.mediator.publish(this.model.get('viewName') + 'ChangePage', e.currentTarget.value-1);
         }		
     });
 })(App.Filter);

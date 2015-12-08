@@ -7,7 +7,8 @@
 
         events: {
             'click .locations': 'showLocations',
-            'click .groups': 'showGroups'
+            'click .groups': 'showGroups',
+            'click .admin': 'showAdmin'
         },
 
         initialize: function () {
@@ -24,6 +25,10 @@
 
         showGroups: function () {
             cs.mediator.publish('SelectedMenu', '/Groups');
+        },
+
+        showAdmin: function () {
+            window.location.href = '/admin';
         }
     });
 })(App.Menu);

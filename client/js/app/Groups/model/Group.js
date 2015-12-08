@@ -23,32 +23,12 @@
             return data;
         },
 
-        /*validation: {
+        validation: {
             name: {
                 required: true,
-                msg: 'Field cannot be empty'
-            },
-            startDate: {
-                startDate: true,
-                msg: 'Select data'
-            },
-            location: {
-                location: true,
-                msg: 'Select location'
-            },
-            status: {
-                status: true,
-                msg: 'Select status'
-            }                   
-        }*/
-
-        validate: function(attributes) {
-            if ( !attributes.name ) {
-                console.log('Every group must have a name.');
-            };
-            if ( !attributes.startDate ) {
-                console.log('Every group must have a Start Date.');
-            };
+                minLength: 2,
+                msg: 'Please enter a Group Name'
+            }                 
         }
     });
 })(App.Groups);

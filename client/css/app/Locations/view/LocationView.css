@@ -2,6 +2,18 @@
   text-align: center;
 }
 
+.locations-list {
+  min-height: 225px;
+}
+
+.location-nav {
+  cursor: default;
+}
+
+.location-nav:hover {
+  background-color: #FFFFFF;
+}
+
 .location-item * {
   -webkit-touch-callout: none;
   -webkit-user-select: none;

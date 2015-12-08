@@ -9,13 +9,13 @@
         };
 
         this.renderPaginator = function () {
-            var paginatorView = new This.PaginatorView();
+            var paginatorView = new This.PaginatorView({model: this.filter});
                     
             return paginatorView.render(this.filter).el;
         };
 
         this.renderSearcher = function () {
-            var searcherView = new This.SearcherView();
+            var searcherView = new This.SearcherView({model: this.filter});
 
             return searcherView.render(this.filter).el;
         };

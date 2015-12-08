@@ -21,3 +21,7 @@
     clear: both;
     border-top: none;
 }
+
+#main {
+  min-height: 225px;
+}

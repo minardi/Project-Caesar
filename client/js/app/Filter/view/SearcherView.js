@@ -7,10 +7,7 @@
 
         events: {
             'keyup .searchField': 'startSearch'
-        },
-
-        initialize: function () {
-        },
+         },
 
         render: function (filter) {
             this.$el.html(this.tpl({'searchValue': filter.get('searchString')}));
@@ -19,7 +16,7 @@
         },
 
         startSearch: function (e) {
-            cs.mediator.publish('StartSearch', $(e.target).val());
+            cs.mediator.publish(this.model.get('viewName') + 'StartSearch', $(e.target).val());
         }
     });
 })(App.Filter);

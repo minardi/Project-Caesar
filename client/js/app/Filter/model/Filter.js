@@ -3,27 +3,29 @@
     This.Filter = Backbone.Model.extend({
         defaults: function () {
             return {
+                collection: null,
                 currentPage: 0,
                 pageSize: 6,
-                collection: null,
-                filteredCollection: [],
                 searchField: '',
                 searchString: '',
-                maxPage: 0
+                maxPage: 0,
+                filteredCollection: [],
+                viewName: ''
             };
         },
 
         filterCollection: function () {
-            var pagedCollection = [],
+            var currentCollection = this.get('collection'),
+                pagedCollection = [],
                 searchedCollection,
                 startPosition,
                 endPosition,
                 i;
-
+            
             if (this.get('searchString') == "") {
-                searchedCollection = this.get('collection').toArray();
+                searchedCollection = Array.isArray(currentCollection) ? currentCollection : currentCollection.toArray();
             } else {
-                searchedCollection = this.get('collection').filter(this.filterByAttribute.bind(this));                
+                searchedCollection = currentCollection.filter(this.filterByAttribute.bind(this));                
             }
      
             this.set('maxPage', Math.ceil(searchedCollection.length / this.get('pageSize')));
