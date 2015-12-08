@@ -1,5 +1,5 @@
 'use strict';
-(function (This) {
+(function (This, Filter) {
     This.GroupCollectionView = Backbone.View.extend({
         tagName: 'div',
         className: 'center-content',
@@ -15,6 +15,15 @@
             this.currentView = 'renderCurrent';
             this.collection = collections.groups;
             this.listenTo(this.collection, 'add', this.renderOne);
+            this.filter = new Filter.Controller({
+                'collection': this.collection,
+                'pageSize': 6,
+                'searchField': 'name',
+                'viewName': 'groups'
+            });
+
+            cs.mediator.subscribe('groupsChangePage', this.changePage, {}, this);
+            cs.mediator.subscribe('groupsStartSearch', this.startSearch, {}, this);
             
             $('body').append(templates.groupModalDeleteTpl);
         },
@@ -41,17 +50,20 @@
 
         render: function () {
             this.$el.html(this.tpl());
-            this.renderAll(this.collection);
+            this.$('.searcher').append(this.filter.renderSearcher());
+            this.renderAll(this.filter.getCollection());
             return this;
         },
 
         renderFilterGroups: function (mode, filter) {
             var filtered = this.collection.filter(filter, this);
-
+            
+            this.filter.set({'collection': filtered});
             this.currentView = mode;
 
             this.$el.html(this.tpl());
-            this.renderAll(filtered);
+            this.$('.searcher').append(this.filter.renderSearcher());
+            this.renderAll(this.filter.getCollection());
             return this;
         },
 
@@ -75,7 +87,9 @@
         },
 
         renderAll: function (filtered) {
+            this.$('#main').empty();
             filtered.forEach(this.renderOne, this);
+            this.$('nav').html(this.filter.renderPaginator());
         },
 
         renderOne: function (model) {
@@ -162,6 +176,18 @@
         getCurrentDate: function () {
             var currentDate = new Date();
             return currentDate.toISOString();
-        }
+        },
+        
+        changePage: function (currentPage) {
+            this.filter.set({'currentPage': currentPage});
+            this.renderAll(this.filter.getCollection());            
+        },
+
+        startSearch: function (searchString) {
+            this.filter.set({'searchString': searchString});
+            this.filter.set({'currentPage': 0});
+            this.renderAll(this.filter.getCollection());            
+        },
+        
     });
-})(App.Groups);
+})(App.Groups, App.Filter);

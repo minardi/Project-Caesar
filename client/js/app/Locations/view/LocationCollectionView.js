@@ -1,5 +1,5 @@
 'use strict';
-(function (This) {
+(function (This, Filter) {
     This.LocationCollectionView = Backbone.View.extend({
         tagName: 'div',
         className: 'center-content',
@@ -8,14 +8,15 @@
 
         initialize: function () {
             this.collection = collections.locations;
-            this.filter = new App.Filter.Controller({
+            this.filter = new Filter.Controller({
                 'collection': this.collection,
                 'pageSize': 6,
-                'searchField': 'city'
+                'searchField': 'city',
+                'viewName': 'locations'
             });
 
-            cs.mediator.subscribe('ChangePaginatorPage', this.changePage, {}, this);
-            cs.mediator.subscribe('StartSearch', this.startSearch, {}, this);
+            cs.mediator.subscribe('locationsChangePage', this.changePage, {}, this);
+            cs.mediator.subscribe('locationsStartSearch', this.startSearch, {}, this);
             cs.mediator.subscribe('RemoveLocationsView', this.removeView, {}, this);
         },
 
@@ -53,4 +54,4 @@
             this.remove();
         }
     });
-})(App.Locations);
+})(App.Locations, App.Filter);

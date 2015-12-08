@@ -7,7 +7,7 @@
 
         events: {
             'keyup .searchField': 'startSearch'
-        },
+         },
 
         initialize: function () {
         },
@@ -19,7 +19,7 @@
         },
 
         startSearch: function (e) {
-            cs.mediator.publish('StartSearch', $(e.target).val());
+            cs.mediator.publish(this.model.get('viewName') + 'StartSearch', $(e.target).val());
         }
     });
 })(App.Filter);
