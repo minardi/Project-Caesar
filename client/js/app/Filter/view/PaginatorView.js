@@ -9,7 +9,7 @@
             'click .pageEl': 'changePage'
         },
 
-        initialize: function () {
+        initialize: function () {            
         },
 
         render: function (filter) {
@@ -22,7 +22,7 @@
         },
 
         changePage: function (e) {
-            cs.mediator.publish('ChangePaginatorPage', e.currentTarget.value-1);
+            cs.mediator.publish(this.model.get('viewName') + 'ChangePage', e.currentTarget.value-1);
         }		
     });
 })(App.Filter);

@@ -6,7 +6,8 @@
         tpl: templates.searcherTpl,
 
         events: {
-            'keyup .searchField': 'startSearch'
+            'keyup .searchField': 'startSearch',
+            'click #clear_input': 'clearInput'
         },
 
         initialize: function () {
@@ -19,7 +20,12 @@
         },
 
         startSearch: function (e) {
-            cs.mediator.publish('StartSearch', $(e.target).val());
+            cs.mediator.publish(this.model.get('viewName') + 'StartSearch', $(e.target).val());
+        },
+        
+        clearInput: function () {
+            this.$('.searchField').focus();
+            this.$('searchField').val('');
         }
     });
 })(App.Filter);

@@ -3,7 +3,7 @@ templates.locationCollectionTpl = _.template([
         '<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>',
     '</div>',
     '<div class="content">',
-        '<div class="row content-row" id="main">',
+        '<div class="row content-row">',
             '<h1>Locations</h1>',
         '</div>',
         '<div class="searcher col-md-12">',
