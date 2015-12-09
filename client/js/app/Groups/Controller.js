@@ -18,7 +18,8 @@
                 'futureGroupsView': renderFutureGroups,
                 'finishedGroupsView': renderFinishedGroups,
                 'showAll': showAllCurrentGroups,
-                'showInLocation': showInLocation
+                'showInLocation': showInLocation,
+                'showMy': showMy
             };
 
             for (key in subscribers) {
@@ -56,6 +57,14 @@
             collectionView = new This.GroupCollectionView();
             $el.empty().append(collectionView.renderFinishedGroups().el);
         };
+
+        function showMy () {
+            var teacherName = cs.currentUser.getName();
+            collections.groups = collections.groups.filter(function (group) {
+                return group.get('teachers').indexOf(teacherName) != -1;
+            });
+            renderCurrentGroups();
+        }
 
         return this;
     };
