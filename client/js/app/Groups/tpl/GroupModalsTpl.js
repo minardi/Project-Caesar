@@ -63,7 +63,7 @@ templates.groupModalAddTpl = _.template([
                     '</div>',
                     '<div class="input-group">',
                         '<label>Status</label>',
-                        '<select class="form-control" name="StatusName">',
+                        '<select class="form-control" name="StatusName" disabled>',
                             '<option>Planned</option>',
                             '<option>In progress</option>',
                             '<option>Finished</option>',
