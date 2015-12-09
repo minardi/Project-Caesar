@@ -1,56 +1,62 @@
-'use strict';
+ 'use strict';
 (function (This) {
-    This.Controller = App.Common.Controller.extend({
+    This.Controller = function() {
+        var collection = collections.groups,
+            collectionView,
+            $el = $('.col-md-8');
 
-        initialize: function () {
-           this.collection = this.get('collection'); 
-           this.$el = $('.col-md-8');
-        },
+        this.start = function () {
+            setupMediator();
+        };
 
-        start: function () {
-            this.setupMediator();
-        },
-
-        setupMediator: function () {
+        function setupMediator () {
             var key,
                 subscribers;
 
             subscribers = {
-                'currentGroupsView': this.renderCurrentGroups,
-                'futureGroupsView': this.renderFutureGroups,
-                'finishedGroupsView': this.renderFinishedGroups,
-                'showAll': this.showAllCurrentGroups,
-                'showInLocation': this.showInLocation
+                'currentGroupsView': renderCurrentGroups,
+                'futureGroupsView': renderFutureGroups,
+                'finishedGroupsView': renderFinishedGroups,
+                'showAll': showAllCurrentGroups,
+                'showInLocation': showInLocation
             };
 
             for (key in subscribers) {
                 cs.mediator.subscribe(key, subscribers[key], {}, this);
             }
-        },
 
-        showAllCurrentGroups: function () {
-            this.collection.fetch()
-                .done(this.renderCurrentGroups);
-        },
+            /*cs.mediator.subscribe('currentGroupsView', renderCurrentGroups, {}, this);
+            cs.mediator.subscribe('futureGroupsView', renderFutureGroups, {}, this);
+            cs.mediator.subscribe('finishedGroupsView', renderFinishedGroups, {}, this);
+            cs.mediator.subscribe('showAll', showAllCurrentGroups, {}, this);
+            cs.mediator.subscribe('showInLocation', showInLocation, {}, this);*/
+        };
 
-        showInLocation: function (location) {
-            this.collection.fetch({data: {location: location}})
-                .done(this.renderCurrentGroups);
-        },
+        function showAllCurrentGroups () {
+            collection.fetch()
+                .done(renderCurrentGroups.bind(this));
+        };
 
-        renderCurrentGroups: function () {
-            this.collectionView = new This.GroupCollectionView();
-            this.$el.empty().append(this.collectionView.renderCurrentGroups().el);
-        },
+        function showInLocation (location) {
+            collection.fetch({data: {location: location}})
+                .done(renderCurrentGroups.bind(this));
+        };
 
-         renderFutureGroups: function () {
-            this.collectionView = new This.GroupCollectionView();
-            this.$el.empty().append(this.collectionView.renderFutureGroups().el);
-        },
+        function renderCurrentGroups () {
+            collectionView = new This.GroupCollectionView();
+            $el.empty().append(collectionView.renderCurrentGroups().el);
+        };
 
-        renderFinishedGroups: function () {
-            this.collectionView = new This.GroupCollectionView();
-            this.$el.empty().append(this.collectionView.renderFinishedGroups().el);
-        },
-    });
+        function renderFutureGroups () {
+            collectionView = new This.GroupCollectionView();
+            $el.empty().append(collectionView.renderFutureGroups().el);
+        };
+
+        function renderFinishedGroups () {
+            collectionView = new This.GroupCollectionView();
+            $el.empty().append(collectionView.renderFinishedGroups().el);
+        };
+
+        return this;
+    };
 })(App.Groups);

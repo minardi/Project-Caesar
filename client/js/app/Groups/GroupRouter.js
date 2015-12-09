@@ -11,7 +11,7 @@
         },
 
         initialize: function () {
-            this.controller = new App.Groups.Controller({collection: collections.groups});
+            this.controller = new App.Groups.Controller();
             this.controller.start();
 
             /*URL navigation*/
