@@ -6,7 +6,8 @@
         tpl: templates.searcherTpl,
 
         events: {
-            'keyup .searchField': 'startSearch'
+            'keyup .searchField': 'startSearch',
+            'click #searchclear': 'clearInput'
          },
 
         render: function (filter) {
@@ -16,7 +17,16 @@
         },
 
         startSearch: function (e) {
+            $(e.target.nextSibling).css('visibility', ($(e.target).val().length) ? "visible" : "hidden");
             cs.mediator.publish(this.model.get('viewName') + 'StartSearch', $(e.target).val());
+        },
+
+        clearInput: function (e) {
+            $(e.target).css('visibility', 'hidden');
+//            e.target.previousSibling.value = "";
+            $(e.target.previousSibling).val('');
+            $(e.target.previousSibling).focus();
+            cs.mediator.publish(this.model.get('viewName') + 'StartSearch', '');
         }
     });
 })(App.Filter);

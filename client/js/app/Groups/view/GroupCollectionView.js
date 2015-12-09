@@ -62,7 +62,10 @@
             var filtered = this.collection.filter(filter, this),
                 userRole = cs.currentUser.getRole();
             
-            this.filter.set({'collection': filtered});
+            this.filter.set({
+                'collection': filtered,
+                'currentPage': 0
+            });
             this.currentView = mode;
 
             this.$el.html(this.tpl({userRole: userRole}));
