@@ -15,11 +15,11 @@
 
             this.$el.find('#startDate').datetimepicker({
                 format: 'YYYY-MM-DD',
-                defaultDate: '2015-10-25T01:32:21.196Z'
+                defaultDate: moment().format()
             });
             this.$el.find('#finishDate').datetimepicker({
                 format: 'YYYY-MM-DD',
-                defaultDate: '2016-01-25T01:32:21.196Z'
+                defaultDate: moment().add(120, 'days').format()
             });
 
             return this;
@@ -85,12 +85,10 @@
             this.$el.html(this.tpl(this.model.toJSON()));
 
             this.$el.find('#startDate').datetimepicker({
-                format: 'YYYY-MM-DD',
-                defaultDate: '2015-10-25T01:32:21.196Z'
+                format: 'YYYY-MM-DD'
             });
             this.$el.find('#finishDate').datetimepicker({
-                format: 'YYYY-MM-DD',
-                defaultDate: '2016-01-25T01:32:21.196Z'
+                format: 'YYYY-MM-DD'
             });
 
             return this;

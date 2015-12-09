@@ -29,6 +29,15 @@
                 return attributes.sessionID;
             };
             
+            this.hasRoleOf = function (role) {
+                return (attributes.role === role);
+            };
+            
+            this.isLocatedIn = function (location) {
+                return ((atttributes.location.city === location) ||
+                    (atttributes.location.country === location));
+            };
+            
             this.toJSON = function () {
                 return {
                     name: this.getName(),
