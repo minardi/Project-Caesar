@@ -51,3 +51,9 @@
 .content-selected-item p span {
   font-weight: bold;
 }
+
+.data-info {
+  float: right;
+  font-size: 14px;
+  margin: 4px;
+}

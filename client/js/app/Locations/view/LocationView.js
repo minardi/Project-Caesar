@@ -10,10 +10,27 @@
             'dblclick': 'routeToLocationGroups'
         },
 
-        render: function () {
-            this.$el.html(this.tpl(this.model.toJSON()));
+        render: function () { 
+            this.$el.html(this.tpl(this.getExtendedHash(this.model)));
+//            this.$el.html(this.tpl(this.model.toJSON()));
 
             return this;
+        },
+
+        getExtendedHash: function (location) {
+            var city = location.get('city'),
+                locationJSON = location.toJSON(),
+                currentDate = new Date();
+
+            locationJSON['countGroups'] = collections.groups.filter(getCurrentGroups, this).length;
+
+            return locationJSON;
+
+            function getCurrentGroups (group) {
+                return (group.get('location') === city) &&
+                    (group.get('startDate') < currentDate.toISOString()) &&
+                    (group.get('finishDate') > currentDate.toISOString())
+            } 
         },
 
         routeToLocationGroups: function () {
