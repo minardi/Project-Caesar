@@ -1,27 +1,27 @@
 #auth {
-	position: absolute;
-	margin: 0 90px;
-	padding: 5px 5px 5px 5px;
-	color: #777;
-	right: 0;
+    position: absolute;
+    margin: 0 90px;
+    padding: 5px 5px 5px 5px;
+    color: #777;
+    right: 0;
 }
 
 .logout{
-	position: absolute;
-	margin: 0 5px;
-	padding: 5px 5px 5px 5px;
-	right: 0;
-	cursor: pointer;
+    position: absolute;
+    margin: 0 5px;
+    padding: 5px 5px 5px 5px;
+    right: 0;
+    cursor: pointer;
 }
 
 .logout a{
-	color: black;
+    color: black;
 }
 
 #auth span {
-	padding: 2px 1px 1px 1px;
-	color: white;
-	background-color: #777;
+    padding: 2px 1px 1px 1px;
+    color: white;
+    background-color: #777;
 }
 
 #logo {
@@ -34,54 +34,54 @@
 }
 
 #navbar {
-	margin-bottom: 24px;
-	background-color: #e8e8e8;
-	border-bottom: 3px solid #b6b6b6;
-	box-shadow: 0 0px 14px 0px;
+    margin-bottom: 24px;
+    background-color: #e8e8e8;
+    border-bottom: 3px solid #b6b6b6;
+    box-shadow: 0 0px 14px 0px;
 }
 
 #navbar a {
-	cursor: pointer;
-	
+    cursor: pointer;
+    
 }
 
 .menu {
-	padding: 0;
-	margin: 0;
-	-webkit-padding-start: 0;
-	margin-bottom: 15px;
-	list-style-type: none;
+    padding: 0;
+    margin: 0;
+    -webkit-padding-start: 0;
+    margin-bottom: 15px;
+    list-style-type: none;
 }
 
 .menu-item {
-	padding: 0px 10px 0px;
-	width: 100px;
-	float: left;
-	cursor: pointer;
-	font-weight: 600;
-	color: #777;
-	border-top: 6px solid transparent;
-	border-bottom: 4px solid transparent;
-	text-align: center;
+    padding: 0px 10px 0px;
+    width: 100px;
+    float: left;
+    cursor: pointer;
+    font-weight: 600;
+    color: #777;
+    border-top: 6px solid transparent;
+    border-bottom: 4px solid transparent;
+    text-align: center;
 }
 
 .menu-item span {
-	padding-top: 4px;
-	color: inherit;
-	font-size: 20px;
-	text-align: center;
+    padding-top: 4px;
+    color: inherit;
+    font-size: 20px;
+    text-align: center;
 }
 
 .menu-item:hover {
-	background-color: #ddd;
-	color: #515151;
+    background-color: #ddd;
+    color: #515151;
 }
 
 
 .menu-item.active {
-	color: #515151;
-	text-shadow: 1px 1px #f7f7f7;
-	border-top: 6px solid #deb62c;
+    color: #515151;
+    text-shadow: 1px 1px #f7f7f7;
+    border-top: 6px solid #deb62c;
 }
 
 
@@ -112,7 +112,7 @@
 @media (max-width: 1258px) {
     .navbar-header {
         float: none;
-		height: 59px;
+        height: 59px;
     }
     .navbar-left,.navbar-right {
         float: none !important;

@@ -2,7 +2,7 @@
 (function (This) {
     This.Location = Backbone.Model.extend({
         urlRoot: '/dbLocations',
-		
+        
         defaults: function () {
             return {
                 city: '',

@@ -27,7 +27,7 @@
 
             return this;
         },
-		
+        
         renderAll: function (collection) {
             this.$('.locations-list').empty();
             collection.forEach(this.renderOne, this);

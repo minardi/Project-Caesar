@@ -7,7 +7,8 @@ var App = {
         Session: {},
         Locations: {},
         Filter: {},
-        Messanger: {}       
+        Messanger: {},
+        Common: {}     
     },
     collections = {},
     cs = {},
