@@ -23,7 +23,8 @@
         },
 
         showCurrentGroups: function () {
-            cs.mediator.publish('currentGroupsView');
+            cs.mediator.publish(
+                cs.currentUser.hasRoleOf('Teacher') ? 'showMy' : 'currentGroupsView');
         },
 
         showFutureGroups: function () {
