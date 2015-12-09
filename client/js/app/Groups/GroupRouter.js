@@ -1,6 +1,6 @@
 'use strict';
 (function (This)  {
-    This.Router = Backbone.Router.extend({
+    This.Router = modifiedRouter.extend({
         routes: {
             '': 'showCurrentGroups',
             'Groups': 'showAllCurrentGroups',
@@ -11,33 +11,15 @@
         },
 
         initialize: function () {
-            this.controller = new App.Groups.Controller();
+            this.controller = new App.Groups.Controller({collection: collections.groups});
             this.controller.start();
 
             /*URL navigation*/
-            cs.mediator.subscribe('currentGroups', this.navigateCurrentGroups, {}, this);
-            cs.mediator.subscribe('futureGroups', this.navigateFutureGroups, {}, this);
-            cs.mediator.subscribe('finishedGroups', this.navigateFinishedGroups, {}, this);
-
-            cs.mediator.subscribe('RouteToLocationGroups', this.navigateToLocationGroups, {}, this);
+            cs.mediator.subscribe('currentGroups', this.navigateToSelected, {}, this);
+            cs.mediator.subscribe('futureGroups', this.navigateToSelected, {}, this);
+            cs.mediator.subscribe('finishedGroups', this.navigateToSelected, {}, this);
             
             Backbone.history.loadUrl(Backbone.history.fragment);
-        },
-
-        navigateCurrentGroups: function () {
-            this.navigate('Groups/current');
-        },
-
-        navigateFutureGroups: function () {
-            this.navigate('Groups/future');
-        },
-
-        navigateFinishedGroups: function () {
-            this.navigate('Groups/finished');
-        },
-
-        navigateToLocationGroups: function(url) {
-            this.navigate(url, {trigger: true});
         },
 
         showCurrentGroups: function () {

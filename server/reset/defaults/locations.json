@@ -1,24 +1,24 @@
 [
-	{
-		"name": "Dnipropetrovsk"
-	},
-	{
-		"name": "Kyiv"
-	},
-	{
-		"name": "Lviv"
-	},
-	{
-		"name": "Ivano-Frankivsk"
-	},
-	{
-		"name": "Chernivtsi"
-	},
-	{
-		"name": "Rivne"
-	},
-	{
-		"name": "Sofia"
-	}
+    {
+        "name": "Dnipropetrovsk"
+    },
+    {
+        "name": "Kyiv"
+    },
+    {
+        "name": "Lviv"
+    },
+    {
+        "name": "Ivano-Frankivsk"
+    },
+    {
+        "name": "Chernivtsi"
+    },
+    {
+        "name": "Rivne"
+    },
+    {
+        "name": "Sofia"
+    }
 ]
 

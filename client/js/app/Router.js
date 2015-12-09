@@ -15,7 +15,7 @@
         groups: function () {
             cs.subRouters['Groups'] || (cs.subRouters['Groups'] = new App.Groups.Router());
         },
-		
+        
         locations: function () {
             cs.subRouters['Locations'] || (cs.subRouters['Locations'] = new App.Locations.Router());
         },
