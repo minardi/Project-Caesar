@@ -68,6 +68,5 @@
             this.$el.find('.experts-block .input-group').append('<input type="text" \
                 class="form-control" placeholder="Expert" name="expert">');
         }
-
     });
 })(App.Groups);
