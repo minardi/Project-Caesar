@@ -103,7 +103,7 @@
         },
 
         addGroup: function () {
-            var groupAddModalView = new This.GroupAddModalView({collection: this.collection});
+            var groupAddModalView = new This.CreateEditGroupView({collection: this.collection, tpl: templates.groupModalAddTpl});
             $('.modal-wrap').html(groupAddModalView.render().el);
         },
 
