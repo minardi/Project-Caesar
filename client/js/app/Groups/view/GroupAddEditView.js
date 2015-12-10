@@ -4,17 +4,22 @@
         initialize: function (options) {
             this.model = this.model || new This.Group();
             this.tpl = options.tpl;
-            Backbone.Validation.bind(this, {invalid: this.showErr});
+
+            Backbone.Validation.bind(this);
+
+            this.model.bind('validated:valid', function () {
+                this.$el.find('.modal').modal('hide');
+            }, this);
+
+            this.model.bind('validated:invalid', function (model, errors) {
+                console.log(errors);
+            });
         },
 
         events: {
             'click .submit': 'submit',
             'click .add-teacher': 'addTeacherInput',
             'click .add-expert': 'addExpertInput'
-        },
-
-        showErr: function () {
-            console.log('not valid');
         },
 
         render: function () {
@@ -55,8 +60,6 @@
             if (this.model.isValid() && this.model.isNew()) {
                 this.collection.add(this.model);
             }
-
-            this.$el.find('.modal').modal('hide');
         },
 
         addTeacherInput: function () {
