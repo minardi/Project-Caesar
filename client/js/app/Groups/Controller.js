@@ -14,7 +14,8 @@
                'futureGroupsView': this.renderFutureGroups,
                'finishedGroupsView': this.renderFinishedGroups,
                'showAll': this.showAllCurrentGroups,
-               'showInLocation': this.showInLocation
+               'showInLocation': this.showInLocation,
+               'showMy': this.showMy
             };
 
             for (key in subscribers) {
@@ -45,8 +46,14 @@
         renderFinishedGroups: function () {
             this.collectionView = new This.GroupCollectionView();
             this.$el.empty().append(this.collectionView.renderFinishedGroups().el);
+        },
+
+        showMy: function () {
+            var teacherName = cs.currentUser.getName();
+            collections.groups = collections.groups.filter(function (group) {
+                return group.get('teachers').indexOf(teacherName) != -1;
+            });
+            this.renderCurrentGroups();
         }
     });
 })(App.Groups);
-
-
