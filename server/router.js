@@ -1,5 +1,6 @@
 var express = require('express'),
     routes = require('./routes/index'),
+    reset = require('./routes/reset'),
     group = require('./routes/group'),
     groups = require('./routes/groups'),
     location = require('./routes/location'),
@@ -9,6 +10,7 @@ var express = require('express'),
     app = express();
     
 app.use('/', routes);
+app.use('/reset', reset);
 app.use('/group', group);
 app.use('/groups', groups);
 app.use('/dbLocations', location);

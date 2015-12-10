@@ -3,7 +3,7 @@
     This.Controller = function() {
         var collection = collections.groups,
             collectionView,
-            $el = $('.col-md-8');
+            $el = $('#container');
 
         this.start = function () {
             setupMediator();
@@ -25,18 +25,22 @@
             for (key in subscribers) {
                 cs.mediator.subscribe(key, subscribers[key], {}, this);
             }
-
-            /*cs.mediator.subscribe('currentGroupsView', renderCurrentGroups, {}, this);
-            cs.mediator.subscribe('futureGroupsView', renderFutureGroups, {}, this);
-            cs.mediator.subscribe('finishedGroupsView', renderFinishedGroups, {}, this);
-            cs.mediator.subscribe('showAll', showAllCurrentGroups, {}, this);
-            cs.mediator.subscribe('showInLocation', showInLocation, {}, this);*/
         };
 
         function showAllCurrentGroups () {
+            collection.fetch({success: renderCurrentGroups});
+        };
+
+        /*function showInLocation (location) {
+            collection.fetch({success: renderCurrentGroups({
+                data: {location: location}
+            })});
+        };*/
+
+        /*function showAllCurrentGroups () {
             collection.fetch()
                 .done(renderCurrentGroups.bind(this));
-        };
+        };*/
 
         function showInLocation (location) {
             collection.fetch({data: {location: location}})
@@ -64,7 +68,7 @@
                 return group.get('teachers').indexOf(teacherName) != -1;
             });
             renderCurrentGroups();
-        }
+        };
 
         return this;
     };
