@@ -1,62 +1,52 @@
  'use strict';
 (function (This) {
-    This.Controller = function() {
-        var collection = collections.groups,
-            collectionView,
-            $el = $('.col-md-8');
+    This.Controller = Backbone.Controller.extend({
+        start: function () {
+            this.setupMediator();
+        },
 
-        this.start = function () {
-            setupMediator();
-        };
-
-        function setupMediator () {
+        setupMediator: function () {
             var key,
                 subscribers;
 
             subscribers = {
-                'currentGroupsView': renderCurrentGroups,
-                'futureGroupsView': renderFutureGroups,
-                'finishedGroupsView': renderFinishedGroups,
-                'showAll': showAllCurrentGroups,
-                'showInLocation': showInLocation
+               'currentGroupsView': this.renderCurrentGroups,
+               'futureGroupsView': this.renderFutureGroups,
+               'finishedGroupsView': this.renderFinishedGroups,
+               'showAll': this.showAllCurrentGroups,
+               'showInLocation': this.showInLocation
             };
 
             for (key in subscribers) {
                 cs.mediator.subscribe(key, subscribers[key], {}, this);
             }
+        },
 
-            /*cs.mediator.subscribe('currentGroupsView', renderCurrentGroups, {}, this);
-            cs.mediator.subscribe('futureGroupsView', renderFutureGroups, {}, this);
-            cs.mediator.subscribe('finishedGroupsView', renderFinishedGroups, {}, this);
-            cs.mediator.subscribe('showAll', showAllCurrentGroups, {}, this);
-            cs.mediator.subscribe('showInLocation', showInLocation, {}, this);*/
-        };
+        showAllCurrentGroups: function () {
+            this.collection.fetch()
+                .done(this.renderCurrentGroups.bind(this));
+        },
 
-        function showAllCurrentGroups () {
-            collection.fetch()
-                .done(renderCurrentGroups.bind(this));
-        };
+        showInLocation: function (location) {
+            this.collection.fetch({data: {location: location}})
+                .done(this.renderCurrentGroups.bind(this));
+        },
 
-        function showInLocation (location) {
-            collection.fetch({data: {location: location}})
-                .done(renderCurrentGroups.bind(this));
-        };
+        renderCurrentGroups: function () {
+            this.collectionView = new This.GroupCollectionView();
+            this.$el.empty().append(this.collectionView.renderCurrentGroups().el);
+        },
 
-        function renderCurrentGroups () {
-            collectionView = new This.GroupCollectionView();
-            $el.empty().append(collectionView.renderCurrentGroups().el);
-        };
+        renderFutureGroups: function () {
+            this.collectionView = new This.GroupCollectionView();
+            this.$el.empty().append(this.collectionView.renderFutureGroups().el);
+        },
 
-        function renderFutureGroups () {
-            collectionView = new This.GroupCollectionView();
-            $el.empty().append(collectionView.renderFutureGroups().el);
-        };
-
-        function renderFinishedGroups () {
-            collectionView = new This.GroupCollectionView();
-            $el.empty().append(collectionView.renderFinishedGroups().el);
-        };
-
-        return this;
-    };
+        renderFinishedGroups: function () {
+            this.collectionView = new This.GroupCollectionView();
+            this.$el.empty().append(this.collectionView.renderFinishedGroups().el);
+        }
+    });
 })(App.Groups);
+
+

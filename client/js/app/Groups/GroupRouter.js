@@ -11,13 +11,15 @@
         },
 
         initialize: function () {
-            this.controller = new App.Groups.Controller();
+            this.controller = new App.Groups.Controller(collections.groups, $('.col-md-8'));
             this.controller.start();
 
             /*URL navigation*/
             cs.mediator.subscribe('currentGroups', this.navigateToSelected, {}, this);
             cs.mediator.subscribe('futureGroups', this.navigateToSelected, {}, this);
             cs.mediator.subscribe('finishedGroups', this.navigateToSelected, {}, this);
+
+            cs.mediator.subscribe('RouteToLocationGroups', this.navigateToLocationGroups, {}, this);
             
             Backbone.history.loadUrl(Backbone.history.fragment);
         },
