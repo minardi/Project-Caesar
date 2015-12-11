@@ -1,9 +1,32 @@
 'use strict';
 
-(function (This) {
-    This.Controller = Backbone.Model.extend({
-        parentMethod: function () {
-            console.log('Follow the white rabbit');
-        }
-    }); 
-})(App.Common);
+var Controller = Backbone.Controller = function(collection) {
+    this.collection = collection;
+
+    this.parentMethod = function () {
+        console.log('Follow the white rabbit!');
+    }
+};
+
+Controller.extend = function(protoProps, staticProps) {
+    var parent = this;
+    var child;
+ 
+    if (protoProps && _.has(protoProps, 'constructor')) {
+      child = protoProps.constructor;
+    } else {
+      child = function(){ return parent.apply(this, arguments); };
+    }
+
+    _.extend(child, parent, staticProps);
+
+    var Surrogate = function(){ this.constructor = child; };
+    Surrogate.prototype = parent.prototype;
+    child.prototype = new Surrogate;
+ 
+    if (protoProps) _.extend(child.prototype, protoProps);
+ 
+    child.__super__ = parent.prototype;
+
+    return child;
+};
