@@ -19,6 +19,11 @@ app.use('/login', login);
 app.use('/logout', logout);
 app.use('/continueSession', continueSession);
 app.use('/events', events);
+app.use('*', function(req, res){
+    console.log(req.baseUrl);
+    var staticRoute = '../client';
+    res.sendFile('home.html', {root: staticRoute});
+});
 
 
 module.exports = app;

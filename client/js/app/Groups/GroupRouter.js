@@ -7,7 +7,8 @@
             'Groups/current': 'showCurrentGroups',
             'Groups/future': 'showFutureGroups',
             'Groups/finished': 'showFinishedGroups',
-            'Groups/:location': 'showInLocation'
+            'Groups/:location': 'showInLocation',
+            'Groups*path': 'notFound'
         },
 
         initialize: function () {
@@ -43,6 +44,10 @@
 
         showInLocation: function(location) {
             cs.mediator.publish('showInLocation', location);
+        },
+
+        notFound: function () {
+            cs.mediator.publish('notFound');
         }
     });
 })(App.Groups);

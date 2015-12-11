@@ -2,7 +2,8 @@
 (function (This)  {
     This.Router = Backbone.Router.extend({
         routes: {
-            'Locations': 'showLocations'
+            'Locations': 'showLocations',
+            'Locations*path': 'notFound'
         },
 
         initialize: function () {
@@ -13,6 +14,10 @@
 
         showLocations: function () {
             this.controller.showAll();
+        },
+
+        notFound: function () {
+            cs.mediator.publish('notFound');
         }
     });
 })(App.Locations);

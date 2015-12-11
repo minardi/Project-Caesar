@@ -5,7 +5,8 @@
             '': 'groups',
             'Groups*path': 'groups',
             'Locations*path': 'locations',
-            'Schedule*path': 'schedule'
+            'Schedule*path': 'schedule',
+            '*path': 'notFound'
         },
 
         initialize: function () {
@@ -32,6 +33,10 @@
 
         navigation: function (pathname) {
             this.navigate(pathname, {trigger: true});
+        },
+
+        notFound: function () {
+            cs.mediator.publish('notFound');
         }
     });
 })(App);
