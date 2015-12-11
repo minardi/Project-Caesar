@@ -18,14 +18,16 @@
 
         events: {
             'click .submit': 'submit',
-            'click .add-teacher': 'addTeacherInput',
             'click .add-expert': 'addExpertInput'
         },
 
         render: function () {
             var COURSE_DURATION = 120;
 
+            getTeachers();
             this.model.set({locations: collections.locations});
+            this.model.set({allTeachers: collections.teachers});
+
             this.$el.html(this.tpl(this.model.toJSON()));
 
             this.$el.find('#startDate').datetimepicker({
@@ -37,6 +39,22 @@
                 defaultDate: moment().add(COURSE_DURATION, 'days').format()
             });
 
+            function getTeachers () {
+                var Profile = Backbone.Model.extend();
+                var ProfileList = Backbone.Collection.extend({
+                   model: Profile,
+                   url: "/users"
+                });
+
+                var profiles = new ProfileList(); 
+                profiles.fetch({
+                    async: false,
+                    success: function() {
+                        profiles = profiles.where({role: "Teacher"});
+                        collections.teachers = profiles;
+                    }
+                });
+            };
             return this;
         },
 
@@ -48,7 +66,7 @@
                     startDate: this.$el.find('#startDate').val(),
                     finishDate: this.$el.find('#finishDate').val(),
                     status: this.$el.find('select[name="StatusName"] option:selected').val(),
-                    teachers: collectTeachersExperts('teacher'),
+                    teachers: this.$el.find('select[name="Teachers"] option:selected').val(),
                     experts: collectTeachersExperts('expert')
                 };
 
@@ -59,16 +77,13 @@
             }
 
             this.model.unset('locations');
+            this.model.unset('allTeachers');
+
             this.model.save(attributes);
 
             if (this.model.isValid() && this.model.isNew()) {
                 this.collection.add(this.model);
             }
-        },
-
-        addTeacherInput: function () {
-            this.$el.find('.teachers-block .input-group').append('<input type="text" \
-                class="form-control" placeholder="Teacher" name="teacher">');
         },
 
         addExpertInput: function () {
