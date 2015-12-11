@@ -5,26 +5,16 @@
         start: function () {
             this.collectionView = new This.GroupCollectionView();
 
-            this.setupMediator();
-            this.collectionViewEl = $('.col-md-8');
-        },
-
-        setupMediator: function () {
-            var key,
-                subscribers;
-
-            subscribers = {
+            this.setupMediator({
                'currentGroupsView': this.renderCurrentGroups,
                'futureGroupsView': this.renderCurrentGroups,
                'finishedGroupsView': this.renderCurrentGroups,
                'showAll': this.showAllCurrentGroups,
                'showInLocation': this.showInLocation,
                'showMy': this.showMy
-            };
-
-            for (key in subscribers) {
-                cs.mediator.subscribe(key, subscribers[key], {}, this);
-            }
+            });
+            
+            this.collectionViewEl = $('.col-md-8');
         },
 
         showAllCurrentGroups: function () {
@@ -45,7 +35,9 @@
                 },  
                 method = event.namespace;
 
-            this.collectionViewEl.empty().append(behavior[method].call(this.collectionView).el);
+            this.collectionViewEl
+                .empty()
+                .append(behavior[method].call(this.collectionView).el);
         },
 
         showMy: function () {
