@@ -14,7 +14,6 @@ var Controller = Backbone.Controller = function(collection) {
             cs.mediator.subscribe(key, subscribers[key], {}, this);
         }
     };
-
 };
 
 Controller.extend = function(protoProps, staticProps) {
