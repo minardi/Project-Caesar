@@ -60,7 +60,10 @@
             var filtered = this.collection.filter(filter, this),
                 userRole = cs.currentUser.getRole();
             
-            this.filter.set({'collection': filtered});
+            this.filter.set({
+                'collection': filtered,
+                'currentPage': 0
+            });
             this.currentView = mode;
 
             this.$el.html(this.tpl({userRole: userRole}));
@@ -100,8 +103,14 @@
         },
 
         addGroup: function () {
-            var groupAddModalView = new This.GroupAddModalView({collection: this.collection});
-            $('.modal-wrap').html(groupAddModalView.render().el);
+            var groupAddView = new This.GroupAddEditView({
+                    collection: this.collection, 
+                    tpl: templates.groupAddTpl
+                }),
+                $modalWrap = $('.modal-wrap');
+
+            $modalWrap.html(groupAddView.render().el);
+            $modalWrap.find('.modal').modal('show');
         },
 
         getCurrentDate: function () {

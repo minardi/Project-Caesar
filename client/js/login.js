@@ -4,8 +4,8 @@
 // test accounts:
 // minnie : maw         - coordinator       
 // quirk : quick        - teacher           
-// alba :          - administrator     
-// --------------------------------------------------------
+// alba : dumby         - administrator     
+// ----------------------------------------------------------
 
 $(function () {
     $('#loginButton').on('click', tryLogin); 

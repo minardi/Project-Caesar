@@ -33,13 +33,22 @@
         },
 
         editGroup: function () {
-            var groupEditModalView = new This.GroupEditModalView({model: this.model});
-            $('.modal-wrap.container').html(groupEditModalView.render().el);
+            var groupEditView = new This.GroupAddEditView({
+                    model: this.model, 
+                    tpl: templates.groupEditTpl
+                }),
+                $modalWrap = $('.modal-wrap');
+
+            $modalWrap.html(groupEditView.render().el);
+            $modalWrap.find('.modal').modal('show');
         },
 
         deleteGroup: function () {
-            var groupDeleteModalView = new This.GroupDeleteModalView({model: this.model});
-            $('.modal-wrap.container').html(groupDeleteModalView.render().el);
+            var groupDeleteView = new This.GroupDeleteView({model: this.model}),
+                $modalWrap = $('.modal-wrap');
+
+            $modalWrap.html(groupDeleteView.render().el);
+            $modalWrap.find('.modal').modal('show');
         }
     });
 })(App.Groups);
