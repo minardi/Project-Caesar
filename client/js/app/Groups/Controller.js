@@ -28,7 +28,9 @@
         };
 
         function showAllCurrentGroups () {
-            collection.fetch({success: renderCurrentGroups});
+            collection.fetch({success: function () {
+                renderCurrentGroups(false);
+            }});
         };
 
         /*function showInLocation (location) {
@@ -47,9 +49,9 @@
                 .done(renderCurrentGroups.bind(this));
         };
 
-        function renderCurrentGroups () {
+        function renderCurrentGroups (isMy) {
             collectionView = new This.GroupCollectionView();
-            $el.empty().append(collectionView.renderCurrentGroups().el);
+            $el.empty().append(collectionView.renderCurrentGroups(isMy).el);
         };
 
         function renderFutureGroups () {
@@ -63,11 +65,13 @@
         };
 
         function showMy () {
-            var teacherName = cs.currentUser.getName();
-            collections.groups = collections.groups.filter(function (group) {
+            var teacherName = cs.currentUser.getName(),
+            filtered = collections.groups.filter(function (group) {
                 return group.get('teachers').indexOf(teacherName) != -1;
             });
-            renderCurrentGroups();
+            collections.groups.set(filtered);
+            collection = collections.groups;
+            renderCurrentGroups(true);
         };
 
         return this;
