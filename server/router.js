@@ -7,6 +7,7 @@ var express = require('express'),
     login = require('./routes/login'),
     logout = require('./routes/logout'),
     continueSession = require('./routes/continueSession'),
+    events = require('./routes/events'),
     app = express();
     
 app.use('/', routes);
@@ -17,5 +18,7 @@ app.use('/dbLocations', location);
 app.use('/login', login);
 app.use('/logout', logout);
 app.use('/continueSession', continueSession);
+app.use('/events', events);
+
 
 module.exports = app;
