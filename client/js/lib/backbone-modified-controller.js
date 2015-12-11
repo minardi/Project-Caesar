@@ -5,7 +5,16 @@ var Controller = Backbone.Controller = function(collection) {
 
     this.parentMethod = function () {
         console.log('Follow the white rabbit!');
-    }
+    };
+
+    this.setupMediator = function (subscribers) {
+        var key;
+
+        for (key in subscribers) {
+            cs.mediator.subscribe(key, subscribers[key], {}, this);
+        }
+    };
+
 };
 
 Controller.extend = function(protoProps, staticProps) {
