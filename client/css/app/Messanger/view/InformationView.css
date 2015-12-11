@@ -12,19 +12,23 @@
 .inform {
     margin: 15px;
     width: 250px;
+    float: right;
 }
 
-    .inform .modal-content {
-        background: rgb(223, 240, 216);
+    .inform .modal-body {
+        border-left: 40px solid rgb(162, 230, 133);
+        border-radius: 5px;
     }
 
 .warning {
     margin: 15px;
     width: 250px;
+    float: right;
 }
     
-    .warning .modal-content {
-        background: #FCF8E3;
+    .warning .modal-body {
+        border-left: 40px solid #FDC975;
+        border-radius: 5px;
     }
 
 .error {
@@ -32,8 +36,13 @@
 }
 
     .error .modal-content {
-        background: #F2DEDE;
+        background: #F79292;
     }
+
+        .error .modal-content .modal-body {
+            text-align: center;
+            font-size: 22px;
+        }
 
 .confirm {
     margin-top: 250px;

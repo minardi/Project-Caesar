@@ -3,18 +3,17 @@
     This.ConfirmView = Backbone.View.extend({
         tagName: 'div',
         className: 'message-wrap hide-message',
-        tpl: templates.confirmTpl,
 
-        set: function (message, callback1, callback2) {
+        set: function (message, okCallback, closeCallback) {
             this.message = message;
-            this.callback1 = callback1;
-            this.callback2 = callback2;
+            this.okCallback = okCallback;
+            this.closeCallback = closeCallback;
         },
 
         render: function () {
             var message = this.message,
-                callback1 = this.callback1,
-                callback2 = this.callback2;
+                okCallback = this.okCallback,
+                closeCallback = this.closeCallback;
 
             BootstrapDialog.show({
                 title: 'Confirm',
@@ -24,7 +23,7 @@
                         id: 'btn-1',
                         label: 'Ok',
                         action: function (dialogItself) {
-                            callback1();
+                            okCallback();
 
                             dialogItself.close();
                         }
@@ -32,7 +31,7 @@
                         id: 'btn-2',
                         label: 'Close',
                         action: function (dialogItself) {
-                            if (callback2 !== undefined ) callback2();
+                            if (closeCallback) closeCallback();
                             
                             dialogItself.close();
                         }
