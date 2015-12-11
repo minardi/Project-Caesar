@@ -1,15 +1,14 @@
 'use strict';
 
-var Controller = Backbone.Controller = function(collection, el) {
+var Controller = Backbone.Controller = function(collection) {
     this.collection = collection;
-    this.$el = el;
 
     this.parentMethod = function () {
         console.log('Follow the white rabbit!');
     }
 };
 
-var extend = function(protoProps, staticProps) {
+Controller.extend = function(protoProps, staticProps) {
     var parent = this;
     var child;
  
@@ -30,6 +29,4 @@ var extend = function(protoProps, staticProps) {
     child.__super__ = parent.prototype;
 
     return child;
-  };
-
-Controller.extend = extend;
+};

@@ -4,7 +4,7 @@
 // test accounts:
 // minnie : maw         - coordinator       
 // quirk : quick        - teacher           
-// alba : dumby         - administrator     
+// alba :          - administrator     
 // --------------------------------------------------------
 
 $(function () {

@@ -1,8 +1,12 @@
  'use strict';
 (function (This) {
     This.Controller = Backbone.Controller.extend({
+
         start: function () {
+            this.collectionView = new This.GroupCollectionView();
+
             this.setupMediator();
+            this.collectionViewEl = $('.col-md-8');
         },
 
         setupMediator: function () {
@@ -11,8 +15,8 @@
 
             subscribers = {
                'currentGroupsView': this.renderCurrentGroups,
-               'futureGroupsView': this.renderFutureGroups,
-               'finishedGroupsView': this.renderFinishedGroups,
+               'futureGroupsView': this.renderCurrentGroups,
+               'finishedGroupsView': this.renderCurrentGroups,
                'showAll': this.showAllCurrentGroups,
                'showInLocation': this.showInLocation,
                'showMy': this.showMy
@@ -25,35 +29,33 @@
 
         showAllCurrentGroups: function () {
             this.collection.fetch()
-                .done(this.renderCurrentGroups.bind(this));
+                .done(this.renderCurrentGroups.call(this, {namespace: 'currentGroupsView'}));
         },
 
         showInLocation: function (location) {
             this.collection.fetch({data: {location: location}})
-                .done(this.renderCurrentGroups.bind(this));
+                .done(this.renderCurrentGroups.call(this, {namespace: 'currentGroupsView'}));
         },
 
-        renderCurrentGroups: function () {
-            this.collectionView = new This.GroupCollectionView();
-            this.$el.empty().append(this.collectionView.renderCurrentGroups().el);
-        },
+        renderCurrentGroups: function (event) {
+            var behavior = {
+                    'currentGroupsView': this.collectionView.renderCurrentGroups,
+                    'futureGroupsView': this.collectionView.renderFutureGroups,
+                    'finishedGroupsView': this.collectionView.renderFinishedGroups
+                },  
+                method = event.namespace;
 
-        renderFutureGroups: function () {
-            this.collectionView = new This.GroupCollectionView();
-            this.$el.empty().append(this.collectionView.renderFutureGroups().el);
-        },
-
-        renderFinishedGroups: function () {
-            this.collectionView = new This.GroupCollectionView();
-            this.$el.empty().append(this.collectionView.renderFinishedGroups().el);
+            this.collectionViewEl.empty().append(behavior[method].call(this.collectionView).el);
         },
 
         showMy: function () {
             var teacherName = cs.currentUser.getName();
+
             collections.groups = collections.groups.filter(function (group) {
                 return group.get('teachers').indexOf(teacherName) != -1;
             });
-            this.renderCurrentGroups();
+
+            this.renderCurrentGroups({namespace: 'currentGroupsView'});
         }
     });
 })(App.Groups);

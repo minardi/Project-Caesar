@@ -11,7 +11,7 @@
         },
 
         initialize: function () {
-            this.controller = new App.Groups.Controller(collections.groups, $('.col-md-8'));
+            this.controller = new App.Groups.Controller(collections.groups);
             this.controller.start();
 
             /*URL navigation*/
