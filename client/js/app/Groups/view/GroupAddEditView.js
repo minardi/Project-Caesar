@@ -23,6 +23,9 @@
         },
 
         render: function () {
+            var COURSE_DURATION = 120;
+
+            this.model.set({locations: collections.locations});
             this.$el.html(this.tpl(this.model.toJSON()));
 
             this.$el.find('#startDate').datetimepicker({
@@ -31,7 +34,7 @@
             });
             this.$el.find('#finishDate').datetimepicker({
                 format: 'YYYY-MM-DD',
-                defaultDate: moment().add(120, 'days').format()
+                defaultDate: moment().add(COURSE_DURATION, 'days').format()
             });
 
             return this;
@@ -55,6 +58,7 @@
                 }).get();
             }
 
+            this.model.unset('locations');
             this.model.save(attributes);
 
             if (this.model.isValid() && this.model.isNew()) {
