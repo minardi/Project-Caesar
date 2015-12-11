@@ -3,18 +3,21 @@ var express = require('express'),
     mongoose = require('mongoose'),
     groupList = require('../reset_data/group-list.js'),
     locationList = require('../reset_data/location-list.js'),
-    userList = require('../reset_data/user-list.js');
+    userList = require('../reset_data/user-list.js'),
+    eventList = require('../reset_data/event-list.js');
 
 require('../models/Location');
 require('../models/User');
 require('../models/Session');
+require('../models/Event');
 
 router.get('/', function(req, res) {
     mongoose.connection.db.dropDatabase(function(err, result) {
         var GroupModel = mongoose.model('Group'),
             LocationModel = mongoose.model('LocationModel'),
             UserModel = mongoose.model('User'),
-            groupInDb, locationInDb, userInDb;
+            EventModel = mongoose.model('Event'),
+            groupInDb, locationInDb, userInDb, eventInDb;
 
         groupList.forEach(function (groupJSON) {
             groupInDb = GroupModel(groupJSON);
@@ -35,8 +38,17 @@ router.get('/', function(req, res) {
         });
 
         userList.forEach(function (userJSON) {
-            var userInDb = UserModel(userJSON);
+            userInDb = UserModel(userJSON);
             userInDb.save(function (err) {
+                if (err) {
+                    console.log(err);
+                }
+            });
+        });
+        
+        eventList.forEach(function (eventJSON) {
+            eventInDb = EventModel(eventJSON);
+            eventInDb.save(function (err) {
                 if (err) {
                     console.log(err);
                 }

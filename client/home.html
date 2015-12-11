@@ -11,7 +11,7 @@
         <link rel="stylesheet" type="text/css" href="css/app/Menu/menu.css">
         <link rel="stylesheet" type="text/css" href="css/app/Groups/view/GroupView.css">
         <link rel="stylesheet" type="text/css" href="css/app/Filter/view/SearcherView.css">
-
+        <link rel="stylesheet" type="text/css" href="css/app/Schedule/view/GridView.css">
         <link rel="stylesheet" type="text/css" href="css/app/Messanger/view/InformationView.css">
         <link rel="stylesheet" type="text/css" href="css/app/Groups/view/GroupCollectionView.css">
         <link rel="stylesheet" type="text/css" href="css/app/Locations/view/LocationView.css">
@@ -98,6 +98,18 @@
 
         <script src="js/app/Locations/LocationRouter.js"></script>
         <script src="js/app/Locations/Controller.js"></script>
+        
+        <!-- schedule -->
+        <script src="js/app/Schedule/model/EventTypes.js"></script>
+        <script src="js/app/Schedule/model/Event.js"></script>
+        <script src="js/app/Schedule/model/EventCollection.js"></script>
+        
+        <script src="js/app/Schedule/tpl/GridTpl.js"></script>
+        
+        <script src="js/app/Schedule/view/GridView.js"></script>
+        
+        <script src="js/app/Schedule/ScheduleController.js"></script>
+        <script src="js/app/Schedule/ScheduleRouter.js"></script>
 
         <!-- messanger -->
         <script src="js/app/Messanger/tpl/informationTpl.js"></script>
@@ -162,7 +174,7 @@
                     <div class="user-account">
                         <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> User info will be here</p>
                     </div>
-                    <div class="main-nav">
+                    <div class="main-nav" id="right-navig">
                         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                     </div>
                 </div>
