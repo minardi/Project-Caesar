@@ -5,7 +5,7 @@
 // minnie : maw         - coordinator       
 // quirk : quick        - teacher           
 // alba : dumby         - administrator     
-// --------------------------------------------------------
+// ----------------------------------------------------------
 
 $(function () {
     $('#loginButton').on('click', tryLogin); 

@@ -1,79 +1,52 @@
  'use strict';
 (function (This) {
-    This.Controller = function() {
-        var collection = collections.groups,
-            collectionView,
-            $el = $('#container');
+    This.Controller = Backbone.Controller.extend({
 
-        this.start = function () {
-            setupMediator();
-        };
+        start: function () {
+            this.collectionView = new This.GroupCollectionView();
 
-        function setupMediator () {
-            var key,
-                subscribers;
+            this.setupMediator({
+               'currentGroupsView': this.renderCurrentGroups,
+               'futureGroupsView': this.renderCurrentGroups,
+               'finishedGroupsView': this.renderCurrentGroups,
+               'showAll': this.showAllCurrentGroups,
+               'showInLocation': this.showInLocation,
+               'showMy': this.showMy
+            });
+            
+            this.collectionViewEl = $('.col-md-8');
+        },
 
-            subscribers = {
-                'currentGroupsView': renderCurrentGroups,
-                'futureGroupsView': renderFutureGroups,
-                'finishedGroupsView': renderFinishedGroups,
-                'showAll': showAllCurrentGroups,
-                'showInLocation': showInLocation,
-                'showMy': showMy
-            };
+        showAllCurrentGroups: function () {
+            this.collection.fetch()
+                .done(this.renderCurrentGroups.call(this, {namespace: 'currentGroupsView'}, false));
+        },
 
-            for (key in subscribers) {
-                cs.mediator.subscribe(key, subscribers[key], {}, this);
-            }
-        };
+        showInLocation: function (location) {
+            this.collection.fetch({data: {location: location}})
+                .done(this.renderCurrentGroups.call(this, {namespace: 'currentGroupsView'}));
+        },
 
-        function showAllCurrentGroups () {
-            collection.fetch({success: function () {
-                renderCurrentGroups(false);
-            }});
-        };
+        renderCurrentGroups: function (event, isMy) {
+            var behavior = {
+                    'currentGroupsView': this.collectionView.renderCurrentGroups,
+                    'futureGroupsView': this.collectionView.renderFutureGroups,
+                    'finishedGroupsView': this.collectionView.renderFinishedGroups
+                },  
+                method = event.namespace;
 
-        /*function showInLocation (location) {
-            collection.fetch({success: renderCurrentGroups({
-                data: {location: location}
-            })});
-        };*/
+            this.collectionViewEl
+                .empty()
+                .append(behavior[method].call(this.collectionView, isMy).el);
+        },
 
-        /*function showAllCurrentGroups () {
-            collection.fetch()
-                .done(renderCurrentGroups.bind(this));
-        };*/
-
-        function showInLocation (location) {
-            collection.fetch({data: {location: location}})
-                .done(renderCurrentGroups.bind(this));
-        };
-
-        function renderCurrentGroups (isMy) {
-            collectionView = new This.GroupCollectionView();
-            $el.empty().append(collectionView.renderCurrentGroups(isMy).el);
-        };
-
-        function renderFutureGroups () {
-            collectionView = new This.GroupCollectionView();
-            $el.empty().append(collectionView.renderFutureGroups().el);
-        };
-
-        function renderFinishedGroups () {
-            collectionView = new This.GroupCollectionView();
-            $el.empty().append(collectionView.renderFinishedGroups().el);
-        };
-
-        function showMy () {
+        showMy: function () {
             var teacherName = cs.currentUser.getName(),
             filtered = collections.groups.filter(function (group) {
                 return group.get('teachers').indexOf(teacherName) != -1;
             });
             collections.groups.set(filtered);
-            collection = collections.groups;
-            renderCurrentGroups(true);
-        };
-
-        return this;
-    };
+            this.renderCurrentGroups({namespace: 'currentGroupsView'}, true);
+        }
+    });
 })(App.Groups);

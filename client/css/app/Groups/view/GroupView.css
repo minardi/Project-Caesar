@@ -8,6 +8,6 @@
     margin: 4px;
 }
 
-#groupEdit input, #groupEdit select {
+.modal .input-group input, .modal .input-group select {
     margin-bottom: 10px;
 }

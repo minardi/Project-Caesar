@@ -109,8 +109,14 @@
         },
 
         addGroup: function () {
-            var groupAddModalView = new This.GroupAddModalView({collection: this.collection});
-            $('.modal-wrap').html(groupAddModalView.render().el);
+            var groupAddView = new This.GroupAddEditView({
+                    collection: this.collection, 
+                    tpl: templates.groupAddTpl
+                }),
+                $modalWrap = $('.modal-wrap');
+
+            $modalWrap.html(groupAddView.render().el);
+            $modalWrap.find('.modal').modal('show');
         },
 
         getCurrentDate: function () {
