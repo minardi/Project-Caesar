@@ -1,7 +1,7 @@
 'use strict';
 (function (This) {
     This.Group = Backbone.Model.extend({
-        urlRoot: '/group',
+        urlRoot: '/rest/group',
         
         defaults: function () {
             return {

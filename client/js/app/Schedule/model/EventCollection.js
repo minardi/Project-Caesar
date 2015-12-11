@@ -2,6 +2,6 @@
 (function (This)  {
     This.EventCollection = Backbone.Collection.extend({
         model: This.Event,
-        url: '/events'
+        url: '/rest/events'
     });
 })(App.Schedule);

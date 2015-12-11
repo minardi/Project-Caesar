@@ -5,7 +5,7 @@ var express = require('express'),
 var locations = mongoose.model('LocationModel');
 
 router.get('/', function(req, res) {
-    var locations = mongoose.model('LocationModel');
+    //var locations = mongoose.model('LocationModel');
     console.log('Try to find locations...');
     locations.find({}, function (err, data) {
         if(err) throw err;
@@ -14,7 +14,7 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function (req, res, next) {
-    var Location = mongoose.model('LocationModel'),
+    var //Location = mongoose.model('LocationModel'),
         newLocation = new Location({
             city: req.body.city,
             country: req.body.country
@@ -31,7 +31,7 @@ router.post('/', function (req, res, next) {
 });
 
 router.put('/:id', function (req, res, next) {
-    var Location = mongoose.model('LocationModel');
+    //var Location = mongoose.model('LocationModel');
     Location.findOneAndUpdate({_id:req.params.id}, req.body, function (err) {
         if (err) {
             console.log(err);
@@ -43,7 +43,7 @@ router.put('/:id', function (req, res, next) {
 });
 
 router.delete('/:id', function (req, res, next) {
-    var Location = mongoose.model('LocationModel');
+    //var Location = mongoose.model('LocationModel');
     Location.remove({_id: req.params.id}, function(err) {
         if (err) {throw err};
     });
