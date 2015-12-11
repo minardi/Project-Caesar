@@ -4,11 +4,13 @@
         tagName: 'div',
         className: 'center-content',
         tpl: templates.groupCollectionTpl,
+        myGroupsTpl: templates.myGroupsTpl,
 
         events: {
             'click .add-new-group': 'addGroup',
             'click #up-navig': 'renderUp',
-            'click #down-navig': 'renderDown'
+            'click #down-navig': 'renderDown',
+            'click #my-groups': 'switchMyGroups'
         },
 
         initialize: function () {
@@ -33,7 +35,7 @@
                 this.renderFutureGroups();
             } else if (this.currentView === 'renderFinished') {
                 cs.mediator.publish('currentGroups', 'Groups/current');
-                this.renderCurrentGroups();
+                this.renderCurrentGroups(this.isMy);
             }
         },
 
@@ -43,7 +45,7 @@
                 this.renderFinishedGroups();
             } else if (this.currentView === 'renderFuture') {
                 cs.mediator.publish('currentGroups', 'Groups/current');
-                this.renderCurrentGroups();
+                this.renderCurrentGroups(this.isMy);
             }
         },
 
@@ -66,13 +68,17 @@
             });
             this.currentView = mode;
 
-            this.$el.html(this.tpl({userRole: userRole}));
+            this.$el.html(this.tpl({userRole: userRole, 
+                myGroupsCheckbox: this.myGroupsTpl({isMy: this.isMy})
+            }));
+
             this.$('.searcher').append(this.filter.renderSearcher());
             this.renderAll(this.filter.getCollection());
             return this;
         },
 
-        renderCurrentGroups: function () {
+        renderCurrentGroups: function (isMy) {
+            this.isMy = isMy;
             return this.renderFilterGroups('renderCurrent', function(model) {
                 return (model.get('startDate') < this.getCurrentDate() &&
                 model.get('finishDate') > this.getCurrentDate());
@@ -132,6 +138,11 @@
         renderAfterDestroy: function () {
             this.filter.set({'currentPage':0});
             this.renderCurrentGroups();            
+        },
+
+        switchMyGroups: function () {
+            cs.mediator.publish('currentGroups', '/');
+            cs.mediator.publish($('#my-groups').is(':checked') ? 'showMy': 'showAll');
         }
     });
 })(App.Groups, App.Filter);
