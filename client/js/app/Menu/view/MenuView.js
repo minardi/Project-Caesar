@@ -8,6 +8,7 @@
         events: {
             'click .locations': 'showLocations',
             'click .groups': 'showGroups',
+            'click .schedule': 'showSchedule',
             'click .admin': 'showAdmin'
         },
 
@@ -25,6 +26,10 @@
 
         showGroups: function () {
             cs.mediator.publish('SelectedMenu', '/Groups');
+        },
+
+        showSchedule: function () {
+            cs.mediator.publish('SelectedMenu', '/Schedule');
         },
 
         showAdmin: function () {
