@@ -1,0 +1,8 @@
+.error404 {
+    position: absolute;
+    width: 400px;
+    height: 300px;
+    left: 50%;
+    margin-left: -200px;
+    background: url("/img/error404.gif");
+}
