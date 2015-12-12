@@ -15,11 +15,16 @@
                 height: 25,
                 start: this.weekStart      
             }));
+            
             collections.events.forEach((function (item) {
-                var eventID = moment(item.get('dateTime')).format('HH-mm-MM-DD-YYYY');
-                this.$el.find('.' + eventID).html(item.toString());
+                var eventID, i;
+                for (i = 0; i < item.get('duration'); i++) {
+                    eventID = moment(item.get('dateTime')).add(i * 30, 'm').format('HH-mm-MM-DD-YYYY');
+                    this.$el.find('.' + eventID).addClass('schedule-event');
+                }
+                eventID = moment(item.get('dateTime')).format('HH-mm-MM-DD-YYYY');
+                this.$el.find('.' + eventID).html($('<div></div>').html(item.toString()).addClass('schedule-info'));
             }).bind(this));
-            //this.$el.find('.08-00-12-07-2015').html('wow');
             
             return this;
         },
