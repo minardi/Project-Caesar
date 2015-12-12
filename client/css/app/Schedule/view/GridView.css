@@ -16,3 +16,21 @@
     bottom:100px;
     overflow-y:scroll;
 }
+.schedule-table {
+    table-layout: fixed;
+    width: 100%;
+}
+.schedule-bordered {
+    border: 1px double #ccc; 
+    padding: 3px;
+}
+.schedule-event {
+    background: #ccc;
+    border: 1px solid #ccc;    
+}
+.schedule-info {
+    position: absolute;
+    width: 7%;
+    z-index: 10;
+    background-color: rgba (0, 0, 0, 0);
+}
