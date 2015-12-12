@@ -23,7 +23,8 @@ router.get('/', function(req, res) {
             EventModel = mongoose.model('Event'),
             OfficeModel = mongoose.model('Office'),
             RoomModel = mongoose.model('Room'),
-            groupInDb, locationInDb, userInDb, eventInDb, officeInDb;
+            groupInDb, locationInDb, userInDb, 
+            eventInDb, officeInDb, roomInDb;
 
         groupList.forEach(function (groupJSON) {
             groupInDb = GroupModel(groupJSON);
@@ -77,13 +78,6 @@ router.get('/', function(req, res) {
                     console.log(err);
                 }
             });
-        });
-
-        var anotherRoom = RoomModel({name: 'some name', office: 2, _id: 5});
-        anotherRoom.save(function (err) {
-            if (err) {
-                console.log(err);
-            }
         });
 
         res.render('reset', { title: 'Reset' });
