@@ -1,62 +1,56 @@
-'use strict';
+ 'use strict';
 (function (This) {
-    This.Controller = function() {
-        var collection = collections.groups,
-            collectionView,
-            $el = $('.col-md-8');
+    This.Controller = Backbone.Controller.extend({
 
-        this.start = function () {
-            setupMediator();
-        };
+        start: function () {
+            this.collectionView = new This.GroupCollectionView();
 
-        function setupMediator () {
-            var key,
-                subscribers;
+            this.setupMediator({
+               'currentGroupsView': this.renderCurrentGroups,
+               'futureGroupsView': this.renderCurrentGroups,
+               'finishedGroupsView': this.renderCurrentGroups,
+               'showAll': this.showAllCurrentGroups,
+               'showInLocation': this.showInLocation,
+               'showMy': this.showMy
+            });
+            
+            this.collectionViewEl = $('.col-md-8');
+        },
 
-            subscribers = {
-                'currentGroupsView': renderCurrentGroups,
-                'futureGroupsView': renderFutureGroups,
-                'finishedGroupsView': renderFinishedGroups,
-                'showAll': showAllCurrentGroups,
-                'showInLocation': showInLocation
-            };
+        showAllCurrentGroups: function () {
+            var self = this;
+            this.collection.fetch({reset: true})
+                .done(function () {
+                    self.renderCurrentGroups({namespace: 'currentGroupsView'}, false);
+                });
+        },
 
-            for (key in subscribers) {
-                cs.mediator.subscribe(key, subscribers[key], {}, this);
-            }
+        showInLocation: function (location) {
+            this.collection.fetch({data: {location: location}})
+                .done(this.renderCurrentGroups.bind(this, {namespace: 'currentGroupsView'}));
+        },
 
-            /*cs.mediator.subscribe('currentGroupsView', renderCurrentGroups, {}, this);
-            cs.mediator.subscribe('futureGroupsView', renderFutureGroups, {}, this);
-            cs.mediator.subscribe('finishedGroupsView', renderFinishedGroups, {}, this);
-            cs.mediator.subscribe('showAll', showAllCurrentGroups, {}, this);
-            cs.mediator.subscribe('showInLocation', showInLocation, {}, this);*/
-        };
+        renderCurrentGroups: function (event, isMy) {
+            this.collectionView = new This.GroupCollectionView();
+            var behavior = {
+                    'currentGroupsView': this.collectionView.renderCurrentGroups,
+                    'futureGroupsView': this.collectionView.renderFutureGroups,
+                    'finishedGroupsView': this.collectionView.renderFinishedGroups
+                },  
+                method = event.namespace;
 
-        function showAllCurrentGroups () {
-            collection.fetch()
-                .done(renderCurrentGroups.bind(this));
-        };
+            this.collectionViewEl
+                .empty()
+                .append(behavior[method].call(this.collectionView, isMy).el);
+        },
 
-        function showInLocation (location) {
-            collection.fetch({data: {location: location}})
-                .done(renderCurrentGroups.bind(this));
-        };
-
-        function renderCurrentGroups () {
-            collectionView = new This.GroupCollectionView();
-            $el.empty().append(collectionView.renderCurrentGroups().el);
-        };
-
-        function renderFutureGroups () {
-            collectionView = new This.GroupCollectionView();
-            $el.empty().append(collectionView.renderFutureGroups().el);
-        };
-
-        function renderFinishedGroups () {
-            collectionView = new This.GroupCollectionView();
-            $el.empty().append(collectionView.renderFinishedGroups().el);
-        };
-
-        return this;
-    };
+        showMy: function () {
+            var teacherName = cs.currentUser.getName(),
+            filtered = collections.groups.filter(function (group) {
+                return group.get('teachers').indexOf(teacherName) != -1;
+            });
+            collections.groups.reset(filtered);
+            this.renderCurrentGroups({namespace: 'currentGroupsView'}, true);
+        }
+    });
 })(App.Groups);

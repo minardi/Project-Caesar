@@ -20,6 +20,6 @@
 
         changePage: function (e) {
             cs.mediator.publish(this.model.get('viewName') + 'ChangePage', e.currentTarget.value-1);
-        }		
+        }        
     });
 })(App.Filter);

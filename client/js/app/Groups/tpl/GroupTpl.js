@@ -1,9 +1,11 @@
 templates.groupTpl = _.template([
     '<div class="content-item">',
         '<% if (userRole === "Coordinator" || userRole === "Administrator") { %>',
-            '<button type="button" class="close"><span aria-hidden="true" data-target="#groupDelete">×</span></button>',
+            '<a class="delete-group-ico">',
+                '<span class="glyphicon glyphicon-remove" aria-hidden="true" data-toggle="modal" data-target="#groupDelete"></span>',
+            '</a>',
             '<a class="edit-group-ico">',
-                '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>',
+                '<span class="glyphicon glyphicon-pencil" aria-hidden="true" data-toggle="modal" data-target="#groupEdit"></span>',
             '</a>',
         '<% } %>',
         '<h4><%= name %></h4>',

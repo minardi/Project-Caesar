@@ -11,7 +11,8 @@
         <link rel="stylesheet" type="text/css" href="css/app/Menu/menu.css">
         <link rel="stylesheet" type="text/css" href="css/app/Groups/view/GroupView.css">
         <link rel="stylesheet" type="text/css" href="css/app/Filter/view/SearcherView.css">
-
+        <link rel="stylesheet" type="text/css" href="css/app/Schedule/view/GridView.css">
+        <link rel="stylesheet" type="text/css" href="css/app/error/view/ErrorView.css">
         <link rel="stylesheet" type="text/css" href="css/app/Messanger/view/InformationView.css">
         <link rel="stylesheet" type="text/css" href="css/app/Groups/view/GroupCollectionView.css">
         <link rel="stylesheet" type="text/css" href="css/app/Locations/view/LocationView.css">
@@ -36,6 +37,10 @@
         
         <!-- scripts.js -->
         <script src="js/main.js"></script>
+
+        <script src="js/lib/backbone-modified-router.js"></script>
+        <script src="js/lib/backbone-modified-controller.js"></script>
+
         <script src="js/app/Router.js"></script>
         
         <!-- groups -->
@@ -44,10 +49,15 @@
 
         <script src="js/app/Groups/tpl/GroupTpl.js"></script>
         <script src="js/app/Groups/tpl/GroupCollectionTpl.js"></script>
-        <script src="js/app/Groups/tpl/GroupModalsTpl.js"></script>
+        <script src="js/app/Groups/tpl/GroupAddTpl.js"></script>
+        <script src="js/app/Groups/tpl/GroupEditTpl.js"></script>
+        <script src="js/app/Groups/tpl/GropDeleteTpl.js"></script>
+        <script src="js/app/Groups/tpl/MyGroupsTpl.js"></script>
 
         <script src="js/app/Groups/view/GroupView.js"></script>
         <script src="js/app/Groups/view/GroupCollectionView.js"></script>
+        <script src="js/app/Groups/view/GroupAddEditView.js"></script>
+        <script src="js/app/Groups/view/GroupDeleteView.js"></script>
 
         <script src="js/app/Groups/GroupRouter.js"></script>
         <script src="js/app/Groups/Controller.js"></script>
@@ -56,6 +66,11 @@
         <script src="js/app/Menu/tpl/MenuTpl.js"></script>
         <script src="js/app/Menu/view/MenuView.js"></script>
         <script src='js/app/Menu/Controller.js'></script>
+        
+        <!-- error -->
+        <script src="js/app/Error/tpl/ErrorTpl.js"></script>
+        <script src="js/app/Error/view/ErrorView.js"></script>
+        <script src='js/app/Error/Controller.js'></script>
 
         <!-- user -->
         <script src='js/app/Users/model/Roles.js'></script>
@@ -90,6 +105,18 @@
 
         <script src="js/app/Locations/LocationRouter.js"></script>
         <script src="js/app/Locations/Controller.js"></script>
+        
+        <!-- schedule -->
+        <script src="js/app/Schedule/model/EventTypes.js"></script>
+        <script src="js/app/Schedule/model/Event.js"></script>
+        <script src="js/app/Schedule/model/EventCollection.js"></script>
+        
+        <script src="js/app/Schedule/tpl/GridTpl.js"></script>
+        
+        <script src="js/app/Schedule/view/GridView.js"></script>
+        
+        <script src="js/app/Schedule/ScheduleController.js"></script>
+        <script src="js/app/Schedule/ScheduleRouter.js"></script>
 
         <!-- messanger -->
         <script src="js/app/Messanger/tpl/informationTpl.js"></script>
@@ -137,7 +164,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8" id="container">
                     <!--<div class="top-nav" id="up-navig">
                         <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
                     </div>
@@ -154,13 +181,13 @@
                     <div class="user-account">
                         <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> User info will be here</p>
                     </div>
-                    <div class="main-nav">
+                    <div class="main-nav" id="right-navig">
                         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="messanger-wrap container">
-        </div>
+        <div class="messanger-wrap container"></div>
+        <div class="modal-wrap"></div>
     </body>
 </html>

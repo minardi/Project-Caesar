@@ -2,13 +2,13 @@
 (function (This) {
     This.CurrentSessionView = Backbone.View.extend({
         tagName: 'div',
-		className: 'user-info',
+        className: 'user-info',
         tpl: templates.currentSessionTpl,
-		
-		events: {
+        
+        events: {
             'click #logoutButton': 'logout'
         },
-		
+        
         initialize: function (params) {
             this.model = params.model;
         },

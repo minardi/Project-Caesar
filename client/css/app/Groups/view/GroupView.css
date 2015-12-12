@@ -2,12 +2,12 @@
     cursor: pointer;
 }
 
-.edit-group-ico {
+.edit-group-ico, .delete-group-ico {
     float: right;
     font-size: 10px;
     margin: 4px;
 }
 
-#groupEdit input, #groupEdit select {
+.modal .input-group input, .modal .input-group select {
     margin-bottom: 10px;
 }

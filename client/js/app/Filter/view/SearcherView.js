@@ -12,7 +12,7 @@
 
         render: function (filter) {
             this.$el.html(this.tpl({'searchValue': filter.get('searchString')}));
-
+            this.$('#searchclear').css('visibility', (filter.get('searchString').length) ? "visible" : "hidden");
             return this;
         },
 
@@ -23,10 +23,9 @@
 
         clearInput: function (e) {
             $(e.target).css('visibility', 'hidden');
-//            e.target.previousSibling.value = "";
             $(e.target.previousSibling).val('');
             $(e.target.previousSibling).focus();
             cs.mediator.publish(this.model.get('viewName') + 'StartSearch', '');
-        }
+        }      
     });
 })(App.Filter);

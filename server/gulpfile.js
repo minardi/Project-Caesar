@@ -8,7 +8,7 @@ var gulp = require('gulp'),
     pathfinder = require('./pathfinder'),
     clientPath = '../client/',
     qunit = require('gulp-qunit'),
-	open = require('gulp-open'),
+    open = require('gulp-open'),
     publicPath = './public/';
 
 gulp.task('build', function () {
@@ -59,10 +59,10 @@ gulp.task('concat-minify', function () {
 });
 
 gulp.task('test', function () {
-  	gulp.src('../tests/index.html')
-	    .pipe(open());
-	return gulp.src('../tests/index.html')
-		.pipe(qunit());
+      gulp.src('../tests/index.html')
+        .pipe(open());
+    return gulp.src('../tests/index.html')
+        .pipe(qunit());
 });
 
 gulp.task('modify-index', function () {

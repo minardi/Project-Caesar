@@ -2,6 +2,6 @@
 (function (This) {
     This.LocationCollection = Backbone.Collection.extend({
         model: This.Location,
-        url: '/dbLocations'
+        url: '/rest/dbLocations'
     });
 })(App.Locations);
