@@ -1,8 +1,18 @@
-.buttons-centered {
-    margin: auto;
-    width: 130px;
+.schedule-header, .schedule-footer, .schedule-content {
+    position:absolute;
+    width:100%;
 }
-
-.schedule-margin {
-    margin: 5px;
+.schedule-header {
+    height:230px;
+}
+.schedule-footer {
+    height:100px;
+}
+.schedule-footer {
+    bottom:0;
+}
+.schedule-content {
+    top:230px;
+    bottom:100px;
+    overflow-y:scroll;
 }
