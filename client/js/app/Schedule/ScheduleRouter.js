@@ -2,7 +2,8 @@
 (function (This)  {
     This.Router = Backbone.Router.extend({
         routes: {
-            'Schedule': 'showSchedule'
+            'Schedule': 'showSchedule',
+            'Schedule/edit': 'editSchedule'
         },
 
         initialize: function () {
@@ -13,6 +14,10 @@
 
         showSchedule: function () {
             this.controller.showSchedule();
+        },
+
+        editSchedule: function () {
+            this.controller.editSchedule();
         }
     });
 })(App.Schedule);
