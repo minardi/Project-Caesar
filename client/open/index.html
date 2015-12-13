@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Caesar Open Page</title>
+
+        <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="../bower_components/jquery/dist/jquery.js"></script>
+        <script src="../bower_components/underscore/underscore.js"></script>
+        <script src="../bower_components/backbone/backbone.js"></script>
+        <script src="../bower_components/mediator-js/mediator.min.js"></script>
+        <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="../bower_components/moment/min/moment.min.js"></script>
+        
+        <script src="js/main.js"></script>
+        
+        <script src="js/app/Router.js"></script>
+
+        <script src="js/app/Schedule/model/EventTypes.js"></script>
+        <script src="js/app/Schedule/model/Event.js"></script>
+        <script src="js/app/Schedule/model/EventCollection.js"></script>
+        <script src="js/app/Schedule/model/Group.js"></script>
+        <script src="js/app/Schedule/model/GroupCollection.js"></script>
+        <script src="js/app/Schedule/tpl/WeekTpl.js"></script>
+        <script src="js/app/Schedule/view/WeekView.js"></script>
+        <script src="js/app/Schedule/ScheduleController.js"></script>
+        <script src="js/app/Schedule/ScheduleRouter.js"></script>
+
+    </head>
+    <body>
+        <div id="container">
+            <h1>Schedule (Group name)</h1> 
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th></th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th><th>Sunday</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>8:00 - 8:30</td><td></td><td rowspan="4">Consulting Dp-086 JS</td><td></td><td rowspan="4">Consulting Dp-086 JS</td><td></td><td></td><td></td>
+                    </tr>
+                    <tr>
+                        <td>8:30 - 9:00</td><td></td><td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr>
+                        <td>9:00 - 9:30</td><td></td><td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr>
+                        <td>9:30 - 10:00</td><td></td><td></td><td></td><td></td><td></td>
+                    </tr>            
+                    <tr>
+                        <td>10:00 - 10:30</td>
+                        <td rowspan="4">Consulting Dp-086 JS</td>
+                        <td rowspan="4">Consulting Dp-086 JS</td>
+                        <td rowspan="4">Consulting Dp-086 JS</td>
+                        <td rowspan="4">Consulting Dp-086 JS</td>
+                        <td rowspan="4">Consulting Dp-086 JS</td>
+                        <td></td><td></td>
+                    </tr>
+                    <tr>
+                        <td>10:30 - 11:00</td>
+                        <td></td><td></td>
+                    </tr>
+                    <tr>
+                        <td>11:00 - 11:30</td>
+                        <td></td><td></td>
+                    </tr>
+                    <tr>
+                        <td>11:30 - 12:00</td>
+                        <td></td><td></td>
+                    </tr>
+                    <tr>
+                        <td>12:00 - 12:30</td>
+                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    </tr>
+                    <tr>
+                        <td>12:30 - 13:00</td>
+                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    </tr>
+                </tbody>
+            </table>   
+        </div>
+    </body>
+</html>

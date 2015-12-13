@@ -1,0 +1,35 @@
+#container {
+    padding: 25px;
+}
+
+.schedule-event {
+    background: #99cc99;
+}
+
+.main-nav {
+    opacity: 0.4;
+    cursor: pointer;
+    font-size: 30px;
+    text-align: center;
+    border: 1px solid #CCCCCC;
+    transition: .3s;
+}
+
+.main-nav:hover {
+  background-color: #EFEFEF;
+}
+
+.main-nav {
+  position: relative;
+  height: 70px;
+  margin: 6px 0px;
+}
+
+.main-nav span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 100;
+  margin-top: -15px;
+  margin-left: -15px;
+}
