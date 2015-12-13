@@ -4,6 +4,8 @@ var express = require('express'),
     location = require('./location'),
     events = require('./events'),
     _event = require('./event'),
+    rooms = require('./rooms'),
+    offices = require('./offices'),
     router = express.Router();
 
 
@@ -12,5 +14,6 @@ router.use('/groups', groups);
 router.use('/dbLocations', location);
 router.use('/events', events);
 router.use('/event', _event);
-//console.log(_event);
+router.use('/rooms', rooms);
+router.use('/offices', offices);
 module.exports = router;
