@@ -10,7 +10,7 @@
             'click .edit': 'editLocation'
         },
         tagName: 'tr',
-        template: _.template(templates.locationTpl),
+        template: templates.locationTpl,
         render: function () {
             this.$el.html(this.template(this.model.toJSON()));
 
@@ -20,7 +20,7 @@
             this.model.destroy({wait: true});
         },
         editLocation: function () {
-            var tpl = _.template(templates.locationModalEditTpl);
+            var tpl = templates.locationModalEditTpl;
             $('body').append(tpl(this.model.toJSON()));
 
             var $locationEditModal = $('#locationEdit'),
@@ -49,7 +49,7 @@
     This.Locations = Backbone.View.extend({
         tagName: 'table',
         className: 'table table-striped',
-        template: _.template(templates.locationsCollectionTpl),
+        template: templates.locationsCollectionTpl,
 
         events: {
             'click #add-new-location': 'addLocation'
@@ -110,14 +110,23 @@
             this.listenTo(this.model,'destroy', this.remove);
         },
         events: {
+            'click .edit': 'editUser',
             'click .delete': 'deleteUser'
         },
         tagName: 'tr',
-        template: _.template(templates.userTpl),
+        template: templates.userTpl,
         render: function () {
             this.$el.html(this.template(this.model.toJSON()));
 
             return this;
+        },
+        editUser: function () {
+            var userEditView = new This.UserCreateEditView({
+                    model: this.model,
+                    tpl: templates.userEditTpl
+                });
+            $('body').append(userEditView.render().el);
+            $('.modal').modal('show');
         },
         deleteUser: function () {
             this.model.destroy({wait: true});
@@ -127,15 +136,21 @@
     This.Users = Backbone.View.extend({
         tagName: 'table',
         className: 'table table-striped',
-        template: _.template(templates.usersCollectionTpl),
+        template: templates.usersCollectionTpl,
 
         initialize: function () {
             this.listenTo(this.collection, 'add', this.renderOne);
         },
 
+        events: {
+            'click #add-new-user': 'addNew'
+        },
+
         render: function () {
             this.$el.html(this.template());
             this.renderAll(this.collection);
+            this.$el.append('<button id="add-new-user" class="btn btn-info" \
+                data-toggle="modal">Add user</button>');
             return this;
         },
 
@@ -169,7 +184,7 @@
             this.model.destroy({wait: true});
         },
         editGroup: function () {
-            var tpl = _.template(templates.groupModalEditTpl);
+            var tpl = templates.groupModalEditTpl;
             $('body').append(tpl(this.model.toJSON()));
 
             var $groupEditModal = $('#groupEdit'),
@@ -248,13 +263,15 @@
     This.Groups = Backbone.View.extend({
         tagName: 'table',
         className: 'table table-striped',
-        template: _.template(templates.groupsCollectionTpl),
+        template: templates.groupsCollectionTpl,
 
         events: {
             'click #add-new-group': 'addGroup'
         },
 
         initialize: function () {
+            // Backbone.Validation.bind(this, {invalid: this.log});
+            Backbone.Validation.bind(this, {valid: this.showOk, invalid: this.showNotOk});
             this.listenTo(this.collection, 'add', this.renderOne);
         },
 
@@ -266,6 +283,10 @@
             return this;
         },
 
+        log: function () {
+            console.log('invalid');
+        },
+
         renderAll: function (collection) {
             collection.forEach(this.renderOne, this);
         },
@@ -273,6 +294,13 @@
         renderOne: function (model) {
             var groupView = new App.Admin.Views.Group({model: model});
             this.$('tbody').append(groupView.render().el);
+        },
+
+        showOk: function () {
+            console.log('ok');
+        },
+        showNotOk: function () {
+            console.log('notok');
         },
 
         addGroup: function () {
@@ -354,6 +382,41 @@
         getCurrentDate: function () {
             var currentDate = new Date();
             return currentDate.toISOString();
+        }
+    });
+
+    This.UserCreateEditView = Backbone.View.extend({
+        initialize: function (options) {
+            this.model = this.model || new App.Admin.Models.User();
+            this.tpl = options.tpl;
+        },
+
+        events: {
+            'click .submit': 'submit',
+        },
+
+        render: function () {
+            this.$el.html(this.tpl(this.model.toJSON()));
+
+            return this;
+        },
+
+        submit: function () {
+            var attributes = {
+                    name: this.$el.find('input[name="Name"]').val(),
+                    lastName: this.$el.find('input[name="LastName"]').val(),
+                    role: this.$el.find('select[name="Role"] option:selected').val(),
+                    locationCity: this.$el.find('input[name="LocationCity"]').val(),
+                    locationCountry: this.$el.find('input[name="LocationCountry"]').val(),
+                    login: this.$el.find('input[name="Login"]').val(),
+                    password: md5(this.$el.find('input[name="Password"]').val()),
+                };
+
+            this.model.save(attributes);
+
+            if (this.model.isNew()) {
+                this.collection.add(this.model);
+            }
         }
     });
 })(App.Admin.Views);

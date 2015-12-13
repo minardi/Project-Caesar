@@ -19,6 +19,28 @@ router.get('/users', function (req, res, next) {
     });
 });
 
+router.post('/user', function (req, res, next) {
+    var User = mongoose.model('User'),
+        newUser = new User({
+            name: req.body.name,
+            lastName: req.body.lastName,
+            role: req.body.role,
+            locationCity: req.body.locationCity,
+            locationCountry: req.body.locationCountry,
+            login: req.body.login,
+            password: req.body.password
+        });
+
+    newUser.save(function(err, data) {
+        if (err) {
+            console.log(err);
+            res.send(err);
+        } else {
+            res.send(data);
+        }
+    });
+});
+
 router.delete('/user/:id', function (req, res, next) {
     var User = mongoose.model('User');
     User.remove({_id: req.params.id}, function(err) {

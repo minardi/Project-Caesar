@@ -26,8 +26,8 @@
 
 #logo {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 100px;
+    height: 100px;
     background-image: url("/img/caesar.png");
     background-size: 100% 100%;
     border-right: 1px solid #aaa;

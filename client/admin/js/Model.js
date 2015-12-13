@@ -10,7 +10,7 @@
     });
 
     This.Group = Backbone.Model.extend({
-        urlRoot: '/group',
+        urlRoot: '/rest/group',
         defaults: function () {
             return {
                 name: '',
@@ -23,6 +23,14 @@
                 experts: [],
                 students: []
             };
+        },
+
+        validation: {
+            name: {
+                required: true,
+                minLength: 2,
+                msg: 'Please enter a Group Name'
+            }                 
         },
 
         parse: function(data) {
@@ -41,7 +49,8 @@
                 role: '',
                 locationCity: '',
                 locationCountry: '',
-                login: ''
+                login: '',
+                password: ''
             };
         }
     });
