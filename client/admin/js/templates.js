@@ -1,12 +1,12 @@
-templates.locationTpl = [
+templates.locationTpl = _.template([
     '<td><%= city %></td>',
     '<td><%= country %></td>',
     '<td>',
         '<button class="btn btn-info edit">Edit</button>',
         '<button class="btn btn-danger delete">Delete</button>',
     '</td>'
-].join('');
-templates.locationsCollectionTpl = [
+].join(''));
+templates.locationsCollectionTpl = _.template([
     '<thead>',
         '<th>City</th>',
         '<th>Country</th>',
@@ -14,8 +14,8 @@ templates.locationsCollectionTpl = [
     '</thead>',
     '<tbody>',
     '</tbody>'
-].join('');
-templates.groupTpl = [
+].join(''));
+templates.groupTpl = _.template([
     '<td><%= name %></td>',
     '<td><%= direction %></td>',
     '<td><%= location %></td>',
@@ -26,8 +26,8 @@ templates.groupTpl = [
         '<button class="btn btn-info edit">Edit</button>',
         '<button class="btn btn-danger delete">Delete</button>',
     '</td>'
-].join('');
-templates.groupsCollectionTpl = [
+].join(''));
+templates.groupsCollectionTpl = _.template([
     '<thead>',
         '<th>Name</th>',
         '<th>Direction</th>',
@@ -39,8 +39,8 @@ templates.groupsCollectionTpl = [
     '</thead>',
     '<tbody>',
     '</tbody>'
-].join('');
-templates.groupModalAddTpl = [
+].join(''));
+templates.groupModalAddTpl = _.template([
     '<div class="modal fade" id="groupAdd" tabindex="-1" role="dialog">',
         '<div class="modal-dialog">',
             '<div class="modal-content">',
@@ -115,8 +115,8 @@ templates.groupModalAddTpl = [
             '</div>',
         '</div>',
     '</div>'
-].join('');
-templates.groupModalEditTpl = [
+].join(''));
+templates.groupModalEditTpl = _.template([
     '<div class="modal fade" id="groupEdit" tabindex="-1" role="dialog">',
         '<div class="modal-dialog">',
             '<div class="modal-content">',
@@ -192,8 +192,8 @@ templates.groupModalEditTpl = [
             '</div>',
         '</div>',
     '</div>'
-].join('');
-templates.locationModalAddTpl = [
+].join(''));
+templates.locationModalAddTpl = _.template([
     '<div class="modal fade" id="locationAdd" tabindex="-1" role="dialog">',
         '<div class="modal-dialog">',
             '<div class="modal-content">',
@@ -218,8 +218,8 @@ templates.locationModalAddTpl = [
             '</div>',
         '</div>',
     '</div>'
-].join('');
-templates.locationModalEditTpl = [
+].join(''));
+templates.locationModalEditTpl = _.template([
     '<div class="modal fade" id="locationEdit" tabindex="-1" role="dialog">',
         '<div class="modal-dialog">',
             '<div class="modal-content">',
@@ -244,8 +244,8 @@ templates.locationModalEditTpl = [
             '</div>',
         '</div>',
     '</div>'
-].join('');
-templates.userTpl = [
+].join(''));
+templates.userTpl = _.template([
     '<td><%= name %></td>',
     '<td><%= lastName %></td>',
     '<td><%= role %></td>',
@@ -253,10 +253,11 @@ templates.userTpl = [
     '<td><%= locationCountry %></td>',
     '<td><%= login %></td>',
     '<td>',
+        '<button class="btn btn-info edit">Edit</button>',
         '<button class="btn btn-danger delete">Delete</button>',
     '</td>'
-].join('');
-templates.usersCollectionTpl = [
+].join(''));
+templates.usersCollectionTpl = _.template([
     '<thead>',
         '<th>Name</th>',
         '<th>Last Name</th>',
@@ -268,4 +269,110 @@ templates.usersCollectionTpl = [
     '</thead>',
     '<tbody>',
     '</tbody>'
-].join('');
+].join(''));
+templates.userAddTpl = _.template([
+    '<div class="modal fade" id="userAdd" tabindex="-1" role="dialog">',
+        '<div class="modal-dialog">',
+            '<div class="modal-content">',
+                '<div class="modal-header">',
+                    '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>',
+                    '<h4 class="modal-title">Add user</h4>',
+                '</div>',
+                '<div class="modal-body">',
+                    '<div class="input-group">',
+                        '<label>Name</label>',
+                        '<input type="text" class="form-control" name="Name" placeholder="John" aria-describedby="basic-addon1">',
+                    '</div>',
+                    '<div class="input-group">',
+                        '<label>Last Name</label>',
+                        '<input type="text" class="form-control" name="LastName" placeholder="Doe" aria-describedby="basic-addon1">',
+                    '</div>',
+                    '<div class="input-group">',
+                        '<label>Role</label>',
+                        '<select class="form-control" name="Role">',
+                            '<option>Teacher</option>',
+                            '<option>Coordinator</option>',
+                            '<option>Administrator</option>',
+                            '<option>Recruiter</option>',
+                            '<option>TSE</option>',
+                        '</select>',
+                    '</div>',
+                    '<div class="input-group">',
+                        '<label>Location City</label>',
+                        '<input type="text" class="form-control" name="LocationCity" placeholder="Dnipro" aria-describedby="basic-addon1">',
+                    '</div>',
+                    '<div class="input-group">',
+                        '<label>Location Country</label>',
+                        '<input type="text" class="form-control" name="LocationCountry" placeholder="Ukraine" aria-describedby="basic-addon1">',
+                    '</div>',
+                    '<div class="input-group">',
+                        '<label>Login</label>',
+                        '<input type="text" class="form-control" name="Login" placeholder="johndoe" aria-describedby="basic-addon1">',
+                    '</div>',
+                    '<div class="input-group">',
+                        '<label>Password</label>',
+                        '<input type="password" class="form-control" name="Password" placeholder="qwerty" aria-describedby="basic-addon1">',
+                    '</div>',
+                '</div>',
+                '<div class="modal-footer clearfix">',
+                    '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>',
+                    '<button type="button" class="btn btn-primary submit">Submit</button>',
+                '</div>',
+            '</div>',
+        '</div>',
+    '</div>'
+].join(''));
+templates.userEditTpl = _.template([
+    '<div class="modal fade" id="userAdd" tabindex="-1" role="dialog">',
+        '<div class="modal-dialog">',
+            '<div class="modal-content">',
+                '<div class="modal-header">',
+                    '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>',
+                    '<h4 class="modal-title">Add user</h4>',
+                '</div>',
+                '<div class="modal-body">',
+                    '<div class="form-horizontal">',
+                        '<div class="form-group">',
+                            '<label for="name">Name</label>',
+                            '<input type="text" class="form-control" id="name" name="Name" placeholder="John" aria-describedby="basic-addon1" value="<%= name %>">',
+                        '</div>',
+                        '<div class="form-group">',
+                            '<label>Last Name</label>',
+                            '<input type="text" class="form-control" name="LastName" placeholder="Doe" aria-describedby="basic-addon1" value="<%= lastName %>">',
+                        '</div>',
+                        '<div class="form-group">',
+                            '<label>Role</label>',
+                            '<select class="form-control" name="Role">',
+                                '<option <% if (role === "Teacher") { %> selected <% } %> >Teacher</option>',
+                                '<option <% if (role === "Coordinator") { %> selected <% } %> >Coordinator</option>',
+                                '<option <% if (role === "Administrator") { %> selected <% } %> >Administrator</option>',
+                                '<option <% if (role === "Recruiter") { %> selected <% } %> >Recruiter</option>',
+                                '<option <% if (role === "TSE") { %> selected <% } %> >TSE</option>',
+                            '</select>',
+                        '</div>',
+                        '<div class="form-group">',
+                            '<label>Location City</label>',
+                            '<input type="text" class="form-control" name="LocationCity" placeholder="Dnipro" aria-describedby="basic-addon1" value="<%= locationCity %>">',
+                        '</div>',
+                        '<div class="form-group">',
+                            '<label>Location Country</label>',
+                            '<input type="text" class="form-control" name="LocationCountry" placeholder="Ukraine" aria-describedby="basic-addon1" value="<%= locationCountry %>">',
+                        '</div>',
+                        '<div class="form-group">',
+                            '<label>Login</label>',
+                            '<input type="text" class="form-control" name="Login" placeholder="johndoe" aria-describedby="basic-addon1" value="<%= login %>">',
+                        '</div>',
+                        '<div class="form-group">',
+                            '<label>New Password</label>',
+                            '<input type="password" class="form-control" name="Password" placeholder="qwerty" aria-describedby="basic-addon1">',
+                        '</div>',
+                    '</div>',
+                '</div>',
+                '<div class="modal-footer clearfix">',
+                    '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>',
+                    '<button type="button" class="btn btn-primary submit">Submit</button>',
+                '</div>',
+            '</div>',
+        '</div>',
+    '</div>'
+].join(''));
