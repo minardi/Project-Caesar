@@ -17,6 +17,7 @@
         deleteGroup: function () {
             this.model.destroy({wait: true});
             this.$el.find('.modal').modal('hide');
+            cs.messanger.showInformation('Group deleted');
         }
     });
 })(App.Groups);
