@@ -4,7 +4,8 @@ var mongoose = require('mongoose'),
         type: { type: String, required: true },
         dateTime: { type: Date, required: true },
         groupID: { type: String, required: true },
-        duration: { type: Number, required: true }
+        duration: { type: Number, required: true },
+        room: {type: Number, ref: 'Room'}
     }));
 
 module.exports = Event;
