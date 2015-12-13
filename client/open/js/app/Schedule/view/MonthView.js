@@ -12,8 +12,8 @@
             this.$el.empty().append(this.tpl({
                 startTime: moment().hour(8).minute(0),
                 endTime: moment().hour(20).minute(0),
-                start: moment().set({'year': 2015, 'month': 10, 'date': 1}),
-                duration: 60
+                start: moment().set({'year': 2015, 'month': 11, 'date': 1}),
+                duration: 31
             }));
 
             collections.events.forEach(remakeGrid.bind(this));

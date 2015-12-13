@@ -13,7 +13,7 @@ templates.monthTpl = _.template([
                 '<th></th>',
                  '<% for (var i = 0; i < (evening - morning)*2; i++) { %>',
                     '<th>',
-                        '<%= startTime.format(\'HH:mm\') %> - <%= startTime.add(30, \'m\').format(\'HH:mm\') %>',
+                        '<%= startTime.format(\'HH:mm\') %> <%= startTime.add(30, \'m\').format(\'HH:mm\') %>',
                     '</th>',
                 '<% } %>',
             '</tr>',
@@ -34,26 +34,6 @@ templates.monthTpl = _.template([
                     '<% startTime.hour(morning) %>',
                 '</tr>',
             '<% } %>',
-
-/*
-            '<% start.subtract(7, \'d\'); %>',
-            '<% var morning = startTime.hour(), evening = endTime.hour() %>',
-            '<% for (var i = 0; i < (evening - morning)*2; i++) { %>',
-                '<tr>',
-                    '<td>',
-                        '<%= startTime.format(\'HH:mm\') %> - <%= startTime.add(30, \'m\').format(\'HH:mm\') %>',
-                    '</td>',
-                    '<% startTime.subtract(30, \'m\') %>',                   
-                    '<% for (var j = 0; j < width - 1; j++) { %>',
-                        '<td class="<%= startTime.format(\'HH-mm\')%>-<%= start.format(\'MM-DD-YYYY\') %>">',
-                        '</td>',
-                        '<% start.add(1, \'d\'); %>',
-                    '<% } %>',
-                    '<% startTime.add(30, \'m\') %>',
-                    '<% start.subtract(7, \'d\'); %>',
-                '</tr>',
-            '<% } %>',
-*/
         '</tbody>',
     '</table>'
 ].join(''));

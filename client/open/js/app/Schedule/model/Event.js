@@ -8,6 +8,8 @@
             duration: 0
         },
 
+        idAttribute: "_id",
+
         initialize: function (params) {
             var key;
             for (key in params) {

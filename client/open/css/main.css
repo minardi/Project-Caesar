@@ -3,7 +3,8 @@
 }
 
 .schedule-event {
-    background: #99cc99;
+    background: #c6e7f4;
+    font-size: 14px;
 }
 
 .main-nav {
@@ -40,4 +41,15 @@
 
 table {
   font-size: 10px; 
+  text-align: center;
 }
+
+.table thead > tr > th {
+  background-color: #70adc9;
+}
+
+.table tbody > tr > td {
+  padding: 2px;
+  border-color: #70adc9;
+}
+
