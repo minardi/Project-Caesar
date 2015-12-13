@@ -33,3 +33,7 @@ th.actions {
 .form-group.new-password {
     display: none;
 }
+
+#startDate, #finishDate {
+    text-align: center;
+}
