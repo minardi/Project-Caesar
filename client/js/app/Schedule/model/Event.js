@@ -1,6 +1,8 @@
 'use strict';
 (function (This)  {
     This.Event = Backbone.Model.extend({
+        urlRoot: '/rest/event',
+
         defaults: {
             dateTime: new Date(),
             type: This.EventTypes.PRACTICS,
