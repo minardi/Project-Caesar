@@ -6,7 +6,7 @@
     right: 0;
 }
 
-.logout{
+.logout {
     position: absolute;
     margin: 0 5px;
     padding: 5px 5px 5px 5px;
@@ -14,7 +14,7 @@
     cursor: pointer;
 }
 
-.logout a{
+.logout a {
     color: black;
 }
 
@@ -45,6 +45,10 @@
     
 }
 
+.dropdown-menu {
+    min-width: 100px;
+}
+
 .menu {
     padding: 0;
     margin: 0;
@@ -73,8 +77,8 @@
 }
 
 .menu-item:hover {
-    background-color: #ddd;
-    color: #515151;
+    background-color: #5bc0de;
+    color: #000;
 }
 
 

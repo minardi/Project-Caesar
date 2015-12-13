@@ -7,9 +7,7 @@
 }
 
 #startDate, #finishDate {
-    width: 100px;
-    display: block;
-    float: none;
+    text-align: center;
 }
 
 .add-teacher, .add-expert {

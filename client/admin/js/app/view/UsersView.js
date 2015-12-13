@@ -91,9 +91,9 @@
         },
 
         changePassword: function () {
-            this.$el.find('.input-group.new-password').css('display', 'table')
-                .append('<input type="password" class="form-control" \
-                    name="Password" placeholder="qwerty" aria-describedby="basic-addon1">');
+            this.$el.find('.form-group.new-password').show()
+                .append('<div class="col-sm-10"><input type="password" class="form-control" \
+                    name="Password" placeholder="qwerty" aria-describedby="basic-addon1"></div>');
         },
 
         submit: function () {
