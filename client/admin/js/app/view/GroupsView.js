@@ -130,12 +130,12 @@
         },
 
         addTeacherInput: function () {
-            this.$el.find('.teachers-block .input-group').append('<input type="text" \
+            this.$el.find('.teachers-block .add-teacher').before('<input type="text" \
                 class="form-control" placeholder="Teacher" name="teacher">');
         },
 
         addExpertInput: function () {
-            this.$el.find('.experts-block .input-group').append('<input type="text" \
+            this.$el.find('.experts-block .add-expert').before('<input type="text" \
                 class="form-control" placeholder="Expert" name="expert">');
         }
     });
