@@ -97,15 +97,25 @@
         },
 
         submit: function () {
-            var attributes = {
+            var that = this,
+                attributes = {
                     name: this.$el.find('input[name="Name"]').val(),
                     lastName: this.$el.find('input[name="LastName"]').val(),
                     role: this.$el.find('select[name="Role"] option:selected').val(),
                     locationCity: this.$el.find('input[name="LocationCity"]').val(),
                     locationCountry: this.$el.find('input[name="LocationCountry"]').val(),
                     login: this.$el.find('input[name="Login"]').val(),
-                    password: md5(this.$el.find('input[name="Password"]').val()),
+                    password: setPassword()
                 };
+
+            function setPassword () {
+                var $passwordValue = that.$el.find('input[name="Password"]').val();
+                if ($passwordValue) {
+                    return md5($passwordValue);
+                } else {
+                    return that.model.get('password');
+                }
+            }
 
             this.model.save(attributes, {wait: true});
             
