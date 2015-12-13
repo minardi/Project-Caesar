@@ -33,3 +33,11 @@
   margin-top: -15px;
   margin-left: -15px;
 }
+
+.week-month-switch {
+  float: right;
+}
+
+table {
+  font-size: 10px; 
+}

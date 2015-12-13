@@ -1,21 +1,19 @@
 'use strict';
 (function (This) {
-    This.WeekView = Backbone.View.extend({
-        tpl: templates.weekTpl,
+    This.MonthView = Backbone.View.extend({
+        tpl: templates.monthTpl,
         weekStart: moment().day('Monday'),
         
         events: {
-            'click .nextPeriod': 'nextWeek',
-            'click .prevPeriod': 'prevWeek',
-            'click .week-month-switch': 'renderMonth'
+            'click .week-month-switch': 'renderWeek'
         },
 
         render: function () {
             this.$el.empty().append(this.tpl({
-                width: 8,
-                start: this.weekStart,
                 startTime: moment().hour(8).minute(0),
-                endTime: moment().hour(20).minute(0)
+                endTime: moment().hour(20).minute(0),
+                start: moment().set({'year': 2015, 'month': 10, 'date': 1}),
+                duration: 60
             }));
 
             collections.events.forEach(remakeGrid.bind(this));
@@ -24,7 +22,7 @@
                 var eventID, i;
 
                 eventID = moment(item.get('dateTime')).format('HH-mm-MM-DD-YYYY');
-                this.$el.find('.' + eventID).attr('rowSpan', item.get('duration'))
+                this.$el.find('.' + eventID).attr('colSpan', item.get('duration'))
                     .addClass('schedule-event')
                     .html(item.toString());
                     
@@ -37,16 +35,8 @@
             return this;
         },
 
-        renderMonth: function () {
-            cs.mediator.publish('renderMonthSchedule');    
+        renderWeek: function () {
+            cs.mediator.publish('renderWeekSchedule');    
         },
-
-        nextWeek: function () {
-            cs.mediator.publish('nextWeek');
-        },
-        
-        prevWeek: function () {
-            cs.mediator.publish('prevWeek');
-        }
     });
 })(App.Schedule);

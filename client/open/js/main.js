@@ -19,7 +19,7 @@ $(function () {
     //    cs.subRouters = {};
     //    cs.router = new App.Router();
         controller = new App.Schedule.Controller();
-        controller.showSchedule();
+        controller.showWeekSchedule();
 
         Backbone.history.start({pushState: true});
     }    
