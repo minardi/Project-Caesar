@@ -16,12 +16,22 @@
     <script src="../bower_components/moment/min/moment.min.js"></script>
     <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="../bower_components/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js"></script>
-    
+    <script src="../bower_components/blueimp-md5/js/md5.js"></script>
+
     <script src="js/main.js"></script>
-    <script src="js/templates.js"></script>
-    <script src="js/Model.js"></script>
-    <script src="js/View.js"></script>
-    <script src="js/Collection.js"></script>
+    <!-- TEMPLATES -->
+    <script src="js/app/templates/GroupsTpl.js"></script>
+    <script src="js/app/templates/LocationsTpl.js"></script>
+    <script src="js/app/templates/UsersTpl.js"></script>
+    <!-- MODELS -->
+    <script src="js/app/model/Group.js"></script>
+    <script src="js/app/model/Location.js"></script>
+    <script src="js/app/model/User.js"></script>
+    <script src="js/app/model/Collections.js"></script>
+    <!-- VIEWS -->
+    <script src="js/app/view/GroupsView.js"></script>
+    <script src="js/app/view/LocationsView.js"></script>
+    <script src="js/app/view/UsersView.js"></script>
 </head>
 <body>
     <div class="container">
@@ -36,7 +46,8 @@
             <div id="locations" class="tab-pane fade"></div>
             <div id="users" class="tab-pane fade"></div>
         </div>
-        <button class="btn btn-warning home">Back to home</button>
+        <button class="btn btn-warning home">Home</button>
     </div>
+    <div id="modal-wrap"></div>
 </body>
 </html>

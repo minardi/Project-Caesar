@@ -21,3 +21,11 @@ th.actions {
 .teachers-block .input-group input, .experts-block .input-group input{
     margin-bottom: 5px;
 }
+
+.btn.change-password {
+    margin: 10px 0 5px 0;
+}
+
+.input-group.new-password {
+    display: none;
+}
