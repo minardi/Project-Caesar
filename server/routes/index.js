@@ -41,6 +41,18 @@ router.post('/user', function (req, res, next) {
     });
 });
 
+router.put('/user/:id', function (req, res, next) {
+    var User = mongoose.model('User');
+    User.findOneAndUpdate({_id:req.params.id}, req.body, function (err) {
+        if (err) {
+            console.log(err);
+            res.send(err);
+        } else {
+            res.json(req.body);
+        }
+    });
+});
+
 router.delete('/user/:id', function (req, res, next) {
     var User = mongoose.model('User');
     User.remove({_id: req.params.id}, function(err) {
@@ -48,7 +60,5 @@ router.delete('/user/:id', function (req, res, next) {
     });
     res.json({ status: 'success' });
 });
-
-
 
 module.exports = router;
