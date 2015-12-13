@@ -9,7 +9,10 @@
             'click #prevButton': 'prevWeek'
         },
 
-        render: function () {
+        render: function (week) {
+            if (week) {
+                this.weekStart = moment().week(week).day('Monday');
+            }
             this.$el.empty().append(this.tpl({
                 width: 8,
                 height: 25,
