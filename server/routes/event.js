@@ -3,25 +3,25 @@ var express = require('express'),
     mongoose = require('mongoose');
 
 router.post('/', function (req, res, next) {
-	var Event = mongoose.model('Event'),
-		newEvent = new Event(req.body);
+    var Event = mongoose.model('Event'),
+        newEvent = new Event(req.body);
 
-	newEvent.save(function(err, data) {
-		if (err) {
-			console.log(err);
-			res.send(err);
-		} else {
-			res.send(data);
-		}
+    newEvent.save(function(err, data) {
+        if (err) {
+            console.log(err);
+            res.send(err);
+        } else {
+            res.send(data);
+        }
 
-	});
+    });
 });
 
 router.delete('/:id', function (req, res, next) {
     var Event = mongoose.model('Event');
     Event.remove({_id: req.params.id}, function(err) {
         if (err) {
-        	throw err
+            throw err
         }
     });
     res.json({status: 'success'});
