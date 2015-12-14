@@ -4,7 +4,7 @@
         defaults: {
             name: '',
             lastName: '',
-            role: App.Users.Roles.GUEST,
+            role: '',
             location: {
                 city: '',
                 country: ''

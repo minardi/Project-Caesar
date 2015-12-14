@@ -22,36 +22,50 @@
         },
 
         render: function () {
-            var COURSE_DURATION = 120;
+            var group = this;
 
             getTeachers();
-            this.model.set({locations: collections.locations});
-            this.model.set({allTeachers: collections.teachers});
+            initRenderInfo();
+            initDatapicers();
 
-            this.$el.html(this.tpl(this.model.toJSON()));
+            function initRenderInfo () {
+                var groupJsonInfo;
 
-            this.$el.find('#startDate').datetimepicker({
+                groupJsonInfo = group.model.toJSON();
+                groupJsonInfo.locations = collections.locations;
+                groupJsonInfo.allTeachers = collections.teachers;
+
+                group.$el.html(group.tpl(groupJsonInfo));
+            }
+            
+            function initDatapicers () {
+                var COURSE_DURATION = 120;
+
+                group.$el.find('#startDate').datetimepicker({
                 format: 'YYYY-MM-DD',
                 defaultDate: moment().format()
-            });
-            this.$el.find('#finishDate').datetimepicker({
-                format: 'YYYY-MM-DD',
-                defaultDate: moment().add(COURSE_DURATION, 'days').format()
-            });
-
-            function getTeachers () {
-                var Profile = Backbone.Model.extend();
-                var ProfileList = Backbone.Collection.extend({
-                   model: Profile,
-                   url: "/users"
                 });
-
-                var profiles = new ProfileList(); 
-                profiles.fetch({
-                    async: false,
+                group.$el.find('#finishDate').datetimepicker({
+                    format: 'YYYY-MM-DD',
+                    defaultDate: moment().add(COURSE_DURATION, 'days').format()
+                });
+            }
+            
+            function getTeachers () {
+                var teachers = new App.Employee.EmployeeCollection(),
+                    teachersFullName = [];
+                
+                teachers.fetch({
+                    async:false,
                     success: function() {
-                        profiles = profiles.where({role: "Teacher"});
-                        collections.teachers = profiles;
+                        teachers = teachers.filter('Teacher');
+                        teachers.forEach (function (teacher) {
+                            var teacherName = teacher.get('lastName')
+                                              + ' ' + teacher.get('name');
+                            
+                            teachersFullName.push(teacherName);
+                        });
+                        collections.teachers = teachersFullName;
                     }
                 });
             };
@@ -75,9 +89,6 @@
                     return $(this).val();
                 }).get();
             }
-
-            this.model.unset('locations');
-            this.model.unset('allTeachers');
 
             this.model.save(attributes);
 
