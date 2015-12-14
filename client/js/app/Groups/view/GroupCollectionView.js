@@ -20,7 +20,7 @@
             this.listenTo(this.collection, 'destroy', this.renderAfterDestroy);
             this.filter = new Filter.Controller({
                 'collection': this.collection,
-                'pageSize': 6,
+                'pageSize': 9,
                 'searchField': 'name',
                 'viewName': 'groups'
             });

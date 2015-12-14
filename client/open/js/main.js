@@ -21,6 +21,6 @@ $(function () {
 //        controller = new App.Schedule.Controller();
 //        controller.showWeekSchedule();
 
-        Backbone.history.start({pushState: true});
+        Backbone.history.start({pushState: true, root: '/open/'});
     }    
 });
