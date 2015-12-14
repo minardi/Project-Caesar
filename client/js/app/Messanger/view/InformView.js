@@ -6,7 +6,7 @@
         tagName: 'div',
         events: {
             'click .close': 'close',
-            'blur .inform': 'close'
+            'click': 'stopPropagation'
         },
         className: 'message-wrap',
 
@@ -17,27 +17,22 @@
         },
 
         render: function () {
+            var self = this;
+
             this.$el.html(this.tpl({message: this.message}));
 
-            if (this.type === 'error') {
-                this.$el.find('.modal').modal({
-                    backdrop: true,
-                    show: true,
-                    keyboard: true
-                });
-            } else {
-                this.$el.fadeIn(FADE);
-
-                this.$el.find('.modal').modal({
-                    backdrop: false,
-                    show: true,
-                    keyboard: true
-                });
-            }
-
             if (this.type === 'info') {
+                this.$('.inform').fadeIn(FADE);
+                $('html').one('click', this.close.bind(this));
+
                 this.timeout = setTimeout(this.close.bind(this), 3000);
-            } 
+            } else if (this.type === 'warning') {
+                this.$('.warning').fadeIn(FADE);
+                $('html').one('click', this.close.bind(this));
+            } else if (this.type === 'error') {
+                this.$('.error').fadeIn(FADE);
+                this.$('.darkback-error').one('click', this.close.bind(this));
+            }
 
             return this;
         },
@@ -48,7 +43,10 @@
             });
 
             clearTimeout(this.timeout);
-        }
+        },
 
+        stopPropagation: function (event) {
+            event.stopPropagation();
+        }
     });
 })(App.Messanger);
