@@ -6,7 +6,7 @@
             
             cs.mediator.subscribe('continueSessionRequired', function () {
                 Backbone.ajax({
-                    url: 'continueSession',
+                    url: '/continueSession',
                     data: 'id=' + App.Cookies.Controller.get('sessionID'),
                     success: loginSuccess
                 });
@@ -19,7 +19,7 @@
                     success: logoutSuccess
                 });
             });
-            
+
             function loginSuccess (response) {
                 if (JSON.parse(response).success) {   
                     cs.currentUser = new App.Users.User(JSON.parse(response).recognizedUser);
