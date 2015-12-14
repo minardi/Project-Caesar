@@ -18,6 +18,22 @@ th.actions {
     margin-top: 15px;
 }
 
-.teachers-block .input-group input, .experts-block .input-group input{
+.teachers-block input, .experts-block input{
     margin-bottom: 5px;
+}
+
+.teachers-block a, .experts-block a {
+    display: block;
+}
+
+.btn.change-password {
+    margin-bottom: 15px;
+}
+
+.form-group.new-password {
+    display: none;
+}
+
+#startDate, #finishDate {
+    text-align: center;
 }

@@ -31,7 +31,6 @@
         <script type="text/javascript" src="/bower_components/moment/min/moment.min.js"></script>
         <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 
-        <script src="js/lib/bootstrap-dialog.min.js"></script>
         <script src="bower_components/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js"></script>
         <script src="bower_components/js-cookie/src/js.cookie.js"></script>
         
@@ -112,8 +111,10 @@
         <script src="js/app/Schedule/model/EventCollection.js"></script>
         
         <script src="js/app/Schedule/tpl/GridTpl.js"></script>
+        <script src="js/app/Schedule/tpl/EditViewTpl.js"></script>
         
         <script src="js/app/Schedule/view/GridView.js"></script>
+        <script src="js/app/Schedule/view/EditView.js"></script>
         
         <script src="js/app/Schedule/ScheduleController.js"></script>
         <script src="js/app/Schedule/ScheduleRouter.js"></script>
@@ -136,7 +137,7 @@
     <body>
         <div class="site-wrapper container-fluid">
             <div class="row">
-                <div class="col-md-1">
+                <div class="col-sm-1">
                     <div class="main-menu">
                         <!--<div id="logo"></div>-->
                     </div>
@@ -144,7 +145,7 @@
                         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-sm-2">
                     <div class="notifications">
                         <div class="alert alert-success alert-dismissible" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -164,7 +165,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-8" id="container">
+                <div class="col-sm-8" id="container">
                     <!--<div class="top-nav" id="up-navig">
                         <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
                     </div>
@@ -177,7 +178,7 @@
                         <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
                     </div>-->
                 </div>
-                <div class="col-md-1">
+                <div class="col-sm-1">
                     <div class="user-account">
                         <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> User info will be here</p>
                     </div>

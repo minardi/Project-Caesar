@@ -83,11 +83,14 @@
 
             if (this.model.isValid() && this.model.isNew()) {
                 this.collection.add(this.model);
-            }
+                cs.messanger.showInformation('Group added');
+            } else if (this.model.isValid() && !this.model.isNew()) {
+                cs.messanger.showInformation('Group updated');
+            };
         },
 
         addExpertInput: function () {
-            this.$el.find('.experts-block .input-group').append('<input type="text" \
+            this.$el.find('.experts-block .add-expert').before('<input type="text" \
                 class="form-control" placeholder="Expert" name="expert">');
         }
     });

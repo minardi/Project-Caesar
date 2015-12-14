@@ -11,3 +11,7 @@
 .modal .input-group input, .modal .input-group select {
     margin-bottom: 10px;
 }
+
+.experts-block input {
+    margin-bottom: 5px;
+}

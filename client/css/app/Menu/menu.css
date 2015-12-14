@@ -6,7 +6,7 @@
     right: 0;
 }
 
-.logout{
+.logout {
     position: absolute;
     margin: 0 5px;
     padding: 5px 5px 5px 5px;
@@ -14,7 +14,7 @@
     cursor: pointer;
 }
 
-.logout a{
+.logout a {
     color: black;
 }
 
@@ -26,8 +26,8 @@
 
 #logo {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 100px;
+    height: 100px;
     background-image: url("/img/caesar.png");
     background-size: 100% 100%;
     border-right: 1px solid #aaa;
@@ -43,6 +43,10 @@
 #navbar a {
     cursor: pointer;
     
+}
+
+.dropdown-menu {
+    min-width: 100px;
 }
 
 .menu {
@@ -73,8 +77,8 @@
 }
 
 .menu-item:hover {
-    background-color: #ddd;
-    color: #515151;
+    background-color: #5bc0de;
+    color: #000;
 }
 
 
