@@ -17,12 +17,11 @@
         },
 
         render: function () {
-            var self = this;
-
             this.$el.html(this.tpl({message: this.message}));
 
             if (this.type === 'info') {
                 this.$('.inform').fadeIn(FADE);
+                
                 $('html').one('click', this.close.bind(this));
 
                 this.timeout = setTimeout(this.close.bind(this), 3000);
