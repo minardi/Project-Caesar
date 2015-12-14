@@ -1,8 +1,36 @@
-.buttons-centered {
-    margin: auto;
-    width: 130px;
+.schedule-header, .schedule-footer, .schedule-content {
+    position:absolute;
+    width:100%;
 }
-
-.schedule-margin {
-    margin: 5px;
+.schedule-header {
+    height:230px;
+}
+.schedule-footer {
+    height:100px;
+}
+.schedule-footer {
+    bottom:0;
+}
+.schedule-content {
+    top:230px;
+    bottom:100px;
+    overflow-y:scroll;
+}
+.schedule-table {
+    table-layout: fixed;
+    width: 100%;
+}
+.schedule-bordered {
+    border: 1px double #ccc; 
+    padding: 3px;
+}
+.schedule-event {
+    background: #ccc;
+    border: 1px solid #ccc;    
+}
+.schedule-info {
+    position: absolute;
+    width: 7%;
+    z-index: 10;
+    background-color: rgba (0, 0, 0, 0);
 }

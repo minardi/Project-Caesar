@@ -10,7 +10,7 @@
             this.collection = collections.locations;
             this.filter = new Filter.Controller({
                 'collection': this.collection,
-                'pageSize': 6,
+                'pageSize': 9,
                 'searchField': 'city',
                 'viewName': 'locations'
             });

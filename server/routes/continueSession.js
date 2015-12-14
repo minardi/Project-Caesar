@@ -10,6 +10,8 @@ router.get('/', function(req, res, next) {
             success: false,
             recognizedUser: {}
         };
+
+    req.baseUrl = '/';
     
     SessionModel.findOne ({
         sessionID: req.query.id

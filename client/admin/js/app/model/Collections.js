@@ -2,12 +2,12 @@
 (function (This) {
     This.Locations = Backbone.Collection.extend({
         model: App.Admin.Models.Location,
-        url: '/dbLocations'
+        url: '/rest/dbLocations'
     });
 
     This.Groups = Backbone.Collection.extend({
         model: App.Admin.Models.Group,
-        url: '/groups'
+        url: '/rest/groups'
     });
 
     This.Users = Backbone.Collection.extend({

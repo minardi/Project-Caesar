@@ -1,8 +1,17 @@
 'use strict';
 (function (This) {
+    var FADE = 400;
+
     This.ConfirmView = Backbone.View.extend({
         tagName: 'div',
         className: 'message-wrap hide-message',
+        tpl: templates.confirmTpl,
+
+        events: {
+            'click .closeBtn': 'close',
+            'click .okBtn': 'ok',
+            'click .close': 'close'
+        },
 
         set: function (message, okCallback, closeCallback) {
             this.message = message;
@@ -11,35 +20,24 @@
         },
 
         render: function () {
-            var message = this.message,
-                okCallback = this.okCallback,
-                closeCallback = this.closeCallback;
-
-            BootstrapDialog.show({
-                title: 'Confirm',
-                message: message,
-                closable: false,
-                buttons: [{
-                        id: 'btn-1',
-                        label: 'Ok',
-                        action: function (dialogItself) {
-                            okCallback();
-
-                            dialogItself.close();
-                        }
-                    }, {
-                        id: 'btn-2',
-                        label: 'Close',
-                        action: function (dialogItself) {
-                            if (closeCallback) closeCallback();
-                            
-                            dialogItself.close();
-                        }
-                    }
-                ]
-            });
+            this.$el.html(this.tpl({message: this.message}));
+            this.$('.confirm').fadeIn(FADE);
         
             return this;
+        },
+
+        close: function () {
+            this.closeCallback();
+            this.$el.fadeOut(FADE, function () {
+                this.remove();
+            });
+        },
+
+        ok: function () {
+            this.okCallback();
+            this.$el.fadeOut(FADE, function () {
+                this.remove();
+            });
         }
     });
 })(App.Messanger);

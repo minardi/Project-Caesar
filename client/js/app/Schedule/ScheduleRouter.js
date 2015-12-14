@@ -2,7 +2,8 @@
 (function (This)  {
     This.Router = Backbone.Router.extend({
         routes: {
-            'Schedule': 'showSchedule'
+            'Schedule/:weekStart': 'showWeekSchedule',
+            'Schedule/edit': 'editSchedule'
         },
 
         initialize: function () {
@@ -10,9 +11,13 @@
 
             Backbone.history.loadUrl(Backbone.history.fragment);
         },
+        
+        showWeekSchedule: function (weekStart) {
+            this.controller.showSchedule(weekStart)
+        },
 
-        showSchedule: function () {
-            this.controller.showSchedule();
+        editSchedule: function () {
+            this.controller.editSchedule();
         }
     });
 })(App.Schedule);
