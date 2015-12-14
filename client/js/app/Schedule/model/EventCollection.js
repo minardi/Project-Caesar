@@ -10,8 +10,6 @@
                 }).id;
 
             this.forEach(function (item) {
-                console.log(item.groupID);
-                console.log(groupID);
                 if (item.get('groupID') === groupID) {
                     filtered.push(item);
                 }

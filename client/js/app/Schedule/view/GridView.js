@@ -6,8 +6,9 @@
         group: 'all',
         
         events: {
-            'click #nextButton': 'nextWeek',
-            'click #prevButton': 'prevWeek'
+            'click .nextButton': 'nextWeek',
+            'click .prevButton': 'prevWeek',
+            'click .dropdown-menu': 'handleMenu'
         },
 
         render: function (weekStart, group) {
@@ -28,6 +29,7 @@
             
             if (group !== 'all') {
                 events = events.filter(group.replace('+', ' '));
+                this.$el.find('#groupDropdown').html(group.replace('+', ' ') + ' <span class="caret"></span>');
             }
             
             events.forEach((function (item) {
@@ -51,6 +53,13 @@
         prevWeek: function () {
             cs.mediator.publish('scheduleRequired', 'Schedule/' + 
                 this.weekStart.subtract(7, 'd').format('MM-DD-YYYY') + '/' + this.group);
+        },
+        
+        handleMenu: function (event) {
+            var eventTrigger = event.originalEvent.target.innerText,
+                path = (eventTrigger === 'All groups') ? 'all' : eventTrigger.replace(' ', '+');
+            cs.mediator.publish('scheduleRequired', 'Schedule/' + 
+                this.weekStart.format('MM-DD-YYYY') + '/' + path);
         }
     });
 })(App.Schedule);
