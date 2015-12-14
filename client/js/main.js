@@ -10,7 +10,8 @@ var App = {
         Filter: {},
         Messanger: {},
         Common: {},
-        Schedule: {}
+        Schedule: {},
+        Employee: {}
     },
     collections = {},
     cs = {},
