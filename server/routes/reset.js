@@ -6,7 +6,8 @@ var express = require('express'),
     userList = require('../reset_data/user-list.js'),
     eventList = require('../reset_data/event-list.js'),
     officeList = require('../reset_data/office-list.js'),
-    roomList = require('../reset_data/room-list.js');
+    roomList = require('../reset_data/room-list.js'),
+    async = require('async');
 
 require('../models/Location');
 require('../models/User');
@@ -25,7 +26,7 @@ router.get('/', function(req, res) {
             OfficeModel = mongoose.model('Office'),
             RoomModel = mongoose.model('Room'),
             groupInDb, locationInDb, userInDb, 
-            eventInDb, officeInDb, roomInDb;
+            officeInDb, roomInDb;
 
         groupList.forEach(function (groupJSON) {
             groupInDb = GroupModel(groupJSON);
@@ -52,18 +53,23 @@ router.get('/', function(req, res) {
                     console.log(err);
                 }
             }); 
-        }); 
-            
-        GroupModel.findOne({}, function (err, group) {
-            eventList.forEach(function (eventJSON) {
-                eventInDb = EventModel(eventJSON);
-                eventInDb.groupID = group._id;
-                eventInDb.save(function (err) {
-                    if (err) {
-                        console.log(err);
-                    }
+        });    
+        
+        async.eachSeries(eventList, function (eventJSON, callback) {
+            var eventInDb = EventModel(eventJSON);
+            GroupModel.find({}, function (err, groups) {
+                eventInDb.groupID = groups[Math.floor(Math.random() * groups.length)]._id;
+                async.setImmediate(function () {
+                    eventInDb.save(function (err) {
+                        if (err) {
+                            console.log(err);
+                        }
+                    });
+                    callback();
                 });
-            });
+            }); 
+        }, function () {
+            console.log('ok');
         });
 
         officeList.forEach(function (officeJSON) {

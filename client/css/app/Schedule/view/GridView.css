@@ -3,7 +3,7 @@
     width:100%;
 }
 .schedule-header {
-    height:230px;
+    height:180px;
 }
 .schedule-footer {
     height:100px;
@@ -12,7 +12,7 @@
     bottom:0;
 }
 .schedule-content {
-    top:230px;
+    top:180px;
     bottom:100px;
     overflow-y:scroll;
 }
@@ -33,4 +33,9 @@
     width: 7%;
     z-index: 10;
     background-color: rgba (0, 0, 0, 0);
+}
+.hvr-fade:hover, .hvr-fade:focus, .hvr-fade:active {
+    background-color: #ccc;
+    cursor: pointer;
+    color: white;
 }

@@ -5,10 +5,10 @@
         this.editView = new This.EditView({collection: collections.events});
         this.$el = $('#container');
 
-        this.showSchedule = function (weekStart) {
+        this.showSchedule = function (weekStart, group) {
             this.$el.empty();
             this.gridView.delegateEvents();
-            this.$el.append(this.gridView.render(weekStart).el);
+            this.$el.append(this.gridView.render(weekStart, group).el);
         };
 
         this.editSchedule = function () {
