@@ -46,6 +46,7 @@ table {
 
 .table thead > tr > th {
   background-color: #70adc9;
+  font-size: 12px;
 }
 
 .table tbody > tr > td {

@@ -2,7 +2,6 @@
 (function (This)  {
     This.Router = Backbone.Router.extend({
         routes: {
-            'open*': 'showSchedule',
             'Schedule': 'showSchedule',
             'Schedule/Groups/:name': 'showSchedule'
         },
@@ -18,11 +17,10 @@
 
         choseGroup: function () {
             console.log('chose group');
-//            this.controller.showGroups();
         },
 
         showSchedule: function (group) {
-            this.controller.showSchedule(group);
+            this.controller.showWeekSchedule(group);
         }
     });
 })(App.Schedule);

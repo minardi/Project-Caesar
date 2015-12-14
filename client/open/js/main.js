@@ -16,10 +16,10 @@ $(function () {
 
     function main () {
         cs.mediator = new Mediator();
-    //    cs.subRouters = {};
-    //    cs.router = new App.Router();
-        controller = new App.Schedule.Controller();
-        controller.showWeekSchedule();
+        cs.subRouters = {};
+        cs.router = new App.Router();
+//        controller = new App.Schedule.Controller();
+//        controller.showWeekSchedule();
 
         Backbone.history.start({pushState: true});
     }    
