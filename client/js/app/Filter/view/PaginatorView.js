@@ -6,7 +6,9 @@
         tpl: templates.paginatorTpl,
 
         events: {
-            'click .pageEl': 'changePage'
+            'click .pageEl': 'changePage',
+            'click .prev': 'prevPage',
+            'click .next': 'nextPage'
         },
 
         render: function (filter) {
@@ -20,6 +22,14 @@
 
         changePage: function (e) {
             cs.mediator.publish(this.model.get('viewName') + 'ChangePage', e.currentTarget.value-1);
+        },
+
+        prevPage: function () {
+            cs.mediator.publish(this.model.get('viewName') + 'PrevPage');
+        },
+        
+        nextPage: function () {
+            cs.mediator.publish(this.model.get('viewName') + 'NextPage');
         }        
     });
 })(App.Filter);

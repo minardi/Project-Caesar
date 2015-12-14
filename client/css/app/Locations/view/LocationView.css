@@ -7,11 +7,8 @@
 }
 
 .location-nav {
+  background-color: #EFEFEF;
   cursor: default;
-}
-
-.location-nav:hover {
-  background-color: #FFFFFF;
 }
 
 .location-item * {

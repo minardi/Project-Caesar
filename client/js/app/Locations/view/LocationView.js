@@ -12,7 +12,6 @@
 
         render: function () { 
             this.$el.html(this.tpl(this.getExtendedHash(this.model)));
-//            this.$el.html(this.tpl(this.model.toJSON()));
 
             return this;
         },
