@@ -62,7 +62,7 @@
                         teachers.forEach (function (teacher) {
                             var teacherName = teacher.get('lastName')
                                               + ' ' + teacher.get('name');
-                            
+
                             teachersFullName.push(teacherName);
                         });
                         collections.teachers = teachersFullName;
