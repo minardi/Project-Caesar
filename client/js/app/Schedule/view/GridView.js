@@ -11,7 +11,7 @@
 
         render: function (weekStart) {
             if (weekStart) {
-                this.weekStart = moment(weekStart);
+                this.weekStart = moment(weekStart, 'MM-DD-YYYY');
             }
             this.$el.empty().append(this.tpl({
                 width: 8,
