@@ -3,6 +3,7 @@
     This.EmployeeCollection = Backbone.Collection.extend({
         model: This.Employee,
         url: '/rest/employees',
+        
         filter: function (role) {
             var filteredCollection = new App.Employee.EmployeeCollection();
             this.forEach(function (item) {
