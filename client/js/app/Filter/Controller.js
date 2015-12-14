@@ -8,6 +8,10 @@
             this.filter.set(attributes);
         };
 
+        this.get = function (attribute) {
+            return this.filter.get(attribute);
+        };
+
         this.renderPaginator = function () {
             var paginatorView = new This.PaginatorView({model: this.filter});
                     

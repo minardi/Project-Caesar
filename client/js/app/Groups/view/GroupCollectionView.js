@@ -20,12 +20,14 @@
             this.listenTo(this.collection, 'destroy', this.renderAfterDestroy);
             this.filter = new Filter.Controller({
                 'collection': this.collection,
-                'pageSize': 6,
+                'pageSize': 9,
                 'searchField': 'name',
                 'viewName': 'groups'
             });
 
             cs.mediator.subscribe('groupsChangePage', this.changePage, {}, this);
+            cs.mediator.subscribe('groupsPrevPage', this.prevPage, {}, this);
+            cs.mediator.subscribe('groupsNextPage', this.nextPage, {}, this);
             cs.mediator.subscribe('groupsStartSearch', this.startSearch, {}, this);
         },
 
@@ -126,6 +128,25 @@
         changePage: function (currentPage) {
             this.filter.set({'currentPage': currentPage});
             this.renderAll(this.filter.getCollection());            
+        },
+
+        prevPage: function () {
+            var currentPage = this.filter.get('currentPage');
+
+            if (currentPage > 0) {
+                this.filter.set({'currentPage': --currentPage});
+                this.renderAll(this.filter.getCollection());                            
+            }
+        },
+
+        nextPage: function () {
+            var currentPage = this.filter.get('currentPage'),
+                maxPage = this.filter.get('maxPage') - 1;
+             
+            if (currentPage < maxPage) {
+                this.filter.set({'currentPage': ++currentPage});
+                this.renderAll(this.filter.getCollection());                            
+            }
         },
 
         startSearch: function (searchString) {

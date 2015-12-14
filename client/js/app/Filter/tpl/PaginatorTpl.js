@@ -1,5 +1,10 @@
 templates.paginatorTpl = _.template([
     '<ul class="pagination">',
+      '<% if (maxPage > 1) { %>',
+        '<li class="prev">',
+            '<span aria-hidden="true">&laquo;</span>',
+        '</li>',
+      '<% } %>',
       '<% for (var i = 1; (i <= maxPage) && (maxPage > 1); i++) { %>',
           '<li class="pageEl',
             '<% if(i == currentPage + 1) {%>',
@@ -7,5 +12,10 @@ templates.paginatorTpl = _.template([
             '<% }; %>',
           '" value="<%= i %>"><a><%= i %></a></li>',
       '<% }; %>',
+      '<% if (maxPage > 1) { %>',
+        '<li class="next">',
+            '<span aria-hidden="true">&raquo;</span>',
+        '</li>',
+      '<% } %>',
     '</ul>'
 ].join(''));
