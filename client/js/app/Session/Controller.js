@@ -14,7 +14,7 @@
             
             cs.mediator.subscribe('logoutRequired', function () {
                 Backbone.ajax({
-                    url: 'logout',
+                    url: '/logout',
                     data: 'sessionID=' + cs.currentUser.getSessionID(),
                     success: logoutSuccess
                 });
