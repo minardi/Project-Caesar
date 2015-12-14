@@ -120,8 +120,7 @@
         },
 
         getCurrentDate: function () {
-            var currentDate = new Date();
-            return currentDate.toISOString();
+            return moment().format();
         },
         
         changePage: function (currentPage) {
