@@ -46,7 +46,7 @@ $(function () {
 
         // temporary solution
         $('#right-navig').on('click', function () {
-            cs.mediator.publish('scheduleRequired', 'Schedule/' + moment().week());
+            cs.mediator.publish('scheduleRequired', 'Schedule/' + moment().day('Monday').format('MM-DD-YYYY'));
         });
     }
 });

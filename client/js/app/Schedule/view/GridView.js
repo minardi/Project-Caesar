@@ -9,9 +9,9 @@
             'click #prevButton': 'prevWeek'
         },
 
-        render: function (week) {
-            if (week) {
-                this.weekStart = moment().week(week).day('Monday');
+        render: function (weekStart) {
+            if (weekStart) {
+                this.weekStart = moment(weekStart);
             }
             this.$el.empty().append(this.tpl({
                 width: 8,
@@ -33,11 +33,11 @@
         },
         
         nextWeek: function () {
-            cs.mediator.publish('nextWeek');
+            cs.mediator.publish('scheduleRequired', 'Schedule/' + this.weekStart.add(7, 'd').format('MM-DD-YYYY'));
         },
         
         prevWeek: function () {
-            cs.mediator.publish('prevWeek');
+            cs.mediator.publish('scheduleRequired', 'Schedule/' + this.weekStart.subtract(7, 'd').format('MM-DD-YYYY'));
         }
     });
 })(App.Schedule);

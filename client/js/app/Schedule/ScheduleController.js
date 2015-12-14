@@ -4,28 +4,17 @@
         this.gridView = new This.GridView();
         this.editView = new This.EditView({collection: collections.events});
         this.$el = $('#container');
-        this.currentWeek = moment().week();
 
-        this.showSchedule = function (week) {
+        this.showSchedule = function (weekStart) {
             this.$el.empty();
             this.gridView.delegateEvents();
-            this.$el.append(this.gridView.render(week || this.currentWeek).el);
+            this.$el.append(this.gridView.render(weekStart).el);
         };
 
         this.editSchedule = function () {
             this.$el.empty();
             this.$el.append(this.editView.render().el);
         };
-        
-        cs.mediator.subscribe('nextWeek', function () {
-            cs.subRouters['Schedule'].controller.currentWeek++;
-            cs.subRouters['Schedule'].controller.showSchedule();
-        }, this);
-        
-        cs.mediator.subscribe('prevWeek', function () {
-            cs.subRouters['Schedule'].controller.currentWeek--;
-            cs.subRouters['Schedule'].controller.showSchedule();
-        }, this);
 
         cs.mediator.subscribe('editLocationSchedule', function (location) {
             this.$el.empty();
