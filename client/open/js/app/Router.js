@@ -2,12 +2,11 @@
 (function (This)  {
     This.Router = Backbone.Router.extend({
         routes: {
-            'open/': 'navigateSchedule',
+            '': 'navigateSchedule',
             'Schedule': 'schedule'
         },
 
         initialize: function () {
-            console.log('Init router');
         },
         
         navigateSchedule: function () {
@@ -15,7 +14,6 @@
         },
 
         schedule: function () {
-            console.log('Schedule router');
             cs.subRouters['Schedule'] || (cs.subRouters['Schedule'] = new App.Schedule.Router());
         }
     });

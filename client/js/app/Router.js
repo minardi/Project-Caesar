@@ -11,7 +11,6 @@
 
         initialize: function () {
             cs.mediator.subscribe('SelectedMenu', this.navigation, {}, this);
-            cs.mediator.subscribe('RouteToLocations', this.navigateLocations, null, this);
             cs.mediator.subscribe('scheduleRequired', this.navigation, {}, this);
         },
         
@@ -25,10 +24,6 @@
         
         schedule: function () {
             cs.subRouters['Schedule'] || (cs.subRouters['Schedule'] = new App.Schedule.Router());
-        },
-
-        navigateLocations: function () {
-            this.navigate('Locations', {trigger: true});
         },
 
         navigation: function (pathname) {
