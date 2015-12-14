@@ -5,6 +5,7 @@ var express = require('express'),
     logout = require('./routes/logout'),
     continueSession = require('./routes/continueSession'),
     rest = require('./routes/rest'),
+    openPage = require('./routes/openPage'),
     app = express();
     
 app.use('/', routes);
@@ -13,6 +14,7 @@ app.use('/rest', rest);
 app.use('/login', login);
 app.use('/logout', logout);
 app.use('/continueSession', continueSession);
+app.use('/open', openPage);
 app.use('*', function(req, res){
     console.log(req.baseUrl);
     var staticRoute = '../client';

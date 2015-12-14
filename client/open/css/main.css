@@ -1,0 +1,55 @@
+#container {
+    padding: 25px;
+}
+
+.schedule-event {
+    background: #c6e7f4;
+    font-size: 14px;
+}
+
+.main-nav {
+    opacity: 0.4;
+    cursor: pointer;
+    font-size: 30px;
+    text-align: center;
+    border: 1px solid #CCCCCC;
+    transition: .3s;
+}
+
+.main-nav:hover {
+  background-color: #EFEFEF;
+}
+
+.main-nav {
+  position: relative;
+  height: 70px;
+  margin: 6px 0px;
+}
+
+.main-nav span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 100;
+  margin-top: -15px;
+  margin-left: -15px;
+}
+
+.week-month-switch {
+  float: right;
+}
+
+table {
+  font-size: 10px; 
+  text-align: center;
+}
+
+.table thead > tr > th {
+  background-color: #70adc9;
+}
+
+.table tbody > tr > td {
+  padding: 2px;
+  border-color: #70adc9;
+}
+
