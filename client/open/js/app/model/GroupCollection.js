@@ -4,4 +4,4 @@
         model: This.Group,
         url: '/rest/groups'
     });
-})(App.Schedule);
+})(App);

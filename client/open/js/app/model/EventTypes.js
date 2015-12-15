@@ -9,4 +9,4 @@
             EXPERT_WORK: 'Expert work'
         };
     })();
-})(App.Schedule);
+})(App);
