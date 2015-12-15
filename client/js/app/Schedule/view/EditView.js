@@ -3,7 +3,7 @@
     This.EditView = Backbone.View.extend({
         tpl: templates.editViewTpl,
         roomsTpl: templates.roomsTpl,
-        className: 'edit-panel',
+        className: 'edit-panel row',
         events: {
             'change #offices': 'loadRooms'
         },
@@ -29,11 +29,12 @@
         deleteEvent: function() {
             this.collection.last().destroy({wait: true});
         }, 
-        loadRooms: function (){
-            var officeName = this.$el.find('#offices :selected').val(),
-                officeId = collections.offices.findWhere({name: officeName}).id;
-            this.$el.find('#rooms').html(this.roomsTpl(collections.rooms.where({office: officeId})));
-        },
+        // loadRooms: function (){
+        //     var officeName = this.$el.find('#offices .active span').text(),
+        //         officeId = collections.offices.findWhere({name: officeName}).id;
+
+        //     this.$el.find('#rooms').html(this.roomsTpl(collections.rooms.where({office: officeId})));
+        // },
         tplParameters: function (groupName) {
             var city = collections.groups.findWhere({name: groupName}).get('location'),
                 locationId = collections.locations.findWhere({city: city}).id,
