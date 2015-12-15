@@ -12,21 +12,9 @@
         };
 
         this.editSchedule = function (weekStart, group) {
-            this.showSchedule();
-            this.$el.append(this.editView.render().el);
+            this.showSchedule(weekStart, group);
+            this.$el.append(this.editView.render(group.replace('+', ' ')).el);
         };
-
-        cs.mediator.subscribe('editLocationSchedule', function (location) {
-            this.$el.empty();
-            this.editView = new This.EditView({location: location});
-            this.$el.append(this.editView.render().el);
-        }, {}, this);
-
-        cs.mediator.subscribe('editGroupSchedule', function (group) {
-            this.$el.empty();
-            this.editView = new This.EditView({group: group});
-            this.$el.append(this.editView.render().el);
-        }, {}, this);
 
         cs.mediator.subscribe('addEvent', function (json) {
             this.editView.addEvent(json);
