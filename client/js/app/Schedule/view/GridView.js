@@ -4,14 +4,16 @@
         tpl: templates.gridTpl,
         weekStart: moment().day('Monday'),
         group: 'all',
-        
+        urlSuffix: '',
+
         events: {
             'click .nextButton': 'nextWeek',
             'click .prevButton': 'prevWeek',
-            'click .dropdown-menu': 'handleMenu'
+            'click .dropdown-menu': 'handleMenu',
+            'click #up-navig': 'toEdit'
         },
 
-        render: function (weekStart, group) {
+        render: function (weekStart, group, inEdit) {
             var events = collections.events.clone();
             
             if (weekStart) {
@@ -20,7 +22,8 @@
             if (group) {
                 this.group = group;
             }
-            
+            this.urlSuffix  = inEdit ? '/edit' : '';
+
             this.$el.empty().append(this.tpl({
                 width: 8,
                 height: 25,
@@ -31,7 +34,9 @@
                 events = events.filter(group.replace('+', ' '));
                 this.$el.find('#groupDropdown').html(group.replace('+', ' ') + ' <span class="caret"></span>');
             }
-            
+            this.UpdateUpNavigation(group);
+
+
             events.forEach((function (item) {
                 var eventID, i;
                 for (i = 0; i < item.get('duration'); i++) {
@@ -47,19 +52,34 @@
         
         nextWeek: function () {
             cs.mediator.publish('scheduleRequired', 'Schedule/' + 
-                this.weekStart.add(7, 'd').format('MM-DD-YYYY') + '/' + this.group);
+                this.weekStart.add(7, 'd').format('MM-DD-YYYY') + '/' + this.group + this.urlSuffix);
         },
         
         prevWeek: function () {
             cs.mediator.publish('scheduleRequired', 'Schedule/' + 
-                this.weekStart.subtract(7, 'd').format('MM-DD-YYYY') + '/' + this.group);
+                this.weekStart.subtract(7, 'd').format('MM-DD-YYYY') + '/' + this.group + this.urlSuffix);
         },
         
         handleMenu: function (event) {
             var eventTrigger = event.originalEvent.target.innerText,
                 path = (eventTrigger === 'All groups') ? 'all' : eventTrigger.replace(' ', '+');
             cs.mediator.publish('scheduleRequired', 'Schedule/' + 
-                this.weekStart.format('MM-DD-YYYY') + '/' + path);
+                this.weekStart.format('MM-DD-YYYY') + '/' + path + this.urlSuffix);
+        },
+
+        toEdit: function (event) {
+            if (this.group !== 'all') {
+                cs.mediator.publish('scheduleRequired', 'Schedule/' + 
+                    this.weekStart.format('MM-DD-YYYY') + '/' + this.group + '/edit');
+            }
+        },
+
+        UpdateUpNavigation: function (group) {
+            if (group === 'all') {
+                this.$el.find('#up-navig').addClass('location-nav');
+            } else {
+                this.$el.find('#up-navig').removeClass('location-nav');
+            }
         }
     });
 })(App.Schedule);

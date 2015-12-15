@@ -5,7 +5,8 @@
         roomsTpl: templates.roomsTpl,
         className: 'edit-panel',
         events: {
-            'change #offices': 'loadRooms'
+            'change #offices': 'loadRooms',
+            'click .dropdown-menu': 'handleMenu'
         },
         render: function (groupName) {
             this.$el.empty()
@@ -29,11 +30,13 @@
         deleteEvent: function() {
             this.collection.last().destroy({wait: true});
         }, 
+
         loadRooms: function (){
             var officeName = this.$el.find('#offices :selected').val(),
                 officeId = collections.offices.findWhere({name: officeName}).id;
             this.$el.find('#rooms').html(this.roomsTpl(collections.rooms.where({office: officeId})));
         },
+
         tplParameters: function (groupName) {
             var city = collections.groups.findWhere({name: groupName}).get('location'),
                 locationId = collections.locations.findWhere({city: city}).id,
