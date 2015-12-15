@@ -5,7 +5,8 @@
         roomsTpl: templates.roomsTpl,
         className: 'edit-panel row',
         events: {
-            'change #offices': 'loadRooms'
+            'change #offices': 'loadRooms',
+            'click .dropdown-menu': 'handleMenu'
         },
         render: function (groupName) {
             this.$el.empty()
