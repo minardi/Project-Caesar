@@ -9,27 +9,31 @@
         },
         render: function () {
             var parameters = {
-                types: Object.keys(This.EventTypes),
-                offices: getCollection('/rest/offices'),
-                rooms: getCollection('/rest/rooms')
-            };
-            if (!this.group) {
-                parameters['groups'] = collections.groups;
+                    types: Object.keys(This.EventTypes),
+                    offices: collections.offices,
+                    rooms: collections.rooms
+                },
+                locationId,
+                officesInLocation,
+                roomsInOffice;
+
+            locationId = this.location ? 
+                this.location.id :
+                collections.locations.findByCity(this.group.location);
+
+            officesInLocation = collections.offices.inLocation(locationId);
+            if (officesInLocation.length === 0) {
+                officesInLocation = null;
             }
+            roomsInOffice = officesInLocation ?
+                collections.rooms.inOffice(officesInLocation[0].id) : null;
+
+            parameters['groups'] = (this.group ? null : collections.groups);
+            parameters['offices'] = officesInLocation;
+            parameters['rooms'] = roomsInOffice;
+
             this.$el.empty().append(this.tpl(parameters));
 
-            function getCollection(url) {
-                var Model = Backbone.Model.extend();
-                var Collection = Backbone.Collection.extend({
-                   model: Model,
-                   url: url
-                });
-
-                var list = new Collection(); 
-                list.fetch({async: false});
-                console.log(list);
-                return list;
-            }
             return this;
         },
         addEvent: function (eventJSON) {

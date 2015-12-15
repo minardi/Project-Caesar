@@ -23,12 +23,16 @@ $(function () {
     collections.groups = new App.Groups.GroupCollection();
     collections.locations = new App.Locations.LocationCollection();
     collections.events = new App.Schedule.EventCollection();
-    
+    collections.offices = new App.Schedule.OfficeCollection();
+    collections.rooms = new App.Schedule.RoomCollection();
+
     collections.groups.fetch({success: function () {
         collections.locations.fetch({success: main})
     }});
     collections.events.fetch();
-
+    collections.offices.fetch();
+    collections.rooms.fetch();
+    
     function main () {
         cs.mediator = new Mediator();
         cs.messenger = new App.Messenger.Controller();
