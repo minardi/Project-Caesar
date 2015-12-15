@@ -24,4 +24,4 @@
             return this;
         }
     });
-})(App.Messanger);
+})(App.Messenger);

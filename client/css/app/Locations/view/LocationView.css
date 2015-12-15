@@ -7,8 +7,12 @@
 }
 
 .location-nav {
-  background-color: #EFEFEF;
   cursor: default;
+  color: rgba(0, 0, 0, 0.09);
+}
+
+.location-nav span:hover {
+  color: inherit;
 }
 
 .location-item * {

@@ -14,7 +14,7 @@
                'showMy': this.showMy
             });
             
-            this.collectionViewEl = $('#container');
+            this.collectionViewEl = $('#main-container');
         },
 
         showAllCurrentGroups: function () {

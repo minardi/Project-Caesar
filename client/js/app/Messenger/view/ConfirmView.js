@@ -40,4 +40,4 @@
             });
         }
     });
-})(App.Messanger);
+})(App.Messenger);
