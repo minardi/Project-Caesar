@@ -35,8 +35,8 @@
                 events = events.filter(group.replace('+', ' '));
                 this.$el.find('#groupDropdown').html(group.replace('+', ' ') + ' <span class="caret"></span>');
             }
-            this.updateUpNavigation(group);
-            this.UpdateDownNavigation(inEdit);
+            this.updateUpNavigation(group, inEdit);
+            this.updateDownNavigation(inEdit);
 
             events.forEach((function (item) {
                 var eventID, i;
@@ -82,19 +82,19 @@
             }
         },
 
-        updateUpNavigation: function (group) {
-            if (group === 'all') {
-                $('#up-navig').addClass('location-nav');
+        updateUpNavigation: function (group, inEdit) {
+            if (group === 'all' || inEdit) {
+                this.$el.find('#up-navig').addClass('location-nav');
             } else {
-                $('#up-navig').removeClass('location-nav');
+                this.$el.find('#up-navig').removeClass('location-nav');
             }
         },
 
         updateDownNavigation: function (inEdit) {
             if (!inEdit) {
-                $('#down-navig').addClass('location-nav');
+                this.$el.find('#down-navig').addClass('location-nav');
             } else {
-                $('#down-navig').removeClass('location-nav');
+                this.$el.find('#down-navig').removeClass('location-nav');
             }
         }
     });
