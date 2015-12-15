@@ -1,5 +1,4 @@
-var mongoose = require('mongoose'),
-    async = require('async');
+var mongoose = require('mongoose');
 
 var userAcess = function (req, cb) {
     var SessionModel = mongoose.model('Session'),

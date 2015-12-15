@@ -1,7 +1,6 @@
 var express = require('express'),
     router = express.Router(),
     mongoose = require('mongoose'),
-    userAcess = require('./userAcess'),
     Group = mongoose.model('Group');
 
 router.get('/', function(req, res, next) {
@@ -13,14 +12,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-    userAcess.userAcess(req, function(result){
-        if(result) {
-            groupInit();
-        } else {
-            console.log('Post Forbiden');
-        };
-    });
-
     function groupInit (argument) {
         var Group = mongoose.model('Group'),
             newGroup = new Group({
@@ -46,33 +37,21 @@ router.post('/', function (req, res, next) {
 });
 
 router.put('/:id', function (req, res, next) {
-    userAcess.userAcess(req, function(result){
-        if(result) {
-            Group.findOneAndUpdate({_id:req.params.id}, req.body, function (err) {
-                if (err) {
-                    console.log(err);
-                    res.send(err);
-                } else {
-                    res.json(req.body);
-                }
-            });
+    Group.findOneAndUpdate({_id:req.params.id}, req.body, function (err) {
+        if (err) {
+            console.log(err);
+            res.send(err);
         } else {
-            console.log('Update Forbiden');
-        };
+            res.json(req.body);
+        }
     });
 });
 
 router.delete('/:id', function (req, res, next) {
-    userAcess.userAcess(req, function(result){
-        if(result) {
-            Group.remove({_id: req.params.id}, function(err) {
-                if (err) {throw err};
-            });
-            res.json({status: 'success'});
-        } else {
-            console.log('Delete Forbiden');
-        };
+    Group.remove({_id: req.params.id}, function(err) {
+        if (err) {throw err};
     });
+    res.json({status: 'success'});
 });
 
 module.exports = router;
