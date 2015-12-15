@@ -11,8 +11,8 @@
             this.$el.append(this.gridView.render(weekStart, group).el);
         };
 
-        this.editSchedule = function () {
-            this.$el.empty();
+        this.editSchedule = function (weekStart, group) {
+            this.showSchedule();
             this.$el.append(this.editView.render().el);
         };
 
