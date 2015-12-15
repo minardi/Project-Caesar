@@ -7,6 +7,7 @@ var express = require('express'),
     eventList = require('../reset_data/event-list.js'),
     officeList = require('../reset_data/office-list.js'),
     roomList = require('../reset_data/room-list.js'),
+    contributorList = require('../reset_data/contributors-list.js'),
     async = require('async');
 
 require('../models/Location');
@@ -16,6 +17,7 @@ require('../models/Event');
 require('../models/Office');
 require('../models/Room');
 require('../models/Group');
+require('../models/Contributor');
     
 router.get('/', function(req, res) {
     mongoose.connection.db.dropDatabase(function(err, result) {
@@ -25,8 +27,10 @@ router.get('/', function(req, res) {
             EventModel = mongoose.model('Event'),
             OfficeModel = mongoose.model('Office'),
             RoomModel = mongoose.model('Room'),
+            ContributorModel = mongoose.model('Contributor'),
+
             groupInDb, locationInDb, userInDb, 
-            officeInDb, roomInDb;
+            officeInDb, roomInDb, contributorInDb;
 
         groupList.forEach(function (groupJSON) {
             groupInDb = GroupModel(groupJSON);
@@ -84,6 +88,15 @@ router.get('/', function(req, res) {
         roomList.forEach(function (roomJSON) {
             roomInDb = RoomModel(roomJSON);
             roomInDb.save(function (err) {
+                if (err) {
+                    console.log(err);
+                }
+            });
+        });
+
+        contributorList.forEach(function (contributorJSON) {
+            contributorInDb = ContributorModel(contributorJSON);
+            contributorInDb.save(function (err) {
                 if (err) {
                     console.log(err);
                 }

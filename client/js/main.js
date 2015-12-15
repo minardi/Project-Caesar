@@ -11,7 +11,8 @@ var App = {
         Messenger: {},
         Common: {},
         Schedule: {},
-        Employee: {}
+        Employee: {},
+        Contributors: {}
     },
     collections = {},
     cs = {},
@@ -25,6 +26,7 @@ $(function () {
     collections.events = new App.Schedule.EventCollection();
     collections.offices = new App.Schedule.OfficeCollection();
     collections.rooms = new App.Schedule.RoomCollection();
+    collections.contributors = new App.Contributors.ContributorCollection();
 
     collections.groups.fetch({success: function () {
         collections.locations.fetch({success: main})
@@ -32,6 +34,7 @@ $(function () {
     collections.events.fetch();
     collections.offices.fetch();
     collections.rooms.fetch();
+    collections.contributors.fetch();
     
     function main () {
         cs.mediator = new Mediator();
