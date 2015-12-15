@@ -3,6 +3,7 @@
     This.Router = Backbone.Router.extend({
         routes: {
             'Schedule/:weekStart/:group': 'showWeekSchedule',
+            'Schedule/:weekStart/:group/edit': 'editWeekSchedule',
             'Schedule/edit': 'editSchedule',
             'Schedule': 'showSchedule'
         },
@@ -15,6 +16,10 @@
         
         showWeekSchedule: function (weekStart, group) {
             this.controller.showSchedule(weekStart, group)
+        },
+
+        editWeekSchedule: function (weekStart, group) {
+            this.controller.editSchedule(weekStart, group);
         },
 
         editSchedule: function () {
