@@ -3,7 +3,7 @@
     This.Controller = function() {
         this.gridView = new This.GridView();
         this.editView = new This.EditView({collection: collections.events});
-        this.$el = $('#container');
+        this.$el = $('#main-container');
 
         this.showSchedule = function (weekStart, group) {
             this.$el.empty();

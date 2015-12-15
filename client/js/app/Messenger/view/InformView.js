@@ -5,8 +5,7 @@
     This.InformView = Backbone.View.extend({
         tagName: 'div',
         events: {
-            'click .close': 'close',
-            'click': 'stopPropagation'
+            'click .close': 'close'
         },
         className: 'message-wrap',
 
@@ -22,15 +21,13 @@
             if (this.type === 'info') {
                 this.$('.inform').fadeIn(FADE);
                 
-                $('html').one('click', this.close.bind(this));
-
                 this.timeout = setTimeout(this.close.bind(this), 3000);
             } else if (this.type === 'warning') {
                 this.$('.warning').fadeIn(FADE);
-                $('html').one('click', this.close.bind(this));
+
             } else if (this.type === 'error') {
                 this.$('.error').fadeIn(FADE);
-                this.$('.darkback-error').one('click', this.close.bind(this));
+
             }
 
             return this;
@@ -42,10 +39,6 @@
             });
 
             clearTimeout(this.timeout);
-        },
-
-        stopPropagation: function (event) {
-            event.stopPropagation();
         }
     });
-})(App.Messanger);
+})(App.Messenger);

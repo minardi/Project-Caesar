@@ -8,8 +8,10 @@ templates.groupTpl = _.template([
                 '<span class="glyphicon glyphicon-pencil" aria-hidden="true" data-toggle="modal" data-target="#groupEdit"></span>',
             '</a>',
         '<% } %>',
-        '<h4><%= name %></h4>',
-        '<p><%= startDate %> - <%= finishDate %></p>',
-        '<p><span><%= direction %> </span></p>',
+        '<div class="content-wrap">',
+            '<h4><%= name %></h4>',
+            '<p><%= startDate %> - <%= finishDate %></p>',
+            '<p><span><%= direction %> </span></p>',
+        '</div>',
     '</div>'
 ].join(''));

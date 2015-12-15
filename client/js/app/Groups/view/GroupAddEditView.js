@@ -94,9 +94,9 @@
 
             if (this.model.isValid() && this.model.isNew()) {
                 this.collection.add(this.model);
-                cs.messanger.showInformation('Group added');
+                cs.messenger.showInformation('Group added');
             } else if (this.model.isValid() && !this.model.isNew()) {
-                cs.messanger.showInformation('Group updated');
+                cs.messenger.showInformation('Group updated');
             };
         },
 

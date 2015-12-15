@@ -15,3 +15,20 @@
 .experts-block input {
     margin-bottom: 5px;
 }
+
+.content-item span.glyphicon {
+    font-size: 15px;
+}
+
+.content-wrap {
+    padding: 15px 20px;
+    line-height: 2;
+}
+
+    .content-wrap h4 {
+        font-size: 22px;
+    }
+
+    .content-wrap p {
+        font-size: 18px;
+    }

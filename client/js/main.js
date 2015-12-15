@@ -8,7 +8,7 @@ var App = {
         Error: {},
         Locations: {},
         Filter: {},
-        Messanger: {},
+        Messenger: {},
         Common: {},
         Schedule: {},
         Employee: {}
@@ -31,8 +31,8 @@ $(function () {
 
     function main () {
         cs.mediator = new Mediator();
-        cs.messanger = new App.Messanger.Controller();
-        cs.messanger.start();
+        cs.messenger = new App.Messenger.Controller();
+        cs.messenger.start();
         cs.subRouters = {};
         cs.router = new App.Router();
         cs.cookiesController = new App.Cookies.Controller();

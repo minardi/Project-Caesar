@@ -1,6 +1,8 @@
 templates.currentSessionTpl = _.template([
-    '<span class="glyphicon glyphicon-user" aria-hidden="true"></span> ',
-    '<%= name %>,<br>',
-    '<%= role %><br>',
-    '<input type=\'button\' id=\'logoutButton\' value=\'Log Out\' class=\'btn btn-xs btn-primary\'>'
+	'<div class="user-info-wrap">',
+	    '<span class="glyphicon glyphicon-user" aria-hidden="true"></span><br>',
+	    '<%= name %>,<br>',
+	    '<%= role %><br>',
+	'</div>',
+    '<input type=\'button\' id=\'logoutButton\' value=\'Log Out\' class=\'btn btn-md btn-primary\'>'
 ].join(''));
