@@ -7,6 +7,7 @@ var express = require('express'),
     rooms = require('./rooms'),
     offices = require('./offices'),
     employees = require('./employees'),
+    contributors = require('./contributors'),
     router = express.Router();
 
 
@@ -18,4 +19,6 @@ router.use('/event', _event);
 router.use('/rooms', rooms);
 router.use('/offices', offices);
 router.use('/employees', employees);
+router.use('/contributors', contributors);
+
 module.exports = router;
