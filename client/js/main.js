@@ -34,6 +34,7 @@ $(function () {
     collections.events.fetch();
     collections.offices.fetch();
     collections.rooms.fetch();
+    collections.contributors.fetch();
     
     function main () {
         cs.mediator = new Mediator();
