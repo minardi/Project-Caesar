@@ -10,7 +10,8 @@
             'click .nextButton': 'nextWeek',
             'click .prevButton': 'prevWeek',
             'click .dropdown-menu': 'handleMenu',
-            'click #up-navig': 'toEdit'
+            'click #up-navig': 'toEdit',
+            'click #down-navig': 'toSchedule'
         },
 
         render: function (weekStart, group, inEdit) {
@@ -34,8 +35,8 @@
                 events = events.filter(group.replace('+', ' '));
                 this.$el.find('#groupDropdown').html(group.replace('+', ' ') + ' <span class="caret"></span>');
             }
-            this.UpdateUpNavigation(group);
-
+            this.updateUpNavigation(group);
+            this.UpdateDownNavigation(inEdit);
 
             events.forEach((function (item) {
                 var eventID, i;
@@ -74,11 +75,26 @@
             }
         },
 
-        UpdateUpNavigation: function (group) {
+        toSchedule: function (event) {
+            if (this.urlSuffix !== '') {
+                cs.mediator.publish('scheduleRequired', 'Schedule/' + 
+                    this.weekStart.format('MM-DD-YYYY') + '/' + this.group);
+            }
+        },
+
+        updateUpNavigation: function (group) {
             if (group === 'all') {
-                this.$el.find('#up-navig').addClass('location-nav');
+                $('#up-navig').addClass('location-nav');
             } else {
-                this.$el.find('#up-navig').removeClass('location-nav');
+                $('#up-navig').removeClass('location-nav');
+            }
+        },
+
+        updateDownNavigation: function (inEdit) {
+            if (!inEdit) {
+                $('#down-navig').addClass('location-nav');
+            } else {
+                $('#down-navig').removeClass('location-nav');
             }
         }
     });
