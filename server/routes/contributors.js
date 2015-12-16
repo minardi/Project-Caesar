@@ -8,7 +8,6 @@ var express = require('express'),
             if (err) {
                 console.log(err);
             }
-            console.log(data);
             res.send(data);
 
         });

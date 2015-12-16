@@ -53,7 +53,6 @@
 
         render: function () {
             var userRole = cs.currentUser.getRole();
-
             this.$el.html(this.tpl({userRole: userRole}));
             this.$('.searcher').append(this.filter.renderSearcher());
             this.renderAll(this.filter.getCollection());

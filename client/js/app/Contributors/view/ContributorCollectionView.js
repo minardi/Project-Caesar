@@ -2,14 +2,16 @@
 (function (This) {
     This.ContributorCollectionView = Backbone.View.extend({
         tagName: 'div',
-        className: '',
+        className: 'center-content',
         tpl: templates.contributorCollectionTpl,
 
         initialize: function () {
+            this.collection = collections.contributors;
         },
 
         render: function () {
             this.$el.html(this.tpl());
+            this.renderAll();
             return this;
         },
 
@@ -17,9 +19,9 @@
             this.collection.forEach(this.renderOne, this);
         },
 
-        renderOne: function () {
+        renderOne: function (contributor) {
             var contributorView = new This.ContributorView({model: contributor});
-            this.$el.append(contributorView.render().el);
+            this.$('#main').append(contributorView.render().el);
         }
     });
 })(App.Contributors);
