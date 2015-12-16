@@ -2,37 +2,15 @@
 (function (This) {
     This.EditView = Backbone.View.extend({
         tpl: templates.editViewTpl,
-        class: 'container',
-        initialize: function (options) {
-            this.location = options.location;
-            this.group = options.group;
+        roomsTpl: templates.roomsTpl,
+        className: 'edit-panel row',
+        events: {
+            'change #offices': 'loadRooms',
+            'click .dropdown-menu': 'handleMenu'
         },
-        render: function () {
-            var parameters = {
-                    types: Object.keys(This.EventTypes),
-                    offices: collections.offices,
-                    rooms: collections.rooms
-                },
-                locationId,
-                officesInLocation,
-                roomsInOffice;
-
-            locationId = this.location ? 
-                this.location.id :
-                collections.locations.findByCity(this.group.location);
-
-            officesInLocation = collections.offices.inLocation(locationId);
-            if (officesInLocation.length === 0) {
-                officesInLocation = null;
-            }
-            roomsInOffice = officesInLocation ?
-                collections.rooms.inOffice(officesInLocation[0].id) : null;
-
-            parameters['groups'] = (this.group ? null : collections.groups);
-            parameters['offices'] = officesInLocation;
-            parameters['rooms'] = roomsInOffice;
-
-            this.$el.empty().append(this.tpl(parameters));
+        render: function (groupName) {
+            this.$el.empty()
+                .append(this.tpl(this.tplParameters(groupName)));
 
             return this;
         },
@@ -51,6 +29,29 @@
         },
         deleteEvent: function() {
             this.collection.last().destroy({wait: true});
+        }, 
+        // loadRooms: function (){
+        //     var officeName = this.$el.find('#offices .active span').text(),
+        //         officeId = collections.offices.findWhere({name: officeName}).id;
+
+        //     this.$el.find('#rooms').html(this.roomsTpl(collections.rooms.where({office: officeId})));
+        // },
+        tplParameters: function (groupName) {
+            var city = collections.groups.findWhere({name: groupName}).get('location'),
+                locationId = collections.locations.findWhere({city: city}).id,
+                offices = collections.offices.where({location: locationId}),
+                rooms = collections.rooms.where({office: id(offices[0])});
+
+            function id(office) {
+                return office ? office.id : null;
+            }
+
+            return {
+                types: Object.keys(This.EventTypes),
+                offices: offices,
+                rooms: rooms
+            };
         }
+
     });
 })(App.Schedule);

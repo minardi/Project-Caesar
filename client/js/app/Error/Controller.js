@@ -1,7 +1,7 @@
 'use strict';
 (function (This)  {
     This.Controller = function () {
-        var $el = $('#container');
+        var $el = $('#main-container');
 
         start();
 

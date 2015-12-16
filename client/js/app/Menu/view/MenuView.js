@@ -9,6 +9,7 @@
             'click .locations': 'showLocations',
             'click .groups': 'showGroups',
             'click .schedule': 'showSchedule',
+            'click .contributors': 'showContributors',
             'click .admin': 'showAdmin'
         },
 
@@ -26,6 +27,10 @@
 
         showGroups: function () {
             cs.mediator.publish('SelectedMenu', '/Groups');
+        },
+
+        showContributors: function () {
+            cs.mediator.publish('SelectedMenu', '/Contributors');
         },
 
         showSchedule: function () {

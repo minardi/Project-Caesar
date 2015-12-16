@@ -6,6 +6,7 @@
             'Groups*path': 'groups',
             'Locations*path': 'locations',
             'Schedule*path': 'schedule',
+            'Contributors*path': 'contributors',
             '*path': 'notFound'
         },
 
@@ -24,6 +25,10 @@
         
         schedule: function () {
             cs.subRouters['Schedule'] || (cs.subRouters['Schedule'] = new App.Schedule.Router());
+        },
+
+        contributors: function () {
+            cs.subRouters['Contributors'] || (cs.subRouters['Contributors'] = new App.Contributors.Router());
         },
 
         navigation: function (pathname) {

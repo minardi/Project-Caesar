@@ -5,28 +5,16 @@
         this.editView = new This.EditView({collection: collections.events});
         this.$el = $('#main-container');
 
-        this.showSchedule = function (weekStart, group) {
+        this.showSchedule = function (weekStart, group, inEdit) {
             this.$el.empty();
             this.gridView.delegateEvents();
-            this.$el.append(this.gridView.render(weekStart, group).el);
+            this.$el.append(this.gridView.render(weekStart, group, inEdit).el);
         };
 
-        this.editSchedule = function () {
-            this.$el.empty();
-            this.$el.append(this.editView.render().el);
+        this.editSchedule = function (weekStart, group) {
+            this.showSchedule(weekStart, group, true);
+            this.$el.append(this.editView.render(group.replace('+', ' ')).el);
         };
-
-        cs.mediator.subscribe('editLocationSchedule', function (location) {
-            this.$el.empty();
-            this.editView = new This.EditView({location: location});
-            this.$el.append(this.editView.render().el);
-        }, {}, this);
-
-        cs.mediator.subscribe('editGroupSchedule', function (group) {
-            this.$el.empty();
-            this.editView = new This.EditView({group: group});
-            this.$el.append(this.editView.render().el);
-        }, {}, this);
 
         cs.mediator.subscribe('addEvent', function (json) {
             this.editView.addEvent(json);

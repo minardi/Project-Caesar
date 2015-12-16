@@ -1,0 +1,12 @@
+.edit-panel {
+    margin-top: 115px;
+}
+
+.edit-panel .edit-panel-labels {
+    margin-right: 5px;
+}
+
+.edit-panel select[name="OfficeName"] {
+    display: inline-block;
+    width: 60%;
+}
