@@ -12,7 +12,8 @@ var App = {
         Common: {},
         Schedule: {},
         Employee: {},
-        Contributors: {}
+        Contributors: {},
+        ContextMenu: {}
     },
     collections = {},
     cs = {},

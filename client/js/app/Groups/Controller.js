@@ -15,6 +15,19 @@
             });
             
             this.collectionViewEl = $('#main-container');
+
+            this.contextMenu = new App.ContextMenu.Controller();
+            this.contextMenu.start();
+            this.contextMenu.showMenu();
+
+            $('.col-md-4 .content-item').contextMenu({
+                menuSelector: '#contextMenu',
+                menuSelected: function (invokedOn, selectedMenu) {
+                    var msg = "You selected the menu item '" + selectedMenu.text() +
+                        "' on the value '" + invokedOn.text() + "'";
+                    console.log(msg);
+                }
+            });
         },
 
         showAllCurrentGroups: function () {
