@@ -1,7 +1,7 @@
 templates.monthTpl = _.template([
     '<div class="row">',
         '<div class="col-md-12">',
-            '<h1>Schedule (Group name)',
+            '<h1>Schedule: <%= groupName %>',
                 '<button type="button" class="btn btn-primary week-month-switch">Week schedule</button>',
             '</h1>',
         '</div>',

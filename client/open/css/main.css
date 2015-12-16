@@ -2,9 +2,14 @@
     padding: 25px;
 }
 
+#container h1 {
+  text-align: center;
+}
+
 .schedule-event {
     background: #c6e7f4;
     font-size: 14px;
+    font-weight: bold;
 }
 
 .main-nav {

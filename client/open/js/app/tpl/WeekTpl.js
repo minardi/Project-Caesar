@@ -4,7 +4,7 @@ templates.weekTpl = _.template([
             '<span class="glyphicon glyphicon-chevron-left prevPeriod" aria-hidden="true" ></span>',
         '</div>',
         '<div class="col-md-10">',
-            '<h1>Schedule (Group name)',
+            '<h1>Schedule: <%= groupName %>',
                 '<button type="button" class="btn btn-primary week-month-switch">Month schedule</button>',
             '</h1>',
         '</div>',

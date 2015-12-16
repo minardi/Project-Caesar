@@ -8,12 +8,20 @@
             'click .week-month-switch': 'renderWeek'
         },
 
-        render: function () {
+        render: function (group) {
+            var startDate, finishDate;
+
+            if (group) {
+                startDate = moment(new Date(group.get('startDate')));
+                finishDate = moment(new Date(group.get('finishDate')));
+            };
+
             this.$el.empty().append(this.tpl({
+                groupName: group ? group.get('name') : 'all groups',
                 startTime: moment().hour(8).minute(0),
-                endTime: moment().hour(20).minute(0),
-                start: moment().set({'year': 2015, 'month': 11, 'date': 1}),
-                duration: 31
+                endTime: moment().hour(21).minute(0),
+                start: group ? startDate : moment().date(1),
+                duration: group ? finishDate.diff(startDate, 'days') + 1 : moment().daysInMonth()
             }));
 
             collections.events.forEach(remakeGrid.bind(this));
@@ -39,4 +47,4 @@
             cs.mediator.publish('renderWeekSchedule');    
         },
     });
-})(App.Schedule);
+})(App);

@@ -4,4 +4,4 @@
         model: This.Event,
         url: '/rest/events'
     });
-})(App.Schedule);
+})(App);
