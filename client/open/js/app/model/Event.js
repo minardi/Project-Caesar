@@ -30,4 +30,4 @@
             return this.get('type') + ' ' + groupName;
         }
     });
-})(App.Schedule);
+})(App);

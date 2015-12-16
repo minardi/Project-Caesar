@@ -28,7 +28,6 @@ app.use(cookieParser());
 
 app.use('/build', express.static(path.join(__dirname, 'public')));
 //app.use('/build', favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use('/open', express.static(path.join(__dirname, '../client/open')));
 
 app.use(express.static('../client'));
 app.use(express.static(path.join(__dirname, 'public')));
