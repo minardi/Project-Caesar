@@ -2,10 +2,10 @@
 (function (This)  {
     This.Router = Backbone.Router.extend({
         routes: {
-            'Schedule/Groups/:name': 'showGroupSchedule',
-            'Schedule/Groups': 'showAllSchedule',
-            'Schedule': 'navigateToSchedule',
-            '': 'navigateToSchedule'
+            'Schedule/:name': 'showSchedule',
+            'Schedule/:name*path': 'notFound',
+//            'Schedule': 'navigateToSchedule',
+            '*path': 'notFound'
         },
 
         initialize: function () {
@@ -14,15 +14,15 @@
         },
         
         navigateToSchedule: function () {
-            this.navigate('Schedule/Groups', {trigger: true});
+            this.navigate('Schedule/Dnipro', {trigger: true});
         },
 
-        showGroupSchedule: function (group) {
+        showSchedule: function (group) {
             this.controller.getCollection(group.replace('+', ' '));
         },
 
-        showAllSchedule: function () {
-            this.controller.getCollection('');
+        notFound: function () {
+            cs.mediator.publish('error404');
         }
     });
 })(App);

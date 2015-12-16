@@ -1,9 +1,15 @@
 templates.monthTpl = _.template([
-    '<div class="row">',
-        '<div class="col-md-12">',
+     '<div class="row">',
+        '<div class="col-md-1 main-nav">',
+            '<span class="glyphicon glyphicon-chevron-left prevPeriod" aria-hidden="true" ></span>',
+        '</div>',
+        '<div class="col-md-10">',
             '<h1>Schedule: <%= groupName %>',
                 '<button type="button" class="btn btn-primary week-month-switch">Week schedule</button>',
             '</h1>',
+        '</div>',
+        '<div class="col-md-1 main-nav">',
+            '<span class="glyphicon glyphicon-chevron-right nextPeriod" aria-hidden="true"></span>',
         '</div>',
     '</div>',    
     '<table class="table table-bordered table-striped">',
@@ -34,6 +40,7 @@ templates.monthTpl = _.template([
                     '<% startTime.hour(morning) %>',
                 '</tr>',
             '<% } %>',
+            '<% start.subtract(duration, \'d\') %>',
         '</tbody>',
     '</table>'
 ].join(''));
