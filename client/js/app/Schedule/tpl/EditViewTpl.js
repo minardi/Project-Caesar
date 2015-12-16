@@ -1,7 +1,7 @@
 templates.editViewTpl = _.template([
         '<div class="col-md-4">',
             '<label class="edit-panel-labels">Event Type</label>',
-            '<select class="form-control" name="OfficeName">',
+            '<select class="form-control" name="eventType" id = "event-type">',
                 '<% types.forEach(function(type) { %>',
                     '<option><%= type %></option>',
                 '<% }, this); %>',
@@ -29,7 +29,7 @@ templates.editViewTpl = _.template([
             '<div class="btn-group" data-toggle="buttons" name="RoomName" id="rooms">',
                 '<% if (rooms) { %>',
                     '<% rooms.forEach(function(room) { %>',
-                        '<label class="btn btn-primary">',
+                        '<label class="btn btn-primary"  data-room-id="<%= room.get("_id") %>">',
                             '<input type="radio" name="options"',
                                 ' id="',
                                     '<%= "room_" + room.get("_id") %>',

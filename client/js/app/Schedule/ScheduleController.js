@@ -13,8 +13,10 @@
 
         this.editSchedule = function (weekStart, group) {
             this.showSchedule(weekStart, group, true);
-            this.$el.append(this.editView.render(group.replace('+', ' ')).el);
+            this.$el.append(this.editView.render(group.replace('+', ' '), weekStart).el);
         };
+
+        cs.mediator.subscribe('Schedule:rerender', this.editSchedule, {}, this);
 
         cs.mediator.subscribe('addEvent', function (json) {
             this.editView.addEvent(json);

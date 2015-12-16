@@ -4,32 +4,67 @@
         tpl: templates.editViewTpl,
         roomsTpl: templates.roomsTpl,
         className: 'edit-panel row',
-        events: {
-            'change #offices': 'loadRooms',
-            'click .dropdown-menu': 'handleMenu'
+        groupName: '',
+        weekStart: '',
+
+        initialize: function () {
         },
-        render: function (groupName) {
+
+        render: function (groupName, weekStart) {
+            this.groupName = groupName;
+            this.weekStart = moment(weekStart, 'MM-DD-YYYY').day('Monday');
+
             this.$el.empty()
                 .append(this.tpl(this.tplParameters(groupName)));
 
+            $('td').not('.schedule-event').click(this.tryAddEvent.bind(this));
+            $('td.schedule-event').dblclick(this.tryDeleteEvent.bind(this));
             return this;
         },
-        addEvent: function (eventJSON) {
-            var newEvent,
-                groupId = collections.groups.models[0].get('_id');
 
-            eventJSON['groupID'] = groupId;
-            newEvent = new This.Event(eventJSON);   
+        tryAddEvent: function (event) {
+            var target = event.target,
+                roomId = $('#rooms .active').data('roomId'),
+                dateTimeStr = target.classList[target.classList.length - 1],
+                dateTime = moment(dateTimeStr, 'HH-mm-MM-DD-YYYY').toISOString(),
+                type = $('#event-type :selected').val(),
+                groupId = collections.groups.findWhere({name: this.groupName}).id,
+                eventJSON = {
+                    type: type,
+                    dateTime: dateTime,
+                    groupID: groupId,
+                    duration: 4,
+                    room: roomId
+                },
+                newEvent = new This.Event(eventJSON);
+
             newEvent.save();
-
             if (newEvent.isValid() && newEvent.isNew()) {
                 this.collection.add(newEvent);
+                console.log('event added');
             }
-
+            cs.mediator.publish('Schedule:rerender', this.weekStart, this.groupName.replace(' ', '+'));
         },
-        deleteEvent: function() {
-            this.collection.last().destroy({wait: true});
-        }, 
+
+        tryDeleteEvent: function (event) {
+            var target = event.target,
+                dateTimeStr = _.find(target.classList, isDateClass),
+                dateTime = moment(dateTimeStr, 'HH-mm-MM-DD-YYYY').toISOString(),
+                groupId = collections.groups.findWhere({name: this.groupName}).id,
+                eventToDelete = this.collection.findWhere({
+                    dateTime: dateTime,
+                    groupID: groupId
+                });
+
+            eventToDelete.destroy({wait: true});
+            this.collection.remove(eventToDelete);
+
+            cs.mediator.publish('Schedule:rerender', this.weekStart, this.groupName.replace(' ', '+'));
+            function isDateClass(className) {
+                return /^(?:\d{2}-){4}\d{4}$/.test(className);
+            }
+        },
+
         // loadRooms: function (){
         //     var officeName = this.$el.find('#offices .active span').text(),
         //         officeId = collections.offices.findWhere({name: officeName}).id;

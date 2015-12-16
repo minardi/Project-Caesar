@@ -14,6 +14,10 @@
             'click #down-navig': 'toSchedule'
         },
 
+        initialize: function () {
+            cs.mediator.subscribe('Schedule:rerender', this.rerender, {}, this);
+        },
+
         render: function (weekStart, group, inEdit) {
             var events = collections.events.clone();
             
@@ -49,6 +53,10 @@
             }).bind(this));
             
             return this;
+        },
+
+        rerender: function () {
+            this.render(this.weekStart, this.group, this.urlSuffix !== '');
         },
         
         nextWeek: function () {
