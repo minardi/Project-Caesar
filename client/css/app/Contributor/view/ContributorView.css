@@ -1,6 +1,14 @@
 .fotoContributor {
+    float: left;
     width: 100px;
     height: 100px;
     border: 1px solid gainsboro;
     /*background: url("/img/");*/
+}
+
+.infoContributor {
+    float: left;
+    margin-top: 20px;
+    margin-left: 10px;
+    width: 100px;
 }
