@@ -1,12 +1,15 @@
 'use strict';
 (function (This) {
     This.Controller = Backbone.Controller.extend({
-        start: function () {
-            this.contextMenuWrap = $('.context-menu-wrap');
+        start: function (wrap, model) {
+            this.contextMenuWrap = wrap;
+            this.model = model;
         },
 
-        showMenu: function () {
-            var menu = new This.MenuView();
+        addMenu: function () {
+            var menu = new This.MenuView({
+                model: this.model
+            });
 
             this.contextMenuWrap.append(menu.render().el);
         }

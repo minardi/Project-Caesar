@@ -51,6 +51,12 @@ $(function () {
             Backbone.history.start({pushState: true});
         });
         
-        cs.mediator.publish('continueSessionRequired');   
+        cs.mediator.publish('continueSessionRequired');
+
+        $('body').on('click', function (event) {
+            if (event.target.parentNode.className !== 'menu-wrap') {
+                $('.context-menu').fadeOut(400);
+            }
+        });
     }
 });

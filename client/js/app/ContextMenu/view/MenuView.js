@@ -4,23 +4,32 @@
 
     This.MenuView = Backbone.View.extend({
         tagName: 'div',
-        // events: {
-        //     'click .close': 'close'
-        // },
+        events: {
+            'click .edit': 'edit',
+            'click .delete': 'delete'
+        },
         className: 'menu-wrap',
         tpl: templates.contextMenuTpl,
-
-        // set: function (message, tpl, type) {
-        //     this.message = message;
-        //     this.tpl = tpl;
-        //     this.type = type;
-        // },
 
         render: function () {
             this.$el.html(this.tpl());
             this.$el.fadeIn(FADE);
 
             return this;
+        },
+
+        edit: function () {
+            cs.mediator.publish('editGroup', this.model);
+            this.closeMenu();
+        },
+
+        delete: function () {
+            cs.mediator.publish('deleteGroup', this.model);
+            this.closeMenu();
+        },
+
+        closeMenu: function () {
+            this.$('.context-menu').fadeOut(FADE);
         }
     });
 })(App.ContextMenu);
