@@ -1,6 +1,6 @@
 templates.contributorTpl = _.template([
     '<div class="content-item">',
-        '<div>Foto',
+        '<div class="fotoContributor">Foto',
         '</div>',
         '<div class="content-wrap">',
             '<h4><%= name %> <%= lastName %></h4>',
