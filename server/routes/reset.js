@@ -8,6 +8,7 @@ var express = require('express'),
     officeList = require('../reset_data/office-list.js'),
     roomList = require('../reset_data/room-list.js'),
     contributorList = require('../reset_data/contributors-list.js'),
+    employeeList = require('../reset_data/employees-list.js'),
     async = require('async');
 
 require('../models/Location');
@@ -18,6 +19,7 @@ require('../models/Office');
 require('../models/Room');
 require('../models/Group');
 require('../models/Contributor');
+require('../models/Employee');
     
 router.get('/', function(req, res) {
     mongoose.connection.db.dropDatabase(function(err, result) {
@@ -28,9 +30,10 @@ router.get('/', function(req, res) {
             OfficeModel = mongoose.model('Office'),
             RoomModel = mongoose.model('Room'),
             ContributorModel = mongoose.model('Contributor'),
+            EmployeeModel = mongoose.model('Employee'),
 
             groupInDb, locationInDb, userInDb, 
-            officeInDb, roomInDb, contributorInDb;
+            officeInDb, roomInDb, contributorInDb, employeeInDb;
 
         groupList.forEach(function (groupJSON) {
             groupInDb = GroupModel(groupJSON);
@@ -97,6 +100,15 @@ router.get('/', function(req, res) {
         contributorList.forEach(function (contributorJSON) {
             contributorInDb = ContributorModel(contributorJSON);
             contributorInDb.save(function (err) {
+                if (err) {
+                    console.log(err);
+                }
+            });
+        });
+
+        employeeList.forEach(function (employeeJSON) {
+            employeeInDb = EmployeeModel(employeeJSON);
+            employeeInDb.save(function (err) {
                 if (err) {
                     console.log(err);
                 }

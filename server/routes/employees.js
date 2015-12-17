@@ -2,7 +2,34 @@ var express = require('express'),
     mongoose = require('mongoose'),
     router = express.Router();
 
-require('../models/User');
+ require('../models/Employee');
+
+ router.get('/', function(req, res, next) {
+     var db = mongoose.connection,
+         EmployeeModel = mongoose.model('Employee'),
+         response = [];
+
+     EmployeeModel.find({}, function (err, events) {
+         if (err) {
+             console.log(err);
+         }
+         events.forEach(function (item) {
+             response.push({
+                 name: item.name,
+                 lastName: item.lastName,
+                 role: item.role,
+                 location: {
+                     city: item.locationCity,
+                     country: item.locationCountry
+                 }
+             });
+         });
+         res.send(JSON.stringify(response));
+     });
+ });
+
+
+/*require('../models/User');
 
 router.get('/', function(req, res, next) {
     var db = mongoose.connection,
@@ -27,6 +54,6 @@ router.get('/', function(req, res, next) {
         });
         res.send(JSON.stringify(response));
     });
-});
+});*/
 
 module.exports = router;
