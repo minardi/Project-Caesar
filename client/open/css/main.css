@@ -6,6 +6,10 @@
   text-align: center;
 }
 
+.period-title {
+    font-size: 24px;
+}
+
 .schedule-event {
     background: #c6e7f4;
     font-size: 14px;

@@ -11,13 +11,6 @@
         },
 
         render: function (group) {
-            var startDate, finishDate;
-/*
-            if (group) {
-                startDate = moment(new Date(group.get('startDate')));
-                finishDate = moment(new Date(group.get('finishDate')));
-            };
-*/
             this.$el.empty().append(this.tpl({
                 groupName: group || 'all groups',
                 startTime: moment().hour(8).minute(0),

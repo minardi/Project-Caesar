@@ -4,7 +4,6 @@
         routes: {
             'Schedule/:name': 'showSchedule',
             'Schedule/:name*path': 'notFound',
-//            'Schedule': 'navigateToSchedule',
             '*path': 'notFound'
         },
 
@@ -13,10 +12,6 @@
             this.controller.start();   
         },
         
-        navigateToSchedule: function () {
-            this.navigate('Schedule/Dnipro', {trigger: true});
-        },
-
         showSchedule: function (group) {
             this.controller.getCollection(group.replace('+', ' '));
         },
