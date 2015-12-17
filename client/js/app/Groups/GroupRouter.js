@@ -2,11 +2,14 @@
 (function (This)  {
     This.Router = modifiedRouter.extend({
         routes: {
-            '': 'showCurrentGroups',
+            '': 'redirectToMy',
             'Groups': 'showAllCurrentGroups',
-            'Groups/current': 'showCurrentGroups',
+            'Groups/current': 'showAllCurrentGroups',
             'Groups/future': 'showFutureGroups',
             'Groups/finished': 'showFinishedGroups',
+            'Groups/my': 'showMyGroups',
+            'Groups/my/finished': 'showMyFinished',
+            'Groups/my/future': 'showMyFuture',
             'Groups/:location': 'showInLocation',
             'Groups*path': 'notFound'
         },
@@ -25,9 +28,8 @@
             Backbone.history.loadUrl(Backbone.history.fragment);
         },
 
-        showCurrentGroups: function () {
-            cs.mediator.publish(
-                cs.currentUser.hasRoleOf('Teacher') ? 'showMy' : 'currentGroupsView');
+        redirectToMy: function () {
+            this.navigate('Groups/my', {trigger: true});
         },
 
         showFutureGroups: function () {
@@ -42,8 +44,20 @@
             cs.mediator.publish('showAll');
         },
 
-        showInLocation: function(location) {
+        showInLocation: function (location) {
             cs.mediator.publish('showInLocation', location);
+        },
+
+        showMyGroups: function () {
+            cs.mediator.publish('showMy', 'current');
+        },
+
+        showMyFinished: function () {
+            cs.mediator.publish('showMy', 'finished');
+        },
+
+        showMyFuture: function () {
+            cs.mediator.publish('showMy', 'future');
         },
 
         notFound: function () {

@@ -31,8 +31,8 @@
                 .done(this.renderCurrentGroups.bind(this, {namespace: 'currentGroupsView'}));
         },
 
-        renderCurrentGroups: function (event, isMy) {
-            this.collectionView = new This.GroupCollectionView();
+        renderCurrentGroups: function (event, isMyGroupsShown) {
+            this.collectionView = new This.GroupCollectionView(isMyGroupsShown);
             var behavior = {
                     'currentGroupsView': this.collectionView.renderCurrentGroups,
                     'futureGroupsView': this.collectionView.renderFutureGroups,
@@ -42,16 +42,21 @@
 
             this.collectionViewEl
                 .empty()
-                .append(behavior[method].call(this.collectionView, isMy).el);
+                .append(behavior[method].call(this.collectionView).el);
         },
 
-        showMy: function () {
+        showMy: function (status) {
+            this.filterMy();
+
+            this.renderCurrentGroups({namespace: status + 'GroupsView'}, true);
+        },
+
+        filterMy: function () {
             var teacherName = cs.currentUser.getName(),
             filtered = collections.groups.filter(function (group) {
                 return group.get('teachers').indexOf(teacherName) != -1;
             });
             collections.groups.reset(filtered);
-            this.renderCurrentGroups({namespace: 'currentGroupsView'}, true);
         }
     });
 })(App.Groups);
