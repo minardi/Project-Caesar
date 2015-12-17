@@ -59,3 +59,11 @@ table {
   border-color: #70adc9;
 }
 
+.error404 {
+    position: absolute;
+    width: 400px;
+    height: 300px;
+    left: 50%;
+    margin-left: -200px;
+    background: url("/open/img/error404.gif");
+}
