@@ -7,16 +7,13 @@
 
             Backbone.Validation.bind(this);
 
-            this.model.bind('validated:valid', function () {
-                this.$el.find('.modal').modal('hide');
-            }, this);
-
             this.model.bind('validated:invalid', function (model, errors) {
                 console.log(errors);
             });
         },
 
         events: {
+            'click .close-btn, .close': 'closeView',
             'click .submit': 'submit',
             'click .add-expert': 'addExpertInput'
         },
@@ -26,19 +23,19 @@
 
             getTeachers();
             initRenderInfo();
-            initDatapicers();
+            initDatapickers();
 
             function initRenderInfo () {
                 var groupJsonInfo;
 
                 groupJsonInfo = group.model.toJSON();
                 groupJsonInfo.locations = collections.locations;
-                groupJsonInfo.allTeachers = collections.teachers;
+                groupJsonInfo.allTeachers = getTeachers();
 
                 group.$el.html(group.tpl(groupJsonInfo));
             }
             
-            function initDatapicers () {
+            function initDatapickers () {
                 var COURSE_DURATION = 120;
 
                 group.$el.find('#startDate').datetimepicker({
@@ -52,24 +49,28 @@
             }
             
             function getTeachers () {
-                var teachers = new App.Employee.EmployeeCollection(),
+                var teachers = collections.teachers,
                     teachersFullName = [];
-                
-                teachers.fetch({
-                    async:false,
-                    success: function() {
-                        teachers = teachers.filter('Teacher');
-                        teachers.forEach (function (teacher) {
-                            var teacherName = teacher.get('lastName')
-                                              + ' ' + teacher.get('name');
 
-                            teachersFullName.push(teacherName);
-                        });
-                        collections.teachers = teachersFullName;
-                    }
+                teachers = teachers.filter('Teacher');
+                teachers.forEach (function (teacher) {
+                    var teacherName = teacher.get('lastName')
+                        + ' ' + teacher.get('name');
+
+                    teachersFullName.push(teacherName);
                 });
-            };
+
+                return teachersFullName;
+            }
+
             return this;
+        },
+
+        closeView: function () {
+            this.$el.find('.modal').modal('hide');
+            this.$el.on('hidden.bs.modal', function () {
+                this.remove();
+            });
         },
 
         submit: function () {
@@ -81,11 +82,11 @@
                     finishDate: this.$el.find('#finishDate').val(),
                     status: this.$el.find('select[name="StatusName"] option:selected').val(),
                     teachers: this.$el.find('select[name="Teachers"] option:selected').val(),
-                    experts: collectTeachersExperts('expert')
+                    experts: collectExperts()
                 };
 
-            function collectTeachersExperts (fieldName) {
-                return $('input[name=' + fieldName + ']').map(function () { 
+            function collectExperts () {
+                return $('input[name="expert"]').map(function () { 
                     return $(this).val();
                 }).get();
             }
@@ -95,8 +96,10 @@
             if (this.model.isValid() && this.model.isNew()) {
                 this.collection.add(this.model);
                 cs.messenger.showInformation('Group added');
+                this.closeView();
             } else if (this.model.isValid() && !this.model.isNew()) {
                 cs.messenger.showInformation('Group updated');
+                this.closeView();
             };
         },
 

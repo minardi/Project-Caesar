@@ -49,7 +49,7 @@
                 $modalWrap = $('.modal-wrap');
 
             $modalWrap.html(groupEditView.render().el);
-            $modalWrap.find('.modal').modal('show');
+            $modalWrap.find('.modal').modal({backdrop: 'static'});
         },
 
         deleteGroup: function () {
