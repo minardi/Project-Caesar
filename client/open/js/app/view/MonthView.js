@@ -2,26 +2,21 @@
 (function (This) {
     This.MonthView = Backbone.View.extend({
         tpl: templates.monthTpl,
-        weekStart: moment().day('Monday'),
+        monthStart: moment().date(1),
         
         events: {
+            'click .nextPeriod': 'nextMonth',
+            'click .prevPeriod': 'prevMonth',
             'click .week-month-switch': 'renderWeek'
         },
 
         render: function (group) {
-            var startDate, finishDate;
-
-            if (group) {
-                startDate = moment(new Date(group.get('startDate')));
-                finishDate = moment(new Date(group.get('finishDate')));
-            };
-
             this.$el.empty().append(this.tpl({
-                groupName: group ? group.get('name') : 'all groups',
+                groupName: group || 'all groups',
                 startTime: moment().hour(8).minute(0),
-                endTime: moment().hour(21).minute(0),
-                start: group ? startDate : moment().date(1),
-                duration: group ? finishDate.diff(startDate, 'days') + 1 : moment().daysInMonth()
+                endTime: moment().hour(20).minute(0),
+                start: this.monthStart,
+                duration: this.monthStart.daysInMonth()
             }));
 
             collections.events.forEach(remakeGrid.bind(this));
@@ -46,5 +41,13 @@
         renderWeek: function () {
             cs.mediator.publish('renderWeekSchedule');    
         },
+
+        nextMonth: function () {
+            cs.mediator.publish('nextMonth');
+        },
+        
+        prevMonth: function () {
+            cs.mediator.publish('prevMonth');
+        }
     });
 })(App);

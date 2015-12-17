@@ -12,11 +12,11 @@
 
         render: function (group) {
             this.$el.empty().append(this.tpl({
-                groupName: group ? group.get('name') : 'all groups',
+                groupName: group || 'all groups',
                 width: 8,
                 start: this.weekStart,
                 startTime: moment().hour(8).minute(0),
-                endTime: moment().hour(21).minute(0)
+                endTime: moment().hour(20).minute(0)
             }));
 
             collections.events.forEach(remakeGrid.bind(this));

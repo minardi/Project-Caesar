@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
         options = {};
         
     if (req.query['groupID']) {
-        options['groupID'] = req.query['groupID'];
+        options['groupID'] = { $in: req.query['groupID']};
     };
     
     EventModel.find(options, function (err, events) {
