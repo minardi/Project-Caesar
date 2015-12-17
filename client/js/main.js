@@ -13,7 +13,8 @@ var App = {
         Schedule: {},
         Employee: {},
         Contributors: {},
-        ContextMenu: {}
+        ContextMenu: {},
+        Navigator: {}
     },
     collections = {},
     cs = {},
@@ -53,6 +54,7 @@ $(function () {
         cs.router = new App.Router();
         cs.cookiesController = new App.Cookies.Controller();
         cs.sessionController = new App.Session.Controller();
+        cs.navigator = new App.Navigator.Controller();
         cs.menu = new App.Menu.Controller();
         cs.notFound = new App.Error.Controller();
         cs.mediator.subscribe('sessionContinued', function () {
