@@ -4,12 +4,6 @@
         initialize: function (options) {
             this.model = this.model || new This.Group();
             this.tpl = options.tpl;
-
-            Backbone.Validation.bind(this);
-
-            this.model.bind('validated:invalid', function (model, errors) {
-                console.log(errors);
-            });
         },
 
         events: {
@@ -39,8 +33,8 @@
                 var COURSE_DURATION = 120;
 
                 group.$el.find('#startDate').datetimepicker({
-                format: 'YYYY-MM-DD',
-                defaultDate: moment().format()
+                    format: 'YYYY-MM-DD',
+                    defaultDate: moment().format()
                 });
                 group.$el.find('#finishDate').datetimepicker({
                     format: 'YYYY-MM-DD',
@@ -67,10 +61,11 @@
         },
 
         closeView: function () {
-            this.$el.find('.modal').modal('hide');
-            this.$el.on('hidden.bs.modal', function () {
-                this.remove();
-            });
+            var thisView = this;
+            this.$el.find('.modal').modal('hide')
+                .on('hidden.bs.modal', function () {
+                    thisView.remove();
+                });
         },
 
         submit: function () {
@@ -94,7 +89,7 @@
             this.model.save(attributes);
 
             if (this.model.isValid() && this.model.isNew()) {
-                this.collection.add(this.model);
+                this.collection.add(this.model, {wait: true});
                 cs.messenger.showInformation('Group added');
                 this.closeView();
             } else if (this.model.isValid() && !this.model.isNew()) {

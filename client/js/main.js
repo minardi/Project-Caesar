@@ -21,6 +21,12 @@ var App = {
 
 Backbone.Model.prototype.idAttribute = "_id";
 
+_.extend(Backbone.Validation.callbacks, {
+    invalid: function(view, attr, error, selector) {
+        console.log(error);
+    }
+});
+
 $(function () {
     collections.groups = new App.Groups.GroupCollection();
     collections.locations = new App.Locations.LocationCollection();

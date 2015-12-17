@@ -57,7 +57,7 @@
                 $modalWrap = $('.modal-wrap');
 
             $modalWrap.html(groupDeleteView.render().el);
-            $modalWrap.find('.modal').modal('show');
+            $modalWrap.find('.modal').modal({backdrop: 'static'});
         },
 
         showMenu: function (event) {

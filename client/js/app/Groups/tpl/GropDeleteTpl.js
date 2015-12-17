@@ -10,7 +10,7 @@ templates.groupDeleteTpl = _.template([
                     '<p>Please confirm, that you want to delete group?</p>',
                 '</div>',
                 '<div class="modal-footer">',
-                    '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>',
+                    '<button type="button" class="btn btn-default close-btn" data-dismiss="modal">Close</button>',
                     '<button type="button" class="btn btn-primary delete">Delete</button>',
                 '</div>',
             '</div>',
