@@ -4,19 +4,10 @@
         initialize: function (options) {
             this.model = this.model || new This.Group();
             this.tpl = options.tpl;
-
-            Backbone.Validation.bind(this);
-
-            this.model.bind('validated:valid', function () {
-                this.$el.find('.modal').modal('hide');
-            }, this);
-
-            this.model.bind('validated:invalid', function (model, errors) {
-                console.log(errors);
-            });
         },
 
         events: {
+            'click .close-btn, .close': 'closeView',
             'click .submit': 'submit',
             'click .add-expert': 'addExpertInput'
         },
@@ -26,24 +17,24 @@
 
             getTeachers();
             initRenderInfo();
-            initDatapicers();
+            initDatapickers();
 
             function initRenderInfo () {
                 var groupJsonInfo;
 
                 groupJsonInfo = group.model.toJSON();
                 groupJsonInfo.locations = collections.locations;
-                groupJsonInfo.allTeachers = collections.teachers;
+                groupJsonInfo.allTeachers = getTeachers();
 
                 group.$el.html(group.tpl(groupJsonInfo));
             }
             
-            function initDatapicers () {
+            function initDatapickers () {
                 var COURSE_DURATION = 120;
 
                 group.$el.find('#startDate').datetimepicker({
-                format: 'YYYY-MM-DD',
-                defaultDate: moment().format()
+                    format: 'YYYY-MM-DD',
+                    defaultDate: moment().format()
                 });
                 group.$el.find('#finishDate').datetimepicker({
                     format: 'YYYY-MM-DD',
@@ -52,24 +43,29 @@
             }
             
             function getTeachers () {
-                var teachers = new App.Employee.EmployeeCollection(),
+                var teachers = collections.teachers,
                     teachersFullName = [];
-                
-                teachers.fetch({
-                    async:false,
-                    success: function() {
-                        teachers = teachers.filter('Teacher');
-                        teachers.forEach (function (teacher) {
-                            var teacherName = teacher.get('lastName')
-                                              + ' ' + teacher.get('name');
 
-                            teachersFullName.push(teacherName);
-                        });
-                        collections.teachers = teachersFullName;
-                    }
+                teachers = teachers.filter('Teacher');
+                teachers.forEach (function (teacher) {
+                    var teacherName = teacher.get('lastName')
+                        + ' ' + teacher.get('name');
+
+                    teachersFullName.push(teacherName);
                 });
-            };
+
+                return teachersFullName;
+            }
+
             return this;
+        },
+
+        closeView: function () {
+            var thisView = this;
+            this.$el.find('.modal').modal('hide')
+                .on('hidden.bs.modal', function () {
+                    thisView.remove();
+                });
         },
 
         submit: function () {
@@ -81,11 +77,11 @@
                     finishDate: this.$el.find('#finishDate').val(),
                     status: this.$el.find('select[name="StatusName"] option:selected').val(),
                     teachers: this.$el.find('select[name="Teachers"] option:selected').val(),
-                    experts: collectTeachersExperts('expert')
+                    experts: collectExperts()
                 };
 
-            function collectTeachersExperts (fieldName) {
-                return $('input[name=' + fieldName + ']').map(function () { 
+            function collectExperts () {
+                return $('input[name="expert"]').map(function () { 
                     return $(this).val();
                 }).get();
             }
@@ -93,10 +89,12 @@
             this.model.save(attributes);
 
             if (this.model.isValid() && this.model.isNew()) {
-                this.collection.add(this.model);
+                this.collection.add(this.model, {wait: true});
                 cs.messenger.showInformation('Group added');
+                this.closeView();
             } else if (this.model.isValid() && !this.model.isNew()) {
                 cs.messenger.showInformation('Group updated');
+                this.closeView();
             };
         },
 

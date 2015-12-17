@@ -5,6 +5,7 @@
         tpl: templates.groupDeleteTpl,
 
         events: {
+            'click .close-btn, .close': 'closeView',
             'click .delete': 'deleteGroup'
         },
 
@@ -14,10 +15,18 @@
             return this;
         },
 
+        closeView: function () {
+            var thisView = this;
+            this.$el.find('.modal').modal('hide');
+            this.$el.on('hidden.bs.modal', function () {
+                thisView.remove();
+            });
+        },
+
         deleteGroup: function () {
             this.model.destroy({wait: true});
-            this.$el.find('.modal').modal('hide');
-            cs.messanger.showInformation('Group deleted');
+            cs.messenger.showInformation('Group deleted');
+            this.closeView();
         }
     });
 })(App.Groups);

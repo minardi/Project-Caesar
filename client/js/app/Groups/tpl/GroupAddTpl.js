@@ -76,7 +76,7 @@ templates.groupAddTpl = _.template([
                     '</div>',
                 '</div>',
                 '<div class="modal-footer clearfix">',
-                    '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>',
+                    '<button type="button" class="btn btn-default close-btn" data-dismiss="modal">Close</button>',
                     '<button type="button" class="btn btn-primary submit">Add</button>',
                 '</div>',
             '</div>',

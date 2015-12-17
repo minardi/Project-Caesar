@@ -21,6 +21,12 @@ var App = {
 
 Backbone.Model.prototype.idAttribute = "_id";
 
+_.extend(Backbone.Validation.callbacks, {
+    invalid: function(view, attr, error, selector) {
+        console.log(error);
+    }
+});
+
 $(function () {
     collections.groups = new App.Groups.GroupCollection();
     collections.locations = new App.Locations.LocationCollection();
@@ -28,6 +34,7 @@ $(function () {
     collections.offices = new App.Schedule.OfficeCollection();
     collections.rooms = new App.Schedule.RoomCollection();
     collections.contributors = new App.Contributors.ContributorCollection();
+    collections.teachers = new App.Employee.EmployeeCollection();
 
     collections.groups.fetch({success: function () {
         collections.locations.fetch({success: main})
@@ -36,6 +43,7 @@ $(function () {
     collections.offices.fetch();
     collections.rooms.fetch();
     collections.contributors.fetch();
+    collections.teachers.fetch();
     
     function main () {
         cs.mediator = new Mediator();
