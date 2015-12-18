@@ -32,7 +32,8 @@
 
             startPosition = this.get('currentPage') * this.get('pageSize');
             while (!searchedCollection.length && searchedCollection.length < startPosition) {
-                startPosition = --this.get('currentPage') * this.get('pageSize');
+                startPosition = (this.get('currentPage') - 1) * this.get('pageSize');
+				this.set('currentPage', this.get('currentPage') - 1);
             };
 
             endPosition = Math.min(startPosition + this.get('pageSize'), searchedCollection.length);
