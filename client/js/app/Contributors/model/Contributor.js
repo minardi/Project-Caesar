@@ -6,6 +6,7 @@
                 id: '',
                 name: '',
                 lastName: '',
+                group: '',
                 team: ''
             }
         }
