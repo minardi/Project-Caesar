@@ -14,7 +14,8 @@ var App = {
         Employee: {},
         Contributors: {},
         ContextMenu: {},
-        Navigator: {}
+        Navigator: {},
+        Direction: {}
     },
     collections = {},
     cs = {},
@@ -36,6 +37,7 @@ $(function () {
     collections.rooms = new App.Schedule.RoomCollection();
     collections.contributors = new App.Contributors.ContributorCollection();
     collections.teachers = new App.Employee.EmployeeCollection();
+    collections.directions = new App.Direction.DirectionCollection();
 
     collections.groups.fetch({success: function () {
         collections.locations.fetch({success: main})
@@ -45,6 +47,7 @@ $(function () {
     collections.rooms.fetch();
     collections.contributors.fetch();
     collections.teachers.fetch();
+    collections.directions.fetch();
     
     function main () {
         cs.mediator = new Mediator();
