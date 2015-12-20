@@ -2,6 +2,7 @@
 (function (This) {
     This.GridView = Backbone.View.extend({
         tpl: templates.gridTpl,
+        className: 'center-content',
         weekStart: moment().day('Monday'),
         group: 'all',
         urlSuffix: '',
@@ -46,10 +47,20 @@
                 var eventID, i;
                 for (i = 0; i < item.get('duration'); i++) {
                     eventID = moment(item.get('dateTime')).add(i * 30, 'm').format('HH-mm-MM-DD-YYYY');
-                    this.$el.find('.' + eventID).addClass('schedule-event');
+                    this.$el.find('.' + eventID).attr('rowSpan', item.get('duration'))
+                    .addClass('schedule-event').html(item.toString());
                 }
-                eventID = moment(item.get('dateTime')).format('HH-mm-MM-DD-YYYY');
+                /*eventID = moment(item.get('dateTime')).format('HH-mm-MM-DD-YYYY');
                 this.$el.find('.' + eventID).html($('<div></div>').html(item.toString()).addClass('schedule-info'));
+                
+                this.$el.find('.' + eventID).attr('rowSpan', item.get('duration'))
+                    .addClass('schedule-event')
+                    .html(item.toString());*/
+                    
+                for (i = 1; i < item.get('duration'); i++) {
+                    eventID = moment(item.get('dateTime')).add(i * 30, 'm').format('HH-mm-MM-DD-YYYY');
+                    this.$el.find('.' + eventID).remove();
+                }
             }).bind(this));
             
             return this;

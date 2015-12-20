@@ -1,0 +1,128 @@
+'<div class="schedule-header">',
+        '<div class="top-nav location-nav" id="up-navig">',
+            '<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>',
+        '</div>',
+            '<button type="button" class="btn btn-default prevButton schedule-inline">',
+              '<span class="glyphicon glyphicon-chevron-left "></span> Prev',
+            '</button>',
+            '<h1 class="schedule-inline">Schedule',
+            '</h1>',
+            '<div class="dropdown schedule-inline">',
+              '<button class="btn btn-default dropdown-toggle" type="button" id="groupDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">',
+                'All groups ',
+                '<span class="caret"></span>',
+              '</button>',
+              '<ul class="dropdown-menu" aria-labelledby="groupDropdown">',
+                '<li class="hvr-fade">All groups</li>',
+                '<li role="separator" class="divider"></li>',
+                '<% collections.groups.forEach ( function (item) { %>',
+                '<li class="hvr-fade"><%= item.get(\'name\') %></li>',
+                '<% } ); %>',
+              '</ul>',
+            '</div>',
+            '<button type="button" class="btn btn-default nextButton schedule-inline">',
+              'Next <span class="glyphicon glyphicon-chevron-right "></span>',
+            '</button>',
+    '</div>',    
+        
+    '</div>',
+    '<% var hours = {\'1\': \'08-00\',\'2\': \'08-30\',\'3\': \'09-00\',\'4\': \'09-30\',\'5\': \'10-00\',\'6\': \'10-30\',\'7\': \'11-00\',\'8\': \'11-30\',\'9\': \'12-00\',\'10\': \'12-30\',\'11\': \'13-00\',\'12\': \'13-30\',\'13\': \'14-00\',\'14\': \'14-30\',\'15\': \'15-00\',\'16\': \'15-30\',\'17\': \'16-00\',\'18\': \'16-30\',\'19\': \'17-00\',\'20\': \'17-30\',\'21\': \'18-00\',\'22\': \'18-30\',\'23\': \'19-00\',\'24\': \'19-30\'}; %>',
+    '<div id="grid" class="schedule-content">',
+        '<table class="schedule-table">',
+            '<th class="schedule-bordered"></th>',
+            '<% for (var j = 0; j < width - 1; j++) { %>',
+                '<th class="schedule-bordered">',
+                    '<%= start.format(\'ddd, MMM D\') %>',
+                '</th>',
+                '<% start.add(1, \'d\'); %>',
+            '<% } %>',
+            '<% start.subtract(7, \'d\'); %>',
+            '<% for (var i = 1; i < height; i++) { %>',
+                '<tr>',
+                    '<% for (var j = 0; j < width; j++) { %>',
+                        '<td class=\'schedule-bordered ',
+                            '<%= hours[i] %>',
+                            '<% if (j !== 0) { %>',
+                                '<%= start.format(\'-MM-DD-YYYY\') %>',
+                                '<% start.add(1, \'d\'); %>',
+                            '<% } %>',
+                        '\'>',
+                            '<% if (j === 0) { %>',
+                                '<%= hours[i] %>',
+                            '<% } %>',
+                        '</td>',  
+                    '<% } %>',
+                    '<% start.subtract(7, \'d\'); %>',
+                '</tr>',
+            '<% } %>',
+        '</table>',
+    '</div>',
+    '<div class="schedule-footer">',
+        '<div class="top-nav location-nav" id="down-navig">',
+            '<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>',
+        '</div>',
+    '</div>'
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    .schedule-header, .schedule-footer, .schedule-content {
+    position:absolute;
+    width:100%;
+}
+.schedule-header {
+    height:180px;
+}
+.schedule-footer {
+    height:100px;
+}
+.schedule-footer {
+    bottom:0;
+}
+.schedule-content {
+    top:180px;
+    bottom:100px;
+    overflow-y:scroll;
+}
+.schedule-table {
+    table-layout: fixed;
+    width: 100%;
+}
+.schedule-bordered {
+    border: 1px double #ccc; 
+    padding: 3px;
+}
+.schedule-event {
+    background: #ccc;
+    border: 1px solid #ccc;    
+}
+.schedule-info {
+    position: absolute;
+    width: 7%;
+    z-index: 10;
+    background-color: rgba (0, 0, 0, 0);
+}
+.hvr-fade:hover, .hvr-fade:focus, .hvr-fade:active {
+    background-color: #ccc;
+    cursor: pointer;
+    color: white;
+}
+.schedule-inline {
+    display: inline-block;
+}
+.schedule-float-right {
+    position: absolute;
+    right: 0px;
+}
