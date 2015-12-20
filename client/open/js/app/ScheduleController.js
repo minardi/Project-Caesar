@@ -38,25 +38,29 @@
         };
 
         this.getCollection = function (name) {
-            var groups = [], 
-                groupIDs = [];
+            var locationByID,
+                wrongName = false,
+                groups = [], 
+                groupIDs = ['-'];
 
-            scheduleFor = name;
-            if (collections.locations.where({city: name}).length) {
-                groups = collections.groups.where({location: name});
+            locationByID = collections.locations.where({_id: name});
+            if (locationByID.length) {
+                scheduleFor = locationByID[0].get('city');
+                groups = collections.groups.where({location: locationByID[0].get('city')});
             } else {
+                scheduleFor = name;
                 groups = collections.groups.where({'name': name});
+                wrongName = !groups.length;
             }
 
-            groups.forEach(function (item) {
-                groupIDs.push(item.get('_id'));
-            });
-
-            if (groupIDs.length) {
-                this.collection.fetch({data: {'groupID': groupIDs}});    
-            } else {
+            if (wrongName) {
                 cs.mediator.publish('error404');
-            }            
+            } else {
+                groups.forEach(function (item) {
+                    groupIDs.push(item.get('_id'));
+                });
+                this.collection.fetch({data: {'groupID': groupIDs}});
+            };
         };
 
         this.renderWeekGrid = function () {

@@ -1,36 +1,36 @@
 var locationList = [
     {
-        _id: 0,
+        _id: 'Dp',
         city: 'Dnipro',
         country: 'Ukraine'
     },
     {
-        _id: 1,
+        _id: 'Kv',
         city: 'Kyiv',
         country: 'Ukraine'
     },
     {
-        _id: 2,
+        _id: 'Lv',
         city: 'Lviv',
         country: 'Ukraine'
     },
     {
-        _id: 3,
+        _id: 'IF',
         city: 'Ivano-Frankivsk',
         country: 'Ukraine'
     },
     {
-        _id: 4,
+        _id: 'Ch',
         city: 'Chernivtsi',
         country: 'Ukraine'
     },
     {
-        _id: 5,
+        _id: 'Rv',
         city: 'Rivne',
         country: 'Ukraine'
     },
     {
-        _id: 6,
+        _id: 'Sf',
         city: 'Sofia',
         country: 'Bulgaria'
     }
