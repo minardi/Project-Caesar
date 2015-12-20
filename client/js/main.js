@@ -13,7 +13,9 @@ var App = {
         Schedule: {},
         Employee: {},
         Contributors: {},
-        ContextMenu: {}
+        ContextMenu: {},
+        Navigator: {},
+        Direction: {}
     },
     collections = {},
     cs = {},
@@ -35,6 +37,7 @@ $(function () {
     collections.rooms = new App.Schedule.RoomCollection();
     collections.contributors = new App.Contributors.ContributorCollection();
     collections.teachers = new App.Employee.EmployeeCollection();
+    collections.directions = new App.Direction.DirectionCollection();
 
     collections.groups.fetch({success: function () {
         collections.locations.fetch({success: main})
@@ -44,6 +47,7 @@ $(function () {
     collections.rooms.fetch();
     collections.contributors.fetch();
     collections.teachers.fetch();
+    collections.directions.fetch();
     
     function main () {
         cs.mediator = new Mediator();
@@ -53,6 +57,7 @@ $(function () {
         cs.router = new App.Router();
         cs.cookiesController = new App.Cookies.Controller();
         cs.sessionController = new App.Session.Controller();
+        cs.navigator = new App.Navigator.Controller();
         cs.menu = new App.Menu.Controller();
         cs.notFound = new App.Error.Controller();
         cs.mediator.subscribe('sessionContinued', function () {

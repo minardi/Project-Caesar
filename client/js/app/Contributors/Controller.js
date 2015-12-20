@@ -1,14 +1,33 @@
 'use strict';
 (function (This) {
-    This.Controller = function() {
-        var $el = $('#main-container');
+    This.Controller = function () {
+        var $el = $('.notifications');
+        var $elContributors = $('#main-container');
         this.collection = collections.contributors;
 
-        cs.mediator.subscribe('ShowContributors', renderContributorCollection, {}, this);
+        cs.mediator.subscribe('ShowContributors', renderJSContributors, {}, this);
+        cs.mediator.subscribe('ShowQCContributors', renderQCContributors, {}, this);
+        cs.mediator.subscribe('ShowJSContributors', renderJSContributors, {}, this);
 
-        function renderContributorCollection (){
+
+        cs.mediator.subscribe('ShowJSGroup', renderJSContributors, {}, this);
+        cs.mediator.subscribe('ShowQCGroup', renderQCContributors, {}, this);
+
+        function renderContributors () {
+            var contributorView = new This.GroupContributorView();
+            $el.empty().append(contributorView.render().el);
+        }
+
+        function renderQCContributors () {
+            renderContributors();
             var contributorCollectionView = new This.ContributorCollectionView();
-            $el.empty().append(contributorCollectionView.render().el);
+            $elContributors.empty().append(contributorCollectionView.renderQCGroup().el);
+        }
+
+        function renderJSContributors () {
+            renderContributors();
+            var contributorCollectionView = new This.ContributorCollectionView();
+            $elContributors.empty().append(contributorCollectionView.renderJSGroup().el);
         }
         return this;
     };

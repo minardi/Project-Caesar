@@ -31,7 +31,7 @@ routes.post('*', function (req, res, next) {
     });
 });
 
-routes.post('*', function (req, res, next) {
+routes.put('*', function (req, res, next) {
     userAcess.userAcess(req, function(result){
         if(result) {
             next();

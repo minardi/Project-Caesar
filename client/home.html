@@ -79,7 +79,11 @@
         <!-- employee -->
         <script src="/js/app/Employee/model/Employee.js"></script>
         <script src="/js/app/Employee/model/EmployeeCollection.js"></script>
-        
+
+        <!-- direction -->
+        <script src="/js/app/Direction/model/Direction.js"></script>
+        <script src="/js/app/Direction/model/DirectionCollection.js"></script>
+
         <!-- cookies -->
         <script src="/js/app/Cookies/Processor.js"></script>
         <script src="/js/app/Cookies/Controller.js"></script>
@@ -153,11 +157,16 @@
         <script src="/js/app/Contributors/model/Contributor.js"></script>
         <script src="/js/app/Contributors/model/ContributorCollection.js"></script>
         <script src="/js/app/Contributors/tpl/ContributorTpl.js"></script>
+        <script src="/js/app/Contributors/tpl/groupContributorTpl.js"></script>
         <script src="/js/app/Contributors/tpl/ContributorCollectionTpl.js"></script>
         <script src="/js/app/Contributors/view/ContributorView.js"></script>
         <script src="/js/app/Contributors/view/ContributorCollectionView.js"></script>
+        <script src="/js/app/Contributors/view/GroupContributorView.js"></script>
         <script src="/js/app/Contributors/Controller.js"></script>
         <script src="/js/app/Contributors/Router.js"></script>
+        
+        <!-- navigator -->
+        <script src="/js/app/Navigator/Controller.js"></script>
 
         <!-- scripts.js-end -->
     </head>
@@ -168,7 +177,7 @@
                     <div class="main-menu">
                         <!--<div id="logo"></div>-->
                     </div>
-                    <div class="main-nav">
+                    <div class="main-nav left-arrow">
                         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                     </div>
                 </div>
@@ -200,7 +209,7 @@
                     <div class="user-account">
                         <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> User info will be here</p>
                     </div>
-                    <div class="main-nav" id="right-navig">
+                    <div class="main-nav right-arrow">
                         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                     </div>
                 </div>

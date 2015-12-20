@@ -24,6 +24,7 @@
 
                 groupJsonInfo = group.model.toJSON();
                 groupJsonInfo.locations = collections.locations;
+                groupJsonInfo.directions = collections.directions;
                 groupJsonInfo.allTeachers = getTeachers();
 
                 group.$el.html(group.tpl(groupJsonInfo));

@@ -13,7 +13,9 @@
             'click #my-groups': 'switchMyGroups'
         },
 
-        initialize: function () {
+        initialize: function (isMyGroupsShown) {
+            this.isMyGroupsShown = isMyGroupsShown;
+            this.baseUrl = isMyGroupsShown ? 'Groups/my/' : 'Groups/';
             this.currentView = 'renderCurrent';
             this.collection = collections.groups;
             this.listenTo(this.collection, 'add', this.renderCurrentGroups);
@@ -33,21 +35,21 @@
 
         renderUp: function () {
             if (this.currentView === 'renderCurrent') {
-                cs.mediator.publish('futureGroups', 'Groups/future');
+                cs.mediator.publish('futureGroups', this.baseUrl + 'future');
                 this.renderFutureGroups();
             } else if (this.currentView === 'renderFinished') {
-                cs.mediator.publish('currentGroups', 'Groups/current');
-                this.renderCurrentGroups(this.isMy);
+                cs.mediator.publish('currentGroups', this.baseUrl + 'current');
+                this.renderCurrentGroups();
             }
         },
 
         renderDown: function () {
             if (this.currentView === 'renderCurrent') {
-                cs.mediator.publish('finishedGroups', 'Groups/finished');
+                cs.mediator.publish('finishedGroups', this.baseUrl + 'finished');
                 this.renderFinishedGroups();
             } else if (this.currentView === 'renderFuture') {
-                cs.mediator.publish('currentGroups', 'Groups/current');
-                this.renderCurrentGroups(this.isMy);
+                cs.mediator.publish('currentGroups', this.baseUrl + 'current');
+                this.renderCurrentGroups();
             }
         },
 
@@ -70,7 +72,7 @@
             this.currentView = mode;
 
             this.$el.html(this.tpl({userRole: userRole, 
-                myGroupsCheckbox: this.myGroupsTpl({isMy: this.isMy})
+                myGroupsCheckbox: this.myGroupsTpl({isMy: this.isMyGroupsShown})
             }));
 
             this.$('.searcher').append(this.filter.renderSearcher());
@@ -78,8 +80,7 @@
             return this;
         },
 
-        renderCurrentGroups: function (isMy) {
-            this.isMy = isMy;
+        renderCurrentGroups: function () {
             return this.renderFilterGroups('renderCurrent', function(model) {
                 return (model.get('startDate') < this.getCurrentDate() &&
                 model.get('finishDate') > this.getCurrentDate());
@@ -160,8 +161,12 @@
         },
 
         switchMyGroups: function () {
-            cs.mediator.publish('currentGroups', '/');
-            cs.mediator.publish($('#my-groups').is(':checked') ? 'showMy': 'showAll');
+            cs.mediator.publish('currentGroups', this.isMyGroupsShown ? 'Groups' : 'Groups/my');
+            if ($('#my-groups').is(':checked')) {
+                cs.mediator.publish('showMy', 'current');
+            } else {
+                cs.mediator.publish('showAll');
+            }
         }
     });
 })(App.Groups, App.Filter);

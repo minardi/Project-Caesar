@@ -9,14 +9,33 @@
             this.collection = collections.contributors;
         },
 
+        renderFilterContributors: function ( filter) {
+            var filtered = this.collection.filter(filter);
+            this.$el.html(this.tpl());
+            this.renderAll(filtered);
+            return this;
+        },
+
+        renderQCGroup: function () {
+            return this.renderFilterContributors(function (model) {
+                return model.get('group') == 'QC';
+            });
+        },
+
+        renderJSGroup: function () {
+            return this.renderFilterContributors(function (model) {
+                return model.get('group') == 'Dp086-JS';
+            });
+        },
+
         render: function () {
             this.$el.html(this.tpl());
             this.renderAll();
             return this;
         },
 
-        renderAll: function () {
-            this.collection.forEach(this.renderOne, this);
+        renderAll: function (filtered) {
+            filtered.forEach(this.renderOne, this);
         },
 
         renderOne: function (contributor) {
