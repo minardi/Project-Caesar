@@ -1,9 +1,22 @@
+.wrapper {
+    padding: 10px 35px;
+}
+
 #container {
-    padding: 25px;
+  padding: 25px;
+  height: 100%;
+  border: 1px solid rgba(128, 128, 128, 0.22);
+  -webkit-box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.25);
+  -moz-box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.25);
+  box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.25);
 }
 
 #container h1 {
   text-align: center;
+}
+
+#container table {
+  width: 100%;
 }
 
 .period-title {
