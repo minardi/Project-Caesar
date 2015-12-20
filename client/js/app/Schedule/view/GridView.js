@@ -45,21 +45,17 @@
 
             events.forEach((function (item) {
                 var eventID, i;
-                for (i = 0; i < item.get('duration'); i++) {
-                    eventID = moment(item.get('dateTime')).add(i * 30, 'm').format('HH-mm-MM-DD-YYYY');
-                    this.$el.find('.' + eventID).attr('rowSpan', item.get('duration'))
-                    .addClass('schedule-event').html(item.toString());
-                }
-                /*eventID = moment(item.get('dateTime')).format('HH-mm-MM-DD-YYYY');
-                this.$el.find('.' + eventID).html($('<div></div>').html(item.toString()).addClass('schedule-info'));
-                
-                this.$el.find('.' + eventID).attr('rowSpan', item.get('duration'))
-                    .addClass('schedule-event')
-                    .html(item.toString());*/
-                    
-                for (i = 1; i < item.get('duration'); i++) {
-                    eventID = moment(item.get('dateTime')).add(i * 30, 'm').format('HH-mm-MM-DD-YYYY');
-                    this.$el.find('.' + eventID).remove();
+                if (collections.groups.contain(item.get('groupID'))) {
+                    for (i = 0; i < item.get('duration'); i++) {
+                        eventID = moment(item.get('dateTime')).add(i * 30, 'm').format('HH-mm-MM-DD-YYYY');
+                        this.$el.find('.' + eventID).attr('rowSpan', item.get('duration'))
+                        .addClass('schedule-event').html(item.toString());
+                    }
+                        
+                    for (i = 1; i < item.get('duration'); i++) {
+                        eventID = moment(item.get('dateTime')).add(i * 30, 'm').format('HH-mm-MM-DD-YYYY');
+                        this.$el.find('.' + eventID).remove();
+                    }
                 }
             }).bind(this));
             
