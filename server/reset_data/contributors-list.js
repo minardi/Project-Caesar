@@ -78,8 +78,8 @@ var contributorsList = [
     },
     {
         _id: 11,
-        name: 'Liliia',
-        lastName: 'Kryvsun',
+        name: 'Oleksandra',
+        lastName: 'Pervunina',
         team: '',
         group: 'QC'
     },
@@ -101,6 +101,13 @@ var contributorsList = [
         _id: 14,
         name: 'Anastasiia',
         lastName: 'Petina',
+        team: '',
+        group: 'QC'
+    },
+    {
+        _id: 15,
+        name: 'Denys',
+        lastName: 'Romazan',
         team: '',
         group: 'QC'
     }

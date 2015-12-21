@@ -35,6 +35,7 @@
             });
             
             function processNavigation (direction) {
+                $('.notifications').empty();
                 currentLayer = layers[cropper.exec(Backbone.history.getFragment())[0].replace('/','')];
                 
                 if (currentLayer === 'Center') {
