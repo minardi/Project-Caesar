@@ -13,6 +13,13 @@ html, body {
   height: 100%;
 }
 
+@-moz-document url-prefix() 
+{ 
+.site-wrapper > div {
+    display: table-row;
+  } 
+} 
+
 .site-wrapper > div > div {
   height: 100%;
   padding: 10px 5px;
@@ -89,6 +96,13 @@ html, body {
   background: white;
   margin: 6px 0px;
 }
+
+@-moz-document url-prefix() 
+{ 
+.content {
+    margin: 0px;
+  } 
+} 
 
 .content-row {
   margin: 0;

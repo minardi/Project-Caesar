@@ -15,8 +15,8 @@
             this.listenTo(this.model, 'sync', this.render);
             this.listenTo(this.model, 'destroy', this.remove);
 
-            cs.mediator.subscribe('editGroup', this.editForContextMenu, {}, this);
-            cs.mediator.subscribe('deleteGroup', this.deleteForContextMenu, {}, this);
+            this.listenTo(this.model, 'editGroup', this.editGroup);
+            this.listenTo(this.model, 'deleteGroup', this.deleteGroup);
 
             Backbone.Validation.bind(this);
         },
@@ -74,18 +74,6 @@
                     left: relativeX,
                     top: relativeY
                 });
-        },
-
-        editForContextMenu: function (model) {
-            if (model.cid === this.model.cid) {
-                this.editGroup();
-            }
-        },
-
-        deleteForContextMenu: function (model) {
-            if (model.cid === this.model.cid) {
-                this.deleteGroup();
-            }
         }
     });
 })(App.Groups);
