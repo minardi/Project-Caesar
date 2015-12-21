@@ -3,154 +3,154 @@ var employeesList = [
         name: 'Николай',
         lastName: 'Демчина',
         role: 'Teacher',
-        locationCity: 'Ивано-Франковск',
+        locationCity: 'Ivano-Frankivsk',
         locationCountry: 'Украина'
     },
     {
         name: 'Марьяна',
         lastName: 'Лопатинская',
         role: 'Teacher',
-        locationCity: 'Львов',
+        locationCity: 'Lviv',
         locationCountry: 'Украина'
     },
     {
         name: 'Михаил',
         lastName: 'Плеша',
         role: 'Teacher',
-        locationCity: 'Львов',
+        locationCity: 'Lviv',
         locationCountry: 'Украина'
     },
     {
         name: 'Виктория',
         lastName: 'Ряжська',
         role: 'Teacher',
-        locationCity: 'Львов',
+        locationCity: 'Lviv',
         locationCountry: 'Украина'
     },
     {
         name: 'Любомир',
         lastName: 'Галамага',
         role: 'Teacher',
-        locationCity: 'Львов',
+        locationCity: 'Lviv',
         locationCountry: 'Украина'
     },
     {
         name: 'Андрей',
         lastName: 'Коркуна',
         role: 'Teacher',
-        locationCity: 'Львов',
+        locationCity: 'Lviv',
         locationCountry: 'Украина'
     },
     {
         name: 'Ярослав',
         lastName: 'Гарасим',
         role: 'Teacher',
-        locationCity: 'Львов',
+        locationCity: 'Lviv',
         locationCountry: 'Украина'
     },
     {
         name: 'Игорь',
         lastName: 'Когут',
         role: 'Teacher',
-        locationCity: 'Львов',
+        locationCity: 'Lviv',
         locationCountry: 'Украина'
     },
     {
         name: 'Леся',
         lastName: 'Клакович',
         role: 'Teacher',
-        locationCity: 'Львов',
+        locationCity: 'Lviv',
         locationCountry: 'Украина'
     },
     {
         name: 'Вячеслав',
         lastName: 'Колдовский',
         role: 'Teacher',
-        locationCity: 'Львов',
+        locationCity: 'Lviv',
         locationCountry: 'Украина'
     },
     {
         name: 'Наталия',
         lastName: 'Романенко',
         role: 'Teacher',
-        locationCity: 'Черновцы',
+        locationCity: 'Chernivtsi',
         locationCountry: 'Украина'
     },
     {
         name: 'Андрей',
         lastName: 'Перцов',
         role: 'Teacher',
-        locationCity: 'Черновцы',
+        locationCity: 'Chernivtsi',
         locationCountry: 'Украина'
     },
     {
         name: 'Олег',
         lastName: 'Швец',
         role: 'Teacher',
-        locationCity: 'Днепропетровск',
+        locationCity: 'Dnipro',
         locationCountry: 'Украина'
     },
     {
         name: 'Александр',
         lastName: 'Реута',
         role: 'Teacher',
-        locationCity: 'Днепропетровск',
+        locationCity: 'Dnipro',
         locationCountry: 'Украина'
     },
     {
         name: 'Игорь',
         lastName: 'Цветков',
         role: 'Coordinator',
-        locationCity: 'Киев',
+        locationCity: 'Kyiv',
         locationCountry: 'Украина'
     },
     {
         name: 'Юрий',
         lastName: 'Безгачнюк',
         role: 'Coordinator',
-        locationCity: 'Ивано-Франковск',
+        locationCity: 'Ivano-Frankivsk',
         locationCountry: 'Украина'
     },
     {
         name: 'Наталия',
         lastName: 'Романенко',
         role: 'Coordinator',
-        locationCity: 'Черновцы',
+        locationCity: 'Chernivtsi',
         locationCountry: 'Украина'
     },
     {
         name: 'Дмитрий',
         lastName: 'Петин',
         role: 'Coordinator',
-        locationCity: 'Днепропетровск',
+        locationCity: 'Dnipro',
         locationCountry: 'Украина'
     },
     {
         name: 'Михаил',
         lastName: 'Омельчук',
         role: 'Coordinator',
-        locationCity: 'Ровно',
+        locationCity: 'Rivne',
         locationCountry: 'Украина'
     },
     {
         name: 'Юлиан',
         lastName: 'Боянов',
         role: 'Coordinator',
-        locationCity: 'София',
+        locationCity: 'Sofia',
         locationCountry: 'Болгария'
     },
     {
         name: 'Андрей',
         lastName: 'Переймибида',
         role: 'Administrator',
-        locationCity: 'Львов',
+        locationCity: 'Lviv',
         locationCountry: 'Украина'
     },
     {
         name: 'Кристина',
         lastName: 'Дуда',
         role: 'Administrator',
-        locationCity: 'Львов',
+        locationCity: 'Lviv',
         locationCountry: 'Украина'
     }
 ];
@@ -163,7 +163,7 @@ module.exports = employeesList;
          lastName: 'Демчина',
          role: 'teacher',
          location: {
-             city: 'Ивано-Франковск',
+             city: 'Ivano-Frankivsk',
              country: 'Украина'
          }
      },
@@ -172,7 +172,7 @@ module.exports = employeesList;
          lastName: 'Лопатинская',
          role: 'teacher',
          location: {
-             city: 'Львов',
+             city: 'Lviv',
              country: 'Украина'
          }
      },
@@ -181,7 +181,7 @@ module.exports = employeesList;
          lastName: 'Плеша',
          role: 'teacher',
          location: {
-             city: 'Львов',
+             city: 'Lviv',
              country: 'Украина'
          }
      },
@@ -190,7 +190,7 @@ module.exports = employeesList;
  lastName: 'Ряжська',
  role: 'teacher',
  location: {
- city: 'Львов',
+ city: 'Lviv',
  country: 'Украина'
  }
  },
@@ -199,7 +199,7 @@ module.exports = employeesList;
  lastName: 'Галамага',
  role: 'teacher',
  location: {
- city: 'Львов',
+ city: 'Lviv',
  country: 'Украина'
  }
  },
@@ -208,7 +208,7 @@ module.exports = employeesList;
  lastName: 'Коркуна',
  role: 'teacher',
  location: {
- city: 'Львов',
+ city: 'Lviv',
  country: 'Украина'
  }
  },
@@ -217,7 +217,7 @@ module.exports = employeesList;
  lastName: 'Гарасим',
  role: 'teacher',
  location: {
- city: 'Львов',
+ city: 'Lviv',
  country: 'Украина'
  }
  },
@@ -226,7 +226,7 @@ module.exports = employeesList;
  lastName: 'Когут',
  role: 'teacher',
  location: {
- city: 'Львов',
+ city: 'Lviv',
  country: 'Украина'
  }
  },
@@ -235,7 +235,7 @@ module.exports = employeesList;
  lastName: 'Клакович',
  role: 'teacher',
  location: {
- city: 'Львов',
+ city: 'Lviv',
  country: 'Украина'
  }
  },
@@ -244,7 +244,7 @@ module.exports = employeesList;
  lastName: 'Колдовский',
  role: 'teacher',
  location: {
- city: 'Львов',
+ city: 'Lviv',
  country: 'Украина'
  }
  },
@@ -253,7 +253,7 @@ module.exports = employeesList;
  lastName: 'Романенко',
  role: 'teacher',
  location: {
- city: 'Черновцы',
+ city: 'Chernivtsi',
  country: 'Украина'
  }
  },
@@ -262,7 +262,7 @@ module.exports = employeesList;
  lastName: 'Перцов',
  role: 'teacher',
  location: {
- city: 'Черновцы',
+ city: 'Chernivtsi',
  country: 'Украина'
  }
  },
@@ -271,7 +271,7 @@ module.exports = employeesList;
  lastName: 'Швец',
  role: 'teacher',
  location: {
- city: 'Днепропетровск',
+ city: 'Dnipro',
  country: 'Украина'
  }
  },
@@ -280,7 +280,7 @@ module.exports = employeesList;
  lastName: 'Реута',
  role: 'teacher',
  location: {
- city: 'Днепропетровск',
+ city: 'Dnipro',
  country: 'Украина'
  }
  },
@@ -289,7 +289,7 @@ module.exports = employeesList;
  lastName: 'Цветков',
  role: 'coordinator',
  location: {
- city: 'Киев',
+ city: 'Kyiv',
  country: 'Украина'
  }
  },
@@ -298,7 +298,7 @@ module.exports = employeesList;
  lastName: 'Безгачнюк',
  role: 'coordinator',
  location: {
- city: 'Ивано-Франковск',
+ city: 'Ivano-Frankivsk',
  country: 'Украина'
  }
  },
@@ -307,7 +307,7 @@ module.exports = employeesList;
  lastName: 'Романенко',
  role: 'coordinator',
  location: {
- city: 'Черновцы',
+ city: 'Chernivtsi',
  country: 'Украина'
  }
  },
@@ -316,7 +316,7 @@ module.exports = employeesList;
  lastName: 'Петин',
  role: 'coordinator',
  location: {
- city: 'Днепропетровск',
+ city: 'Dnipro',
  country: 'Украина'
  }
  },
@@ -325,7 +325,7 @@ module.exports = employeesList;
  lastName: 'Омельчук',
  role: 'coordinator',
  location: {
- city: 'Ровно',
+ city: 'Rivne',
  country: 'Украина'
  }
  },
@@ -334,7 +334,7 @@ module.exports = employeesList;
  lastName: 'Боянов',
  role: 'coordinator',
  location: {
- city: 'София',
+ city: 'Sofia',
  country: 'Болгария'
  }
  },
@@ -343,7 +343,7 @@ module.exports = employeesList;
  lastName: 'Переймибида',
  role: 'administrator',
  location: {
- city: 'Львов',
+ city: 'Lviv',
  country: 'Украина'
  }
  },
@@ -352,7 +352,7 @@ module.exports = employeesList;
  lastName: 'Дуда',
  role: 'administrator',
  location: {
- city: 'Львов',
+ city: 'Lviv',
  country: 'Украина'
  }
  }

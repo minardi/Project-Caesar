@@ -9,15 +9,16 @@
         events: {
             'click .close-btn, .close': 'closeView',
             'click .submit': 'submit',
-            'click .add-expert': 'addExpertInput'
+            'click .add-expert': 'addExpertInput',
+            'change select[name="LocationName"]': 'renderTeachersView'
         },
 
         render: function () {
             var group = this;
 
-            getTeachers();
             initRenderInfo();
             initDatapickers();
+            this.renderTeachersView();
 
             function initRenderInfo () {
                 var groupJsonInfo;
@@ -25,7 +26,6 @@
                 groupJsonInfo = group.model.toJSON();
                 groupJsonInfo.locations = collections.locations;
                 groupJsonInfo.directions = collections.directions;
-                groupJsonInfo.allTeachers = getTeachers();
 
                 group.$el.html(group.tpl(groupJsonInfo));
             }
@@ -42,23 +42,50 @@
                     defaultDate: moment().add(COURSE_DURATION, 'days').format()
                 });
             }
-            
-            function getTeachers () {
-                var teachers = collections.teachers,
-                    teachersFullName = [];
-
-                teachers = teachers.filter('Teacher');
-                teachers.forEach (function (teacher) {
-                    var teacherName = teacher.get('lastName')
-                        + ' ' + teacher.get('name');
-
-                    teachersFullName.push(teacherName);
-                });
-
-                return teachersFullName;
-            }
-
             return this;
+        },
+
+        renderTeachersView: function () {
+            function renderCitysTeachers () {
+                var locations = collections.locations,
+                    teachers = collections.teachers,
+                    citysTeachers = {};
+
+                locations.forEach(function (location) {
+                    var city = location.get('city');
+
+                    citysTeachers[city] = [];
+
+                    teachers.forEach(function (teacher) {
+                        var teacherCity = teacher.get('location').city,
+                            teacherFullName = teacher.get('lastName')
+                                            + ' ' + teacher.get('name');
+                        
+                        if (city === teacherCity) {
+                            citysTeachers[city].push(teacherFullName);
+                        };
+                    });
+
+                });
+                return citysTeachers;
+            };
+
+            var currentCity = $('select[name="LocationName"] option:selected').val(),
+                cityTeachers = renderCitysTeachers(),
+                currentteachers = [],
+                thisGroup = this.model;
+
+            $.each(cityTeachers, function(city, cityTeacher) {
+                if (currentCity === city) {
+                    $('.cityTeachers').html(templates.groupTeachersTpl({selectedTeachers: cityTeacher}));
+                    
+                    if (!thisGroup.isNew()) {
+                        // $.each(, function (argument) {
+                            console.log(thisGroup.get('teachers'));
+                        // });
+                    };
+                };
+            });
         },
 
         closeView: function () {
