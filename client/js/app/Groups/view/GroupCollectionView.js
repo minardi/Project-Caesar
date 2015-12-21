@@ -13,9 +13,14 @@
             'click #my-groups': 'switchMyGroups'
         },
 
-        initialize: function (isMyGroupsShown) {
+        initialize: function (isMyGroupsShown, location) {
             this.isMyGroupsShown = isMyGroupsShown;
-            this.baseUrl = isMyGroupsShown ? 'Groups/my/' : 'Groups/';
+            if (location) {
+                this.baseUrl = 'Groups/' + location + '/';
+            } else {
+                this.baseUrl = isMyGroupsShown ? 'Groups/my/' : 'Groups/';
+            }
+
             this.currentView = 'renderCurrent';
             this.collection = collections.groups;
             this.listenTo(this.collection, 'add', this.renderCurrentGroups);
