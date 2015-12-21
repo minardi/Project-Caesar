@@ -17,12 +17,12 @@
             this.$el.empty()
                 .append(this.tpl(this.tplParameters(groupName)));
 
-            $('td').not('.schedule-event').click(this.tryAddEvent.bind(this));
-            $('td.schedule-event').dblclick(this.tryDeleteEvent.bind(this));
+            $('td').not('.schedule-event').click(this.addEvent.bind(this));
+            $('td.schedule-event').dblclick(this.deleteEvent.bind(this));
             return this;
         },
 
-        tryAddEvent: function (event) {
+        addEvent: function (event) {
             var target = event.target,
                 roomId = $('#rooms .active').data('roomId'),
                 dateTimeStr = target.classList[target.classList.length - 1],
@@ -41,19 +41,15 @@
             newEvent.save();
             if (newEvent.isValid() && newEvent.isNew()) {
                 this.collection.add(newEvent);
-                console.log('event added');
             }
             cs.mediator.publish('Schedule:rerender', this.weekStart, this.groupName.replace(' ', '+'));
         },
 
-        tryDeleteEvent: function (event) {
+        deleteEvent: function (event) {
             var target = event.target,
-                dateTimeStr = _.find(target.classList, isDateClass),
-                dateTime = moment(dateTimeStr, 'HH-mm-MM-DD-YYYY').toISOString(),
-                groupId = collections.groups.findWhere({name: this.groupName}).id,
+                eventId = $(target).data('id'),
                 eventToDelete = this.collection.findWhere({
-                    dateTime: dateTime,
-                    groupID: groupId
+                    _id: eventId,
                 });
 
             eventToDelete.destroy({wait: true});
