@@ -49,7 +49,7 @@ templates.groupEditTpl = _.template([
                                 '<input type="text" class="form-control" placeholder="Start Date" id="startDate">',
                                 '<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>',
                             '</div>',
-                            '<label class="col-sm-2 control-label">Start Date</label>',
+                            '<label class="col-sm-2 control-label">Finish Date</label>',
                             '<div class="col-sm-4">',
                                 '<input type="text" class="form-control" placeholder="Finish Date" id="finishDate">',
                                 '<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>',
