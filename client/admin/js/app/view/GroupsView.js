@@ -109,7 +109,6 @@
                     location: this.$el.find('select[name="LocationName"] option:selected').val(),
                     startDate: this.$el.find('#startDate').val(),
                     finishDate: this.$el.find('#finishDate').val(),
-                    status: this.$el.find('select[name="StatusName"] option:selected').val(),
                     teachers: collectTeachersExperts('teacher'),
                     experts: collectTeachersExperts('expert')
                 };

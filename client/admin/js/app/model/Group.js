@@ -9,7 +9,6 @@
                 location: '',
                 startDate: '',
                 finishDate: '',
-                status: '',
                 teachers: [],
                 experts: [],
                 students: []
