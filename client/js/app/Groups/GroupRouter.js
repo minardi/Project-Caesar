@@ -4,13 +4,18 @@
         routes: {
             '': 'redirectToMy',
             'Groups': 'showAllCurrentGroups',
+            'Groups/': 'showAllCurrentGroups',
             'Groups/current': 'showAllCurrentGroups',
             'Groups/future': 'showFutureGroups',
             'Groups/finished': 'showFinishedGroups',
             'Groups/my': 'showMyGroups',
             'Groups/my/finished': 'showMyFinished',
+            'Groups/my/current': 'showMyGroups',
             'Groups/my/future': 'showMyFuture',
             'Groups/:location': 'showInLocation',
+            'Groups/:location/current': 'showInLocation',
+            'Groups/:location/finished': 'showFinishedInLocation',
+            'Groups/:location/future': 'showFutureInLocation',
             'Groups*path': 'notFound'
         },
 
@@ -45,7 +50,15 @@
         },
 
         showInLocation: function (location) {
-            cs.mediator.publish('showInLocation', location);
+            cs.mediator.publish('showInLocation', location, 'current');
+        },
+
+        showFinishedInLocation: function (location) {
+            cs.mediator.publish('showInLocation', location, 'finished');
+        },
+
+        showFutureInLocation: function (location) {
+            cs.mediator.publish('showInLocation', location, 'future');
         },
 
         showMyGroups: function () {
