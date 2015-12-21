@@ -58,3 +58,32 @@
   font-size: 14px;
   margin: 4px;
 }
+
+#my-location-field {
+    margin-left: 20px;
+    width: 200px;
+    position: absolute;
+    z-index: 100;
+}
+
+.form-filter input[type="checkbox"] {
+    display: none;
+}
+
+.form-filter input[type="checkbox"] + .btn-group > label span {
+    width: 20px;
+}
+
+.form-filter input[type="checkbox"] + .btn-group > label span:first-child {
+    display: none;
+}
+.form-filter input[type="checkbox"] + .btn-group > label span:last-child {
+    display: inline-block;   
+}
+
+.form-filter input[type="checkbox"]:checked + .btn-group > label span:first-child {
+    display: inline-block;
+}
+.form-filter input[type="checkbox"]:checked + .btn-group > label span:last-child {
+    display: none;   
+}

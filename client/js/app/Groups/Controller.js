@@ -28,7 +28,7 @@
 
         showInLocation: function (location) {
             this.collection.fetch({data: {location: location}})
-                .done(this.renderCurrentGroups.bind(this, {namespace: 'currentGroupsView'}));
+                .done(this.renderCurrentGroups.bind(this, {namespace: 'currentGroupsView'}, false));
         },
 
         renderCurrentGroups: function (event, isMyGroupsShown) {
