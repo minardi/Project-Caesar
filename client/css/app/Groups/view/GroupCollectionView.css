@@ -55,3 +55,13 @@
 .form-group input[type="checkbox"]:checked + .btn-group > label span:last-child {
     display: none;   
 }
+
+.form-horizontal .form-group.m-l-decarator {
+    padding: 10px 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.form-horizontal .form-group.m-l-decarator label {
+    padding-left: 0;
+    padding-right: 0;
+}
