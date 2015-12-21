@@ -12,26 +12,25 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-	var Group = mongoose.model('Group'),
-		newGroup = new Group({
-			name: req.body.name,
-			direction: req.body.direction,
-			location: req.body.location,
-			startDate: req.body.startDate,
-			finishDate: req.body.finishDate,
-			status: req.body.status,
-			teachers: req.body.teachers,
-			experts: req.body.experts
-		});
+    var Group = mongoose.model('Group'),
+        newGroup = new Group({
+            name: req.body.name,
+            direction: req.body.direction,
+            location: req.body.location,
+            startDate: req.body.startDate,
+            finishDate: req.body.finishDate,
+            teachers: req.body.teachers,
+            experts: req.body.experts
+        });
 
-	newGroup.save(function(err, data) {
-		if (err) {
-			console.log(err);
-			res.send(err);
-		} else {
-			res.send(data);
-		}
-	});
+    newGroup.save(function(err, data) {
+        if (err) {
+            console.log(err);
+            res.send(err);
+        } else {
+            res.send(data);
+        }
+    });
 });
 
 router.put('/:id', function (req, res, next) {

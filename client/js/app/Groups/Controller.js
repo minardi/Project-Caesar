@@ -15,7 +15,6 @@
             });
             
             this.collectionViewEl = $('#main-container');
-
         },
 
         showAllCurrentGroups: function () {
