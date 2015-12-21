@@ -19,12 +19,12 @@
         },
 
         edit: function () {
-            cs.mediator.publish('editGroup', this.model);
+            this.model.trigger('editGroup');
             this.closeMenu();
         },
 
         delete: function () {
-            cs.mediator.publish('deleteGroup', this.model);
+            this.model.trigger('deleteGroup');
             this.closeMenu();
         },
 
