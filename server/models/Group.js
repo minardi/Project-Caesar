@@ -6,7 +6,6 @@ var mongoose = require('mongoose'),
         location: { type: String, required: true },
         startDate: {type: Date, default: Date.now},
         finishDate: {type: Date, default: ''},
-        status: { type: String, required: true },
         teachers: {type: Array },
         experts: {type: Array },
         students: {type: Array }
