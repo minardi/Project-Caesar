@@ -3,155 +3,133 @@ var employeesList = [
         name: 'Nikolai',
         lastName: 'Demchina',
         role: 'Teacher',
-        locationCity: 'Ивано-Франковск',
-        locationCountry: 'Украина'
+        location: 'IF'
     },
     {
         name: 'Mariana',
         lastName: 'Lopatinskaia',
         role: 'Teacher',
-        locationCity: 'Львов',
-        locationCountry: 'Украина'
+        location: 'Lv'
     },
     {
         name: 'Michail',
         lastName: 'Plesha',
         role: 'Teacher',
-        locationCity: 'Львов',
-        locationCountry: 'Украина'
+        location: 'Lv'
     },
     {
         name: 'Viktoriia',
         lastName: 'Riazskaia',
         role: 'Teacher',
-        locationCity: 'Львов',
-        locationCountry: 'Украина'
+        location: 'Lv'
     },
     {
         name: 'Lubomir',
         lastName: 'Galamaga',
         role: 'Teacher',
-        locationCity: 'Львов',
-        locationCountry: 'Украина'
+        location: 'Lv'
     },
     {
         name: 'Andrey',
         lastName: 'Korkuna',
         role: 'Teacher',
-        locationCity: 'Львов',
-        locationCountry: 'Украина'
+        location: 'Lv'
     },
     {
         name: 'Jaroslav',
         lastName: 'Gerasim',
         role: 'Teacher',
-        locationCity: 'Львов',
-        locationCountry: 'Украина'
+        location: 'Lv'
     },
     {
         name: 'Igor',
         lastName: 'Kogut',
         role: 'Teacher',
-        locationCity: 'Львов',
-        locationCountry: 'Украина'
+        location: 'Lv'
     },
     {
         name: 'Lesia',
         lastName: 'Klakovich',
         role: 'Teacher',
-        locationCity: 'Львов',
-        locationCountry: 'Украина'
+        location: 'Lv'
     },
     {
         name: 'Vjacheslav',
         lastName: 'Koldovskii',
         role: 'Teacher',
-        locationCity: 'Львов',
-        locationCountry: 'Украина'
+        location: 'Lv'
     },
     {
         name: 'Natalia',
         lastName: 'Romanenko',
         role: 'Teacher',
-        locationCity: 'Черновцы',
-        locationCountry: 'Украина'
+        location: 'Ch'
     },
     {
         name: 'Andrei',
         lastName: 'Perzov',
         role: 'Teacher',
-        locationCity: 'Черновцы',
-        locationCountry: 'Украина'
+        location: 'Ch'
     },
     {
         name: 'Oleg',
         lastName: 'Shvez',
         role: 'Teacher',
-        locationCity: 'Днепропетровск',
-        locationCountry: 'Украина'
+        location: 'Dp'
     },
     {
         name: 'Alexandr',
         lastName: 'Reuta',
         role: 'Teacher',
-        locationCity: 'Днепропетровск',
-        locationCountry: 'Украина'
+        location: 'Dp'
     },
     {
         name: 'Igor',
         lastName: 'Zvetkov',
         role: 'Coordinator',
-        locationCity: 'Киев',
-        locationCountry: 'Украина'
+        location: 'Kv'
     },
     {
         name: 'Jurii',
         lastName: 'Bezgachnuk',
         role: 'Coordinator',
-        locationCity: 'Ивано-Франковск',
-        locationCountry: 'Украина'
+        location: 'IF'
     },
     {
         name: 'Natalia',
         lastName: 'Romanenko',
         role: 'Coordinator',
-        locationCity: 'Черновцы',
-        locationCountry: 'Украина'
+        location: 'Ch'
     },
     {
         name: 'Dmitriy',
         lastName: 'Petin',
         role: 'Coordinator',
-        locationCity: 'Днепропетровск',
-        locationCountry: 'Украина'
+        location: 'Dp'
     },
     {
         name: 'Michail',
         lastName: 'Omelchuk',
         role: 'Coordinator',
-        locationCity: 'Ровно',
-        locationCountry: 'Украина'
+        location: 'Rv'
     },
     {
         name: 'Julian',
         lastName: 'Boyanov',
         role: 'Coordinator',
-        locationCity: 'София',
-        locationCountry: 'Болгария'
+        location: 'Sf'
     },
     {
         name: 'Andrey',
         lastName: 'Pereimida',
         role: 'Administrator',
-        locationCity: 'Львов',
-        locationCountry: 'Украина'
+        location: 'Lv'
     },
     {
         name: 'Kristina',
         lastName: 'Duda',
         role: 'Administrator',
-        locationCity: 'Львов',
-        locationCountry: 'Украина'
+        location: 'Lv'
     }
 ];
 
