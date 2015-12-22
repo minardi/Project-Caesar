@@ -26,13 +26,13 @@
                 });
         },
 
-        showInLocation: function (location) {
+        showInLocation: function (location, status) {
             this.collection.fetch({data: {location: location}})
-                .done(this.renderCurrentGroups.bind(this, {namespace: 'currentGroupsView'}, false));
+                .done(this.renderCurrentGroups.bind(this, {namespace: status + 'GroupsView'}, false, location));
         },
 
-        renderCurrentGroups: function (event, isMyGroupsShown) {
-            this.collectionView = new This.GroupCollectionView(isMyGroupsShown);
+        renderCurrentGroups: function (event, isMyGroupsShown, location) {
+            this.collectionView = new This.GroupCollectionView(isMyGroupsShown, location);
             var behavior = {
                     'currentGroupsView': this.collectionView.renderCurrentGroups,
                     'futureGroupsView': this.collectionView.renderFutureGroups,
@@ -46,9 +46,15 @@
         },
 
         showMy: function (status) {
-            this.filterMy();
 
-            this.renderCurrentGroups({namespace: status + 'GroupsView'}, true);
+            this.collection.fetch({reset: true})
+                .done(onfetch.bind(this));
+
+
+            function onfetch() {
+                this.filterMy();
+                this.renderCurrentGroups({namespace: status + 'GroupsView'}, true);
+            }
         },
 
         filterMy: function () {

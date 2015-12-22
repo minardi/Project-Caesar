@@ -31,7 +31,8 @@
             });
 
             this.$('#my-location').on('click', this.routeToMyLocation.bind(this));
-            
+            this.$('#my-groups').on('click', this.routeToMyGroups.bind(this));
+
             return this;
         },
         
@@ -85,6 +86,11 @@
             var userLocation = cs.currentUser.getLocation();
 
             cs.mediator.publish('SelectedMenu', 'Groups/' + userLocation['city']);
+            this.remove();
+        },
+
+        routeToMyGroups: function () {
+            cs.mediator.publish('SelectedMenu', 'Groups/my');
             this.remove();
         }
     });

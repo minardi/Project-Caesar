@@ -27,7 +27,7 @@ templates.locationCollectionTpl = _.template([
                     '<span> </span>',
                 '</label>',
                 '<label for="my-groups" class="btn btn-default active">',
-                    'My group',
+                    'My groups',
                 '</label>',
             '</div>',
         '</div>',
