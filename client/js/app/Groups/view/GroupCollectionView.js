@@ -5,18 +5,22 @@
         className: 'center-content',
         tpl: templates.groupCollectionTpl,
         myGroupsTpl: templates.myGroupsTpl,
+        myLocationGroupsTpl: templates.myLocationGroupsTpl,
+        currentLocation: '', 
 
         events: {
             'click .add-new-group': 'addGroup',
             'click #up-navig': 'renderUp',
             'click #down-navig': 'renderDown',
-            'click #my-groups': 'switchMyGroups'
+            'click #my-groups': 'switchMyGroups',
+            'click #my-location': 'switchMyLocation'
         },
 
         initialize: function (isMyGroupsShown, location) {
             this.isMyGroupsShown = isMyGroupsShown;
             if (location) {
                 this.baseUrl = 'Groups/' + location + '/';
+                this.currentLocation = location;
             } else {
                 this.baseUrl = isMyGroupsShown ? 'Groups/my/' : 'Groups/';
             }
@@ -68,7 +72,8 @@
 
         renderFilterGroups: function (mode, filter) {
             var filtered = this.collection.filter(filter, this),
-                userRole = cs.currentUser.getRole();
+                userRole = cs.currentUser.getRole(),
+                userLocation = cs.currentUser.getLocation();
             
             this.filter.set({
                 'collection': filtered,
@@ -76,8 +81,13 @@
             });
             this.currentView = mode;
 
-            this.$el.html(this.tpl({userRole: userRole, 
-                myGroupsCheckbox: this.myGroupsTpl({isMy: this.isMyGroupsShown})
+            this.$el.html(this.tpl({
+                userRole: userRole, 
+                myGroupsCheckbox: this.myGroupsTpl({isMy: this.isMyGroupsShown}),
+                myLocationGroupsCheckbox: this.myLocationGroupsTpl({
+                    isMyLocation: this.currentLocation === userLocation['city'],
+                    location: this.currentLocation
+                })
             }));
 
             this.$('.searcher').append(this.filter.renderSearcher());
@@ -172,6 +182,17 @@
             } else {
                 cs.mediator.publish('showAll');
             }
+        },
+
+        switchMyLocation: function () {
+            var userLocation = cs.currentUser.getLocation();
+
+            if ($('#my-location').is(':checked')) {
+                cs.mediator.publish('currentGroups', 'Groups/' + userLocation['city']);
+                cs.mediator.publish('showInLocation', userLocation['city'], 'current');
+            } else {
+                cs.mediator.publish('SelectedMenu', '/Locations');
+            };
         }
     });
 })(App.Groups, App.Filter);

@@ -9,6 +9,7 @@ templates.groupCollectionTpl = _.template([
                     '<button type="button" class="btn btn-primary add-new-group" data-toggle="modal" data-target="#groupAdd">Add New</button>',
                 '<% } %>',
             '</h1>',
+            '<%= myLocationGroupsCheckbox %>',
             '<%= myGroupsCheckbox %>',
         '<div class="searcher col-md-12">',
             '</div>',

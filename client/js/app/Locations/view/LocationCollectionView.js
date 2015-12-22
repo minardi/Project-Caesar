@@ -5,7 +5,6 @@
         className: 'center-content',
         tpl: templates.locationCollectionTpl,
 
-
         initialize: function () {
             this.collection = collections.locations;
             this.filter = new Filter.Controller({
@@ -30,6 +29,9 @@
                     this.renderAll(this.filter.getCollection());
                 }.bind(this)
             });
+
+            this.$('#my-location').on('click', this.routeToMyLocation.bind(this));
+            this.$('#my-groups').on('click', this.routeToMyGroups.bind(this));
 
             return this;
         },
@@ -77,6 +79,18 @@
         },
 
         removeView: function () {
+            this.remove();
+        },
+
+        routeToMyLocation: function () {
+            var userLocation = cs.currentUser.getLocation();
+
+            cs.mediator.publish('SelectedMenu', 'Groups/' + userLocation['city']);
+            this.remove();
+        },
+
+        routeToMyGroups: function () {
+            cs.mediator.publish('SelectedMenu', 'Groups/my');
             this.remove();
         }
     });
