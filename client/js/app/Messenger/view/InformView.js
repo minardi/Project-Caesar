@@ -5,7 +5,7 @@
     This.InformView = Backbone.View.extend({
         tagName: 'div',
         events: {
-            'click .close': 'close'
+            'click': 'close'
         },
         className: 'message-wrap',
 
@@ -16,12 +16,14 @@
         },
 
         render: function () {
+            var self = this;
+
             this.$el.html(this.tpl({message: this.message}));
 
             if (this.type === 'info') {
                 this.$('.inform').fadeIn(FADE);
                 
-                this.timeout = setTimeout(this.close.bind(this), 3000);
+                this.timeout = setTimeout(this.close.bind(this), 5000);
             } else if (this.type === 'warning') {
                 this.$('.warning').fadeIn(FADE);
 
@@ -30,7 +32,15 @@
 
             }
 
+            $(document).on('keydown', this.escHandler.bind(this));
+
             return this;
+        },
+
+        escHandler: function (e) {
+            if (e.keyCode === 27) {
+                this.close();
+            }
         },
 
         close: function () {
@@ -39,6 +49,8 @@
             });
 
             clearTimeout(this.timeout);
+
+            $(document).off('keydown', this.escHandler.bind(this));
         }
     });
 })(App.Messenger);

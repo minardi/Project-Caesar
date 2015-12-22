@@ -13,7 +13,7 @@
     width: 250px;
     position: absolute;
     top: -2px;
-    right: 8px;
+    left: 8px;
     display: none;
     z-index: 9999;
 }
@@ -23,11 +23,20 @@
         border-radius: 5px;
     }
 
+    .inform .modal-content .glyphicon-ok{
+        color: white;
+        font-size: 20px;
+        position: absolute;
+        top: 14px;
+        left: 8px;
+        z-index: 2;
+    }
+
 .warning {
     width: 250px;
     position: absolute;
     top: -2px;
-    right: 8px;
+    left: 8px;
     display: none;
     z-index: 9999;
 }
@@ -35,6 +44,15 @@
     .warning .modal-body {
         border-left: 40px solid #FDC975;
         border-radius: 5px;
+    }
+
+    .warning .icon {
+        position: absolute;
+        top: 4px;
+        left: 15px;
+        font-size: 28px;
+        color: white;
+        z-index: 2;
     }
 
 .darkback-error {
@@ -49,28 +67,50 @@
 
     .error {
         position: absolute;
-        margin-top: 250px;
+        margin-top: 200px;
         top: 0px;
         left: 50%;
         margin-left: -250px;
         width: 500px;
     }
 
-        .error .modal-content {
-            background: #F79292;
+        .error .modal-content .icon{
+            position: absolute;
+            top: 4px;
+            left: 15px;
+            font-size: 28px;
+            color: white;
+            z-index: 2;
         }
 
             .error .modal-content .modal-body {
                 text-align: center;
                 font-size: 22px;
+                border-left: 40px solid #F79292;
+                border-radius: 4px;
             }
 
 .confirm {
-    margin-top: 250px;
+    margin-top: 200px;
 }
 
-    .confirm .modal-content .modal-header{
-        background: #D9EDF7;
+    .confirm .icon {
+        position: absolute;
+        top: 4px;
+        left: 12px;
+        font-size: 28px;
+        color: white;
+        z-index: 2;
+    }
+    
+    .confirm .modal-body {
+        border-left: 40px solid #49C2FF;
+        border-radius: 4px 4px 4px 0px;
+    }
+
+    .confirm .modal-footer {
+        border-left: 40px solid #49C2FF;
+        border-radius: 0px 4px 4px 4px;
     }
 
 .tooltip-wrapper {
