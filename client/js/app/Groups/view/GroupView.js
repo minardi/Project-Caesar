@@ -6,6 +6,7 @@
         tpl: templates.groupTpl,
 
         events: {
+            'click': 'selectItem',
             'click .edit-group-ico': 'editGroup',
             'click .delete-group-ico': 'deleteGroup',
             'contextmenu' : 'showMenu'
@@ -37,10 +38,6 @@
             return this;
         },
         
-        showStudents: function () {
-            
-        },
-
         editGroup: function () {
             var groupEditView = new This.GroupAddEditView({
                     model: this.model, 
@@ -74,6 +71,13 @@
                     left: relativeX,
                     top: relativeY
                 });
+        },
+
+        selectItem: function (e) {
+            $('.selected-content-item').removeClass('selected-content-item')
+                                       .addClass('content-item');
+            this.$('.content-item').removeClass('content-item')
+                         .addClass('selected-content-item');            
         }
     });
 })(App.Groups);

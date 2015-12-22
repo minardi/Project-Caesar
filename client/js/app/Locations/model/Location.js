@@ -8,21 +8,6 @@
                 city: '',
                 country: ''
             };
-        },
-
-        validation: {
-            city: [
-                {
-                    required: true,
-                    msg: 'Field cannot be empty'
-                }
-            ],
-            country: [
-                {
-                    required: true,
-                    msg: 'Field cannot be empty'
-                }
-            ]               
         }
     });
 })(App.Locations);
