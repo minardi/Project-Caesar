@@ -22,7 +22,7 @@
                 endPosition,
                 i;
             
-            if (this.get('searchString') == "") {
+            if (this.get('searchString') === "") {
                 searchedCollection = Array.isArray(currentCollection) ? currentCollection : currentCollection.toArray();
             } else {
                 searchedCollection = currentCollection.filter(this.filterByAttribute.bind(this));                

@@ -2,7 +2,7 @@
 (function (This)  {
     This.Router = modifiedRouter.extend({
         routes: {
-            '': 'redirectToMy',
+            '': 'redirectToMyLocation',
             'Groups': 'showAllCurrentGroups',
             'Groups/': 'showAllCurrentGroups',
             'Groups/current': 'showAllCurrentGroups',
@@ -35,6 +35,12 @@
 
         redirectToMy: function () {
             this.navigate('Groups/my', {trigger: true});
+        },
+
+        redirectToMyLocation: function () {
+            var userLocation = cs.currentUser.getLocation();
+
+            this.navigate('Groups/' + userLocation['city'], {trigger: true});
         },
 
         showFutureGroups: function () {
