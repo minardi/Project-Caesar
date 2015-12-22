@@ -20,17 +20,20 @@ router.get('/', function(req, res, next) {
             UserModel.findOne ({
                 _id: session.userID
             }, function (err, user) {
-                response.success = true;
-                response.recognizedUser = {
-                    name: user.name,
-                    lastName: user.lastName,
-                    role: user.role,
-                    city: user.locationCity,
-                    country: user.locationCountry,
-                    sessionID: session.sessionID
-                };
-                console.log('Resuming session ' + session.sessionID);
+                if (user) {
+                    response.success = true;
+                    response.recognizedUser = {
+                        name: user.name,
+                        lastName: user.lastName,
+                        role: user.role,
+                        city: user.locationCity,
+                        country: user.locationCountry,
+                        sessionID: session.sessionID
+                    };
+                    console.log('Resuming session ' + session.sessionID);
+                }
                 res.send(JSON.stringify(response));
+                
             });
         } else {
             console.log('Attempt to resume closed session (' + req.query.id + ')');
