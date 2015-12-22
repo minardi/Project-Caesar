@@ -12,7 +12,8 @@
             'click .add-new-group': 'addGroup',
             'click #up-navig': 'renderUp',
             'click #down-navig': 'renderDown',
-            'click #my-groups': 'switchMyGroups'
+            'click #my-groups': 'switchMyGroups',
+            'click #my-location': 'switchMyLocation'
         },
 
         initialize: function (isMyGroupsShown, location) {
@@ -181,6 +182,17 @@
             } else {
                 cs.mediator.publish('showAll');
             }
+        },
+
+        switchMyLocation: function () {
+            var userLocation = cs.currentUser.getLocation();
+
+            if ($('#my-location').is(':checked')) {
+                cs.mediator.publish('currentGroups', 'Groups/' + userLocation['city']);
+                cs.mediator.publish('showInLocation', userLocation['city'], 'current');
+            } else {
+                cs.mediator.publish('SelectedMenu', '/Locations');
+            };
         }
     });
 })(App.Groups, App.Filter);
