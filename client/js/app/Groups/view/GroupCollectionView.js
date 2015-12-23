@@ -44,7 +44,7 @@
 
         renderUp: function () {
             if (this.currentView === 'renderCurrent') {
-                cs.mediator.publish('futureGroups', this.baseUrl + 'future');
+                cs.mediator.publish('futureGroups', this.baseUrl + 'planned');
                 this.renderFutureGroups();
             } else if (this.currentView === 'renderFinished') {
                 cs.mediator.publish('currentGroups', this.baseUrl + 'current');

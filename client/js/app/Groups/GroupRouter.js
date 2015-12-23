@@ -6,16 +6,16 @@
             'Groups': 'showAllCurrentGroups',
             'Groups/': 'showAllCurrentGroups',
             'Groups/current': 'showAllCurrentGroups',
-            'Groups/future': 'showFutureGroups',
+            'Groups/planned': 'showFutureGroups',
             'Groups/finished': 'showFinishedGroups',
             'Groups/my': 'showMyGroups',
             'Groups/my/finished': 'showMyFinished',
             'Groups/my/current': 'showMyGroups',
-            'Groups/my/future': 'showMyFuture',
+            'Groups/my/planned': 'showMyFuture',
             'Groups/:location': 'showInLocation',
             'Groups/:location/current': 'showInLocation',
             'Groups/:location/finished': 'showFinishedInLocation',
-            'Groups/:location/future': 'showFutureInLocation',
+            'Groups/:location/planned': 'showFutureInLocation',
             'Groups*path': 'notFound'
         },
 
@@ -64,7 +64,7 @@
         },
 
         showFutureInLocation: function (location) {
-            cs.mediator.publish('showInLocation', location, 'future');
+            cs.mediator.publish('showInLocation', location, 'planned');
         },
 
         showMyGroups: function () {
@@ -76,7 +76,7 @@
         },
 
         showMyFuture: function () {
-            cs.mediator.publish('showMy', 'future');
+            cs.mediator.publish('showMy', 'planned');
         },
 
         notFound: function () {
