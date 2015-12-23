@@ -74,10 +74,8 @@
         },
 
         selectItem: function (e) {
-            $('.selected-content-item').removeClass('selected-content-item')
-                                       .addClass('content-item');
-            this.$('.content-item').removeClass('content-item')
-                         .addClass('selected-content-item');            
+            $('.content-item').removeClass('selected-group');                                      
+            this.$('.content-item').addClass('selected-group');            
         }
     });
 })(App.Groups);
