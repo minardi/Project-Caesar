@@ -1,6 +1,13 @@
 .schedule-full-height {
     height: calc(100% - 122px);
+    display: table;
 }
+
+@-moz-document url-prefix() { 
+    .schedule-full-height {
+        display: inherit;
+    }
+} 
 
 .schedule-header {
     margin-top: 20px;
