@@ -47,7 +47,7 @@
                 cs.mediator.publish('futureGroups', this.baseUrl + 'planned');
                 this.renderFutureGroups();
             } else if (this.currentView === 'renderFinished') {
-                cs.mediator.publish('currentGroups', this.baseUrl + 'current');
+                cs.mediator.publish('currentGroups', this.baseUrl);
                 this.renderCurrentGroups();
             }
         },
@@ -57,7 +57,7 @@
                 cs.mediator.publish('finishedGroups', this.baseUrl + 'finished');
                 this.renderFinishedGroups();
             } else if (this.currentView === 'renderFuture') {
-                cs.mediator.publish('currentGroups', this.baseUrl + 'current');
+                cs.mediator.publish('currentGroups', this.baseUrl);
                 this.renderCurrentGroups();
             }
         },
