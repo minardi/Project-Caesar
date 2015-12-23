@@ -5,21 +5,8 @@
         className: '',
         tpl: templates.groupContributorCollectionTpl,
 
-        events: {
-            'click #JS': 'renderJSGroup',
-            'click #QC': 'renderQCGroup'
-        },
-
         initialize: function () {
            this.collection = collections.groupITA;
-        },
-
-        renderJSGroup: function () {
-            cs.mediator.publish('ShowJSGroup');
-        },
-
-        renderQCGroup: function () {
-            cs.mediator.publish('ShowQCGroup');
         },
 
         render: function () {

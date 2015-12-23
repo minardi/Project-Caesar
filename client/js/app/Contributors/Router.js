@@ -3,24 +3,20 @@
     This.Router = Backbone.Router.extend({
         routes: {
             'Contributors': 'showContributors',
-            'Contributors/qc': 'showQCContributors',
-            'Contributors/js': 'showJSContributors',
+            'Contributors/QC': 'showQCContributors',
+            'Contributors/JS': 'showJSContributors',
             'Contributors*path': 'notFound'
         },
 
         initialize: function () {
             this.controller = new This.Controller();
-            cs.mediator.subscribe('ShowQCGroup', this.navigateQC, {}, this);
-            cs.mediator.subscribe('ShowJSGroup', this.navigateJS, {}, this);
+
+            cs.mediator.subscribe('show', this.navigateTo, {}, this);
             Backbone.history.loadUrl(Backbone.history.fragment);
         },
 
-        navigateQC: function () {
-            this.navigate('Contributors/qc');
-        },
-
-        navigateJS: function () {
-            this.navigate('Contributors/js');
+        navigateTo: function (url) {
+            this.navigate(url);
         },
 
         showContributors: function () {
