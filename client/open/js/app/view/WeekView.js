@@ -12,7 +12,7 @@
 
         render: function (group) {
             this.$el.empty().append(this.tpl({
-                groupName: group || 'all groups',
+                groupName: group,
                 width: 8,
                 start: this.weekStart,
                 startTime: moment().hour(8).minute(0),
