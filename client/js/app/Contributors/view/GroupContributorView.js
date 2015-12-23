@@ -17,11 +17,15 @@
             var id = this.model.get('_id'),
                 $elContributors = $('#main-container'),
                 filtered, contributorCollectionView;
+
             this.baseUrl = 'Contributors/';
+
             cs.mediator.publish('show', this.baseUrl + id);
+
             filtered = this.collection.filter(function (model) {
                 return model.get('groupITA') === id;
             });
+
             contributorCollectionView = new This.ContributorCollectionView(filtered);
             $elContributors.empty().append(contributorCollectionView.render().el);
         },
