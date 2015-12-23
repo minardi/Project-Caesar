@@ -24,33 +24,8 @@
   user-select: none;    
 }
 
-.content-selected-item {
+.content-item.selected-location {
   border: 1px solid #286090;
-  margin: 5px;
-  padding: 5px;
-  cursor: pointer;
-  -webkit-box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.1);
-  -moz-box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.1);
-  box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.1);
-  transition: .3s;
-}
-
-.content-selected-item:hover {
-  background: rgba(235, 235, 235, 0.4);
-}
-
-.content-selected-item h4 {
-  font-weight: bold;
-  margin: 0;
-}
-
-.content-selected-item p {
-  margin: 0;
-  font-size: 12px;
-}
-
-.content-selected-item p span {
-  font-weight: bold;
 }
 
 .data-info {
