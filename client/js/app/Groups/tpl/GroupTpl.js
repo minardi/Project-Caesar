@@ -10,8 +10,8 @@ templates.groupTpl = _.template([
         '<% } %>',
         '<div class="content-wrap">',
             '<h4><%= name %></h4>',
+            '<p><span><%= teachers %> </span></p>',
             '<p><%= startDate %> - <%= finishDate %></p>',
-            '<p><span><%= direction %> </span></p>',
         '</div>',
     '</div>'
 ].join(''));
