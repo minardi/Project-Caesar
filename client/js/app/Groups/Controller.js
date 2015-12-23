@@ -51,8 +51,10 @@
 
 
             function onfetch() {
+                var userLocation = cs.currentUser.getLocation();
+                
                 this.filterMy();
-                this.renderCurrentGroups({namespace: status + 'GroupsView'}, true);
+                this.renderCurrentGroups({namespace: status + 'GroupsView'}, true, userLocation['city']);
             }
         },
 

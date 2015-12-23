@@ -176,11 +176,11 @@
         },
 
         switchMyGroups: function () {
-            cs.mediator.publish('currentGroups', this.isMyGroupsShown ? 'Groups' : 'Groups/my');
+            cs.mediator.publish('currentGroups', this.isMyGroupsShown ? 'Groups/' + this.currentLocation : 'Groups/my');
             if ($('#my-groups').is(':checked')) {
                 cs.mediator.publish('showMy', 'current');
             } else {
-                cs.mediator.publish('showAll');
+                cs.mediator.publish('showInLocation', this.currentLocation, 'current');
             }
         },
 

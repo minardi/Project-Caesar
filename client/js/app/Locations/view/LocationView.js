@@ -38,10 +38,8 @@
         },
 
         selectItem: function () {
-            $('.content-selected-item').removeClass('content-selected-item')
-                                       .addClass('content-item');
-            this.$('div').removeClass('content-item')
-                         .addClass('content-selected-item');            
+            $('.content-item').removeClass('selected-location'); 
+            this.$('div').addClass('selected-location');            
         }
     });
 })(App.Locations);

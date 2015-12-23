@@ -2,7 +2,7 @@
 (function (This)  {
     This.Router = modifiedRouter.extend({
         routes: {
-            '': 'redirectToMyLocation',
+            '': 'redirectToMyGroups',
             'Groups': 'showAllCurrentGroups',
             'Groups/': 'showAllCurrentGroups',
             'Groups/current': 'showAllCurrentGroups',
@@ -33,14 +33,15 @@
             Backbone.history.loadUrl(Backbone.history.fragment);
         },
 
-        redirectToMy: function () {
-            this.navigate('Groups/my', {trigger: true});
-        },
-
-        redirectToMyLocation: function () {
-            var userLocation = cs.currentUser.getLocation();
-
-            this.navigate('Groups/' + userLocation['city'], {trigger: true});
+        redirectToMyGroups: function () {
+            var userRole = cs.currentUser.getRole(),
+                userLocation = cs.currentUser.getLocation();
+                
+            if (userRole === 'Teacher') {
+                this.navigate('Groups/my', {trigger: true});
+            } else {
+                this.navigate('Groups/' + userLocation['city'], {trigger: true});
+            }    
         },
 
         showFutureGroups: function () {
