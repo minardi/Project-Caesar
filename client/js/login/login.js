@@ -7,10 +7,11 @@
 // alba : dumby         - administrator     
 // ----------------------------------------------------------
 var App = {
-            Messenger: {}
-        },
-        templates = {},
-        messenger;
+        Messenger: {}
+    },
+    templates = {},
+    sessionLength = 30,
+    messenger;
         
 $(function () {
     messenger = new App.Messenger.Controller();
@@ -18,8 +19,12 @@ $(function () {
     
     $('#loginButton').on('click', tryLogin); 
     $('.form-control').keydown(function (event) {
+        $(this).val($(this).val().replace(' ', ''));
         if (event.which === 13) {
             tryLogin();
+        }
+        if (event.which === 27) {
+            $(this).val('');
         }
     });
     
@@ -33,8 +38,8 @@ $(function () {
             data: 'user=' + $('#login').val().toLowerCase() + '&password=' + md5($('#password').val()),
             success: function (response) {
                 if (JSON.parse(response).success) {
-                    Cookies.set('loggedIn', true);
-                    Cookies.set('sessionID', JSON.parse(response).sessionID);
+                    Cookies.set('loggedIn', true, {expires: moment().add(sessionLength, 'm').toDate()});
+                    Cookies.set('sessionID', JSON.parse(response).sessionID, {expires: moment().add(sessionLength, 'm').toDate()});
                     window.location.reload();
                 } else {
                     messenger.showError('Incorrect login or password. Please try again');
@@ -47,7 +52,9 @@ $(function () {
         
     }
     
-    function check (login, password) {       
+    function check (login, password) {
+        var minLength = 4;
+        
         if ((login.indexOf(' ') > 0) || (password.indexOf(' ') > 0)) {
             messenger.showError('Incorrect login or password. Please try again');
             return false;
@@ -60,6 +67,11 @@ $(function () {
         
         if ((login === '') || (password === '')) {
             messenger.showError('Login and Password should be filled');
+            return false;
+        }
+        
+        if ((login.length < minLength) || (password.length < minLength)) {
+            messenger.showError('Minimum fields\' length is ' + minLength);
             return false;
         }
         
