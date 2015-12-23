@@ -2,7 +2,7 @@ var officeList = [
     {
         _id: 0,
         name: 'Dnipro 1',
-        location: 'Dp',
+        location: 'Dp'
     },
     {
         _id: 1,

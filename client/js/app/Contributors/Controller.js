@@ -9,13 +9,12 @@
         cs.mediator.subscribe('ShowQCContributors', renderQCContributors, {}, this);
         cs.mediator.subscribe('ShowJSContributors', renderJSContributors, {}, this);
 
-
         cs.mediator.subscribe('ShowJSGroup', renderJSContributors, {}, this);
         cs.mediator.subscribe('ShowQCGroup', renderQCContributors, {}, this);
 
         function renderContributors () {
-            var contributorView = new This.GroupContributorView();
-            $el.empty().append(contributorView.render().el);
+            var contributorCollectionView = new This.GroupContributorCollectionView();
+            $el.empty().append(contributorCollectionView.render().el);
         }
 
         function renderQCContributors () {

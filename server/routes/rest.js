@@ -9,6 +9,7 @@ var express = require('express'),
     employees = require('./employees'),
     contributors = require('./contributors'),
     directions = require('./directions'),
+    groupITA = require('./groupita'),
     router = express.Router();
 
 
@@ -22,5 +23,6 @@ router.use('/offices', offices);
 router.use('/employees', employees);
 router.use('/contributors', contributors);
 router.use('/directions', directions);
+router.use('/groupITA', groupITA);
 
 module.exports = router;

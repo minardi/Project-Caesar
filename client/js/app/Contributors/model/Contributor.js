@@ -6,8 +6,7 @@
                 id: '',
                 name: '',
                 lastName: '',
-                group: '',
-                team: ''
+                groupITA: null
             }
         }
     });

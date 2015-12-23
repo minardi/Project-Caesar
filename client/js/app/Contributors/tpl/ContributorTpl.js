@@ -8,7 +8,7 @@ templates.contributorTpl = _.template([
           '</div>',
           '<div class="media-body">',
             '<h4 class="media-heading"><%= name %> <%= lastName %></h4>',
-            '<p><%= group %></p>',
+            '<p><%= groupITA %></p>',
           '</div>',
         '</div>',
     '</div>'

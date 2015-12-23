@@ -10,6 +10,7 @@ var express = require('express'),
     contributorList = require('../reset_data/contributors-list.js'),
     employeeList = require('../reset_data/employees-list.js'),
     directionList = require('../reset_data/direction-list.js'),
+    groupITAList = require('../reset_data/groupita-list.js'),
     async = require('async');
 
 require('../models/Location');
@@ -22,6 +23,7 @@ require('../models/Group');
 require('../models/Contributor');
 require('../models/Employee');
 require('../models/Direction');
+require('../models/GroupITA');
     
 router.get('/', function(req, res) {
     mongoose.connection.db.dropDatabase(function(err, result) {
@@ -34,10 +36,11 @@ router.get('/', function(req, res) {
             ContributorModel = mongoose.model('Contributor'),
             EmployeeModel = mongoose.model('Employee'),
             DirectionModel = mongoose.model('Direction'),
+            GroupITAModel = mongoose.model('GroupITA'),
 
             groupInDb, locationInDb, userInDb, 
             officeInDb, roomInDb, contributorInDb,
-            employeeInDb, directionInDb;
+            employeeInDb, directionInDb, groupITAInDb;
 
         groupList.forEach(function (groupJSON) {
             groupInDb = GroupModel(groupJSON);
@@ -122,6 +125,15 @@ router.get('/', function(req, res) {
         directionList.forEach(function (directionJSON) {
             directionInDb = DirectionModel(directionJSON);
             directionInDb.save(function (err) {
+                if (err) {
+                    console.log(err);
+                }
+            });
+        });
+
+        groupITAList.forEach(function (groupITAJSON) {
+            groupITAInDb = GroupITAModel(groupITAJSON);
+            groupITAInDb.save(function (err) {
                 if (err) {
                     console.log(err);
                 }
