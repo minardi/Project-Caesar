@@ -38,6 +38,7 @@ $(function () {
     collections.contributors = new App.Contributors.ContributorCollection();
     collections.teachers = new App.Employee.EmployeeCollection();
     collections.directions = new App.Direction.DirectionCollection();
+    collections.groupITA = new App.Contributors.GroupITACollection();
 
     collections.groups.fetch({success: function () {
         collections.locations.fetch({success: main})
@@ -48,6 +49,7 @@ $(function () {
     collections.contributors.fetch();
     collections.teachers.fetch();
     collections.directions.fetch();
+    collections.groupITA.fetch();
     
     function main () {
         cs.mediator = new Mediator();

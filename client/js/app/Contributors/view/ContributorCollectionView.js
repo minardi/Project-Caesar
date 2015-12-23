@@ -9,7 +9,7 @@
             this.collection = collections.contributors;
         },
 
-        renderFilterContributors: function ( filter) {
+        renderFilterContributors: function (filter) {
             var filtered = this.collection.filter(filter);
             this.$el.html(this.tpl());
             this.renderAll(filtered);
@@ -18,13 +18,13 @@
 
         renderQCGroup: function () {
             return this.renderFilterContributors(function (model) {
-                return model.get('group') == 'QC';
+                return model.get('groupITA') === 'QC';
             });
         },
 
         renderJSGroup: function () {
             return this.renderFilterContributors(function (model) {
-                return model.get('group') == 'Dp086-JS';
+                return model.get('groupITA') === 'JS';
             });
         },
 

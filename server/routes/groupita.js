@@ -3,8 +3,8 @@ var express = require('express'),
     router = express.Router();
 
 router.get('/', function (req, res) {
-    var Contributor = mongoose.model('Contributor');
-    Contributor.find({}, function (err, data) {
+    var GroupITA = mongoose.model('GroupITA');
+    GroupITA.find({}, function (err, data) {
         if (err) {
             console.log(err);
         }

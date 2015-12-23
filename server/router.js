@@ -6,7 +6,7 @@ var express = require('express'),
     continueSession = require('./routes/continueSession'),
     rest = require('./routes/rest'),
     openPage = require('./routes/openPage'),
-    userAcess = require('./routes/userAcess')
+    userAcess = require('./routes/userAcess'),
     app = express();
 
 app.use('/', routes);

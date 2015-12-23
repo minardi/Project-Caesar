@@ -5,9 +5,6 @@
         className: 'col-md-4',
         tpl: templates.contributorTpl,
 
-        events: {
-        },
-
         render: function () {
             this.$el.html(this.tpl(this.model.toJSON()));
             return this;

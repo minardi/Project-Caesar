@@ -4,8 +4,7 @@ var mongoose = require('mongoose'),
         _id: Number,
         name: String,
         lastName: String,
-        group: String,
-        team: String
+        groupITA: { type: String, ref: 'GroupITA' }
     }));
 
 module.exports = Contributor;
