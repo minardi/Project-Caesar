@@ -23,6 +23,7 @@ var groupList = [
         location: 'Lviv',
         startDate: new Date(2016, 8, 1),
         finishDate: new Date(2016, 8, 2),
+        teachers: ['MLopatinskaia'],
         status: 'Planned'
     },
     {
@@ -31,6 +32,7 @@ var groupList = [
         location: 'Lviv',
         startDate: new Date(2014, 8, 1),
         finishDate: new Date(2016, 8, 3),
+        teachers: ['MLopatinskaia'],
         status: 'Planned'
     },
     {
@@ -47,6 +49,7 @@ var groupList = [
         location: 'Sofia',
         startDate: new Date(2015, 8, 1),
         finishDate: new Date(2015, 11, 28),
+        teachers: ['JBoyanov'],
         status: 'In progress'
     },
     {
@@ -55,6 +58,7 @@ var groupList = [
         location: 'Lviv',
         startDate: new Date(2015, 9, 20),
         finishDate: new Date(2016, 1, 28),
+        teachers: ['VRiazskaia'],
         status: 'In progress'
     },
     {
@@ -63,6 +67,7 @@ var groupList = [
         location: 'Lviv',
         startDate: new Date(2015, 10, 15),
         finishDate: new Date(2016, 2, 3),
+        teachers: ['MLopatinskaia'],
         status: 'In progress'
     },
     {
@@ -71,6 +76,7 @@ var groupList = [
         location: 'Lviv',
         startDate: new Date(2015, 10, 10),
         finishDate: new Date(2016, 2, 28),
+        teachers: ['MPlesha'],
         status: 'In progress'
     },
     {
@@ -79,6 +85,7 @@ var groupList = [
         location: 'Sofia',
         startDate: new Date(2015, 11, 1),
         finishDate: new Date(2016, 2, 5),
+        teachers: ['JBoyanov'],
         status: 'In progress'
     }
 ];
