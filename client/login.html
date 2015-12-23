@@ -7,13 +7,21 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="/css/lib/bootstrap.css">
         <link rel="stylesheet" href="/css/login.css"> 
+        <link rel="stylesheet" type="text/css" href="/css/app/Messanger/view/InformationView.css">
         <script src="/js/lib/jquery.js"></script>
         <script src="/js/lib/underscore.js"></script>
         <script src="/js/lib/backbone.js"></script>
         <script src="/js/lib/bootstrap.js"></script>
         <script src="/js/lib/js.cookie.js"></script>
         <script src="/js/lib/md5.js"></script>
-        <script src="/js/login.js"></script>
+        
+        <script src="/js/login/login.js"></script>
+        
+        <script src="/js/lib/backbone-modified-controller.js"></script>
+        <script src="/js/login/Messenger/tpl/warningTpl.js"></script>
+        <script src="/js/login/Messenger/tpl/errorTpl.js"></script>
+        <script src="/js/login/Messenger/view/InformView.js"></script>
+        <script src="/js/login/Messenger/Controller.js"></script>
     </head>
     <body>
         <div class='container'>
@@ -39,5 +47,6 @@
                 </div>
             </div>
         </div>
+        <div class="messenger-wrap container"></div>
     </body>
 </html>
