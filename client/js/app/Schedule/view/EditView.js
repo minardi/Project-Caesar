@@ -3,22 +3,25 @@
     This.EditView = Backbone.View.extend({
         tpl: templates.editViewTpl,
         roomsTpl: templates.roomsTpl,
-        className: 'edit-panel row',
+        className: 'edit-panel',
         groupName: '',
         weekStart: '',
-
-        initialize: function () {
+        events: {
+            'click #offices .btn': 'changeRooms'
         },
 
-        render: function (groupName, weekStart) {
+        initialize: function () {
+            this.listenTo(collections.events, 'add', this.rerender);
+            this.listenTo(collections.events, 'remove', this.rerender);
+        },
+
+        render: function (groupName, weekStart, officeName) {
             this.groupName = groupName;
             this.weekStart = moment(weekStart, 'MM-DD-YYYY').day('Monday');
 
             this.$el.empty()
-                .append(this.tpl(this.tplParameters(groupName)));
+                .append(this.tpl(this.tplParameters(this.groupName, officeName)));
 
-            $('td').not('.schedule-event').click(this.addEvent.bind(this));
-            $('td.schedule-event').dblclick(this.deleteEvent.bind(this));
             return this;
         },
 
@@ -38,11 +41,14 @@
                 },
                 newEvent = new This.Event(eventJSON);
 
-            newEvent.save();
-            if (newEvent.isValid() && newEvent.isNew()) {
-                this.collection.add(newEvent);
+            newEvent.save(null, {
+                success: addToCollection.bind(this)
+            });
+
+            function addToCollection(model) {
+                this.collection.add(model);
             }
-            cs.mediator.publish('Schedule:rerender', this.weekStart, this.groupName.replace(' ', '+'));
+
         },
 
         deleteEvent: function (event) {
@@ -55,23 +61,31 @@
             eventToDelete.destroy({wait: true});
             this.collection.remove(eventToDelete);
 
-            cs.mediator.publish('Schedule:rerender', this.weekStart, this.groupName.replace(' ', '+'));
             function isDateClass(className) {
                 return /^(?:\d{2}-){4}\d{4}$/.test(className);
             }
         },
 
-        // loadRooms: function (){
-        //     var officeName = this.$el.find('#offices .active span').text(),
-        //         officeId = collections.offices.findWhere({name: officeName}).id;
+        rerender: function () {
+                cs.mediator.publish('Schedule:rerender', this.weekStart, this.groupName.replace(' ', '+'));
+        },
 
-        //     this.$el.find('#rooms').html(this.roomsTpl(collections.rooms.where({office: officeId})));
-        // },
-        tplParameters: function (groupName) {
+        setHandlers: function () {
+            $('td').not('.schedule-event').click(this.addEvent.bind(this));
+            $('td.schedule-event').dblclick(this.deleteEvent.bind(this));
+        },
+
+        changeRooms: function (e) {
+            var officeName = $(e.currentTarget).find('span').html();
+            cs.mediator.publish('rerender editControl', this.weekStart, this.groupName.replace(' ', '+'), officeName);
+        },
+
+        tplParameters: function (groupName, officeName) {
             var city = collections.groups.findWhere({name: groupName}).get('location'),
                 locationId = collections.locations.findWhere({city: city}).id,
                 offices = collections.offices.where({location: locationId}),
-                rooms = collections.rooms.where({office: id(offices[0])});
+                officeId = officeName ? collections.offices.findWhere({name: officeName}).id : id(offices[0]),
+                rooms = collections.rooms.where({office: officeId});
 
             function id(office) {
                 return office ? office.id : null;

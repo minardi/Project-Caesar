@@ -11,6 +11,7 @@ router.post('/', function (req, res, next) {
             console.log(err);
             res.send(err);
         } else {
+            console.log(data);
             res.send(data);
         }
 
