@@ -49,7 +49,7 @@
                     for (i = 0; i < item.get('duration'); i++) {
                         eventID = moment(item.get('dateTime')).add(i * 30, 'm').format('HH-mm-MM-DD-YYYY');
                         this.$el.find('.' + eventID).attr('rowSpan', item.get('duration'))
-                        .data('id', item.id).addClass('schedule-event').html(item.toString());
+                        .data('id', item.get('_id')).addClass('schedule-event').html(item.toString());
                     }
                         
                     for (i = 1; i < item.get('duration'); i++) {

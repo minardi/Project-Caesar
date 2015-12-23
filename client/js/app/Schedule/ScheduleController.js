@@ -4,6 +4,7 @@
         this.gridView = new This.GridView();
         this.editView = new This.EditView({collection: collections.events});
         this.$el = $('#main-container');
+        this.$editContainer = $('.notifications');
 
         this.showSchedule = function (weekStart, group, inEdit) {
             this.$el.empty();
@@ -13,18 +14,23 @@
 
         this.editSchedule = function (weekStart, group) {
             this.showSchedule(weekStart, group, true);
-            this.$el.append(this.editView.render(group.replace('+', ' '), weekStart).el);
+            this.rerenderEdit(weekStart, group);
+            this.editView.setHandlers();
         };
 
-        cs.mediator.subscribe('Schedule:rerender', this.editSchedule, {}, this);
+        this.rerender = function(weekStart, group) {
+            this.showSchedule(weekStart, group, true);
+            this.editView.setHandlers();
+        };
 
-        cs.mediator.subscribe('addEvent', function (json) {
-            this.editView.addEvent(json);
-        }, {}, this);
+        this.rerenderEdit = function(weekStart, group, officeName) {
+            this.$editContainer.empty();
+            this.editView.delegateEvents();
+            this.$editContainer.append(this.editView.render(group.replace('+', ' '), weekStart, officeName).el);
+        };
 
-        cs.mediator.subscribe('deleteEvent', function () {
-            this.editView.deleteEvent();
-        }, {}, this);
+        cs.mediator.subscribe('Schedule:rerender', this.rerender, {}, this);
+        cs.mediator.subscribe('rerender editControl', this.rerenderEdit, {}, this);
 
         return this;
     };
