@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
     Office = mongoose.model('Office', new Schema({
     	_id: Number,
     	name: String,
-    	location: { type: Number, ref: 'Location' }
+    	location: { type: String, ref: 'Location' }
     }));
 
 module.exports = Office;
