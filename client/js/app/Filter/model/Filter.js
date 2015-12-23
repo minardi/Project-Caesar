@@ -5,7 +5,7 @@
             return {
                 collection: null,
                 currentPage: 0,
-                pageSize: 6,
+                pageSize: 9,
                 searchField: '',
                 searchString: '',
                 maxPage: 0,

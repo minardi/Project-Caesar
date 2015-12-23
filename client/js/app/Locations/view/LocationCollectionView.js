@@ -5,6 +5,11 @@
         className: 'center-content',
         tpl: templates.locationCollectionTpl,
 
+        events: {
+            'click #my-location': 'routeToMyLocation',
+            'click #my-groups': 'routeToMyGroups'
+        },
+
         initialize: function () {
             this.collection = collections.locations;
             this.filter = new Filter.Controller({
@@ -29,9 +34,6 @@
                     this.renderAll(this.filter.getCollection());
                 }.bind(this)
             });
-
-            this.$('#my-location').on('click', this.routeToMyLocation.bind(this));
-            this.$('#my-groups').on('click', this.routeToMyGroups.bind(this));
 
             return this;
         },
@@ -72,7 +74,6 @@
         },
 
         startSearch: function (searchString) {
-
             this.filter.set({'searchString': searchString});
             this.filter.set({'currentPage': 0});
             this.renderAll(this.filter.getCollection());            
