@@ -13,12 +13,12 @@
         <script src="/js/lib/backbone.js"></script>
         <script src="/js/lib/bootstrap.js"></script>
         <script src="/js/lib/js.cookie.js"></script>
+        <script src="/js/lib/moment.min.js"></script>
         <script src="/js/lib/md5.js"></script>
         
         <script src="/js/login/login.js"></script>
         
         <script src="/js/lib/backbone-modified-controller.js"></script>
-        <script src="/js/login/Messenger/tpl/warningTpl.js"></script>
         <script src="/js/login/Messenger/tpl/errorTpl.js"></script>
         <script src="/js/login/Messenger/view/InformView.js"></script>
         <script src="/js/login/Messenger/Controller.js"></script>
@@ -28,14 +28,9 @@
             <div class='form-signin'>
                 <h2 class='form-signin-heading'>CAESAR LOG IN</h2>
                 <div>
-                    <input type='text' id='login' placeholder='Login' class='form-control' autofocus>
-                    <input type='password' id='password' placeholder='Password' class='form-control'>
+                    <input type='text' id='login' placeholder='Login' class='form-control' autofocus maxlength="10">
+                    <input type='password' id='password' placeholder='Password' class='form-control' maxlength="10">
                     <input type='button' id='loginButton' value='Log In' class='btn btn-lg btn-primary btn-block'><br>
-                </div>
-                <div class='alert alert-danger collapse' id='loginFailed'>   
-                    <a href='#' class='close'>&times;</a>
-                    <strong>Logging in failed</strong><br> 
-                    Perhaps, you've made a mistake typing your login / password
                 </div>
             </div>
             <div class="navbar-fixed-bottom row-fluid">
