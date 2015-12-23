@@ -5,27 +5,8 @@
         className: 'center-content',
         tpl: templates.contributorCollectionTpl,
 
-        initialize: function () {
-            this.collection = collections.contributors;
-        },
-
-        renderFilterContributors: function (filter) {
-            var filtered = this.collection.filter(filter);
-            this.$el.html(this.tpl());
-            this.renderAll(filtered);
-            return this;
-        },
-
-        renderQCGroup: function () {
-            return this.renderFilterContributors(function (model) {
-                return model.get('groupITA') === 'QC';
-            });
-        },
-
-        renderJSGroup: function () {
-            return this.renderFilterContributors(function (model) {
-                return model.get('groupITA') === 'JS';
-            });
+        initialize: function (collection) {
+            this.collection = collection;
         },
 
         render: function () {
@@ -34,8 +15,8 @@
             return this;
         },
 
-        renderAll: function (filtered) {
-            filtered.forEach(this.renderOne, this);
+        renderAll: function () {
+            this.collection.forEach(this.renderOne, this);
         },
 
         renderOne: function (contributor) {
