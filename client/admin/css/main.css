@@ -37,3 +37,8 @@ th.actions {
 #startDate, #finishDate {
     text-align: center;
 }
+
+#groups table ul {
+    list-style: none;
+    padding-left: 0;
+}
