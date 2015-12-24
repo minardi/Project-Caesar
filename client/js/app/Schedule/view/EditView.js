@@ -85,7 +85,8 @@
                 locationId = collections.locations.findWhere({city: city}).id,
                 offices = collections.offices.where({location: locationId}),
                 officeId = officeName ? collections.offices.findWhere({name: officeName}).id : id(offices[0]),
-                rooms = collections.rooms.where({office: officeId});
+                rooms = collections.rooms.where({office: officeId}),
+                roomId = rooms[0].id;
 
             function id(office) {
                 return office ? office.id : null;
@@ -94,7 +95,9 @@
             return {
                 types: Object.keys(This.EventTypes),
                 offices: offices,
-                rooms: rooms
+                rooms: rooms,
+                officeId: officeId,
+                roomId: roomId
             };
         }
 
