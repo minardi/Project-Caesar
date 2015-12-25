@@ -6,6 +6,156 @@
 
         <!-- QUNIT -->
         <link rel="stylesheet" href="qunit/qunit.css">
+
+        <script src="../client/js/lib/jquery.js"></script>
+        <script src="../client/js/lib/underscore.js"></script>
+        <script src="../client/js/lib/backbone.js"></script>
+        <script src="../client/js/lib/backbone-validation.js"></script>
+        <script src="../client/js/lib/mediator.min.js"></script>
+        <script src="../client/js/lib/moment.min.js"></script>
+        <script src="../client/js/lib/bootstrap.js"></script>
+        <script src="../client/js/lib/bootstrap-datetimepicker.js"></script>
+        <script src="../client/js/lib/js.cookie.js"></script>
+        
+        <!-- scripts.js -->
+        <script src="../client/js/main.js"></script>
+
+        <script src="../client/js/lib/backbone-modified-router.js"></script>
+        <script src="../client/js/lib/backbone-modified-controller.js"></script>
+
+        <script src="../client/js/app/Router.js"></script>
+        
+        <!-- groups -->
+        <script src="../client/js/app/Groups/model/Group.js"></script>
+        <script src="../client/js/app/Groups/model/GroupCollection.js"></script>
+
+        <script src="../client/js/app/Groups/tpl/GroupTpl.js"></script>
+        <script src="../client/js/app/Groups/tpl/GroupCollectionTpl.js"></script>
+        <script src="../client/js/app/Groups/tpl/GroupAddTpl.js"></script>
+        <script src="../client/js/app/Groups/tpl/GroupEditTpl.js"></script>
+        <script src="../client/js/app/Groups/tpl/GropDeleteTpl.js"></script>
+        <script src="../client/js/app/Groups/tpl/MyGroupsTpl.js"></script>
+        <script src="../client/js/app/Groups/tpl/MyLocationGroupsTpl.js"></script>
+
+        <script src="../client/js/app/Groups/view/GroupView.js"></script>
+        <script src="../client/js/app/Groups/view/GroupCollectionView.js"></script>
+        <script src="../client/js/app/Groups/view/GroupAddEditView.js"></script>
+        <script src="../client/js/app/Groups/view/GroupDeleteView.js"></script>
+
+        <script src="../client/js/app/Groups/GroupRouter.js"></script>
+        <script src="../client/js/app/Groups/Controller.js"></script>
+
+        <!-- menu -->
+        <script src="../client/js/app/Menu/tpl/MenuTpl.js"></script>
+        <script src="../client/js/app/Menu/view/MenuView.js"></script>
+        <script src="../client/js/app/Menu/Controller.js"></script>
+        
+        <!-- error -->
+        <script src="../client/js/app/Error/tpl/ErrorTpl.js"></script>
+        <script src="../client/js/app/Error/view/ErrorView.js"></script>
+        <script src="../client/js/app/Error/Controller.js"></script>
+
+        <!-- user -->
+        <script src="../client/js/app/Users/model/Roles.js"></script>
+        <script src="../client/js/app/Users/model/User.js"></script>
+        
+        <!-- employee -->
+        <script src="../client/js/app/Employee/model/Employee.js"></script>
+        <script src="../client/js/app/Employee/model/EmployeeCollection.js"></script>
+
+        <!-- direction -->
+        <script src="../client/js/app/Direction/model/Direction.js"></script>
+        <script src="../client/js/app/Direction/model/DirectionCollection.js"></script>
+
+        <!-- cookies -->
+        <script src="../client/js/app/Cookies/Processor.js"></script>
+        <script src="../client/js/app/Cookies/Controller.js"></script>
+        
+        <!-- session -->
+        <script src="../client/js/app/Session/tpl/CurrentSessionTpl.js"></script>
+        <script src="../client/js/app/Session/view/CurrentSessionView.js"></script>
+        <script src="../client/js/app/Session/Controller.js"></script>
+
+        <!-- filter -->
+        <script src="../client/js/app/Filter/model/Filter.js"></script>
+        <script src="../client/js/app/Filter/tpl/PaginatorTpl.js"></script>
+        <script src="../client/js/app/Filter/tpl/SearcherTpl.js"></script>
+        <script src="../client/js/app/Filter/view/PaginatorView.js"></script>
+        <script src="../client/js/app/Filter/view/SearcherView.js"></script>
+        <script src="../client/js/app/Filter/Controller.js"></script>
+
+        <!-- locations -->
+        <script src="../client/js/app/Locations/model/Location.js"></script>
+        <script src="../client/js/app/Locations/model/LocationCollection.js"></script>
+
+        <script src="../client/js/app/Locations/tpl/LocationTpl.js"></script>
+        <script src="../client/js/app/Locations/tpl/LocationCollectionTpl.js"></script>
+
+        <script src="../client/js/app/Locations/view/LocationView.js"></script>
+        <script src="../client/js/app/Locations/view/LocationCollectionView.js"></script>
+
+        <script src="../client/js/app/Locations/LocationRouter.js"></script>
+        <script src="../client/js/app/Locations/Controller.js"></script>
+        
+        <!-- schedule -->
+        <script src="../client/js/app/Schedule/model/EventTypes.js"></script>
+        <script src="../client/js/app/Schedule/model/Event.js"></script>
+        <script src="../client/js/app/Schedule/model/Office.js"></script>
+        <script src="../client/js/app/Schedule/model/Room.js"></script>
+        <script src="../client/js/app/Schedule/model/EventCollection.js"></script>
+        <script src="../client/js/app/Schedule/model/OfficeCollection.js"></script>
+        <script src="../client/js/app/Schedule/model/RoomCollection.js"></script>
+        
+        <script src="../client/js/app/Schedule/tpl/GridTpl.js"></script>
+        <script src="../client/js/app/Schedule/tpl/EditViewTpl.js"></script>
+        <script src="../client/js/app/Schedule/tpl/RoomsTpl.js"></script>
+        
+        <script src="../client/js/app/Schedule/view/GridView.js"></script>
+        <script src="../client/js/app/Schedule/view/EditView.js"></script>
+        
+        <script src="../client/js/app/Schedule/ScheduleController.js"></script>
+        <script src="../client/js/app/Schedule/ScheduleRouter.js"></script>
+
+        <!-- messenger -->
+        <script src="../client/js/app/Messenger/tpl/informationTpl.js"></script>
+        <script src="../client/js/app/Messenger/tpl/warningTpl.js"></script>
+        <script src="../client/js/app/Messenger/tpl/errorTpl.js"></script>
+        <script src="../client/js/app/Messenger/tpl/confirmTpl.js"></script>
+        <script src="../client/js/app/Messenger/tpl/hintTpl.js"></script>
+ 
+        <script src="../client/js/app/Messenger/view/InformView.js"></script>
+        <script src="../client/js/app/Messenger/view/ConfirmView.js"></script>
+        <script src="../client/js/app/Messenger/view/HintView.js"></script>
+
+        <script src="../client/js/app/Messenger/Controller.js"></script>
+
+        <!-- context menu -->
+        <script src="../client/js/app/ContextMenu/tpl/contextMenuTpl.js"></script>
+
+        <script src="../client/js/app/ContextMenu/view/MenuView.js"></script>
+
+        <script src="../client/js/app/ContextMenu/Controller.js"></script>
+
+        <!-- contributors -->
+        <script src="../client/js/app/Contributors/model/Contributor.js"></script>
+        <script src="../client/js/app/Contributors/model/ContributorCollection.js"></script>
+        <script src="../client/js/app/Contributors/model/GroupITA.js"></script>
+        <script src="../client/js/app/Contributors/model/GroupITACollection.js"></script>
+        <script src="../client/js/app/Contributors/tpl/ContributorTpl.js"></script>
+        <script src="../client/js/app/Contributors/tpl/groupContributorTpl.js"></script>
+        <script src="../client/js/app/Contributors/tpl/groupContributorCollectionTpl.js"></script>
+        <script src="../client/js/app/Contributors/tpl/ContributorCollectionTpl.js"></script>
+        <script src="../client/js/app/Contributors/view/ContributorView.js"></script>
+        <script src="../client/js/app/Contributors/view/ContributorCollectionView.js"></script>
+        <script src="../client/js/app/Contributors/view/GroupContributorView.js"></script>
+        <script src="../client/js/app/Contributors/view/GroupContributorCollectionView.js"></script>
+        <script src="../client/js/app/Contributors/Controller.js"></script>
+        <script src="../client/js/app/Contributors/Router.js"></script>
+        
+        <!-- navigator -->
+        <script src="../client/js/app/Navigator/Controller.js"></script>
+
+
         <script src="qunit/qunit.js"></script>
     
         <script src="js/tests.js"></script>
